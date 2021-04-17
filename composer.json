@@ -1,0 +1,81 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "bonecms/laravel-captcha": "^2.2",
+        "bumbummen99/shoppingcart": "^2.8",
+        "buzz/laravel-google-captcha": "^2.3",
+        "cyrildewit/eloquent-viewable": "^5.2",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "fideloper/proxy": "^4.0",
+        "fomvasss/laravel-meta-tags": "^3.0",
+        "intervention/image": "^2.5",
+        "jeremykenedy/laravel-roles": "^3.0",
+        "joedixon/laravel-translation": "^1.1",
+        "laravel-notification-channels/pusher-push-notifications": "^1.1",
+        "laravel/framework": "^6.2",
+        "laravel/slack-notification-channel": "^2.0",
+        "laravel/socialite": "^4.3",
+        "laravel/tinker": "^1.0",
+        "laravel/ui": "^1.1",
+        "laraveldaily/laravel-charts": "^0.1.13",
+        "pusher/pusher-php-server": "~4.0",
+        "rtconner/laravel-tagging": "^3.2",
+        "spatie/laravel-newsletter": "^4.8",
+        "spatie/laravel-sitemap": "^5.7",
+        "torann/currency": "^1.1",
+        "willvincent/laravel-rateable": "^2.0"
+    },
+    "require-dev": {
+        "facade/ignition": "^1.4",
+        "fzaninotto/faker": "^1.4",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    }
+}

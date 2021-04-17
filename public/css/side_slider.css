@@ -1,0 +1,35 @@
+
+html { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-height: inherit;
+}
+ [data-sidebar] {
+ display: none;
+ position: fixed;
+ height: 100%;
+ z-index: 100;
+}
+ [data-sidebar-overlay] {
+ display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ opacity: 0;
+ width: 100%;
+ min-height: inherit;
+}
+
+/* Additional styles */
+
+
+.silder_tray { 
+	background-color: white;
+	box-shadow: 3px 1px 2px 2px #00000017;
+	 z-index: 100000;
+}
+
+.overlay { 
+	background-color: transparent;
+}

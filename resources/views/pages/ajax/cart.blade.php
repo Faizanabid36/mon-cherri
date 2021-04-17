@@ -1,0 +1,4 @@
+
+<?php 
+  $cartcontent = Cart::content();
+?>
