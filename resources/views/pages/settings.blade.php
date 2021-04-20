@@ -10,7 +10,7 @@
       		</div>
 		</div>
         <!--End Page Title-->
-        
+
         <div class="container">
 
             <div class="row margin-30px-bottom">
@@ -43,7 +43,7 @@
 		           							 	 </div>
 		           							 	 <div class="col-md-12">
 		           							 	 	<div class="form-group">
-		           							 	 		 <label for="new_password">{{__('Current Password')}}</label>
+		           							 	 		 <label for="new_password">{{__('New Password')}}</label>
 		           							 	 		 <input type="password" name="password" id="new_password" class="form-control" required>
 		           							 	 		 @if($errors->has('password'))
 								                            @foreach($errors->get('password') as $message)
@@ -54,7 +54,7 @@
 		           							 	 </div>
 		           							 	 <div class="col-md-12">
 		           							 	 	<div class="form-group">
-		           							 	 		 <label for="password_confirmation">{{__('Current Password')}}</label>
+		           							 	 		 <label for="password_confirmation">{{__('Confirm Password')}}</label>
 		           							 	 		 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
 		           							 	 		 @if($errors->has('password_confirmation'))
 								                            @foreach($errors->get('password_confirmation') as $message)
