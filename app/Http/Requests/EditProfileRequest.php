@@ -24,13 +24,13 @@ class EditProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      =>'required',
-            'phone'     =>'required|regex:/(0)[0-9]{9}/|min:6|max:11',
-            'first_name'=>'required',
-            'last_name' =>'required',
-            'state_id'  =>'required',
-            'city_id'   =>'required',
-            'address'   =>'required',
+            'name' => 'required',
+            'phone' => 'required||min:6|max:13',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'address' => 'required',
         ];
     }
 }

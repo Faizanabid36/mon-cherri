@@ -32,6 +32,7 @@ class BaseController extends Controller
 {
     public function update_account(EditProfileRequest $request, $id)
     {
+
         Auth::user()->info()->update($request->except('_token','_method','name'));
         Auth::user()->update(['name'=>$request->input('name')]);
         if (Cart::count() > 0) {
@@ -54,7 +55,7 @@ class BaseController extends Controller
         })->get();
         Notification::send($users, new OrderNotification($invoice));
 
-        
+
 
         return redirect('/my-account/orders')->with('success','Your order has been submit');
     }
