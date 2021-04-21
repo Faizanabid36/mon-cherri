@@ -531,7 +531,7 @@ th {
     .footer-nav {
         height: auto;
         display: block ;
-
+    
     }
     .footer-nav ul {
         padding: 1.5rem 0rem !important;
@@ -560,7 +560,7 @@ th {
     width: 100%;
     padding: 1rem 0rem 0rem;
 }
-.End-footer .social-icon i{
+ .End-footer .social-icon i{
     font-size: 26px;
     color: #baa794 !important;
     border: 1px solid #baa794;
@@ -600,7 +600,7 @@ th {
     border: 1px solid transparent;
     border-radius: 0;
     padding: 8px 15px 8px;
-    background-color: #7a5630;
+    background-color: #4a341e;
     color: #fff;
     font-family: Poppins, Helvetica, Tahoma, Arial, sans-serif;
     font-weight: 400;
@@ -2213,7 +2213,7 @@ a.quick-view, a.wishlist, .cartIcon, .add-to-compare {
 
 a.quick-view:hover, a.wishlist:hover, .cartIcon:hover, .variants.add button:hover, .add-to-compare:hover {
     color: #ffffff;
-    background-color: #000000;
+    background-color: #7a5630;
     opacity: 0.8;
 }
 
@@ -2683,7 +2683,7 @@ a.quick-view {
 }
 
 .collection-hero__image {
-    height: 250px;
+    height: 480px;
     opacity: 1;
 }
 
@@ -2729,7 +2729,7 @@ a.quick-view {
 
 .sidebar h2, .sidebar .h2 {
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 21px;
 }
 
 .sidebar .sidebar_widget .widget-content ul {
@@ -2740,7 +2740,7 @@ a.quick-view {
 .sidebar .sidebar_widget .widget-content ul li {
     list-style: none;
     padding: 3px 0;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .filterBox ul:not(.filter-color) {
@@ -2771,7 +2771,7 @@ a.quick-view {
 
 .filterBox ul:not(.filter-color) li label {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .filterBox ul:not(.filter-color) input[type="checkbox"] + label > span {
@@ -2818,7 +2818,7 @@ a.quick-view {
 }
 
 .filterBox .filter-color .swacth-btn.checked {
-    border-color: #000;
+    border-color: #7a5630;
 }
 
 .filterBox .filter-color .black {
@@ -2973,7 +2973,7 @@ a.quick-view {
 
 #slider-range .ui-slider-handle {
     background: #fff;
-    border: 2px solid #000;
+    border: 2px solid #d2a45d;
     height: 10px;
     outline: none;
     top: -4px;
@@ -2989,7 +2989,7 @@ a.quick-view {
 }
 
 #slider-range.ui-slider-horizontal .ui-slider-range ~ .ui-slider-range {
-    background: #000;
+    background: #d2a45d;
 }
 
 /* Color Swatches */
@@ -3160,12 +3160,13 @@ a.quick-view {
 
 .filters-toolbar-wrapper select {
     width: auto;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .filters-toolbar__input {
     -ms-transition: all ease-out 0.15s;
     -webkit-transition: all ease-out 0.15s;
+    border-bottom: 2px solid #d2a45d !important;
     transition: all ease-out 0.15s;
     background-color: #fff;
     border: 0 solid transparent;
@@ -6523,7 +6524,7 @@ body.home8-jewellery {
 }
 
 .home14-bags .hero .text-small .mega-title {
-    font-weight: 400;
+    font-weight: 700;
     font-family: "Roboto Slab", Helvetica, Tahoma, Arial, serif;
 }
 
