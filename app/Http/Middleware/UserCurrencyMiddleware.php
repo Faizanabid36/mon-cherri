@@ -14,12 +14,12 @@ class UserCurrencyMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next) {
-      // if (request()->get('currency'))
-      // {
-      //       session()->put([
-      //         'currency' => request()->get('currency'),
-      //       ]);
-      // }
+      if (request()->get('currency'))
+      {
+            session()->put([
+              'currency' => request()->get('currency'),
+            ]);
+      }
       return $next($request);
     }
 }

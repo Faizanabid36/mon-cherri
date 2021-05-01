@@ -36,8 +36,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \App\Http\Middleware\UserCurrencyMiddleware::class,
-            \Torann\Currency\Middleware\CurrencyMiddleware::class,
+            \App\Http\Middleware\UserCurrencyMiddleware::class,
+            // \Torann\Currency\Middleware\CurrencyMiddleware::class,
         ],
 
         'api' => [
