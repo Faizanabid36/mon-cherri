@@ -146,7 +146,7 @@ iframe {
 }
 
 a {
-    color: #555555;
+    color: #4a341e;
     text-decoration: none;
     -ms-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
@@ -261,12 +261,13 @@ h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a, h6 a, .h6 a {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, address, p, pre, blockquote, dl, dd, menu, ol, ul, table, caption, hr {
     margin: 0;
     margin-bottom: 15px;
+    font-family: "Poppins";
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     color: #000;
     margin: 0 0 10px;
-    font-family: "Roboto Slab", Helvetica, Tahoma, Arial, serif;
+    font-family: "Baskerville Old Face";
     font-weight: 400;
     line-height: 1.2;
     overflow-wrap: break-word;
@@ -313,7 +314,7 @@ p:last-child {
 
 input, button, select, textarea {
     background: transparent;
-    border: 1px solid #d7d7d7;
+    border: 1px solid #4a341e;
     transition: all 0.4s ease-out 0s;
     -webkit-transition: all 0.4s ease-out 0s;
     color: #424242;
@@ -637,7 +638,7 @@ th {
     background-color: transparent;
     border: 0;
     margin: 0;
-    color: #31a3a3;
+    color: #4a341e;
     text-align: left;
     text-decoration: none;
     outline: none !important;
@@ -3927,8 +3928,8 @@ table {
 }
 
 .qtyField a {
-    background-color: #eee;
-    color: #000;
+    background-color: #4a341e;
+    color: #fff;
 }
 
 .qtyField a .fa {
@@ -5096,7 +5097,7 @@ table {
     margin: 0;
     padding: 15px;
     text-transform: uppercase;
-    background-color: #000;
+    background-color: #4a341e;
 }
 
 .customer-box h3 i {

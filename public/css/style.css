@@ -1,13 +1,13 @@
-.body{
-    font-family: "poppins" , sans-serif;
-}
-.slick-prev:before {
-    content: "\003C" !important;
-    font-size: 25px;
+ .body{
+     font-family: "poppins" , sans-serif;
+ }
+ .slick-prev:before {
+     content: "\003C" !important;
+     font-size: 25px;
     font-weight: bold;
     color: black;
-}
-.slick-next:before {
+ }
+ .slick-next:before {
     content: "\003E" !important;
     font-size: 25px;
     font-weight: bold;
@@ -91,7 +91,7 @@
     padding: 2rem 0rem;
     z-index: -0.1 !important;
 }
-.header h2{
+ .header h2{
     text-transform: uppercase;
     font-weight: 600;
     padding-bottom: 0.5rem;
@@ -129,7 +129,7 @@
 .login .login-wrap .login-text h4{
     text-transform: uppercase;
     font-weight: bold;
-}
+} 
 .login .login-wrap .login-text p{
     padding: 1.2rem 0rem 0rem ;
 }
@@ -191,7 +191,7 @@
     .register .reg-form .login-info .bt-link .links{
         padding-top: 0rem !important;
     }
-}
+ }
 .register .reg-form .login-info .bt-link .links a{
     color: black;
     text-decoration: none;
@@ -302,7 +302,7 @@
     }
     .header-slide .slick-next {
         right: 9px !important;
-    }
+}
 }
 .header-slide .slick-prev{
     left: 50px ;
@@ -315,28 +315,28 @@
 
 .header-slide .slick-prev:before,
 .header-slide .slick-next:before {
-    color: white;
+  color: white;
 }
 
 .header-slide .slick-slider .slick-list {
     z-index: 100 !important;
 }
 .header-slide .slick-slide {
-    transition: all ease-in-out .3s;
-    opacity: .2;
+  transition: all ease-in-out .3s;
+  opacity: .2;
 }
 
 .header-slide .slick-active {
-    opacity: .5;
+  opacity: .5;
 }
 
 .header-slide .slick-current {
-    opacity: 1;
+  opacity: 1;
 }
 /* ------------ arrival section ------  */
 
 .arrival{
-    padding: 18rem 0rem 4rem;
+    padding: 0rem 0rem 4rem;
 }
 .arrival .arival-content .ar-img{
     padding: 0px 15px;
@@ -360,7 +360,7 @@
     text-align: center;
 }
 .arrival .arival-content .hv-img .arival-info button{
-    background-color: black !important;
+    background-color: #4a341e !important;
     color: white !important;
 }
 .arrival .arival-content .hv-img .arival-info button:hover{
@@ -377,7 +377,7 @@
 }
 .arrival .slick-prev:before,
 .arrival .slick-next:before {
-    color: black;
+  color: black;
 }
 @media (min-width:0px) and (max-width:767px){
     .arrival{
@@ -389,18 +389,18 @@
     .arrival .slick-prev{
         left: -10px !important;
     }
-    .arrival .slick-next {
-        right: -10px !important;
-    }
+.arrival .slick-next {
+  right: -10px !important;
+}
 
-    .arrival .arival-content .hv-img .arival-info button{
-        font-size: 15px !important;
-        padding: 6px !important;
+.arrival .arival-content .hv-img .arival-info button{
+    font-size: 15px !important;
+    padding: 6px !important;
 
-    }
-    .arrival .arival-content .hv-img{
-        width: auto !important;
-    }
+}
+.arrival .arival-content .hv-img{
+    width: auto !important;
+}
 }
 @media (min-width:768px) and (max-width:1023px){
     .arrival .arival-content .hv-img{
@@ -409,7 +409,7 @@
     .arrival .arival-content .hv-img .arival-info button{
         font-size: 15px !important;
         padding: 6px !important;
-
+    
     }
 }
 /* -----------brand------------  */
@@ -428,7 +428,7 @@
 }
 .brand .slick-prev:before,
 .brand .slick-next:before {
-    color: black;
+  color: black;
 }
 @media (min-width:0px) and (max-width:767px){
     .brand .mobile-brand-slide{
@@ -438,7 +438,7 @@
         left: -6px !important;
     }
     .brand .slick-next {
-        right: -6px !important;
+    right: -6px !important;
     }
 }
 
@@ -462,11 +462,12 @@
 /* ------------ Shipping ----  */
 .ship{
     padding: 2rem 0rem;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+}
 }
 .ship .ship-info{
-    padding: 0rem 1rem ;
+    padding: 0rem 1rem ; 
     display: flex;
     justify-content: space-between;
 }
@@ -488,22 +489,21 @@
 }
 .ship .ship-info .text h6{
     text-transform: uppercase !important;
-    color: white !important;
+    color: black !important;
 }
 .ship .ship-info .text p{
-    color: white !important;
+    color: black !important;
 }
 /* ---------- Our Store -------  */
 
 .store{
-    background-color: #fafafa;
     padding: 5rem 0rem;
 }
 .store .store-wrap{
     padding: 2rem 0rem;
 }
 .store .store-wrap .store-info{
-    text-align: center;
+    text-align: justify;
 }
 .store .store-wrap .store-info .text h6{
     text-transform: uppercase;
@@ -527,7 +527,7 @@
 @media (min-width:0px) and (max-width:767px){
     .store{
         padding: 2rem 0rem !important;
-    }
+    } 
     .store .store-wrap{
         padding: 2rem 0rem;
     }
@@ -541,7 +541,7 @@
 }
 #footer .title{
     margin-bottom: 1.5rem;
-
+    
 }
 #footer .title  h4{
     font-size: 22px !important;
