@@ -9,6 +9,7 @@ use App\User;
 use App\State;
 use App\Country;
 use App\Contact;
+use App\Product;
 
 use App\Services\OrderService;
 use App\Services\ReviewService;
@@ -43,6 +44,13 @@ class BaseController extends Controller
 
     public function order_store(OrderRequest $request)
     {
+        foreach (Cart::content() as $product)
+        {
+            $prod = Product::whereId($product->id)->first();
+            if($product->qty>$prod->stock)
+                return back()->withMessage('Quantity not present in stock');
+            Product::whereId($product->id)->update(['stock'=>abs($prod->stock-$product->qty)]);
+        }
         $invoice_no = OrderService::generate_invoice_no();
         $invoice    = OrderService::order($request,$invoice_no);
 
@@ -53,6 +61,7 @@ class BaseController extends Controller
         $users = User::whereHas('roles', function($q){
             $q->where('slug', 'admin')->orWhere('slug', 'editor');
         })->get();
+        
         Notification::send($users, new OrderNotification($invoice));
 
 

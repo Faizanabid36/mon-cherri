@@ -10,6 +10,13 @@
 			<div class="page-title">
         		<div class="wrapper"><h1 class="page-width">{{__('Checkout')}}</h1></div>
       		</div>
+              @if(session()->has('message'))
+              <div>
+                <h2 class="alert alert-danger">
+                    {{session()->get('message')}}
+                </h2>
+              </div>
+              @endif
 		</div>
         <!--End Page Title-->
         
