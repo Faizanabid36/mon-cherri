@@ -93,6 +93,9 @@
 												<i class="fe fe-trash"></i> Delete
 											</a>
 											@endpermission
+											<a href="{{route('upload_360_image',$product->id)}}" class="btn btn-sm bg-warning-light" data-route="{{route('upload_360_image',$product->id)}}">
+												<i class="fe fe-upload"></i> 360 Image
+											</a>
 										</div>
 									</td>
 								</tr>

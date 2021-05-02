@@ -32,7 +32,8 @@ class ProductController extends Controller
         return view('products.create');
     }
     public function store(ProductRequest $request)
-    {
+    { 
+        
         ProductService::upload_product($request);
         return redirect()->route('products.create')->with('success','Product has been uploaded successfuly');
     }

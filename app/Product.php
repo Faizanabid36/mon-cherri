@@ -7,6 +7,7 @@ use App\Size;
 use App\Color;
 use App\Brand;
 use App\Category;
+use App\RotatoryImage;
 use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,6 +44,10 @@ class Product extends Model
     public function orders()
     {
         return $this->hasMany('App\Order');
+    }
+    public function rotatory_images()
+    {
+        return $this->hasMany('App\RotatoryImage');
     }
     public function images()
     {
