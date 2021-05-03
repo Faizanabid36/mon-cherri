@@ -32,7 +32,9 @@ class ProductService
         $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
-
+        for($i=1;$i<=15;$i++){
+            \App\RotatoryImage::create(['path'=>asset('images/defult.jpg'),'product_id'=>$product->id]);
+        }
         $path = 'images/product/'.$slug.'-bs_00'.$product->id;
         mkdir(public_path($path),0700);
 

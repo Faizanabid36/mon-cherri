@@ -17,6 +17,7 @@ Route::group(['middleware' => 'locale'], function () {
     Route::middleware(['auth', 'admin_panel_access'])->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
         Route::resource('products', 'ProductController');
+        Route::get('upload_360/{product}', 'RotatoryImageController@upload_image')->name('upload_360_image');
         Route::resource('orders', 'OrderController');
         Route::resource('categories', 'CategoryController');
         Route::resource('subcategories', 'SubCategoryController');

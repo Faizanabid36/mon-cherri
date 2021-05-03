@@ -28,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Translation $translation)
     {
+        if(!is_null(\request()->get('currency')))
+        {  
+            currency()->setUserCurrency(\request()->get('currency'));
+            session()->put('currency',currency()->getUserCurrency());
+        }
         Schema::defaultStringLength(191);
         $this->translation = $translation;
         View::share('languages', $this->translation->allLanguages());
