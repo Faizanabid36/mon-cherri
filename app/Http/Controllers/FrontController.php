@@ -79,7 +79,7 @@ class FrontController extends Controller
     {
         return view('pages.settings');
     }
-    
+
     public function checkout()
     {
 
