@@ -9,7 +9,7 @@
 /*************************************************
   1. Preloader Loading
   2. Promotional Bar Header
-  3. Currency Show/Hide dropdown  
+  3. Currency Show/Hide dropdown
   4. Language Show/Hide dropdown
   5. Top Links Show/Hide dropdown
   6. Minicart Dropdown
@@ -17,7 +17,7 @@
   8. Search Trigger
   9. Mobile Menu
   10 Slick Slider
-	 10.1 Homepage Slideshow 
+	 10.1 Homepage Slideshow
 	 10.2 Product Slider Slick
 	 10.3 Product Slider Slick Style2
 	 10.4 Product Slider Slick Style3
@@ -45,7 +45,7 @@
   26. Quantity Plus Minus
   27. Visitor Fake Message
   28. Product Tabs
-  29. Promotion / Notification Cookie Bar 
+  29. Promotion / Notification Cookie Bar
   30. Image to background js
   31. COLOR SWATCH ON COLLECTION PAGE
   32. Related Product Slider
@@ -55,58 +55,58 @@
 (function ($) {
 	// Start of use strict
 	'use strict';
-	
+
     /*-----------------------------------------
-	  1. Preloader Loading ----------------------- 
+	  1. Preloader Loading -----------------------
 	  -----------------------------------------*/
 	function pre_loader(){
 		$("#load").fadeOut();
 		$('#pre-loader').delay(0).fadeOut('slow');
 	}
 	pre_loader();
-		
+
 	/*-----------------------------------------
 	 2. Promotional Bar Header ------------------
 	  -----------------------------------------*/
 	function promotional_bar(){
 		$(".closeHeader").on('click',function() {
-			$(".promotion-header").slideUp();  
-			Cookies.set('promotion', 'true', { expires: 1});  
+			$(".promotion-header").slideUp();
+			Cookies.set('promotion', 'true', { expires: 1});
 			return false;
 		});
 	}
 	promotional_bar();
-	
+
 	/*-----------------------------------------
 	 3. Currency Show/Hide dropdown -----------
 	  -----------------------------------------*/
 	function currency_dropdown(){
 		$(".selected-currency").on("click", function() {
-		  $("#currencies").slideToggle();      
+		  $("#currencies").slideToggle();
 		});
 		$("#currencies li").on("click", function() {
 			$(this).parent().slideUp();
 		});
 	}
 	currency_dropdown();
-	
+
 	/*-----------------------------------------
 	  4. Language Show/Hide dropdown ----------
 	  -----------------------------------------*/
-	function language_dropdown(){  
+	function language_dropdown(){
 		$(".language-dd").on("click", function() {
-		  $("#language").slideToggle();      
+		  $("#language").slideToggle();
 		});
 		$("#language li").on("click", function() {
 			$(this).parent().slideUp();
 		});
 	}
 	language_dropdown();
-	
+
 	/*-----------------------------------------
 	  5. Top Links Show/Hide dropdown ---------
 	  -----------------------------------------*/
-	  function userlink_dropdown(){  
+	  function userlink_dropdown(){
 		$('.top-header .user-menu').on("click", function() {
 			if ($(window).width() < 990 ) {
 				$(this).next().slideToggle(300);
@@ -115,7 +115,7 @@
 		});
 	 }
 	 userlink_dropdown();
-	 
+
 	 /*-----------------------------------------
 	  6. Minicart Dropdown ---------------------
 	  ------------------------------------------ */
@@ -153,7 +153,7 @@
         //   });
 	  }
 	 minicart_dropdown();
-	
+
 	/*-----------------------------------------
 	  7. Sticky Header ------------------------
 	  -----------------------------------------*/
@@ -161,20 +161,20 @@
     function myFunction() {
       if($(window).width()>1199) {
             if($(window).scrollTop()>145){
-              $('.header-wrap').addClass("stickyNav animated fadeInDown");                   
+              $('.header-wrap').addClass("animated fadeInDown");
             } else {
-              $('.header-wrap').removeClass("stickyNav fadeInDown");              
+              $('.header-wrap').removeClass("fadeInDown");
             }
        }
     }
-	
+
 	/*-----------------------------------------
 	  8. Search Trigger -----------------------
 	  ----------------------------------------- */
 	function search_bar(){
 		$('.search-trigger').on('click', function () {
 			const search = $('.search');
-	
+
 			if (search.is('.search--opened')) {
 				search.removeClass('search--opened');
 			} else {
@@ -189,7 +189,7 @@
 			$('.search').removeClass('search--opened');
 		}
 	});
-	
+
 	/*-----------------------------------------
 	  9. Mobile Menu --------------------------
 	  -----------------------------------------*/
@@ -202,18 +202,18 @@
       	menuLinks: '#MobileNav .anm',
       	closemenu: '.closemobileMenu'
 	};
-     
+
   	$(selectors.navLinks).each(function(){
         if($(this).attr('href') == window.location.pathname) $(this).addClass('active');
     })
-	
+
   	$(selectors.menuToggle).on("click",function(){
       body: 'body',
       $(selectors.mobilenav).toggleClass("active");
       $(selectors.body).toggleClass("menuOn");
       $(selectors.menuToggle).toggleClass('mobile-nav--open mobile-nav--close');
     });
-  
+
     $(selectors.closemenu).on("click",function(){
       body: 'body',
       $(selectors.mobilenav).toggleClass("active");
@@ -233,8 +233,8 @@
 		$(this).toggleClass('anm-plus-l anm-minus-l');
 		$(this).parent().next().slideToggle();
     });
-	
-	
+
+
 	/*-----------------------------------------
 	  10.1 Homepage Slideshow -----------------
 	  -----------------------------------------*/
@@ -252,13 +252,13 @@
 		  });
 	  }
 	  home_slider();
-	
+
 	// Full Size Banner on the Any Screen
 	$(window).resize(function() {
 		var bodyheight = $(this).height() - 20;
 		$(".sliderFull .bg-size").height(bodyheight);
 	}).resize();
-	
+
 	/*-----------------------------------------
 	  10.2 Product Slider Slick ---------------
 	  -----------------------------------------*/
@@ -292,7 +292,7 @@
 		  }
 		}
 		]
-	
+
 	  });
 	}
 	product_slider();
@@ -491,7 +491,7 @@
 
 	/*-----------------------------------------
 	  10.8 Collection Slider Slick 4 items ----
-	  ----------------------------------------- */	  
+	  ----------------------------------------- */
 	function collection_slider1(){
 		$('.collection-grid-4item').slick({
 			dots: false,
@@ -576,50 +576,50 @@
 		});
 	}
 	testimonial_slider();
-	  
+
 	/*-----------------------------------
 	  11. Tabs With Accordian Responsive
 	-------------------------------------*/
 	$(".tab_content").hide();
 	$(".tab_content:first").show();
-	
+
 	/* if in tab mode */
 	$("ul.tabs li").on('click', function () {
 		$(".tab_content").hide();
-		var activeTab = $(this).attr("rel"); 
-		$("#"+activeTab).fadeIn();		
-		
+		var activeTab = $(this).attr("rel");
+		$("#"+activeTab).fadeIn();
+
 		$("ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		
+
 		$(".tab_drawer_heading").removeClass("d_active");
 		$(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
-		
+
 		$('.productSlider').slick('refresh');
-	
+
 	});
 	/* if in drawer mode */
 	$(".tab_drawer_heading").on('click', function () {
-		
+
 		$(".tab_content").hide();
-		var d_activeTab = $(this).attr("rel"); 
+		var d_activeTab = $(this).attr("rel");
 		$("#"+d_activeTab).fadeIn();
-		
+
 		$(".tab_drawer_heading").removeClass("d_active");
 		$(this).addClass("d_active");
-		
+
 		$("ul.tabs li").removeClass("active");
 		$("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
-		
+
 		$('.productSlider').slick('refresh');
 	});
-	
+
 	$('ul.tabs li').last().addClass("tab_last");
-	
+
 	/*-----------------------------------
 	  End Tabs With Accordian Responsive
 	-------------------------------------*/
-	
+
 	/*-----------------------------------
 	  12. Sidebar Categories Level links
 	-------------------------------------*/
@@ -627,15 +627,15 @@
 		$(".sidebar_categories .sub-level a").on("click", function() {
 			$(this).toggleClass('active');
 			$(this).next(".sublinks").slideToggle("slow");
-		}); 
+		});
 	}
 	categories_level();
-	
+
 	$(".filter-widget .widget-title").on("click", function () {
 		$(this).next().slideToggle('300');
 		$(this).toggleClass("active");
 	});
-	
+
 	/*-----------------------------------
 	 13. Price Range Slider
 	-------------------------------------*/
@@ -653,7 +653,7 @@
 		" - $" + $("#slider-range").slider("values", 1));
 	}
 	price_slider();
-	
+
 	/*-----------------------------------
 	 14. Color Swacthes
 	-------------------------------------*/
@@ -667,7 +667,7 @@
 		});
 	}
 	color_swacthes();
-	
+
 	/*-----------------------------------
 	  15. Footer links for mobiles
 	-------------------------------------*/
@@ -677,11 +677,11 @@
 			  $(this).next().slideToggle();
 			  $(this).toggleClass("active");
 			}
-		});  
+		});
 	}
 	footer_dropdown();
-	
-	//Resize Function 
+
+	//Resize Function
 	var resizeTimer;
 	$(window).resize(function (e) {
 		clearTimeout(resizeTimer);
@@ -697,8 +697,8 @@
 			$(".footer-links ul").hide();
 		}
 	});
-	
-	
+
+
 	/*-------------------------------
 	  16. Site Animation
 	----------------------------------*/
@@ -720,16 +720,16 @@
 	  }
 	);
 	wow.init();
-	
+
   	/*-------------------------------
 	  17. SHOW HIDE PRODUCT TAG
 	----------------------------------*/
-	$(".product-tags li").eq(10).nextAll().hide(); 
+	$(".product-tags li").eq(10).nextAll().hide();
 	$('.btnview').on('click', function () {
 	$(".product-tags li").not('.filter--active').show();
 	 $(this).hide();
 	});
-	
+
   	/*-------------------------------
 	  18. SHOW HIDE PRODUCT Filters
 	----------------------------------*/
@@ -746,7 +746,7 @@
         $(".filterbar").removeClass("active");
       }
     });
-	
+
 	/*-------------------------------
 	 19. Timer Count Down
 	----------------------------------*/
@@ -757,7 +757,7 @@
 			$this.html(event.strftime('<span class="ht-count days"><span class="count-inner"><span class="time-count">%-D</span> <span>Days</span></span></span> <span class="ht-count hour"><span class="count-inner"><span class="time-count">%-H</span> <span>HR</span></span></span> <span class="ht-count minutes"><span class="count-inner"><span class="time-count">%M</span> <span>Min</span></span></span> <span class="ht-count second"><span class="count-inner"><span class="time-count">%S</span> <span>Sc</span></span></span>'));
 		});
 	});
-	
+
 	/*-------------------------------
 	 20.Scroll Top ------------------
 	---------------------------------*/
@@ -765,37 +765,37 @@
 		$("#site-scroll").on("click", function() {
 			$("html, body").animate({ scrollTop: 0 }, 1000);
 				return false;
-		}); 
+		});
 	}
 	scroll_top();
-	
-	$(window).scroll(function(){    
+
+	$(window).scroll(function(){
 		if($(this).scrollTop()>300){
 		  $("#site-scroll").fadeIn();
 		} else {
 		   $("#site-scroll").fadeOut();
 		}
 	});
-	
+
 	/*-------------------------------
 	  21. Height Product Grid Image
 	----------------------------------*/
 	function productGridView() {
-	  var gridRows = []; 
+	  var gridRows = [];
 	  var tempRow = [];
 	  productGridElements = $('.grid-products .item');
 	  productGridElements.each(function (index) {
 		if ($(this).css('clear') != 'none' && index != 0) {
 		  gridRows.push(tempRow);
-		  tempRow = []; 
+		  tempRow = [];
 		}
 		tempRow.push(this);
-	
+
 		if (productGridElements.length == index + 1) {
 		  gridRows.push(tempRow);
 		}
 	  });
-	
+
 	  $.each(gridRows, function () {
 		var tallestHeight = 0;
 		var tallestHeight1 = 0;
@@ -804,7 +804,7 @@
 		  elHeight = parseInt($(this).find('.product-image').css('height'));
 		  if (elHeight > tallestHeight) { tallestHeight = elHeight; }
 		});
-	
+
 		$.each(this, function () {
 		  if($(window).width() > 768) {
 			$(this).find('.product-image > a').css('height', tallestHeight);
@@ -812,7 +812,7 @@
 		});
 	  });
 	}
-	
+
 	/*----------------------------
        22. Product details slider 2
     ------------------------------ */
@@ -826,7 +826,7 @@
 		});
 	}
 	product_thumb();
-	
+
 	/*----------------------------
        23. Product details slider 1
     ------------------------------ */
@@ -839,7 +839,7 @@
 		});
 	}
 	product_thumb1();
-	
+
 	/*--------------------------
       24. Product Zoom
 	---------------------------- */
@@ -855,7 +855,7 @@
 		});
 	}
 	product_zoom();
-	
+
 	/*--------------------------
       25. Product Page Popup ---
 	---------------------------- */
@@ -871,7 +871,7 @@
 		}
 	}
 	video_popup();
-	
+
 	function size_popup(){
 		$('.sizelink').magnificPopup({
 			type:'inline',
@@ -879,7 +879,7 @@
 		});
 	}
 	size_popup();
-	
+
 	function inquiry_popup(){
 		$('.emaillink').magnificPopup({
 			type:'inline',
@@ -887,7 +887,7 @@
 		});
 	}
 	inquiry_popup();
-	
+
 	/*----------------------------------
 	  26. Quantity Plus Minus
 	------------------------------------*/
@@ -896,7 +896,7 @@
 		  var qtyField = $(this).parent(".qtyField"),
 			 oldValue = $(qtyField).find(".qty").val(),
 			  newVal = 1;
-	
+
 		  if ($(this).is(".plus")) {
 			newVal = parseInt(oldValue) + 1;
 		  } else if (oldValue > 1) {
@@ -906,7 +906,7 @@
 		});
 	}
 	qnt_incre();
-	
+
 	/*----------------------------------
 	  27. Visitor Fake Message
 	------------------------------------*/
@@ -925,33 +925,33 @@
 	/* if in tab mode */
 	$(".product-tabs li").on('click', function () {
 		$(".tab-content").hide();
-		var activeTab = $(this).attr("rel"); 
-		$("#"+activeTab).fadeIn();		
-		
+		var activeTab = $(this).attr("rel");
+		$("#"+activeTab).fadeIn();
+
 		$(".product-tabs li").removeClass("active");
 		$(this).addClass("active");
-		
+
 		$(this).fadeIn();
       	if($(window).width()<767) {
           var tabposition = $(this).offset();
           $("html, body").animate({ scrollTop: tabposition.top }, 700);
         }
 	});
-    
+
     $('.product-tabs li:first-child').addClass("active");
 	$('.tab-container h3:first-child + .tab-content').show();
-	
+
 	/* if in drawer mode */
 	$(".acor-ttl").on("click", function() {
 		$(".tab-content").hide();
-		var activeTab = $(this).attr("rel"); 
+		var activeTab = $(this).attr("rel");
 		$("#"+activeTab).fadeIn();
-		
+
 		$(".acor-ttl").removeClass("active");
 		$(this).addClass("active");
 	});
 
-    
+
     $(".reviewLink").on('click', function(e){
       e.preventDefault();
         $(".product-tabs li").removeClass("active");
@@ -966,25 +966,25 @@
           $("html, body").animate({ scrollTop: tabposition.top-80 }, 700);
         }
     });
-	
+
 	/*--------------------------------------
-	  29. Promotion / Notification Cookie Bar 
+	  29. Promotion / Notification Cookie Bar
 	  -------------------------------------- */
 	  function cookie_promo(){
-		  if(Cookies.get('promotion') != 'true') {   
-			 $(".notification-bar").show();         
+		  if(Cookies.get('promotion') != 'true') {
+			 $(".notification-bar").show();
 		  }
 		  $(".close-announcement").on('click',function() {
-			$(".notification-bar").slideUp();  
-			Cookies.set('promotion', 'true', { expires: 1});  
+			$(".notification-bar").slideUp();
+			Cookies.set('promotion', 'true', { expires: 1});
 			return false;
 		  });
 	  }
 	  cookie_promo();
 	 /* --------------------------------------
-	 	End Promotion / Notification Cookie Bar 
+	 	End Promotion / Notification Cookie Bar
 	 -------------------------------------- */
-	 
+
 	 /* --------------------------------------
 	 	30. Image to background js
 	 -------------------------------------- */
@@ -1014,7 +1014,7 @@
 	/* --------------------------------------
 	 	End Image to background js
 	 -------------------------------------- */
-	
+
 	/*----------------------------------
 	32. Related Product Slider ---------
 	------------------------------------*/
@@ -1030,7 +1030,7 @@
 			  settings: {
 				slidesToScroll: 1,
 			  }
-			},        
+			},
 			{
 			  breakpoint: 767,
 			  settings: {
@@ -1044,7 +1044,7 @@
 	/*----------------------------------
 	  End Related Product Slider
 	  ------------------------------------*/
-	
+
 	/*-----------------------------------
 	  33. Infinite Scroll js
 	  -------------------------------------*/
@@ -1059,7 +1059,7 @@
         });
     }
 	load_more();
-	
+
 	function load_more_post(){
         $(".blog--grid-load-more .article").slice(0, 3).show();
         $(".loadMorepost").on('click', function (e) {
@@ -1074,6 +1074,6 @@
 	/*-----------------------------------
 	  End Infinite Scroll js
 	  -------------------------------------*/
-	
+
 
 })(jQuery);

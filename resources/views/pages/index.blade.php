@@ -1,225 +1,430 @@
 @extends('layouts.master')
 @section('title', 'Home')
+
 @section('content')
+    <style>
+        .subs {
+            border: none;
+            border-bottom: 2px solid #b79e8a;
+        }
+
+        .container22 {
+            position: relative;
+        }
+
+        .text-block {
+            position: absolute;
+            bottom: 50px;
+            right: 20px;
+            background-color: white;
+            color: white;
+            padding: 20px;
+            opacity: 0.7;
+            margin-left: 228px;
+        }
+    </style>
+    <!-- ---banner ---  -->
+    <!-- ---header ---  -->
     <header id="header">
-        <h1 class="text-center" style="margin: 50px 0">Page Under Construction</h1>
-    </header>
-@endsection
-@section('content_old')
-	 <!-- ---banner ---  -->
-        <header id="header">
-            <div class="header-slide">
-                <div class="lazy slider" data-sizes="50vw">
-                    <div class="header-wrap" style="background-image: url(<?=asset('images/banner/bnr1.jpg')?>);">
-                           <div class="header-info">
-                                <div class="text">
-                                <h2>{{__('FIND YOUR INNER DIVA')}}</h2>
-                              </div>
-                              <div class="header-btn">
-                                <button class="btn">{{__('discover')}}</button>
-                              </div>
-                          </div>
-                      </div>
+        <div class="header-slide">
+            <div class="lazy slider" data-sizes="50vw">
+                <div class="header-wrap" style="background-image: url({{asset('images/home_header.jpg')}});">
 
-                    <div  class="header-wrap" style="background-image: url(<?=asset('images/banner/bnr2.jpg')?>);">
-                          <div class="header-info">
-                            <div class="text">
-                              <p>{{__('WE PROMISE COMFORT')}}</p>
-                            <h2>{{__('Dont stress about the dress')}},
-                            </br>
-                            {{__('we will dress you to impress')}}.
+                    <div class="collection-hero__title page-width">
+                        <div class="text">
+                            <p style="text-transform:initial; font-family: Baskerville Old Face regular; font-size: 54px; color: black !important; line-height: 51px;">
+                                {{__('Treat Yourself With The')}} <br>
+                                {{__('Best Jewelry')}}</p>
+                            <h2 style="text-transform:initial; font-family: poppins regular; font-weight:100">
+                                {{__('Our exacting standards for cut and quality are what give')}}
+                                <br> {{__('Moncheri diamonds their astonishing beauty. Intricately cut')}}
+                                <br>
+                                {{__('in designs that conjure dreams,our legendary')}} <br>
+                                {{__('diamond jewelry')}}
                             </h2>
-                          </div>
-                          <div class="header-btn">
-                            <button class="btn">{{__('View Collection')}} </button>
-                          </div>
-                      </div>
+                        </div>
+                        <div class="header-btn">
+                            <button class="btn" style="color: #4a341e !important; background-color: transparent;
+      font-weight: 700;">{{__('Shop Now')}} <i class="fa fa-arrow-right"></i></button>
+                        </div>
                     </div>
+                </div>
 
-                  </div>
             </div>
-        </header>
-     <!-- ---- End banner ----  -->
+        </div>
+    </header>
+    <!-- ---- End Header ----  -->
 
-     <!-- ----- New Arival Products ----  -->
-      <div class="arrival">
+    <!-- ----- Shipping ----  -->
+    <div class="ship">
         <div class="container">
-          <div class="header">
-            <h2>{{__('new arrival')}}</h2>
-              <p>{{__('Shop our new arrivals from established brands')}}</p>
-          </div>
-          <div class="arival-content">
-            <div class="arival-slider slider">
-            @foreach($latest_products as $product)
-              <div class="arival-info">
-                <div class="ar-img">
-                  <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
-                  <div class="hv-img">
-                    <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
-                      <div class="arival-info">
-                        <a href="javascript:void(0)" data-product_quantity="1" data-product_id="{{$product->slug}}" data-product_size="" class="btn add_to_cart"><i class="fa fa-shopping-cart"></i></a>
-                        <a href="{{url('/'.$product->slug)}}" class="btn"><i class="fa fa-search-plus"></i></a>
-                        @guest
-                        <a class="btn" href="{{route('login')}}"><i class="fa fa-heart"></i></a>
-                        @else
-                        <a class="btn add_to_wishlist" data-product_id="{{$product->slug}}" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-                        @endguest
-                      </div>
-                  </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="ship-wrap">
+                        <div class="ship-info d-flex ">
+                            <div class="icon">
+                                <img src="{{asset('images/truck.png')}}" alt="">
+                            </div>
+                            <div class="text" style="    margin-top: 40px;">
+                                <h6>{{__('FREE SHIPPING')}} </h6>
+                                <p>{{__('For all order over $999')}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </div>
 
-       <!-- ----- End New Arival Products ----  -->
-
-       <!-- ----- Brand ----  -->
-
-       <div class="brand">
-         <div class="container">
-          <div class="d-none d-lg-block brand-wrap ">
-           <div class="d-flex justify-content-between">
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon1.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon2.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon3.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon4.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon5.png')}}" class="img-fluid" alt="">
-            </div>
-           </div>
-          </div>
-
-          <div class="d-block d-sm-block d-lg-none mobile-brand-slide slider">
-            <div  class="brand-info">
-                <div class="brand-img">
-                  <img src="{{asset('images/brand/icon1.png')}}" class="img-fluid" alt="">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="ship-wrap">
+                        <div class="ship-info d-flex ">
+                            <div class="icon">
+                                <img src="{{asset('images/payment.png')}}" alt="">
+                            </div>
+                            <div class="text" style="    margin-top: 20px;">
+                                <h6>{{__('Secure Payments')}}</h6>
+                                <p>{{__('100% money back guarantee')}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="ship-wrap">
+                        <div class="ship-info d-flex ">
+                            <div class="icon">
+                                <img src="{{asset('images/gift.png')}}" alt="">
+                            </div>
+                            <div class="text" style="    margin-top: 20px;">
+                                <h6>{{__('SPECIAL GIFT CARD')}}</h6>
+                                <p>{{__('Gift someone you care about')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="ship-wrap">
+                        <div class="ship-info d-flex ">
+                            <div class="icon">
+                                <img src="{{asset('images/call.png')}}" alt="">
+                            </div>
+                            <div class="text" style="    margin-top: 10px;">
+                                <h6>{{__('24/7 CUSTOMER SERVICE')}}</h6>
+                                <p>
+                                    {{__('Call us 24/7 1-800-763-9823')}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <div  class="brand-info">
-              <div class="brand-img">
-                <img src="{{asset('images/brand/icon2.png')}}" class="img-fluid" alt="">
-              </div>
-          </div>
-
-          <div  class="brand-info">
-            <div class="brand-img">
-              <img src="{{asset('images/brand/icon3.png')}}" class="img-fluid" alt="">
-            </div>
-        </div>
-
-        <div  class="brand-info">
-          <div class="brand-img">
-            <img src="{{asset('images/brand/icon4.png')}}" class="img-fluid" alt="">
-          </div>
-      </div>
-
-      <div  class="brand-info">
-        <div class="brand-img">
-          <img src="{{asset('images/brand/icon5.png')}}" class="img-fluid" alt="">
         </div>
     </div>
+    <!-- ----- End Shipping ----  -->
 
+    <!-- ----- Engagement Rings ----  -->
+    <div class="store">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="store-wrap" style="margin-top: -110px;width: 90%;margin-left:15px ">
+                        <div class="store-info text-left">
+                            <div class="text">
+                                <h6 style="font-size: 18px">
+                                    <b>
+                                        {{__('About Engagement rings')}}
+                                    </b>
+                                </h6>
+                                <br>
+                                <p style="color: #191b1d !important;font-size: 16px">{{__('There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in some form, by injected humour,
+                                    or randomised words which don\'t look even slightly believable. If you are going to use a
+                                    passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in
+                                    the middle of text.All the Lorem Ipsum generators on the
+                                    Internet.')}}</p>
 
-          </div>
-         </div>
-       </div>
-
-       <!-- ----- End Brand ----  -->
-
-       <!-- ----- Shipping ----  -->
-
-       <div class="ship">
-         <div class="container">
-           <div class="row">
-             <div class="col-lg-4">
-               <div class="ship-wrap">
-                 <div class="ship-info">
-                   <div class="icon">
-                    <i class="fa fa-truck"></i>
-                   </div>
-                   <div class="text">
-                     <h6>{{__('FREE SHIPPING & RETURN')}}</h6>
-                     <p>{{__('Free shipping on all US orders')}}</p>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-             <div class="col-lg-4">
-              <div class="ship-wrap">
-                <div class="ship-info d-flex justify-content-between">
-                  <div class="icon">
-                    <i class="fa fa-dollar"></i>
-                  </div>
-                  <div class="text">
-                    <h6>{{__('MONEY GAURNTEE')}}</h6>
-                    <p>{{__('30 days money back guarantee')}}</p>
-                  </div>
+                            </div>
+                            <br>
+                            <div class="text-left">
+                                <a href="#" style="color: #4a341e">
+                                    <b>
+                                        {{__('Shop Now')}}
+                                    </b>
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="col-lg-4">
-              <div class="ship-wrap">
-                <div class="ship-info d-flex justify-content-between">
-                  <div class="icon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <div class="text">
-                    <h6>{{__('ONLINE SUPPORT')}}</h6>
-                    <p>{{__('We support online 24-7 on day')}}</p>
-                  </div>
+                <div class="col-lg-4">
+                    <div class="store-wrap">
+                        <div class="store-img">
+                            <img src="{{asset('images/1.jpg')}}" class="img-fluid" alt="" style="border-radius: 5px;">
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-lg-4">
+                    <div class="store-wrap">
+                        <div class="store-img">
+                            <img src="{{asset('images/2.jpg')}}" class="img-fluid" alt="" style="border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <!-- ----- End Engagement Rings ----  -->
 
-           </div>
-         </div>
-       </div>
+    <!-- ----- New Arival Products ----  -->
+    <div class="arrival">
+        <div class="container">
+            <div class="header">
+                <h2>{{__('new arrival')}}</h2>
+                <p>{{__('Hurry up! Limited')}}</p>
+            </div>
+            <div class="arival-content">
+                <div class="arival-slider slider">
+                    @foreach($latest_products as $product)
+                        <div class="arival-info">
+                            <div class="ar-img">
+                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
+                                <div class="product-name">
+                                    <a href="{{url('/'.$product->slug)}}">
+                                        {{__(ucfirst($product->name))}}
+                                    </a>
+                                </div>
+                                <div class="product-price">
+                                    <span class="price" style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
+                                </div>
+                                <!-- End product price -->
 
-       <!-- ----- End Shipping ----  -->
+                                <div class="product-review">
+                                    @for($i=1; $i<=$product->averageRating; $i++)
+                                        <i class="font-13 fa fa-star"></i>
+                                    @endfor
+                                    @for($i=$product->averageRating; $i < 5; $i++)
+                                        <i class="font-13 fa fa-star-o"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+{{--                    <div class="arival-info">--}}
+{{--                        <div class="ar-img">--}}
+{{--                            <img src="./asset/image/e1.jpg" class="img-fluid" alt="">--}}
+{{--                            <div class="product-name">--}}
+{{--                                <a href="#">Edna Dress</a>--}}
+{{--                            </div>--}}
 
-       <!-- --------- Our Store --------  -->
+{{--                            <!-- product price -->--}}
+{{--                            <div class="product-price">--}}
+{{--                                <span class="price" style="color: #d2a45d;">$600.00</span>--}}
+{{--                            </div>--}}
+{{--                            <!-- End product price -->--}}
+{{--                            <div class="product-review">--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star-o"></i>--}}
+{{--                                <i class="font-13 fa fa-star-o"></i>--}}
+{{--                            </div>--}}
 
-       <div class="store">
-         <div class="container">
-           <div class="row">
-             <div class="col-lg-6">
-               <div class="store-wrap">
-                 <div class="store-info">
-                   <div class="text">
-                     <h6>{{__('VISIT OUR STORE')}}</h6>
-                     <p>{{__('Karolusplassen 4081 5826 ÅLESUND Norway')}}.</p>
-                     <p><strong>{{__('Open')}}</strong>: {{__('11am - 7pm every day')}}.</p>
-                     <p><strong>{{__('Phone')}}</strong>: {{__('0832 2268010')}}</p>
-                   </div>
-                   <div class="store-btn">
-                     <button class="btn">{{__('Map')}}</button>
-                   </div>
-                 </div>
-               </div>
-             </div>
+{{--                        </div>--}}
 
-             <div class="col-lg-6">
-               <div class="store-wrap">
-                 <div class="store-img">
-                   <img src="{{asset('/images/store/store.jpg')}}" class="img-fluid" alt="">
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
+{{--                    </div>--}}
+
+{{--                    <div class="arival-info">--}}
+{{--                        <div class="ar-img">--}}
+{{--                            <img src="./asset/image/e2.jpg" class="img-fluid" alt="">--}}
+{{--                            <div class="product-name">--}}
+{{--                                <a href="#">Edna Dress</a>--}}
+{{--                            </div>--}}
+
+{{--                            <!-- product price -->--}}
+{{--                            <div class="product-price">--}}
+{{--                                <span class="price" style="color: #d2a45d;">$600.00</span>--}}
+{{--                            </div>--}}
+{{--                            <!-- End product price -->--}}
+{{--                            <div class="product-review">--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star"></i>--}}
+{{--                                <i class="font-13 fa fa-star-o"></i>--}}
+{{--                                <i class="font-13 fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----- End New Arival Products ----  -->
+
+    <!-- ----- Explore Moncheri ----  -->
+    <div class="">
+        <div class="container">
+            <div class="header">
+                <h2>{{_('Explore MonCheri')}}</h2>
+                <p style="font-size: 16px">{{__('Shop by Categories')}}</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" alt="Nature" style="width:100%;  border-radius: 5px;">
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" alt="Nature" style="width:100%;  border-radius: 5px;">
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" alt="Nature" style="width:100%;  border-radius: 5px;">
+
+                    </div>
+                </div>
+
+
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" alt="Nature" style="width:100%;  border-radius: 5px;">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" alt="Nature" style="width:100%;  border-radius: 5px;">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- ----- End Explore Moncheri ----  -->
+
+
+    <!-- ----- Our Products ----  -->
+    <div class="arrival">
+        <div class="container">
+            <div class="header">
+                <h2>{{__('Our Products')}}</h2>
+            </div>
+            <div class="arival-content">
+                <div class="arival-slider slider">
+                    @foreach($our_products as $product)
+                        <div class="arival-info">
+                            <div class="ar-img">
+                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
+                                <div class="product-name">
+                                    <a href="{{url('/'.$product->slug)}}">
+                                        {{__(ucfirst($product->name))}}
+                                    </a>
+                                </div>
+                                <div class="product-price">
+                                    <span class="price" style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
+                                </div>
+                                <!-- End product price -->
+
+                                <div class="product-review">
+                                    @for($i=1; $i<=$product->averageRating; $i++)
+                                        <i class="font-13 fa fa-star"></i>
+                                    @endfor
+                                    @for($i=$product->averageRating; $i < 5; $i++)
+                                        <i class="font-13 fa fa-star-o"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----- End Our Products ----  -->
+
+    <!-- ----- Banner ----  -->
+    <div class="row">
+        <div class="container">
+
+            <div class="col-lg-12">
+                <img src="{{asset('images/b.png')}}" alt="">
+                <div class="page-width" style="font-size: 1.84615em;color: #fff;text-align: center;width: 100%">
+                    <div class="text">
+                        <p style="text-transform:initial; font-family: Baskerville Old Face regular; font-size: 42px; color: black !important; line-height: 51px;">
+                            {{__('Birthstone Jewellery')}}</p>
+                        <h2 style="text-transform:initial;  font-size: 17px; font-family: poppins regular; font-weight:100">
+                            {{__('Lorem Ipsum is simply dummy text of the printing and')}} <br>
+                            {{__('typesetting industry. Lorem Ipsum has been the')}} <br>
+                            {{__('industry\'s standard dummy text')}}
+                        </h2>
+                    </div>
+                    <div class="header-btn">
+                        <button class="btn" style="color: #4a341e !important; background-color: transparent;
+      font-weight: 700;">{{__('Shop Now')}} <i class="fa fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- ----- End Banner ----  -->
+
+    <!-- ----- Gifts Section ----  -->
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="header">
+                    <h2>Gifts They'll Love</h2>
+                </div>
+                <div class="col-lg-6">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" style="width:80%;">
+                        <div class="text-block">
+                            <div class="">
+                                <h3>{{__('For Him')}}</h3>
+                                <br>
+                                <p style="color: #191b1d !important">Lorem Ipsum is simply dummy text of the printing and
+                                    typest ting in dustry. Lorem Ipsum has been the industry dummy text ever since the
+                                    1500s</p>
+                                <a href="#"><b>{{__('Shop Now')}}</b> <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4"></div> -->
+
+                <div class="col-lg-6">
+                    <div class="container22">
+                        <img src="{{asset('images/2.jpg')}}" style="width:80%;">
+                        <div class="text-block">
+                            <div class="">
+                                <h3>{{__('For Her')}}</h3>
+                                <br>
+                                <p style="color: #191b1d !important">Lorem Ipsum is simply dummy text of the printing and
+                                    typest ting in dustry. Lorem Ipsum has been the industry dummy text ever since the
+                                    1500s</p>
+                                <a href="#"><b>{{__('Shop Now')}}</b> <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----- End Gifts Section ----  -->
+
+
 @endsection

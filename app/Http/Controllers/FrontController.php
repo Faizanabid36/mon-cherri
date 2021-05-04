@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Invoice;
+use App\Post;
+use App\Product;
+use App\Services\FilterProductService;
 use Auth;
 use Cart;
-use App\Post;
-use App\Invoice;
-use App\Product;
-use App\Category;
-use App\Services\FilterProductService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class FrontController extends Controller
 {
 
     public function index()
     {
-        $latest_products = Product::with(['images','image'])->latest()->limit(12)->get();
-        $latest_posts = Post::with('image')->latest()->limit(3)->get();
-    	return view('pages.index',compact('latest_products','latest_posts'));
+        $latest_products = Product::with(['images', 'image'])->latest()->limit(10)->get();
+//        $latest_posts = Post::with('image')->latest()->limit(3)->get();
+        $latest_posts = [];
+        $latest_product_ids = $latest_products->pluck('id');
+        $our_products = Product::with(['images', 'image'])->whereNotIn('id', $latest_product_ids)->take(10)->get();
+        return view('pages.index', compact('latest_products', 'latest_posts', 'our_products'));
     }
     public function products()
     {

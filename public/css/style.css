@@ -129,7 +129,7 @@
 .login .login-wrap .login-text h4{
     text-transform: uppercase;
     font-weight: bold;
-} 
+}
 .login .login-wrap .login-text p{
     padding: 1.2rem 0rem 0rem ;
 }
@@ -409,7 +409,7 @@
     .arrival .arival-content .hv-img .arival-info button{
         font-size: 15px !important;
         padding: 6px !important;
-    
+
     }
 }
 /* -----------brand------------  */
@@ -467,7 +467,7 @@
 }
 }
 .ship .ship-info{
-    padding: 0rem 1rem ; 
+    padding: 0rem 1rem ;
     display: flex;
     justify-content: space-between;
 }
@@ -527,7 +527,7 @@
 @media (min-width:0px) and (max-width:767px){
     .store{
         padding: 2rem 0rem !important;
-    } 
+    }
     .store .store-wrap{
         padding: 2rem 0rem;
     }
@@ -541,7 +541,7 @@
 }
 #footer .title{
     margin-bottom: 1.5rem;
-    
+
 }
 #footer .title  h4{
     font-size: 22px !important;
@@ -592,4 +592,256 @@
     color: white !important;
     border: gray !important;
     border-radius: 0px !important;
+}
+
+
+
+/*product page*/
+.image-container .big-small img
+{
+    background: #f3f1ee;
+}
+.product-single .image-container .small-image
+{
+    display: flex;
+    flex-flow: column wrap;
+}
+.product-single .image-container .small-image img{
+    margin-bottom:2rem;
+    cursor: pointer;
+}
+.image-active-product
+{
+border: .2rem solid #344ceb;
+}
+
+.product-description .product-description-title .product-title-head h1
+{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.product-review-option .product-review .fa {
+    font-size: 17px;
+    opacity: 1;
+    color: #ff9500;
+    margin: 0 1px;
+}
+.product-review-option .product-review .product-customer-review
+{
+    font-size: 17px;
+}
+
+
+.product-price-circle .product-price-items h1
+{
+    border:2px solid #d2a45d;
+    padding:15px;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-size: 17px;
+  cursor: pointer;
+}
+.product-selection .form-select
+{
+
+
+height: 50px;
+padding: 6px 12px;
+font-size: 17px;
+line-height: 1.42857143;
+color: black;
+font-weight: 300px;
+
+
+}
+.product-document-icon .fa
+{
+    color: red;
+}
+.product-quantity .custom-select
+{
+    height: 50px;
+}
+.product-price h1
+{
+    color:#ff9500;
+}
+.product-document-btn button
+{
+    color: #ff9500;
+    border:none;
+    cursor: pointer;
+    outline: none;
+}
+.product-addcart-btn button{
+    width: 100%;
+    height: 60px;
+    background: #4a341e;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+.product-title-btn .fas
+{
+    background: #ff9500;
+    padding:5px 10px;
+    font-size: 20px;
+}
+.image-active-prodct
+{
+    border:2px solid #ff9500;
+}
+.product-document-icon .fas
+{
+    background: red;
+}
+
+
+/*product detail*/
+
+.product-detail
+{
+    padding:60px 0px;
+}
+
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: black;
+    background-color: transparent;
+    border-color: transparent transparent #ff9500;
+    border-bottom: 2px solid !important;
+    font-size: 20px;
+    outline: none;
+    font-weight: bold;
+    text-align: left;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color:black;
+    font-size: 20px;
+    width: 400px;
+
+
+
+}
+.stock-number .stock-number-title h1
+{
+    font-size:18px;
+    font-weight: 300;
+}
+.tab-content
+{
+    width: 36%;
+}
+
+
+.make-buying-heading
+{
+margin:0 auto;
+text-align: center;
+}
+.make-buying-heading h1
+{
+    font-size: 38px;
+}
+.buying-card .buying-card-name h2
+{
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+}
+.buying-card .buying-card-name p
+{
+    font-size: 25px;
+
+}
+@media screen and (min-width:0px) and (max-width:767px)
+{
+    .tab-content
+    {
+
+
+    width:100% !important;
+    padding:0px 20px !important;
+    margin-top:30px;
+}
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+
+    text-align: center !important;
+}
+}
+
+.make-buying-heading p
+{
+font-size: 25px;
+}
+.filter-btn
+{
+    border:none;
+    cursor: pointer;
+    text-transform: capitalize;
+
+}
+.filter-input
+{
+    border:none;
+
+}
+.diamond-filters-left
+{
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 0 30px rgb(1 41 112 / 8%);
+    transition: 0.3s;
+    padding : 10px 40px;
+}
+.sidebar_widget h1
+{
+    font-weight: 700;
+}
+.color-input-product
+{
+    height: 30px !important;
+    padding: 0 5px !important;
+    border:none;
+    border-right: 1px solid black;
+}
+.color-clarity
+{
+    width: auto !important;
+    padding:0 0px !important;
+    border:none !important;
+
+}
+.color-choose h1
+{
+    font-weight: 700;
+}
+.color-clarity-input h1
+{
+    font-weight: 700;
+    padding:10px 0px;
+}
+
+.featured-products-price
+{
+    color: #ff9500;
+    font-size: 26px;
+}
+.ring-name p
+{
+    font-size: 19px;
+    color: black;
+    font-weight: 500;
+}
+.newslatter-customize input
+{
+    border:none;
+    box-shadow: none;
+    border-bottom: 2px solid black;
+    outline: none;
 }

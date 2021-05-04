@@ -1,3 +1,37 @@
+<div class="mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="header">
+                <h2>{{__('Join our mailing list')}}</h2>
+                    <p>{{__('Join our mailing list & receive updates on new products, Latest blog posts & more')}}</p>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form>
+
+
+                    <fieldset>
+
+                        <div class="row">
+                            <div class="form-group col-md-6 col-lg-4 col-xl-4 required">
+
+                                <input name="firstname" class="subs" value="" placeholder="Name" id="input-firstname"
+                                       type="text">
+                            </div>
+                            <div class="form-group col-md-6 col-lg-8 col-xl-8 required">
+                                <input name="lastname" class="subs" value="" placeholder="Email" id="input-lastname"
+                                       type="text">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid footer">
     <div class="row">
         <div class="col-lg-3"></div>

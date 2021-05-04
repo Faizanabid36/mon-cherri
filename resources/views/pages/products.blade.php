@@ -14,7 +14,7 @@
   		</div>
 	</div>
     <!--End Collection Banner-->
-    
+
     <div class="container-fluid">
     	<div class="row">
         	<!--Sidebar-->
@@ -53,7 +53,7 @@
 	                                    <!-- End product label -->
 	                                </a>
 	                                <!-- end product image -->
-	                                
+
 	                                <!--start product details -->
 	                                <div class="product-details hoverDetails text-center mobile">
 	                                    <!-- product name -->
@@ -82,7 +82,7 @@
 	                                    	</a>
 	                                        <!-- Start product button -->
 	                                        <form>
-	                                        	
+
                                             <a href="javascript:void(0)" class="btn btn--secondary cartIcon btn-addto-cart add_to_cart" data-product_quantity="1" data-product_id="{{$product->slug}}" data-product_size="">
                                                 <i class="fa fa-shopping-bag"></i>
                                             </a>
