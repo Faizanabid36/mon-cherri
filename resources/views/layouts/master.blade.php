@@ -32,6 +32,44 @@
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <style>
+        .subs {
+            border: none;
+            border-bottom: 2px solid #b79e8a;
+        }
+
+        .container22 {
+            position: relative;
+        }
+
+        .text-block {
+            position: absolute;
+            bottom: 50px;
+            right: 20px;
+            background-color: white;
+            color: white;
+            padding: 20px;
+            opacity: 0.7;
+            margin-left: 228px;
+        }
+
+        @media only screen and (max-width: 550px) {
+            .custom_gift_section {
+                text-align: center !important;
+                width: 50% !important;
+                margin: 0px auto;
+                transform: translateY(-92%) !important;
+            }
+            .custom_gift_section .text p{
+                font-size: 1.5rem !important;
+            }
+            .custom_gift_section .text h2{
+                font-size: 0.8rem !important;
+            }
+        }
+
+
+    </style>
 </head>
 <body>
 

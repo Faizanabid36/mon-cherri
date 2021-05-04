@@ -2,27 +2,6 @@
 @section('title', 'Home')
 
 @section('content')
-    <style>
-        .subs {
-            border: none;
-            border-bottom: 2px solid #b79e8a;
-        }
-
-        .container22 {
-            position: relative;
-        }
-
-        .text-block {
-            position: absolute;
-            bottom: 50px;
-            right: 20px;
-            background-color: white;
-            color: white;
-            padding: 20px;
-            opacity: 0.7;
-            margin-left: 228px;
-        }
-    </style>
     <!-- ---banner ---  -->
     <!-- ---header ---  -->
     <header id="header">
@@ -359,13 +338,14 @@
 
             <div class="col-lg-12">
                 <img src="{{asset('images/b.png')}}" alt="">
-                <div class="page-width" style="font-size: 1.84615em;color: #fff;text-align: center;width: 100%">
+                <div class="page-width custom_gift_section"
+                     style="font-size: 1.84615em;color: #fff;text-align: center;width: 50%;margin:0px auto;transform: translateY(-140%);">
                     <div class="text">
                         <p style="text-transform:initial; font-family: Baskerville Old Face regular; font-size: 42px; color: black !important; line-height: 51px;">
                             {{__('Birthstone Jewellery')}}</p>
                         <h2 style="text-transform:initial;  font-size: 17px; font-family: poppins regular; font-weight:100">
-                            {{__('Lorem Ipsum is simply dummy text of the printing and')}} <br>
-                            {{__('typesetting industry. Lorem Ipsum has been the')}} <br>
+                            {{__('Lorem Ipsum is simply dummy text of the printing and')}}
+                            {{__('typesetting industry. Lorem Ipsum has been the')}}
                             {{__('industry\'s standard dummy text')}}
                         </h2>
                     </div>
