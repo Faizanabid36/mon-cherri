@@ -631,8 +631,8 @@
 	}
 	categories_level();
 
-	$(".filter-widget .widget-title").on("click", function () {
-		$(this).next().slideToggle('300');
+	$(".filter-widget .title-widget").on("click", function () {
+		$(this).next().slideToggle('500');
 		$(this).toggleClass("active");
 	});
 
