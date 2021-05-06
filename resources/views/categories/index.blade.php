@@ -82,17 +82,29 @@
       <div class="modal-body">
         <div class="row">
 			<div class="col-md-12">
-				<form action="{{route('categories.store')}}" method="post">
+				<form action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label>Category</label>
 						<div class="input-group">
 							<input type="text" name="category" class="form-control" required>
 							<div class="input-group-prepend">	
-								<button type="submit" class="btn btn-success">Add</button>
+								<!-- <button type="submit" class="btn btn-success">Add</button> -->
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<label>Image</label>
+						<div class="input-group">
+							<input type="file" name="path" class="form-control" required>
+							<div class="input-group-prepend">	
+								<!-- <button type="submit" class="btn btn-success">Add</button> -->
+							</div>
+							
+						</div>
+						
+					</div>
+					<button type="submit" class="btn btn-success">Add</button>
 				</form>
 			</div>
 		</div>

@@ -7,6 +7,7 @@ use DomDocument;
 use App\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductService 
 {
@@ -26,6 +27,9 @@ class ProductService
             'stock'       => $request->input('stock'),
             'video'       => $request->input('video_link'),
             'description' => $request->input('description'),
+            'metal' => $request->input('metal'),
+            'prong_metal' => $request->input('prong_metal'),
+            'width' => $request->input('width'),
         ]);
         $product->tag($request->input('tags'));
         $product->sizes()->sync($request->input('size'));
@@ -36,7 +40,10 @@ class ProductService
             \App\RotatoryImage::create(['path'=>asset('images/defult.jpg'),'product_id'=>$product->id]);
         }
         $path = 'images/product/'.$slug.'-bs_00'.$product->id;
-        mkdir(public_path($path),0700);
+        // mkdir(public_path($path),0700);
+        if (! File::exists($path)) {
+            File::makeDirectory($path);
+        }
 
         if($files=$request->file('images')){
             $count = 1;

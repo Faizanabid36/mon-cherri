@@ -21,23 +21,29 @@
 	<div class="row">
 		<div class="col-sm-12">
         @foreach($images as $image)
+		<form action="{{route('update_360_image',$image->id)}}" method="post"  enctype="multipart/form-data">
+	@csrf
 			<div class="col-md-4">
 
             <div class="card">
             <div class="card-body">
-            <img class="img-responsive" src="{{$image->path}}" alt="image">
-           <input type="file" class="btn btn-secondary" >
+            <img class="img-responsive" src="{{$image->path}}"  alt="image"  width="200" height="100">
+           <input type="file" class="btn btn-secondary"  name="path">
             <!-- <button class="btn btn-secondary">upload</button> -->
             
-            
+            <button type="submit" class="btn btn-primary ml-3">Submit</button>
             </div>
             </div>
             
             
             </div>
+			
+			</form>
             @endforeach
 		</div>
 	</div>
 </div>
+
+
 
 @endsection

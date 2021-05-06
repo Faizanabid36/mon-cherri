@@ -44,10 +44,18 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {  
+        
         $title = Str::lower($request->input('category'));
         $slug  = Str::slug($title);
-        Category::create(['title'=>$title,'slug'=>$slug]);
+        $image = $request->file('path');
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images/category/');
+        $image->move($destinationPath, $name);
+        $path=asset('images/category/'.$name);
+    
+    
+        Category::create(['title'=>$title,'slug'=>$slug,'image'=>$path]);
         return back()->with('success','Category has been added');
     }
 
