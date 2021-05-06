@@ -13,7 +13,7 @@ use App\Notifications\InvoicePaid;
 
 class OrderController extends Controller
 {
- 
+
     public function __construct()
     {
         $this->middleware('permission:view.orders',['only' => ['index']]);
@@ -30,6 +30,7 @@ class OrderController extends Controller
     public function show($invoice)
     {
         $invoice = Invoice::findOrFail($invoice);
+        {{dd('asd');}}
         return view('orders.show',compact('invoice'));
     }
 
