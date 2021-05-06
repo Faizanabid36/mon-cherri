@@ -1,70 +1,72 @@
 @extends('layouts.master')
 @section('title', 'Cart')
-@section('content')         
+@section('content')
     <div id="page-content">
     	<!--Page Title-->
     	<div class="page section-header text-center">
 			<div class="page-title">
-        		<div class="wrapper"><h1 class="page-width">{{__('Your cart')}}</h1></div>
-      		</div>
-		</div>
+                <div class="wrapper"><h1 class="page-width">{{__('Your cart')}}</h1></div>
+            </div>
+        </div>
         <!--End Page Title-->
-        
+
         <div class="container">
-        	<div class="row">
+            <div class="row">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
-        		@if(Cart::count() > 0)
-                	<table>
+                    @if(Cart::count() > 0)
+                        <table>
                             <thead class="cart__row cart__header">
-                                <tr>
-                                    <th colspan="2" class="text-center">{{__('Product')}}</th>
-                                    <th class="text-center">{{__('Size')}}</th>
-                                    <th class="text-center">{{__('Price')}}</th>
-                                    <th class="text-center">{{__('Quantity')}}</th>
-                                    <th class="text-right">{{__('Total')}}</th>
-                                    <th class="action">&nbsp;</th>
-                                </tr>
+                            <tr>
+                                <th colspan="2" class="text-center">{{__('Product')}}</th>
+                                <th class="text-center">{{__('Size')}}</th>
+                                <th class="text-center">{{__('Price')}}</th>
+                                <th class="text-center">{{__('Quantity')}}</th>
+                                <th class="text-right">{{__('Total')}}</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
                             </thead>
-                    		<tbody>
-                    			<?php 
-			                    $cartcontent = Cart::content();
-			                    ?>
-			                    @foreach($cartcontent as $item)
-			                    <form action="{{url('updateItem')}}" method="post" class="cart style2 bs_form">
-	                				@csrf
-	                                <tr class="cart__row border-bottom line1 cart-flex border-top">
-	                                    <td class="cart__image-wrapper cart-flex-item">
-	                                        <a href="#"><img class="cart__image" src="{{url('/',$item->model->image->url)}}" alt="Elastic Waist Dress - Navy / Small"></a>
-	                                    </td>
-	                                    <td class="cart__meta small--text-left cart-flex-item">
-	                                        <div class="list-view-item__title">
-	                                            <a href="#">{{ucwords($item->name)}}</a>
-	                                        </div>
-	                                        
-	                                        <div class="cart__meta-text">
-	                                            {{__('Quantity')}}: {{$item->qty}}<br> 
-	                                            <br>
-	                                        </div>
-	                                    </td>
-	                                    <td class="cart__price-wrapper cart-flex-item">
-	                                        <select class="form-control choose_size" name="size" required>
-					                          @if(!$item->options->size)
-					                            <option value="">Choose Size</option>
-					                            <script type="text/javascript">
-					                              var x = document.getElementsByClassName("choose_size");
-					                              var i;
-					                              for (i = 0; i < x.length; i++) {
-					                                if(!x[i].value){
-					                                  x[i].style.border = "1px solid red";
-					                                }
-					                              }
-					                            </script>
-					                          @endif
-					                          @foreach($item->model->sizes as $size)
-					                            @if($item->options->size == $size->size)
-					                              <option value="{{$size->size}}" selected>{{$size->size}}</option>
-					                            @else
-					                              <option value="{{$size->size}}">{{$size->size}}</option>
+                            <tbody>
+                            <?php
+                            $cartcontent = Cart::content();
+                            ?>
+                            @foreach($cartcontent as $item)
+                                <form action="{{url('updateItem')}}" method="post" class="cart style2 bs_form">
+                                    @csrf
+                                    <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                        <td class="cart__image-wrapper cart-flex-item">
+                                            <a href="#"><img class="cart__image"
+                                                             src="{{asset($item->model->image->url)}}"></a>
+                                        </td>
+                                        <td class="cart__meta small--text-left cart-flex-item">
+                                            <div class="list-view-item__title">
+                                                <a href="#">{{ucwords($item->name)}}</a>
+                                            </div>
+
+                                            <div class="cart__meta-text">
+                                                {{__('Quantity')}}: {{$item->qty}}<br>
+                                                <br>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price-wrapper cart-flex-item">
+                                            <select class="form-control choose_size" name="size" required>
+                                                @if(!$item->options->size)
+                                                    <option value="">Choose Size</option>
+                                                    <script type="text/javascript">
+                                                        var x = document.getElementsByClassName("choose_size");
+                                                        var i;
+                                                        for (i = 0; i < x.length; i++) {
+                                                            if (!x[i].value) {
+                                                                x[i].style.border = "1px solid red";
+                                                            }
+                                                        }
+                                                    </script>
+                                                @endif
+                                                @foreach($item->model->sizes as $size)
+                                                    @if($item->options->size == $size->size)
+                                                        <option value="{{$size->size}}"
+                                                                selected>{{$size->size}}</option>
+                                                    @else
+                                                        <option value="{{$size->size}}">{{$size->size}}</option>
 					                            @endif
 					                          @endforeach
 					                        </select>
@@ -108,12 +110,12 @@
                 		{{__('Your Cart Is Empty')}} <a href="{{url('/')}}"><b>{{__('Continue shopping')}}</b></a>
                 	</div>
                	@endif
-                    
+
                     <div class="currencymsg">{{__('We processes all orders in USD. While the content of your cart is currently displayed in your selected currency, the checkout will use USD at the most current exchange rate')}}.</div>
-                    <hr>                   
+                    <hr>
                	</div>
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
-                	
+
                     <div class="solid-border">
                       <div class="row">
                       	<span class="col-12 col-sm-6 cart__subtotal-title"><strong>{{__('Subtotal')}}</strong></span>
@@ -132,6 +134,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection

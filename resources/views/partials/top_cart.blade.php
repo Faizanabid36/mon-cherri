@@ -12,7 +12,7 @@
         @foreach($top_cartcontents as $top)
             <li class="item">
                 <a class="product-image" href="#">
-                    <img src="{{url('/',$top->model->image->url)}}" alt="{{$top->name}}" />
+                    <img src="{{asset($top->model->image->url)}}" alt="{{$top->name}}" />
                 </a>
                 <div class="product-details">
                     <a href="javascript:void(0)" class="remove remove_item" data-route="{{url('removeCartItem?item='.$top->rowId)}}" ><i class="fa fa-times" aria-hidden="true"></i></a>
