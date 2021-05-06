@@ -10,7 +10,7 @@
       		</div>
 		</div>
         <!--End Page Title-->
-        
+
         <div class="container">
 
             <div class="row margin-30px-bottom">
@@ -20,7 +20,7 @@
 
                 <div class="col-xs-10 col-lg-10 col-md-12">
                     <!-- Tab panes -->
-                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all" style="">
+                    <div class="dashboard-content padding-30px-all md-padding-15px-all" style="">
 	           			<!-- Invoice Container -->
 
 	           		@if($invoice->status == 1)
@@ -37,7 +37,7 @@
 									<div class="col-sm-12 text-right">
 										<ul class="list-unstyled mb-0">
 											<li>{{__('Order Date')}}: <span>{{$invoice->created_at->format('M d, Y')}}</span></li>
-											
+
 										</ul>
 										@if($invoice->status == 1)
 										 	<span class="badge badge-success">Paid</span>
@@ -80,7 +80,7 @@
 								</ul>
 							</div>
 						</div>
-						
+
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
@@ -113,7 +113,7 @@
 								</tbody>
 							</table>
 						</div>
-						
+
 						<div>
 							<div class="row invoice-payment">
 								<div class="col-sm-7">
