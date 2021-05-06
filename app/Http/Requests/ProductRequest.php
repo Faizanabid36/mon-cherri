@@ -34,6 +34,9 @@ class ProductRequest extends FormRequest
             'size'          =>'required',
             // 'tags'          =>'required',
             'images'        =>'required',
+            'width'        =>'required',
+            'metal'        =>'required',
+            'prong_metal'        =>'required',
             'images.*'      =>'image|mimes:jpeg,png,jpg,gif,svg'
         ];
     }
@@ -47,6 +50,9 @@ class ProductRequest extends FormRequest
             'description.required'  =>'Product description is required',
             'category.required'     =>'Product category is required',
             'size.required'         =>'Product size is required',
+            'metal.required'         =>'Product metal type is required',
+            'width.required'         =>'Product width is required',
+            'prong_metal.required'         =>'Product prong metal type is required',
         ];
     }
 }

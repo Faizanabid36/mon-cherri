@@ -19,7 +19,7 @@ class Product extends Model
     use \Conner\Tagging\Taggable;
     
     protected $fillable = [
-    	'name', 'slug', 'price', 'description', 'brand_id', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
+    	'name', 'slug', 'price','metal','prong_metal','width', 'description', 'brand_id', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
     ];
     public function categories()
     {

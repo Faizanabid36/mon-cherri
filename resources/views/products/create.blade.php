@@ -62,6 +62,43 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
+									<label>Metal Name</label>
+									<input type="text" name="metal" value="{{ old('metal') }}" class="form-control @error('metal') is-invalid @enderror" required>
+									@if($errors->has('metal'))
+			                            @foreach($errors->get('metal') as $message)
+			                              <span style="color:red">{{$message}}</span>
+			                            @endforeach
+			                         @endif
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-6">	
+										<div class="form-group">
+											<label>Width</label>
+											<input type="text" value="{{ old('width') }}" id="width" name="width" class="form-control product_prices" required>
+											@if($errors->has('width'))
+					                            @foreach($errors->get('width') as $message)
+					                              <span style="color:red">{{$message}}</span>
+					                            @endforeach
+					                        @endif
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Prong Metal</label>
+											<input type="text" value="{{ old('prong_metal') }}" id="prong_metal" name="prong_metal" class="form-control product_prices" required>
+											@if($errors->has('prong_metal'))
+					                            @foreach($errors->get('prong_metal') as $message)
+					                              <span style="color:red">{{$message}}</span>
+					                            @endforeach
+					                        @endif
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
 									<label>Product Category</label>
 									<select class="form-control @error('category') is-invalid @enderror" id="category" data-route="{{url('get_more_product_details')}}" name="category" required>
 										<option value="">Choose Category</option>
