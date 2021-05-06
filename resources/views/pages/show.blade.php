@@ -558,7 +558,7 @@
                         <div class="col-lg-3 col-md-3 mt-5">
                             <div class="ring-price">
                                 <div class="ring-img">
-                                    <img src="{{asset($related_product->image->url)}}" class="img-fluid" alt="">
+                                    <img src="{{asset($related_product->image->url)}}" class="img-fluid" alt="" width="300">
                                 </div>
 
                                 <div class="ring-name mt-3 ">

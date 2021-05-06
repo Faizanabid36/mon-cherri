@@ -20,7 +20,7 @@
 
                 <div class="col-xs-10 col-lg-10 col-md-12">
                     <!-- Tab panes -->
-                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all" style="">
+                    <div class="dashboard-content padding-30px-all md-padding-15px-all" style="">
 		            	<h3>{{__('Account Info')}}</h3>
 	           			<div class="row">
 		            		<div class="col-md-12">
