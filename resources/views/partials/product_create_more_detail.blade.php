@@ -60,7 +60,7 @@
 </div>
 <div class="col-md-6">
 	<div class="form-group">
-		<label>Product tags</label>
+		<label>Product K Type</label>
 		<select class="form-control @error('tags') is-invalid @enderror" id="_tags" name="tags[]" multiple></select>
 		@if($errors->has('tags'))
             @foreach($errors->get('tags') as $message)

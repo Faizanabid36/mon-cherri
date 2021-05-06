@@ -145,7 +145,7 @@ Route::group(['middleware' => 'locale'], function () {
 
     // view pages routes
     Route::get('/', 'FrontController@index');
-    Route::get('/shop/{slug}', 'FrontController@products');
+    Route::get('/shop/{slug}', 'FrontController@products')->name('shop.category');
     Route::get('/blog', 'FrontController@blog');
     Route::get('/about', 'FrontController@about');
     Route::get('/contact', 'FrontController@contact');

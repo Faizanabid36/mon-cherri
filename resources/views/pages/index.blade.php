@@ -168,13 +168,15 @@
                         <div class="arival-info">
                             <div class="ar-img">
                                 <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
-                                <div class="product-name">
-                                    <a href="{{url('/'.$product->slug)}}">
-                                        {{__(ucfirst($product->name))}}
-                                    </a>
+                                <div class="ring-name ">
+                                    <p>
+                                        <a href="{{url('/'.$product->slug)}}">
+                                            {{__(ucfirst($product->name))}}
+                                        </a>
+                                    </p>
                                 </div>
                                 <div class="product-price">
-                                    <span class="price" style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
+                                    <span class="featured-products-price" style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
                                 </div>
                                 <!-- End product price -->
 
@@ -189,52 +191,6 @@
                             </div>
                         </div>
                     @endforeach
-{{--                    <div class="arival-info">--}}
-{{--                        <div class="ar-img">--}}
-{{--                            <img src="./asset/image/e1.jpg" class="img-fluid" alt="">--}}
-{{--                            <div class="product-name">--}}
-{{--                                <a href="#">Edna Dress</a>--}}
-{{--                            </div>--}}
-
-{{--                            <!-- product price -->--}}
-{{--                            <div class="product-price">--}}
-{{--                                <span class="price" style="color: #d2a45d;">$600.00</span>--}}
-{{--                            </div>--}}
-{{--                            <!-- End product price -->--}}
-{{--                            <div class="product-review">--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star-o"></i>--}}
-{{--                                <i class="font-13 fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-
-{{--                    <div class="arival-info">--}}
-{{--                        <div class="ar-img">--}}
-{{--                            <img src="./asset/image/e2.jpg" class="img-fluid" alt="">--}}
-{{--                            <div class="product-name">--}}
-{{--                                <a href="#">Edna Dress</a>--}}
-{{--                            </div>--}}
-
-{{--                            <!-- product price -->--}}
-{{--                            <div class="product-price">--}}
-{{--                                <span class="price" style="color: #d2a45d;">$600.00</span>--}}
-{{--                            </div>--}}
-{{--                            <!-- End product price -->--}}
-{{--                            <div class="product-review">--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star"></i>--}}
-{{--                                <i class="font-13 fa fa-star-o"></i>--}}
-{{--                                <i class="font-13 fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>
