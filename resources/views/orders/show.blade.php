@@ -20,11 +20,11 @@
 						<li class="breadcrumb-item active">Order</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
-	<!-- /Page Header -->	
+	<!-- /Page Header -->
 	<!-- Invoice Container -->
 	<div class="invoice-container" id="invoice">
 		<div class="row">
@@ -37,7 +37,7 @@
 					<div class="col-sm-12 text-right">
 						<ul class="list-unstyled mb-0">
 							<li>Order Date: <span>{{$invoice->created_at->format('M d, Y')}}</span></li>
-							
+
 						</ul>
 						@if($invoice->status == 1)
 						 	<span class="badge badge-success">Paid</span>
@@ -80,7 +80,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="table-responsive">
 			<table class="table">
 				<thead>
@@ -104,7 +104,7 @@
 						<td>{{($sno++)}}</td>
 						<td>{{$order->product->name}}</td>
 						<td>{{$order->size}}</td>
-						<td>{{currency($product->price, 'USD') }}</td>
+						<td>{{currency($order->product->price, 'USD') }}</td>
 						<td>{{$order->quantity}}</td>
 						<td>{{currency($order->amount, 'USD') }}</td>
 						<td>{{$order->delivery_charges}}</td>
@@ -115,7 +115,7 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 		<div>
 			<div class="row invoice-payment">
 				<div class="col-sm-7">
@@ -163,7 +163,7 @@
 	$(document).on('click','.print_btn',function(){
 		$("#invoice").print({
 			noPrintSelector : ".avoid-this-for-print",
-		});	
+		});
 	});
 </script>
 @endsection

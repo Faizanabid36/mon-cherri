@@ -30,7 +30,6 @@ class OrderController extends Controller
     public function show($invoice)
     {
         $invoice = Invoice::findOrFail($invoice);
-        {{dd('asd');}}
         return view('orders.show',compact('invoice'));
     }
 
