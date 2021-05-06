@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-xs-10 col-lg-10 col-md-12">
                     <!-- Tab panes -->
-                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all" style="">
+                    <div class="dashboard-content padding-30px-all md-padding-15px-all" style="">
                         <!-- Dashboard -->
                         <div id="dashboard" class="tab-pane fade active show">
                             <h3> {{__('Dashboard')}} </h3>

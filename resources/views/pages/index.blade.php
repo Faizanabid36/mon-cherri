@@ -167,7 +167,7 @@
                     @foreach($latest_products as $product)
                         <div class="arival-info">
                             <div class="ar-img">
-                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
+                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="" width="300">
                                 <div class="ring-name ">
                                     <p>
                                         <a href="{{url('/'.$product->slug)}}">
@@ -260,7 +260,7 @@
                     @foreach($our_products as $product)
                         <div class="arival-info">
                             <div class="ar-img">
-                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="">
+                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="" width="300">
                                 <div class="product-name">
                                     <a href="{{url('/'.$product->slug)}}">
                                         {{__(ucfirst($product->name))}}
