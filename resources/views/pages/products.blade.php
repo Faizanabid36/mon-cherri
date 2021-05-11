@@ -64,19 +64,20 @@
                             <div class="grid-products grid--view-items">
                                 <div class="row">
                                     @foreach($products as $product)
-                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                                        <div class="col-sm-6 col-md-4 grid-view-item style2 item">
+{{--                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">--}}
                                             <div class="grid-view_image">
                                                 <!-- start product image -->
                                                 <a href="{{url('/'.$product->slug)}}" class="grid-view-item__link">
                                                     <!-- image -->
                                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                                         width="300"
+                                                         style="height: 180px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End image -->
                                                     <!-- Hover image -->
                                                     <img class="grid-view-item__image hover blur-up lazyload"
-                                                         width="300"
+                                                         style="height: 180px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End hover image -->
@@ -99,34 +100,39 @@
 
                                                     <!-- product button -->
                                                     <div class="button-set">
-                                                        <a href="{{url('/'.$product->slug)}}" title="View"
-                                                           class="quick-view-popup quick-view" tabindex="0">
-                                                            <i class="fa fa-search-plus" aria-hidden="true"></i>
-                                                        </a>
-                                                        <!-- Start product button -->
+                                                    {{--                                                        <a href="{{url('/'.$product->slug)}}" title="View"--}}
+                                                    {{--                                                           class="quick-view-popup quick-view" tabindex="0">--}}
+                                                    {{--                                                            <i class="fa fa-search-plus" aria-hidden="true"></i>--}}
+                                                    {{--                                                        </a>--}}
+                                                    <!-- Start product button -->
                                                         <form>
 
                                                             <a href="javascript:void(0)"
-                                                               class="btn btn--secondary cartIcon btn-addto-cart add_to_cart"
+                                                               class="btn btn--secondary cartIcon btn-addto-cart add_to_cart mt-3"
                                                                data-product_quantity="1"
+                                                               title="Add to Cart"
                                                                data-product_id="{{$product->slug}}"
+                                                               style="border-radius: 2px"
                                                                data-product_size="">
-                                                                <i class="fa fa-shopping-bag"></i>
+                                                                <i class="fa fa-shopping-cart"></i>
                                                             </a>
                                                         </form>
-                                                        <div class="wishlist-btn">
+                                                        <div class="wishlist-btn mt-3">
                                                             @guest
                                                                 <a class="wishlist add-to-wishlist"
+                                                                   style="border-radius: 2px"
                                                                    href="{{route('login')}}"><i class="fa fa-heart"></i></a>
                                                             @else
                                                                 <a class="wishlist add-to-wishlist add_to_wishlist"
                                                                    title="Add to Wishlist"
+                                                                   style="border-radius: 2px"
                                                                    data-product_id="{{$product->slug}}"
                                                                    href="javascript:void(0)"><i class="fa fa-heart"></i></a>
                                                             @endguest
                                                         </div>
-                                                        <div class="compare-btn">
+                                                        <div class="compare-btn mt-3">
                                                             <a class="compare add-to-compare add_to_compare"
+                                                               style="border-radius: 2px"
                                                                data-product_id="{{$product->slug}}"
                                                                title="Add to Compare">
                                                                 <i class="fa fa-random"></i>
@@ -136,17 +142,17 @@
                                                     <!-- end product button -->
                                                 </div>
                                                 <!-- End product details -->
-                                                <div class="product-name">
+                                                <div class="product-name text-left">
                                                     <a style="font-size: 16px" href="{{url('/'.$product->slug)}}">{{__(ucwords($product->name))}}</a>
                                                 </div>
                                                 <!-- End product name -->
                                                 <!-- product price -->
-                                                <div class="product-price">
+                                                <div class="product-price text-left">
                                                     <span class="old-price">{{$product->FormatedOldPrice()}}</span>
                                                     <span class="price">{{$product->FormatedPrice()}}</span>
                                                 </div>
                                                 <!-- End product price -->
-                                                <div class="product-review">
+                                                <div class="product-review text-left">
                                                     @for($i=1; $i<=$product->averageRating; $i++)
                                                         <i class="font-13 fa fa-star"></i>
                                                     @endfor

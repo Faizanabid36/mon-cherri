@@ -532,7 +532,7 @@ th {
     .footer-nav {
         height: auto;
         display: block ;
-    
+
     }
     .footer-nav ul {
         padding: 1.5rem 0rem !important;
@@ -552,7 +552,7 @@ th {
 }
 .footer-nav ul li a{
     color: #baa794 !important;
-    font-size: 22px !important;
+    font-size: 16px !important;
 }
 .End-footer{
     display: flex;
@@ -562,17 +562,17 @@ th {
     padding: 1rem 0rem 0rem;
 }
  .End-footer .social-icon i{
-    font-size: 26px;
+    font-size: 20px;
     color: #baa794 !important;
     border: 1px solid #baa794;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+    width: 35px;
+    height: 35px;
+    padding: 7.25px;
     margin-right: 0.5rem;
 }
 .End-footer .text p{
-    font-size: 20px;
+    font-size: 13px;
     color: #baa794 !important;
 }
 
@@ -1260,7 +1260,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
     #siteNav > li > a:hover:hover,
     #siteNav > li > a:hover {
-        color: #339498;
+        color: #7a5630;
     }
 
     #siteNav > li .megamenu {
@@ -1899,8 +1899,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     width: 94%;
     opacity: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 5%;
+    left: 65%;
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -1939,7 +1939,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .grid-view-item.style2 .button-set {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .grid-view-item.style2 .button-set a.quick-view, .grid-view-item.style2 .button-set .wishlist-btn, .grid-view-item.style2 .button-set .compare-btn, .grid-view-item.style2 .button-set > form {
@@ -3206,8 +3206,9 @@ a.quick-view {
 }
 
 .pagination li.active a {
-    border: 2px solid #636871;
-    color: #555;
+    border: 2px solid #d2a45d;
+    background-color: #d2a45d;
+    color: white;
 }
 
 .pagination li a {
@@ -3217,7 +3218,7 @@ a.quick-view {
     width: 30px;
     line-height: 28px;
     display: inline-block;
-    border: 2px solid #e8e9eb;
+    border: 2px solid #d2a45d;
     vertical-align: middle;
 }
 

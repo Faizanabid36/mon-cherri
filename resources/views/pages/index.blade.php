@@ -167,7 +167,8 @@
                     @foreach($latest_products as $product)
                         <div class="arival-info">
                             <div class="ar-img">
-                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt="" width="300">
+                                <img src="{{asset($product->image->url)}}" class="img-fluid" alt=""
+                                     style="height: 200px;box-shadow: black 0px 0px 2px 0px;">
                                 <div class="ring-name ">
                                     <p>
                                         <a href="{{url('/'.$product->slug)}}">
@@ -176,7 +177,8 @@
                                     </p>
                                 </div>
                                 <div class="product-price">
-                                    <span class="featured-products-price" style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
+                                    <span class="featured-products-price"
+                                          style="color: #d2a45d;">{{$product->FormatedPrice()}}</span>
                                 </div>
                                 <!-- End product price -->
 

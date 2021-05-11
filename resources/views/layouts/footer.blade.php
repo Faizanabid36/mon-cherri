@@ -45,15 +45,15 @@
 
             <nav class="grid__item footer-nav"><!-- for mobile -->
                 <ul id="siteNavs" class="site-nav medium center hidearrow list-unstyled text-center">
-                    <li class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>
+                    <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>
                     </li>
-                    <li class="lvl1 parent megamenu"><a href="#">About US</a>
+                    <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">About US</a>
                     </li>
-                    <li class="lvl1 parent megamenu"><a href="#">Engagement</a></li>
-{{--                    <li class="lvl1 parent dropdown"><a href="#">Rings</a></li>--}}
-                    <li class="lvl1 parent megamenu"><a href="#">Privacy Policy</a>
+                    <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Engagement</a></li>
+{{--                    <li style="font-size: 14px;" class="lvl1 parent dropdown"><a href="#">Rings</a></li>--}}
+                    <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Privacy Policy</a>
                     </li>
-                    <li class="lvl1 parent megamenu"><a href="#">Terms And Conditions</a>
+                    <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Terms And Conditions</a>
                     </li>
 
                 </ul>

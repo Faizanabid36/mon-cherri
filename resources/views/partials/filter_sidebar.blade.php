@@ -68,7 +68,7 @@
             <!--Size Swatches-->
             <div class="sidebar_widget filterBox filter-widget size-swacthes">
                 <div class="title-widget animated" style="display: inline">
-                    <h2 class="fontofheading" style="float: left" >{{__('Size')}}</h2>
+                    <h2 class="fontofheading" style="float: left">{{__('Ring Size')}}</h2>
                     <i style="float: right;cursor: pointer" class="fa fa-angle-double-down"></i>
                 </div>
                 <div class="filter-color swacth-list">
@@ -112,60 +112,142 @@
                 <div class="filter-color swacth-list clearfix">
                     @php  $colors = App\Color::all(); @endphp
                     @foreach($colors as $color)
-
                         @php
                             $color_filter_id = $color->slug.$color->id;
                         @endphp
 
                         <label data-filter-id="{{$color_filter_id}}" class="filter_item">
-
-                  <span
-                      class="swacth-btn {{$color->color}} {{(request()->color == $color->slug) ? 'checked' : ''}}  filter_item"
-                      data-filter-id="{{$color_filter_id}}">
-
-                    <input type="radio" name="color" id="{{$color_filter_id}}" value="{{$color->slug}}"
-                           style="visibility: hidden;" {{(request()->color == $color->slug) ? 'checked' : ''}}>
-                  </span>
-
+                            <span
+                                class="swacth-btn {{$color->color}} {{(request()->color == $color->slug) ? 'checked' : ''}}  filter_item"
+                                data-filter-id="{{$color_filter_id}}">
+                                {{ucwords($color->color)}}
+                                <input type="radio" name="color" id="{{$color_filter_id}}" value="{{$color->slug}}"
+                                       style="visibility: hidden;" {{(request()->color == $color->slug) ? 'checked' : ''}}>
+                            </span>
                         </label>
                     @endforeach
                 </div>
             </div>
             <!--End Color Swatches-->
             <!--Brand-->
+            {{--            <div class="sidebar_widget filterBox filter-widget">--}}
+            {{--                <div class="title-widget" style="display: inline">--}}
+            {{--                    <h2 class="fontofheading" style="float:left;">{{__('Gem Stones')}}</h2>--}}
+            {{--                    <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>--}}
+            {{--                </div>--}}
+            {{--                <div class="filter-color swacth-list">--}}
+            {{--                    <ul>--}}
+            {{--                        @php $brands = $major_category->brands; @endphp--}}
+            {{--                        @foreach($brands as $brand)--}}
+
+            {{--                            @php--}}
+            {{--                                $brand_filter_id = $brand->slug.$brand->id;--}}
+            {{--                            @endphp--}}
+
+            {{--                            <li data-filter-id="{{$brand_filter_id}}" class="filter_item">--}}
+
+            {{--                                <input type="checkbox" data-filter-id="{{$brand_filter_id}}"--}}
+            {{--                                       class="filter_item" {{(request()->brand == $brand->slug) ? 'checked' : ''}} >--}}
+            {{--                                <label data-filter-id="{{$brand_filter_id}}" class="filter_item" style="font-size: 14px;">--}}
+            {{--                                    <span>--}}
+            {{--                                        <span></span>--}}
+            {{--                                    </span>--}}
+            {{--                                    {{ucwords($brand->title)}}--}}
+            {{--                                    <input type="radio" name="brand" id="{{$brand_filter_id}}" value="{{$brand->slug}}"--}}
+            {{--                                           style="visibility: hidden;"--}}
+            {{--                                           class="filter_checkbox" {{(request()->brand == $brand->slug) ? 'checked' : ''}} >--}}
+
+            {{--                                </label>--}}
+            {{--                            </li>--}}
+            {{--                        @endforeach--}}
+            {{--                    </ul>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
             <div class="sidebar_widget filterBox filter-widget">
                 <div class="title-widget" style="display: inline">
-                    <h2 class="fontofheading" style="float:left;">{{__('Brands')}}</h2>
+                    <h2 class="fontofheading" style="float:left;">{{__('Gem Stones')}}</h2>
                     <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>
                 </div>
                 <div class="filter-color swacth-list">
                     <ul>
-                        @php $brands = $major_category->brands; @endphp
-                        @foreach($brands as $brand)
+                        <li data-filter-id="1" class="filter_item">
 
-                            @php
-                                $brand_filter_id = $brand->slug.$brand->id;
-                            @endphp
+                            <input type="checkbox" data-filter-id="1"
+                                   class="filter_item">
+                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
+                                <span>
+                                        <span></span>
+                                </span>
+                                Stone 1
+                                <input type="radio" name="stone" id="1" value="1"
+                                       style="visibility: hidden;"
+                                       class="filter_checkbox">
 
-                            <li data-filter-id="{{$brand_filter_id}}" class="filter_item">
+                            </label>
+                        </li>
+                        <li data-filter-id="1" class="filter_item">
 
-                                <input type="checkbox" data-filter-id="{{$brand_filter_id}}"
-                                       class="filter_item" {{(request()->brand == $brand->slug) ? 'checked' : ''}} >
+                            <input type="checkbox" data-filter-id="1"
+                                   class="filter_item">
+                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
+                                <span>
+                                        <span></span>
+                                </span>
+                                Stone 2
+                                <input type="radio" name="stone" id="1" value="1"
+                                       style="visibility: hidden;"
+                                       class="filter_checkbox">
 
-                                <label data-filter-id="{{$brand_filter_id}}" class="filter_item">
-
-                                    <span><span></span></span>{{ucwords($brand->title)}}
-                                    <input type="radio" name="brand" id="{{$brand_filter_id}}" value="{{$brand->slug}}"
-                                           style="visibility: hidden;"
-                                           class="filter_checkbox" {{(request()->brand == $brand->slug) ? 'checked' : ''}} >
-
-                                </label>
-                            </li>
-                        @endforeach
+                            </label>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <!--End Brand-->
+            <!--End Brand n Gem Stones-->
+
+            <!--Shape-->
+            <div class="sidebar_widget filterBox filter-widget">
+                <div class="title-widget" style="display: inline">
+                    <h2 class="fontofheading" style="float:left;">{{__('Shape')}}</h2>
+                    <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>
+                </div>
+                <div class="filter-color swacth-list">
+                    <ul>
+                        <li data-filter-id="1" class="filter_item">
+
+                            <input type="checkbox" data-filter-id="1"
+                                   class="filter_item">
+                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
+                                <span>
+                                        <span></span>
+                                </span>
+                                Shape 1
+                                <input type="radio" name="shape" id="1" value="1"
+                                       style="visibility: hidden;"
+                                       class="filter_checkbox">
+
+                            </label>
+                        </li>
+                        <li data-filter-id="1" class="filter_item">
+
+                            <input type="checkbox" data-filter-id="1"
+                                   class="filter_item">
+                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
+                                <span>
+                                        <span></span>
+                                </span>
+                                Shape 2
+                                <input type="radio" name="shape" id="1" value="1"
+                                       style="visibility: hidden;"
+                                       class="filter_checkbox">
+
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--End Shape-->
+
             <!--Popular Products-->
             <div class="sidebar_widget">
                 <div class="widget-title"><h2 class="fontofheading">{{__('Popular Products')}}</h2></div>

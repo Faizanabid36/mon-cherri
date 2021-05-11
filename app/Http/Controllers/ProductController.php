@@ -32,8 +32,8 @@ class ProductController extends Controller
         return view('products.create');
     }
     public function store(ProductRequest $request)
-    { 
-        
+    {
+
         ProductService::upload_product($request);
         return redirect()->route('products.create')->with('success','Product has been uploaded successfuly');
     }
@@ -43,7 +43,7 @@ class ProductController extends Controller
     }
     public function edit(Product $product)
     {
-        $product = Product::find($product->id);
+//        $product = Product::find($product->id);
         return view('products.edit',compact('product'));
     }
     public function update(Request $request, Product $product)
@@ -58,7 +58,7 @@ class ProductController extends Controller
     }
 
     public function bulk_delete(BulkDeleteItemRequest $request)
-    {  
+    {
         $products = explode(',',$request->items);
         Product::destroy($products);
         return redirect()->route('products.index')->with('success','Products have been deleted');
