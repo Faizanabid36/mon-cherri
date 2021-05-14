@@ -21,25 +21,21 @@
                 <div class="product-single">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                            <!---iMAGE Filter-->
-                            <div class="image-container d-flex align-items-center">
-                                <div class="row">
-                                    <div class="col-lg-2 col-sm-2">
-                                        <div class="small-image">
-                                            @foreach($product->images as $p_img)
-                                                <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
-                                                     src="{{asset($p_img->url)}}">
-                                            @endforeach
+                            <div class="row image-container">
+                                <div class="small-image product-dec-slider-2">
+                                    @foreach($product->images as $p_img)
+                                        <div class="img-responsive">
+                                            <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
+                                                 src="{{asset($p_img->url)}}">
                                         </div>
-                                    </div>
-                                    <div class="col-lg-10 col-sm-10">
-                                        <div class="big-image">
-                                            <img src="{{asset($product->image->url)}}" alt="" class="img-fluid">
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
+                                <div class="big-image">
+                                    <img src="{{asset($product->image->url)}}" alt="" class="img-fluid">
+                                </div>
+                                <!---iMAGE Filter-->
+                                <!----End of the Image filter Gallery-->
                             </div>
-                            <!----End of the Image filter Gallery-->
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product-description">
@@ -73,7 +69,6 @@
                                             class="product-customer-review">({{count($product->reviews)}} {{__('Customer Reviews')}})</span>
                                     </div>
                                 </div>
-                                <hr/>
                                 <div class="product-price">
                                     <h1>
                                         <del>{{$product->FormatedOldPrice()}}</del>
@@ -84,7 +79,7 @@
                                     <span><h3><b>Metal:</b> 14kt White Gold</h3></span>
                                     <span></span>
                                 </div>
-                                <div class="product-price-circle py-2">
+                                <div class="product-price-circle py-1">
                                     <div class="product-price-items d-flex">
                                         @foreach($product->tags as $tag)
                                             <h1>{{$tag->name}}</h1>
@@ -92,7 +87,7 @@
                                     </div>
                                 </div>
 
-                                <div class="product-selection py-3">
+                                <div class="product-selection py-1">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="product-range-size">
@@ -156,7 +151,7 @@
                                                     {!! $product->description !!}
                                                 </h1>
                                             </div>
-                                            <hr/>
+                                            <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
                                             <div class="stock-number d-flex align-items-center justify-content-between">
                                                 <div class="stock-number-title">
@@ -166,7 +161,7 @@
                                                     <h1>{{$product->metal}}</h1>
                                                 </div>
                                             </div>
-                                            <hr/>
+                                            <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
                                             <div class="stock-number d-flex align-items-center justify-content-between">
                                                 <div class="stock-number-title">
@@ -176,7 +171,7 @@
                                                     <h1>{{$product->width}}</h1>
                                                 </div>
                                             </div>
-                                            <hr/>
+                                            <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
                                             <div class="stock-number d-flex align-items-center justify-content-between">
                                                 <div class="stock-number-title">
@@ -186,7 +181,7 @@
                                                     <h1>{{$product->prong_metal}}</h1>
                                                 </div>
                                             </div>
-                                            <hr/>
+                                            <hr style="margin: 10px 0;border-bottom: 1px;"/>
                                         </div>
                                         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                              aria-labelledby="nav-profile-tab">
@@ -229,7 +224,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 mt-5">
+                    <div class="col-lg-4 col-md-4">
                         <div class="buying-card d-flex align-items-center">
                             <div>
                                 <img src="{{asset('images/call.png')}}" class="img-fluid">
@@ -241,7 +236,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 mt-5">
+                    <div class="col-lg-4 col-md-4">
                         <div class="buying-card d-flex align-items-center">
                             <div>
                                 <img src="{{asset('images/truck.png')}}" class="img-fluid">
@@ -253,7 +248,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 mt-5">
+                    <div class="col-lg-4 col-md-4">
                         <div class="buying-card d-flex align-items-center">
                             <div>
                                 <img src="{{__('images/call.png')}}" class="img-fluid">
@@ -271,11 +266,11 @@
 
 
                 <!-------Dimond section---------->
-                <div class="row py-5">
+                <div class="row py-3">
                     <div class="make-buying-heading">
                         <h1>{{__('Select a Diamond')}}</h1>
                         <div class="row">
-                            <div class="offset-1 col-lg-10 offset-1">
+                            <div class="offset-1 col-lg-10">
 
                                 <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text..</p>
 
@@ -283,138 +278,89 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    {{--                    <div class="col-lg-4 col-md-6">--}}
-                    {{--                        <div class="diamond-filters-left">--}}
-                    {{--                            <!-- price filter  -->--}}
-                    {{--                            <div class="sidebar_widget filterBox filter-widget">--}}
-                    {{--                                <h1 class="font-weight-700">Price</h1>--}}
-                    {{--                                <form action="#" method="post" class="price-filter">--}}
-                    {{--                                    <div id="slider-range"--}}
-                    {{--                                         class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">--}}
-                    {{--                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>--}}
-                    {{--                                        <span class="ui-slider-handle ui-state-default ui-corner-all"--}}
-                    {{--                                              tabindex="0"></span>--}}
-                    {{--                                        <span class="ui-slider-handle ui-state-default ui-corner-all"--}}
-                    {{--                                              tabindex="0"></span>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="row">--}}
-                    {{--                                        <div class="col-12 d-flex">--}}
-                    {{--                                            <button class="filter-btn">filter</button>--}}
+                <div class="row" id="dimond-filter">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="diamond-filters-left">
+                            <!-- price filter  -->
+                            <div class="sidebar_widget filterBox filter-widget mt-4">
+                                <h1 class="font-weight-700">Price</h1>
+                                <form action="#" method="post" class="price-filter">
+                                    <div id="slider-range"
+                                         class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                              tabindex="0"></span>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                              tabindex="0"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex">
+                                            <button class="filter-btn">filter</button>
 
-                    {{--                                            <div class="ml-3">--}}
-                    {{--                                                <p class="no-margin"><input id="amount" type="text"--}}
-                    {{--                                                                            class="filter-input"></p>--}}
-                    {{--                                            </div>--}}
-                    {{--                                        </div>--}}
+                                            <div class="ml-3">
+                                                <p class="no-margin"><input id="amount" type="text"
+                                                                            class="filter-input"></p>
+                                            </div>
+                                        </div>
 
-                    {{--                                    </div>--}}
-                    {{--                                </form>--}}
-                    {{--                            </div>--}}
-
-
-                    {{--                            <!-- end of the price filter  -->--}}
+                                    </div>
+                                </form>
+                            </div>
 
 
-                    {{--                            <!-- start carret weight  -->--}}
-                    {{--                            <div class="sidebar_widget filterBox filter-widget py-2">--}}
-                    {{--                                <h1 class="">Carret Weight</h1>--}}
-                    {{--                                <form action="#" method="post" class="price-filter">--}}
-                    {{--                                    <div id="slider-range"--}}
-                    {{--                                         class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">--}}
-                    {{--                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>--}}
-                    {{--                                        <span class="ui-slider-handle ui-state-default ui-corner-all"--}}
-                    {{--                                              tabindex="0"></span>--}}
-                    {{--                                        <span class="ui-slider-handle ui-state-default ui-corner-all"--}}
-                    {{--                                              tabindex="0"></span>--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="row">--}}
-                    {{--                                        <div class="col-12 d-flex">--}}
-                    {{--                                            <button class="filter-btn">filter</button>--}}
-
-                    {{--                                            <div class="ml-3">--}}
-                    {{--                                                <p class="no-margin"><input id="amount" type="text"--}}
-                    {{--                                                                            class="filter-input"></p>--}}
-                    {{--                                            </div>--}}
-                    {{--                                        </div>--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                </form>--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <!-----End carret weight-------------->--}}
+                            <!-- end of the price filter  -->
 
 
-                    {{--                            <!-- color choose -->--}}
-                    {{--                            <div class="color-choose py-3">--}}
-                    {{--                                <h1>Color</h1>--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="I">--}}
+                            <!-- start carret weight  -->
+                            <div class="sidebar_widget filterBox filter-widget py-2 mt-5">
+                                <h1 class="">Carret Weight</h1>
+                                <form action="#" method="post" class="price-filter">
+                                    <div id="slider-range"
+                                         class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                              tabindex="0"></span>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                              tabindex="0"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex">
+                                            <button class="filter-btn">filter</button>
 
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="H">--}}
+                                            <div class="ml-3">
+                                                <p class="no-margin"><input id="amount" type="text"
+                                                                            class="filter-input"></p>
+                                            </div>
+                                        </div>
 
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="G">--}}
+                                    </div>
+                                </form>
+                            </div>
 
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="F">--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="E">--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2">--}}
-                    {{--                                        <input type="text" class="color-input-product" placeholder="D">--}}
-
-                    {{--                                    </div>--}}
-
-
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
+                            <!-----End carret weight-------------->
 
 
-                    {{--                            <!-- clarity  -->--}}
-                    {{--                            <div class="color-clarity-input py-3">--}}
-                    {{--                                <h1>Clarity</h1>--}}
-                    {{--                                <div class="row">--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2 clarity-border">--}}
-                    {{--                                        <input type="text" class="color-clarity" placeholder="VS2">--}}
+                        </div>
+                    </div>
 
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2 clarity-border">--}}
-                    {{--                                        <input type="text" class="color-clarity" placeholder="VS1">--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2 clarity-border">--}}
-                    {{--                                        <input type="text" class="color-clarity" placeholder="VVS2">--}}
-
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="col-lg-2 col-md-2 col-2 clarity-border">--}}
-                    {{--                                        <input type="text" class="color-clarity" placeholder="VVS1">--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
-                    <div class="col-md-1"></div>
-                    <div class="col-lg-10 col-md-6">
+                    <!---Dimond Slider--------->
+                    <div class="col-lg-8 col-md-6">
 
 
                         <div class="dimond-slider">
+
                             <div class="">
                                 <div class="ring-price">
                                     <div class="ring-img">
-                                        <img src="{{asset('images/ring3.jpeg')}}" class="img-fluid" alt="">
+                                        <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
+                                             class="img-fluid" alt="">
                                     </div>
+
                                     <div class="ring-price-range mt-3">
                                         <span class="featured-products-price">$2,000</span>
+
                                     </div>
+
                                     <div class="featured-product-shape-size d-flex justify-content-between ">
                                         <div class="featured-product-hape">
                                             <h3 class="font-weight-bold">Round</h3>
@@ -425,7 +371,6 @@
                                             <p>Size</p>
                                         </div>
                                     </div>
-                                    <hr/>
                                     <div class="featured-product-shape-size d-flex justify-content-between ">
                                         <div class="featured-product-hape">
                                             <h3 class="font-weight-bold">D</h3>
@@ -436,16 +381,24 @@
                                             <p>Clarity</p>
                                         </div>
                                     </div>
+
                                 </div>
+
+
                             </div>
+
                             <div class="">
                                 <div class="ring-price">
                                     <div class="ring-img">
-                                        <img src="{{asset('images/ring3.jpeg')}}" class="img-fluid" alt="">
+                                        <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
+                                             class="img-fluid" alt="">
                                     </div>
+
                                     <div class="ring-price-range mt-3">
                                         <span class="featured-products-price">$2,000</span>
+
                                     </div>
+
                                     <div class="featured-product-shape-size d-flex justify-content-between ">
                                         <div class="featured-product-hape">
                                             <h3 class="font-weight-bold">Round</h3>
@@ -456,40 +409,6 @@
                                             <p>Size</p>
                                         </div>
                                     </div>
-                                    <hr/>
-
-                                    <div class="featured-product-shape-size d-flex justify-content-between ">
-                                        <div class="featured-product-hape">
-                                            <h3 class="font-weight-bold">D</h3>
-                                            <p>Color</p>
-                                        </div>
-                                        <div class="featured-product-size">
-                                            <h3 class="font-weight-bold">VS2</h3>
-                                            <p>Clarity</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="ring-price">
-                                    <div class="ring-img">
-                                        <img src="{{asset('images/ring3.jpeg')}}" class="img-fluid" alt="">
-                                    </div>
-
-                                    <div class="ring-price-range mt-3">
-                                        <span class="featured-products-price">$2,000</span>
-                                    </div>
-                                    <div class="featured-product-shape-size d-flex justify-content-between ">
-                                        <div class="featured-product-hape">
-                                            <h3 class="font-weight-bold">Round</h3>
-                                            <p>Shape</p>
-                                        </div>
-                                        <div class="featured-product-size">
-                                            <h3 class="font-weight-bold">1.25</h3>
-                                            <p>Size</p>
-                                        </div>
-                                    </div>
-                                    <hr/>
 
                                     <div class="featured-product-shape-size d-flex justify-content-between ">
                                         <div class="featured-product-hape">
@@ -502,11 +421,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                             <div class="">
                                 <div class="ring-price">
                                     <div class="ring-img">
-                                        <img src="{{asset('images/ring3.jpeg')}}" class="img-fluid" alt="">
+                                        <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
+                                             class="img-fluid" alt="">
                                     </div>
 
                                     <div class="ring-price-range mt-3">
@@ -524,7 +446,43 @@
                                             <p>Size</p>
                                         </div>
                                     </div>
-                                    <hr/>
+
+                                    <div class="featured-product-shape-size d-flex justify-content-between ">
+                                        <div class="featured-product-hape">
+                                            <h3 class="font-weight-bold">D</h3>
+                                            <p>Color</p>
+                                        </div>
+                                        <div class="featured-product-size">
+                                            <h3 class="font-weight-bold">VS2</h3>
+                                            <p>Clarity</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="">
+                                <div class="ring-price">
+                                    <div class="ring-img">
+                                        <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
+                                             class="img-fluid" alt="">
+                                    </div>
+
+                                    <div class="ring-price-range mt-3">
+                                        <span class="featured-products-price">$2,000</span>
+
+                                    </div>
+
+                                    <div class="featured-product-shape-size d-flex justify-content-between ">
+                                        <div class="featured-product-hape">
+                                            <h3 class="font-weight-bold">Round</h3>
+                                            <p>Shape</p>
+                                        </div>
+                                        <div class="featured-product-size">
+                                            <h3 class="font-weight-bold">1.25</h3>
+                                            <p>Size</p>
+                                        </div>
+                                    </div>
 
                                     <div class="featured-product-shape-size d-flex justify-content-between ">
                                         <div class="featured-product-hape">
@@ -543,12 +501,14 @@
 
                         </div>
                     </div>
+
+                    <!--End of dimond slider------>
                 </div>
                 <!--------End of the Dimond Section---------->
 
 
                 <!-- featured-produtcs -->
-                <div class="row py-5">
+                <div class="row py-2">
                     <div class="make-buying-heading mt-5">
                         <h1>{{__('You May Also Like')}}</h1>
                     </div>
@@ -558,10 +518,12 @@
                         <div class="col-lg-3 col-md-3 mt-5">
                             <div class="ring-price">
                                 <div class="ring-img">
-                                    <img src="{{asset($related_product->image->url)}}" class="img-fluid" alt="" width="300">
+                                    <img style="width: 300px;height: 225px;border-radius: 7px"
+                                         src="{{asset($related_product->image->url)}}" class="img-fluid" alt=""
+                                         width="300">
                                 </div>
 
-                                <div class="ring-name mt-3 ">
+                                <div class="ring-name mt-2">
                                     <p>
                                         <a href="{{url('/'.$related_product->slug)}}">{{ucwords($related_product->name)}}</a>
                                     </p>

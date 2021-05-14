@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('title', __(ucwords($major_category->title)))
-
 @section('content')
     <style>
         .fontofheading {
