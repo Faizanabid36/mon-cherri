@@ -46,7 +46,7 @@
         </div>
         <!--End Collection Banner-->
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <!--Sidebar-->
             @include('partials.filter_sidebar')

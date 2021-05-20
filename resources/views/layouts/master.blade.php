@@ -100,7 +100,7 @@
 
 
 <div class="animated d-flex" style="background-color: #7a5630;">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row align-items-center">
             <!--Desktop Logo-->
             <div style="float: left" class="logo col-md-2 col-lg-3 d-none d-lg-block">
@@ -217,7 +217,7 @@
 
 <!--Header-->
 <div class="header-wrap animated d-flex">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row align-items-center">
             <!--Desktop Logo-->
             <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
