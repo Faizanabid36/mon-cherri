@@ -70,13 +70,13 @@
                                                 <a href="{{url('/'.$product->slug)}}" class="grid-view-item__link">
                                                     <!-- image -->
                                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                                         style="height: 290px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
+                                                         style="height: 285px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End image -->
                                                     <!-- Hover image -->
                                                     <img class="grid-view-item__image hover blur-up lazyload"
-                                                         style="height: 290px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
+                                                         style="height: 285px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End hover image -->
