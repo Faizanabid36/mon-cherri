@@ -168,7 +168,7 @@
                         <div class="arival-info">
                             <div class="ar-img">
                                 <img src="{{asset($product->image->url)}}" class="img-fluid" alt=""
-                                     style="height: 200px;box-shadow: black 0px 0px 2px 0px;">
+                                     style="height: 200px;border-radius: 5px;box-shadow: #00000026 0 0 5px 0;">
                                 <div class="ring-name ">
                                     <p>
                                         <a href="{{url('/'.$product->slug)}}">
