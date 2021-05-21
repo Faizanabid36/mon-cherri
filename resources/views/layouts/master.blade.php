@@ -42,6 +42,11 @@
         .container22 {
             position: relative;
         }
+        .adil-b{
+            display: block!important;
+            padding-left: 0;
+            padding-right: 0;
+        }
 
         .text-block {
             position: absolute;
