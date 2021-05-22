@@ -142,7 +142,7 @@
                                                 </div>
                                                 <!-- End product details -->
                                                 <div class="product-name text-left">
-                                                    <a style="font-size: 16px" href="{{url('/'.$product->slug)}}">{{__(ucwords($product->name))}}</a>
+                                                    <a class="underline-on-hover" style="font-size: 16px" href="{{url('/'.$product->slug)}}">{{__(ucwords($product->name))}}</a>
                                                 </div>
                                                 <!-- End product name -->
                                                 <!-- product price -->

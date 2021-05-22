@@ -101,23 +101,46 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="product-quantity">
-                                                    <input
-                                                        style="border-radius: 5px"
-                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"
-                                                        class="product-form__input bs_product_qty qty">
+                                                <div class="product-form__item--quantity">
+                                                    <div class="wrapQtyBtn">
+                                                        <div class="qtyField">
+                                                            <a class="minusQty" href="javascript:void(0);"><i
+                                                                    class="fa fa-minus" aria-hidden="true"></i></a>
+                                                            <input type="text" id="Quantity" name="quantity" min="1"
+                                                                   max="{{$product->stock}}" value="0"
+                                                                   class="product-form__input bs_product_qty qty">
+                                                            <a class="plusQty" href="javascript:void(0);"><i
+                                                                    class="fa fa-plus" aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                {{--                                                <div class="product-quantity">--}}
+                                                {{--                                                    <input--}}
+                                                {{--                                                        style="border-radius: 5px"--}}
+                                                {{--                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"--}}
+                                                {{--                                                        class="product-form__input bs_product_qty qty">--}}
+                                                {{--                                                </div>--}}
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="product-addcart-btn py-3">
-                                        <button type="button" name="add"
-                                                class="product-form__cart-submit add_to_cart single_page_add_to_cart"
-                                                data-product_quantity="1" data-product_id="{{$product->slug}}"
-                                                data-product_size="">
-                                            <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
-                                        </button>
+                                        @auth()
+                                            <button type="button" name="add"
+                                                    class="product-form__cart-submit add_to_cart single_page_add_to_cart"
+                                                    data-product_quantity="1" data-product_id="{{$product->slug}}"
+                                                    data-product_size="">
+                                                <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
+                                            </button>
+                                        @else
+                                            <button type="button"
+                                                    class="product-form__cart-submit add_to_cart single_page_add_to_cart">
+                                                <a href="{{route('login')}}" class="text-white">
+                                                    <span
+                                                        id="AddToCartText-product-template">{{__('Login First')}}</span>
+                                                </a>
+                                            </button>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
@@ -646,7 +669,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-
             $(document).on('change', '#Quantity', function () {
                 var qty = $("#Quantity").val();
                 if (qty != "" || qty != null) {
@@ -685,6 +707,25 @@
 
             });
 
+            $('.minusQty').on('click', function () {
+                let val = document.getElementById('Quantity').value;
+                console.log('val',val)
+                if (val > 1)
+                    document.getElementById('Quantity').value =parseInt(val) - 1;
+            })
+            $('.plusQty').on('click', function () {
+                let val = document.getElementById('Quantity').value;
+                let limit = {{$product->stock}}
+                console.log('val',val)
+                if (val < limit)
+                {
+                    document.getElementById('Quantity').value =parseInt(val) + 1;
+                }
+                else{
+                    alert('Quantity not present in stock')
+                }
+                return null;
+            })
 
             $(".dimond-slider").slick({
                 dots: false,

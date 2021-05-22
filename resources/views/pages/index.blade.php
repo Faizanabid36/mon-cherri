@@ -12,13 +12,11 @@
 
                         <div class="collection-hero__title page-width">
                             <div class="text">
-                                <p
-                                    style="text-transform:initial; font-family: Baskerville Old Face regular; font-size: 54px; color: black !important; line-height: 51px;">
+                                <p style="text-transform:initial; font-family: Baskerville Old Face regular; font-size: 54px; color: black !important; line-height: 51px;">
                                     Treat Yourself With The <br>
                                     Best Jewelry</p>
-                                <h2 style="text-transform:initial; font-family: poppins regular; font-weight:100">Our
-                                    exacting
-                                    standards for cut and quality are what give <br> Moncheri diamonds their astonishing
+                                <h2 style="text-transform:initial; font-family: poppins regular; font-weight:100">
+                                    Our exacting standards for cut and quality are what give <br> Moncheri diamonds their astonishing
                                     beauty.Intricately cut <br>
                                     in designs that conjure dreams,our legendary <br>
                                     diamond jewelry
@@ -200,7 +198,7 @@
                                      style="height: 200px;border-radius: 5px;box-shadow: #00000026 0 0 5px 0;">
                                 <div class="ring-name ">
                                     <p>
-                                        <a href="{{url('/'.$product->slug)}}">
+                                        <a class="light-to-dark-hover" href="{{url('/'.$product->slug)}}">
                                             {{__(ucfirst($product->name))}}
                                         </a>
                                     </p>
