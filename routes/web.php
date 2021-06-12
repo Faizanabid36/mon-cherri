@@ -35,6 +35,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('states', 'StateController');
         Route::resource('cities', 'CityController');
         Route::resource('currencies', 'CurrencyController');
+        Route::resource('variations', 'VariationController');
 
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
@@ -67,6 +68,9 @@ Route::group(['middleware' => 'locale'], function () {
 
         // Colors delete routes
         Route::post('colors_bulk_delete', 'ColorController@bulk_delete')->name('colors.bulkDelete');
+        
+        // Variations delete routes
+        Route::post('variations_bulk_delete', 'VariationController@bulk_delete')->name('variations.bulkDelete');
 
         // Users delete routes
         Route::post('users_bulk_delete', 'UserController@bulk_delete')->name('users.bulkDelete');

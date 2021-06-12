@@ -422,6 +422,25 @@ class PermissionsTableSeeder extends Seeder
                 'description' => 'Can edit colors',
                 'model'       => 'Permission',
             ],
+             // variations permissions
+             [
+                'name'        => 'Can View Variations',
+                'slug'        => 'view.variations',
+                'description' => 'Can view variations',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Create Variations',
+                'slug'        => 'create.variations',
+                'description' => 'Can create new variations',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Edit Variations',
+                'slug'        => 'edit.variations',
+                'description' => 'Can edit variations',
+                'model'       => 'Permission',
+            ],
               // currencies permissions
             [
                 'name'        => 'Can View Currencies',
