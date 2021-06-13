@@ -81,5 +81,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Variation','product_variations','product_id','variation_id');
     }
+    public function product_variations()
+    {
+        return $this->hasMany('App\ProductVariation','product_id','id');
+    }
 
 }

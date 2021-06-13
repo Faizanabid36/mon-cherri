@@ -19,6 +19,7 @@ class CreateProductVariationsTable extends Migration
             $table->integer('variation_id');
             $table->string('color_id');
             $table->float('price');
+            $table->longText('description');
             $table->timestamps();
         });
     }

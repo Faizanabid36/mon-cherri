@@ -17,4 +17,8 @@ class Color extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+    public function product_variations()
+    {
+        return $this->hasMany('App\ProductVariation','color_id','id');
+    }
 }
