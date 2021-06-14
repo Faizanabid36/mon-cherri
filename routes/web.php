@@ -35,9 +35,20 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('states', 'StateController');
         Route::resource('cities', 'CityController');
         Route::resource('currencies', 'CurrencyController');
+        Route::resource('variations', 'VariationController');
 
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
+        Route::name('product.variations.')->prefix('variations')->group(function(){
+            Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');
+            Route::get('add_variations/{id}', 'ProductController@add_variations')->name('add');
+            Route::post('store_variations', 'ProductController@store_variations')->name('store');
+            Route::get('edit_variations/{id}', 'ProductController@edit_variations')->name('edit');
+            Route::post('update_variations', 'ProductController@update_variations')->name('update');
+            Route::delete('destroy_variation/{variation}', 'ProductController@destroy_variation')->name('destroy');
+            Route::post('bulk_delete_variations', 'ProductController@bulk_delete_variations')->name('bulk_delete');
+        });
+        
         // Prodcuc ajax route
         Route::post('get_more_product_details', 'ProductController@get_more_product_details');
 
@@ -67,6 +78,9 @@ Route::group(['middleware' => 'locale'], function () {
 
         // Colors delete routes
         Route::post('colors_bulk_delete', 'ColorController@bulk_delete')->name('colors.bulkDelete');
+        
+        // Variations delete routes
+        Route::post('variations_bulk_delete', 'VariationController@bulk_delete')->name('variations.bulkDelete');
 
         // Users delete routes
         Route::post('users_bulk_delete', 'UserController@bulk_delete')->name('users.bulkDelete');

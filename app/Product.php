@@ -8,6 +8,7 @@ use App\Color;
 use App\Brand;
 use App\Category;
 use App\RotatoryImage;
+use App\Variation;
 use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -75,4 +76,14 @@ class Product extends Model
         }
         return '';
     }
+
+    public function variations()
+    {
+        return $this->belongsToMany('App\Variation','product_variations','product_id','variation_id');
+    }
+    public function product_variations()
+    {
+        return $this->hasMany('App\ProductVariation','product_id','id');
+    }
+
 }

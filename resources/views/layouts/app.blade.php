@@ -220,6 +220,11 @@
                         <a href="{{route('colors.index')}}"><i class="fe fe-target"></i> <span>Colors</span></a>
                     </li>
                     @endpermission
+                    @permission('view.variations')
+                     <li> 
+                        <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i> <span>Variations</span></a>
+                    </li>
+                    @endpermission
                     @permission('view.users')
                     <li> 
                         <a href="{{route('users.index')}}"><i class="fe fe-users"></i> <span>Users</span></a>
