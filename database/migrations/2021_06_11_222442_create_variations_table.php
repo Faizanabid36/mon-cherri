@@ -17,6 +17,7 @@ class CreateVariationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
+            $table->integer('color');
             $table->string('slug');
             $table->timestamps();
         });

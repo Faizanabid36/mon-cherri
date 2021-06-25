@@ -37,6 +37,7 @@ class VariationController extends Controller
         Variation::create([
             'title'=> $request->title,
             'sub_title' => $request->sub_title,
+            'color'=>$request->color,
             'slug'=>  Str::slug($request->title),
         ]);
         return back()->with('success','Variation has been added');

@@ -17,7 +17,7 @@ class CreateProductVariationsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('product_id');
             $table->integer('variation_id');
-            $table->string('color_id');
+            $table->integer('size_id');
             $table->float('price');
             $table->longText('description');
             $table->timestamps();

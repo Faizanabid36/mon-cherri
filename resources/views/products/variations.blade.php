@@ -49,6 +49,7 @@
 									<th>Title</th>
 									<th>Sub Title</th>
 									<th>Color</th>
+									<th>Size</th>
 									<th>Price</th>
 									
 									<th>Created On</th>
@@ -57,6 +58,7 @@
 							</thead>
 							<tbody>
                             <?php $count = 1; ?>
+							
 								@foreach($variations as $variation)
 								<tr>
 									
@@ -66,11 +68,15 @@
 									
 									<td><?=$count++?></td>
 									<td>{{ucwords($variation->variation->title)}}</td>
+									
 									<td>
                                     {{ucwords($variation->variation->sub_title)}}
 									</td>
 									<td>
-                                    {{ucwords($variation->color->color)}}
+                                    {{ucwords($variation->variation->colors->color)}}
+									</td>
+									<td>
+                                    {{ucwords($variation->size->size)}}
 									</td>
 									<td>{{currency($variation->price, 'USD')}}</td>
 									
@@ -78,7 +84,7 @@
 									<td>
 										<div class="actions">
 											
-											<a href="{{route('product.variations.edit',$variation->id)}}" class="btn btn-sm bg-success-light mr-2">
+											<a href="{{route('product.variations.add',$variation->product_id)}}" class="btn btn-sm bg-success-light mr-2">
 												<i class="fe fe-pencil"></i> Edit
 											</a>
 										
