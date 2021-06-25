@@ -42,6 +42,22 @@
 											<input type="text" name="sub_title" class="form-control" required>
 										</div>
 									</div>
+									<div class="col-md-9">
+                                        <div class="form-group">
+                                            <label>Color</label>
+                                            <select class="form-control @error('color') is-invalid @enderror" id="color" data-route="" name="color" >
+                                                <option value="">Choose Color</option>
+                                                @foreach(App\Color::all() as $color)
+                                                    <option value="{{$color->id}}">{{ucwords($color->color)}}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('color'))
+                                                @foreach($errors->get('color') as $message)
+                                                <span style="color:red">{{$message}}</span>
+                                                @endforeach
+                                            @endif
+                                        </div>
+									</div>
 								</div>	
 								<div class="form-group text-right">
 									<button class="btn btn-success bs_dashboard_btn bs_btn_color">Add</button>

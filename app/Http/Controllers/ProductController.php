@@ -102,39 +102,61 @@ class ProductController extends Controller
 
     public function get_variations($product_id)
     {
-        $variations=ProductVariation::whereProductId($product_id)->with('product','variation','color')->get();
+        $variations=ProductVariation::whereProductId($product_id)->with('product','variation')->get();
         return view('products.variations',compact('variations','product_id'));
     }
     public function add_variations($product_id)
     {
-        return view('products.create_variation',compact('product_id'));
+        $variations=ProductVariation::whereProductId($product_id)->with('product','variation')->get();
+        return view('products.create_variation',compact('product_id','variations'));
     }
-    public function store_variations(VariationRequest $request)
+    public function store_variations(Request $request)
     {
-        
-        $product_variation=ProductVariation::create(
-            $request->except(['_token','images'])
-        );
-        $product=Product::whereId($request->product_id)->first();
-        $path = 'images/product_variations/'.$product->slug.'-bs_00'.$product_variation->id;
-        if (! File::exists($path)) {
-            File::makeDirectory($path);
-        }
-
-        if($files=$request->file('images')){
-            $count = 1;
-            foreach($files as $file){
-                // image upload
-                $extension = $file->extension();
-                $image = $product->slug . $count++ . "." . $extension;
-                $file->move(public_path($path),$image);
-                // image insert into database
-                $current_image = $product_variation->images()->create(['url'=>$path.'/'.$image]);
-               
+        //  dd($request->all());
+        ProductVariation::whereProductId($request->product_id)->delete();
+        foreach($request->variations as $var)
+        {
+            if ($request->sizes)
+            {
+                foreach($request->sizes as $size)
+                {
+                    $product_variation=ProductVariation::create(
+                        [
+                            'product_id'=>$request->product_id,
+                            'variation_id'=>$var,
+                            'size_id'=>$size,
+                            'price'=>0,
+                            'description'=>""
+                        ] 
+                     );
+                }
+                
             }
         }
+
+        // dd($request->all());
+        // $product_variation=ProductVariation::create(
+        //     $request->except(['_token','images'])
+        // );
+        // $product=Product::whereId($request->product_id)->first();
+        // $path = 'images/product_variations/'.$product->slug.'-bs_00'.$product_variation->id;
+        // if (! File::exists($path)) {
+        //     File::makeDirectory($path);
+        // }
+        // if($files=$request->file('images')){
+        //     $count = 1;
+        //     foreach($files as $file){
+        //         // image upload
+        //         $extension = $file->extension();
+        //         $image = $product->slug . $count++ . "." . $extension;
+        //         $file->move(public_path($path),$image);
+        //         // image insert into database
+        //         $current_image = $product_variation->images()->create(['url'=>$path.'/'.$image]);
+               
+        //     }
+        // }
        
-        return redirect()->route('product.variations.get',$request->product_id);
+        return redirect()->route('product.variations.add',$request->product_id);
     }
     public function edit_variations($id)
     {
@@ -168,9 +190,23 @@ class ProductController extends Controller
         return redirect()->route('product.variations.get',$product_variation->product_id);
         // return view('products.edit_variation',compact('product_variation'));
     }
+    public function edit_variation(Request $request)
+    {
+        $product_variation=ProductVariation::updateOrCreate(
+            ['id'=>$request->id],
+            $request->except(['_token'])
+        );
+        return back();
+
+    }
     public function destroy_variation(ProductVariation $variation)
     {
         $variation->delete();
+        return back()->with('success','Variation has been deleted');
+    }
+    public function delete_variation($id)
+    {
+        ProductVariation::whereId($id)->delete();
         return back()->with('success','Variation has been deleted');
     }
     public function bulk_delete_variations(BulkDeleteItemRequest $request)

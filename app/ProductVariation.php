@@ -22,6 +22,10 @@ class ProductVariation extends Model
         return $this->belongsTo('App\Color','color_id','id');
     }
 
+    public function size()
+    {
+        return $this->belongsTo('App\Size','size_id','id');
+    }
     public function images()
     {
         return $this->morphMany('App\Image', 'imageable');
