@@ -422,6 +422,26 @@ class PermissionsTableSeeder extends Seeder
                 'description' => 'Can edit colors',
                 'model'       => 'Permission',
             ],
+
+            // certificates permissions
+            [
+                'name'        => 'Can View Certificates',
+                'slug'        => 'view.certificates',
+                'description' => 'Can view certificates',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Create Certificates',
+                'slug'        => 'create.certificates',
+                'description' => 'Can create new certificates',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Edit Certificates',
+                'slug'        => 'edit.certificates',
+                'description' => 'Can edit certificates',
+                'model'       => 'Permission',
+            ],
              // variations permissions
              [
                 'name'        => 'Can View Variations',
