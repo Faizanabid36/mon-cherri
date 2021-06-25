@@ -144,6 +144,8 @@
                                     <th>Size</th>
                                     <th>Price</th>
                                     <th>Description</th>
+                                    <th>Quantity</th>
+                                    <th>Weight</th>
                                     <th>Created On</th>
                                     <th>Action</th>
                                 </tr>
@@ -174,6 +176,16 @@
                                             <td>
                                                 <input name="description"
                                                        value="{{$variation->description}}"/>
+                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            </td>
+                                            <td>
+                                                <input name="qty" type="number"
+                                                       value="{{$variation->qty}}"/>
+                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            </td>
+                                            <td>
+                                                <input name="weight" type="number"
+                                                       value="{{$variation->weight}}"/>
                                             <!-- {{currency($variation->price, 'USD')}} -->
                                             </td>
                                             <td>{{$variation->created_at->format('d-m-Y')}}</td>

@@ -19,6 +19,8 @@ class CreateProductVariationsTable extends Migration
             $table->integer('variation_id');
             $table->integer('size_id');
             $table->float('price');
+            $table->float('weight');
+            $table->integer('qty');
             $table->longText('description');
             $table->timestamps();
         });

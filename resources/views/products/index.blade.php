@@ -96,7 +96,7 @@
 											<a href="{{route('upload_360_image',$product->id)}}" class="btn btn-sm bg-warning-light" data-route="{{route('upload_360_image',$product->id)}}">
 												<i class="fe fe-upload"></i> 360 Image
 											</a>
-											<a href="{{route('product.variations.get',$product->id)}}" class="btn btn-sm bg-info-light" data-route="{{route('product.variations.get',$product->id)}}">
+											<a href="{{route('product.variations.add',$product->id)}}" class="btn btn-sm bg-info-light" data-route="{{route('product.variations.get',$product->id)}}">
 												<i class="fe fe-activity"></i> Variations
 											</a>
 										</div>

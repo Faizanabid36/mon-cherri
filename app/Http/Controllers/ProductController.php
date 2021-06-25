@@ -125,6 +125,8 @@ class ProductController extends Controller
                             'product_id'=>$request->product_id,
                             'variation_id'=>$var,
                             'size_id'=>$size,
+                            'weight'=>0,
+                            'qty'=>0,
                             'price'=>0,
                             'description'=>""
                         ] 
