@@ -96,7 +96,7 @@
 											<a href="{{route('product.album.product_album',$product->id)}}" class="btn btn-sm bg-warning-light" data-route="{{route('product.album.product_album',$product->id)}}">
 												<i class="fe fe-file-image"></i> Album
 											</a>
-											<a href="{{route('product.variations.get',$product->id)}}" class="btn btn-sm bg-info-light" data-route="{{route('product.variations.get',$product->id)}}">
+											<a href="{{route('product.variations.add',$product->id)}}" class="btn btn-sm bg-info-light" data-route="{{route('product.variations.get',$product->id)}}">
 												<i class="fe fe-activity"></i> Variations
 											</a>
 										</div>

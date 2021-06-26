@@ -25,6 +25,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('subcategories', 'SubCategoryController');
         Route::resource('brands', 'BrandController');
         Route::resource('colors', 'ColorController');
+        Route::resource('certificates', 'CertificateController');
         Route::resource('sizes', 'SizeController');
         Route::resource('customers', 'CustomerController');
         Route::resource('posts', 'PostController');
@@ -87,6 +88,9 @@ Route::group(['middleware' => 'locale'], function () {
 
         // Colors delete routes
         Route::post('colors_bulk_delete', 'ColorController@bulk_delete')->name('colors.bulkDelete');
+
+         // Certificate delete routes
+         Route::post('certificates_bulk_delete', 'CertificateController@bulk_delete')->name('certificates.bulkDelete');
 
         // Variations delete routes
         Route::post('variations_bulk_delete', 'VariationController@bulk_delete')->name('variations.bulkDelete');
