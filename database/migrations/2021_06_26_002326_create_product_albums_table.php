@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRotatoryImagesTable extends Migration
+class CreateProductAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateRotatoryImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rotatory_images', function (Blueprint $table) {
+        Schema::create('product_albums', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('path');
             $table->string('title');
-            $table->unsignedBigInteger('product_album_id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->longText('url')->nullable();
+            $table->unsignedBigInteger('has_rotatory_image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateRotatoryImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rotatory_images');
+        Schema::dropIfExists('product_albums');
     }
 }

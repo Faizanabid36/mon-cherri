@@ -40,6 +40,12 @@ Route::group(['middleware' => 'locale'], function () {
 
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
+
+        Route::name('product.album.')->prefix('album')->group(function () {
+            Route::get('all/{id}', 'ProductController@product_album')->name('product_album');
+            Route::get('create/{id}', 'ProductController@create_album')->name('create');
+            Route::post('store/{id}', 'ProductController@store_album')->name('store');
+        });
         Route::name('product.variations.')->prefix('variations')->group(function () {
             Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');
             Route::get('add_variations/{id}', 'ProductController@add_variations')->name('add');

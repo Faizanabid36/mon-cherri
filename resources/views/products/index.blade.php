@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<!-- /Page Header -->
-	
+
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
@@ -42,7 +42,7 @@
 								<tr>
 									@permission('delete.products')
 									<th>
-										<input type="checkbox" id="checkAll"> 
+										<input type="checkbox" id="checkAll">
 									</th>
 									@endpermission
 									<th>Count</th>
@@ -93,8 +93,8 @@
 												<i class="fe fe-trash"></i> Delete
 											</a>
 											@endpermission
-											<a href="{{route('upload_360_image',$product->id)}}" class="btn btn-sm bg-warning-light" data-route="{{route('upload_360_image',$product->id)}}">
-												<i class="fe fe-upload"></i> 360 Image
+											<a href="{{route('product.album.product_album',$product->id)}}" class="btn btn-sm bg-warning-light" data-route="{{route('product.album.product_album',$product->id)}}">
+												<i class="fe fe-file-image"></i> Album
 											</a>
 											<a href="{{route('product.variations.get',$product->id)}}" class="btn btn-sm bg-info-light" data-route="{{route('product.variations.get',$product->id)}}">
 												<i class="fe fe-activity"></i> Variations

@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace App\Services;
 
 use Image;
@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class ProductService 
+class ProductService
 {
     public static function upload_product($request)
     {
@@ -36,9 +36,6 @@ class ProductService
         $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
-        for($i=1;$i<=15;$i++){
-            \App\RotatoryImage::create(['path'=>asset('images/defult.jpg'),'product_id'=>$product->id]);
-        }
         $path = 'images/product/'.$slug.'-bs_00'.$product->id;
         // mkdir(public_path($path),0700);
         if (! File::exists($path)) {
@@ -54,7 +51,7 @@ class ProductService
                 $file->move(public_path($path),$image);
                 // image insert into database
                 $current_image = $product->images()->create(['url'=>$path.'/'.$image]);
-                
+
                 // Watermark
                 // $img = Image::make(public_path($current_image->url));
                 // $watermark = public_path('images/brandzshop_watermark.png');
@@ -74,13 +71,13 @@ class ProductService
         // $images = $dom->getElementsByTagName('img');
         // foreach($images as $img){
         //     $src = $img->getAttribute('src');
-        //     if(preg_match('/data:image/', $src)){                
+        //     if(preg_match('/data:image/', $src)){
         //         // get the mimetype
         //         preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
-        //         $mimetype = $groups['mime'];                
+        //         $mimetype = $groups['mime'];
         //         // Generating a random filename
         //         $filename = uniqid();
-        //         $filepath = $path."/".$filename.'.'.$mimetype;    
+        //         $filepath = $path."/".$filename.'.'.$mimetype;
         //         // encode file to the specified mimetype
         //         $image = Image::make($src)->encode($mimetype, 100)->save(public_path($filepath));
         //         $img->removeAttribute('src');
@@ -88,7 +85,7 @@ class ProductService
         //     }
         // }
         // $product->description = $dom->saveHTML();
-        
+
         $product->save();
         return $product;
     }
@@ -116,7 +113,7 @@ class ProductService
         $product->subcategories()->sync($request->input('subcategory'));
 
         $path = 'images/product/'.$product->slug.'-bs_00'.$product->id;
-        
+
         if($request->hasFile('images')){
             $files=$request->file('images');
             $count = 1;
@@ -139,13 +136,13 @@ class ProductService
         // $images = $dom->getElementsByTagName('img');
         // foreach($images as $img){
         //     $src = $img->getAttribute('src');
-        //     if(preg_match('/data:image/', $src)){                
+        //     if(preg_match('/data:image/', $src)){
         //         // get the mimetype
         //         preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
-        //         $mimetype = $groups['mime'];                
+        //         $mimetype = $groups['mime'];
         //         // Generating a random filename
         //         $filename = uniqid();
-        //         $filepath = $path."/".$filename.'.'.$mimetype;    
+        //         $filepath = $path."/".$filename.'.'.$mimetype;
         //         // encode file to the specified mimetype
         //         $image = Image::make($src)->encode($mimetype, 100)->save(public_path($filepath));
         //         $img->removeAttribute('src');

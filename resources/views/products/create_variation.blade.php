@@ -41,7 +41,8 @@
                                                     <option value="" disabled>Choose Variation</option>
                                                     @foreach(App\Variation::all() as $variation)
                                                         <option
-                                                            value="{{$variation->id}}">{{ucwords($variation->title)}}</option>
+                                                            title="{{$variation->title}}"
+                                                            value="{{$variation->id}}">{{ucwords($variation->sub_title)}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('variations'))
@@ -70,24 +71,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            <!-- <div class="col-md-6">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Price ($)</label>
-											<input type="text" value="{{ old('price') }}" id="price" name="price" class="form-control product_prices" required>
-											@if($errors->has('price'))
-                                @foreach($errors->get('price') as $message)
-                                    <span style="color:red">{{$message}}</span>
-					                            @endforeach
-                            @endif
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
--->
                                 <div class="col-md-12">
                                     <div class="row" id="more_details" style="display: none;"></div>
                                 </div>

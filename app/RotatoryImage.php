@@ -8,6 +8,4 @@ class RotatoryImage extends Model
 {
     protected $guarded =[];
 
-    
-
 }
