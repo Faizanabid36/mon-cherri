@@ -69,12 +69,13 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-md-6" id="certificate_block" >
-                                        <a href="#" id="certificate_btn" class="link-primary"><i class="fe fe-plus"></i> Add variant</a>
-                                        </div>
-                                        
+
                                     </div>
+                                    <div class="row" id="variants">
+                                    
+                                    </div>
+                                    <a href="#" id="add_variant_btn" class="link-primary"><i class="fe fe-plus"></i> Add variant</a>
+                                     
                                 </div>
                                
                             <!-- <div class="col-md-12">
@@ -129,6 +130,7 @@
                                     <th>Album</th>
                                     <th>Metal Type</th>
                                     <th>Size</th>
+                                    <th>Width</th>
                                     <th>Certificate</th>
                                     <th>Price</th>
                                     <th>Description</th>
@@ -176,6 +178,9 @@
                                             </td>
                                             <td>
                                                 {{ucwords($variation->size->size)}}
+                                            </td>
+                                            <td>
+                                            {{ucwords($variation->width->width??"")}}
                                             </td>
                                             <td>
                                             {{ucwords($variation->certificate->certificate??"")}}
@@ -233,12 +238,23 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function () {
+            var variant=0
             $('#variations').select2();
             $('#sizes').select2();
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
-            $('#certificate_btn').on('click',function(){
-                $('#certificate_block').html('<div class="form-group"><label>Certificate</label> <select class="form-control @error("certificates") is-invalid @enderror"id="certificates" data-route="" name="certificates[]" multiple><option value="" disabled>Choose Certificate</option>@foreach(App\Certificate::all() as $certificate)<option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>@endforeach </select> </div> ');
+            $('#add_variant_btn').on('click',function(){
+                if(variant===0)
+                {
+                $('#variants').html(' <div class="col-md-6"  ><div class="form-group"><label>Certificate</label> <select class="form-control @error("certificates") is-invalid @enderror"id="certificates" data-route="" name="certificates[]" multiple><option value="" disabled>Choose Certificate</option>@foreach(App\Certificate::all() as $certificate)<option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>@endforeach </select> </div>  </div>');
                 $('#certificates').select2();
+                    variant+=1;
+                }
+                else
+            {
+                $('#variants').append(' <div class="col-md-6"><div class="form-group"><label>Width</label> <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>Choose Width</option> @foreach(App\Width::all() as $width)<option value="{{$width->id}}">{{ucwords($width->width)}}</option>@endforeach </select> </div></div>');
+                $('#widths').select2();
+                $(this).hide();
+            } 
             })
         })
     </script>

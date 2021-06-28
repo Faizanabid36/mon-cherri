@@ -136,10 +136,53 @@ class ProductController extends Controller
             if ($request->sizes) {
                 foreach ($request->sizes as $size) {
                     
-                    if ($request->certificates) {
+                    if($request->widths)
+                    {
+                        foreach ($request->widths as $width) {
+                            if ($request->certificates) {
                         
+                                foreach ($request->certificates as $certificate) {
+                                   
+                                    $product_variation = ProductVariation::create(
+                                        [
+                                            'product_id'=>$request->product_id,
+                                            'variation_id'=>$var,
+                                            'size_id'=>$size,
+                                            'weight'=>0,
+                                            'qty'=>0,
+                                            'price'=>0,
+                                            'description'=>"",
+                                            'certificate_id'=>$certificate,
+                                            'width_id'=>$width
+                                        ] 
+                                     );
+                                    
+                                }
+                            }
+                            else
+                            {
+                                
+                                $product_variation = ProductVariation::create(
+                                    [
+                                        'product_id'=>$request->product_id,
+                                        'variation_id'=>$var,
+                                        'size_id'=>$size,
+                                        'weight'=>0,
+                                        'qty'=>0,
+                                        'price'=>0,
+                                        'description'=>"",
+                                        'width_id'=>$width
+                                    ] 
+                                 );
+                            }
+
+                        }
+                        
+                    }
+                    else if($request->certificates)
+                    {
                         foreach ($request->certificates as $certificate) {
-                           
+                                   
                             $product_variation = ProductVariation::create(
                                 [
                                     'product_id'=>$request->product_id,
@@ -150,6 +193,7 @@ class ProductController extends Controller
                                     'price'=>0,
                                     'description'=>"",
                                     'certificate_id'=>$certificate
+                                    
                                 ] 
                              );
                             
@@ -157,7 +201,6 @@ class ProductController extends Controller
                     }
                     else
                     {
-                        
                         $product_variation = ProductVariation::create(
                             [
                                 'product_id'=>$request->product_id,
@@ -166,10 +209,12 @@ class ProductController extends Controller
                                 'weight'=>0,
                                 'qty'=>0,
                                 'price'=>0,
-                                'description'=>""
+                                'description'=>"",
                             ] 
                          );
                     }
+
+                    
                     
                 }
 

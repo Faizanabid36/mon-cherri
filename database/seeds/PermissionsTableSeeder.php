@@ -461,6 +461,25 @@ class PermissionsTableSeeder extends Seeder
                 'description' => 'Can edit variations',
                 'model'       => 'Permission',
             ],
+             // Widths permissions
+             [
+                'name'        => 'Can View Widths',
+                'slug'        => 'view.widths',
+                'description' => 'Can view Widths',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Create Widths',
+                'slug'        => 'create.widths',
+                'description' => 'Can create new Widths',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Edit Widths',
+                'slug'        => 'edit.widths',
+                'description' => 'Can edit Widths',
+                'model'       => 'Permission',
+            ],
               // currencies permissions
             [
                 'name'        => 'Can View Currencies',

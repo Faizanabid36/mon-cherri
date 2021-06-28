@@ -30,6 +30,10 @@ class ProductVariation extends Model
     {
         return $this->belongsTo('App\Certificate','certificate_id','id');
     }
+    public function width()
+    {
+        return $this->belongsTo('App\Width','width_id','id');
+    }
     public function album()
     {
         return $this->belongsTo('App\ProductAlbum', 'album_id','id');
