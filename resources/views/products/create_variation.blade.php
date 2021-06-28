@@ -31,7 +31,7 @@
                             @csrf
                             <input name="product_id" value="{{$product_id}}" hidden/>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -42,7 +42,7 @@
                                                     @foreach(App\Variation::all() as $variation)
                                                         <option
                                                             title="{{$variation->title}}"
-                                                            value="{{$variation->id}}">{{ucwords($variation->sub_title)}}</option>
+                                                            value="{{$variation->id}}">{{ucwords($variation->title)}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('variations'))
@@ -69,11 +69,14 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        
+                                        <div class="col-md-6" id="certificate_block" >
+                                        <a href="#" id="certificate_btn" class="link-primary"><i class="fe fe-plus"></i> Add variant</a>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="row" id="more_details" style="display: none;"></div>
-                                </div>
+                               
                             <!-- <div class="col-md-12">
 								<div class="input-images"></div>
 								<br>
@@ -123,8 +126,10 @@
                                         <input type="checkbox" id="checkAll">
                                     </th>
                                     <th>S.No</th>
+                                    <th>Album</th>
                                     <th>Metal Type</th>
                                     <th>Size</th>
+                                    <th>Certificate</th>
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Quantity</th>
@@ -139,6 +144,7 @@
                                         <form action="{{route('product.variations.edit_var')}}"
                                               method="post">
                                             @csrf
+                                            
                                             <td style="padding:10px 18px;">
                                                 <input type="checkbox" value="{{$variation->id}}"
                                                        class="bs_dtrow_checkbox bs_checkItem">
@@ -147,10 +153,32 @@
 
                                             <td><?=$loop->iteration?></td>
                                             <td>
-                                                {{ucwords($variation->variation->sub_title)}}
+                                            <select
+                                                    name="album_id">
+                                                    <option value="">Select Album</option>
+                                                    @foreach(App\ProductAlbum::whereProductId($product_id)->get()->unique('title') as $album)
+                                                        <option
+                                                            title="{{$album->title}}"
+                                                            value="{{$album->id}}" 
+                                                            <?php
+                                                            if($album->id==$variation->album_id)
+                                                            {
+                                                                echo 'selected';
+                                                            }
+                                                            
+                                                            ?>
+                                                             >{{ucwords($album->title)}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td>
+                                                {{ucwords($variation->variation->title)}}
                                             </td>
                                             <td>
                                                 {{ucwords($variation->size->size)}}
+                                            </td>
+                                            <td>
+                                            {{ucwords($variation->certificate->certificate??"")}}
                                             </td>
                                             <td>
                                                 <input name="price" type="number" value="{{$variation->price}}"/>
@@ -208,6 +236,10 @@
             $('#variations').select2();
             $('#sizes').select2();
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
+            $('#certificate_btn').on('click',function(){
+                $('#certificate_block').html('<div class="form-group"><label>Certificate</label> <select class="form-control @error("certificates") is-invalid @enderror"id="certificates" data-route="" name="certificates[]" multiple><option value="" disabled>Choose Certificate</option>@foreach(App\Certificate::all() as $certificate)<option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>@endforeach </select> </div> ');
+                $('#certificates').select2();
+            })
         })
     </script>
 @endsection

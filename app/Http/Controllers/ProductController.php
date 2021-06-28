@@ -117,12 +117,14 @@ class ProductController extends Controller
     public function get_variations($product_id)
     {
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation')->get();
+        
         return view('products.variations', compact('variations', 'product_id'));
     }
 
     public function add_variations($product_id)
     {
-        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation')->get();
+        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation','certificate')->get();
+       
         return view('products.create_variation', compact('product_id', 'variations'));
     }
 
@@ -133,23 +135,48 @@ class ProductController extends Controller
         foreach ($request->variations as $var) {
             if ($request->sizes) {
                 foreach ($request->sizes as $size) {
-                    $product_variation = ProductVariation::create(
-                        [
-                            'product_id'=>$request->product_id,
-                            'variation_id'=>$var,
-                            'size_id'=>$size,
-                            'weight'=>0,
-                            'qty'=>0,
-                            'price'=>0,
-                            'description'=>""
-                        ] 
-                     );
+                    
+                    if ($request->certificates) {
+                        
+                        foreach ($request->certificates as $certificate) {
+                           
+                            $product_variation = ProductVariation::create(
+                                [
+                                    'product_id'=>$request->product_id,
+                                    'variation_id'=>$var,
+                                    'size_id'=>$size,
+                                    'weight'=>0,
+                                    'qty'=>0,
+                                    'price'=>0,
+                                    'description'=>"",
+                                    'certificate_id'=>$certificate
+                                ] 
+                             );
+                            
+                        }
+                    }
+                    else
+                    {
+                        
+                        $product_variation = ProductVariation::create(
+                            [
+                                'product_id'=>$request->product_id,
+                                'variation_id'=>$var,
+                                'size_id'=>$size,
+                                'weight'=>0,
+                                'qty'=>0,
+                                'price'=>0,
+                                'description'=>""
+                            ] 
+                         );
+                    }
+                    
                 }
 
             }
         }
 
-        // dd($request->all());
+      
         // $product_variation=ProductVariation::create(
         //     $request->except(['_token','images'])
         // );
@@ -278,6 +305,6 @@ class ProductController extends Controller
         for ($i = 1; $i <= 15; $i++) {
             \App\RotatoryImage::create(['title' => $request->title, 'path' => asset('images/defult.jpg'), 'product_album_id' => ($album->id )]);
         }
-        return redirect()->route('products.album.product_album')->withSuccess('Album Created Successfully');
+        return redirect()->route('product.album.product_album',$product_id)->withSuccess('Album Created Successfully');
     }
 }
