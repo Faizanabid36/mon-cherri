@@ -18,25 +18,25 @@ class RotatoryImageController extends Controller
 
     public function update_image(Request $request, $id)
     {
-        $this->validate($request, [
-            'path' => 'required',
-        ]);
-        $imageOr = RotatoryImage::find($id);
-        $image = $request->file('path');
-//        $path = 'images/product_albums/images_360/' . $imageOr->id . '-gallery_0' . $imageOr->id;
-//        // image upload
-//        $extension = $file->extension();
-//        $image = $imageOr->id . "." . $extension;
-//        $file->move(public_path($path), $image);
-//        // image insert into database
-//        'url' => $path . '/' . $image
 
-        $name = time() . '.' . $image->getClientOriginalExtension();
-        $destinationPath = '/images/product_albums/360/' . $imageOr->id . '-gallery_0' . $imageOr->id;
-        $image->move(public_path($destinationPath), $name);
-        $imageOr->path = $destinationPath . '/' . $name;
-        $imageOr->save();
-        return back()->with('success', 'images updated');
+        if (isset($request->action)) {
+            $imageOr = RotatoryImage::find($id);
+            $imageOr->path = url('images/defult.jpg');
+            $imageOr->save();
+            return back()->with('success', 'images reset');
+        } else {
+            $this->validate($request, [
+                'path' => 'required',
+            ]);
+            $imageOr = RotatoryImage::find($id);
+            $image = $request->file('path');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = '/images/product_albums/360/' . $imageOr->id . '-gallery_0' . $imageOr->id;
+            $image->move(public_path($destinationPath), $name);
+            $imageOr->path = $destinationPath . '/' . $name;
+            $imageOr->save();
+            return back()->with('success', 'images updated');
+        }
     }
 
 

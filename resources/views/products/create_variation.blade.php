@@ -113,6 +113,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Products</div>
+                        <div class="pull-right">
+                            <form action="#" method="post" enctype="multipart/form-data">
+                                <input type="file" class="btn btn-secondary" name="file">
+                                <button class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -129,8 +135,10 @@
                                     </th>
                                     <th>S.No</th>
                                     <th>Album</th>
-                                    <th>Metal Type/Size/Width/Cert
-                                    </th>
+                                    <th>Metal</th>
+                                    <th>Size</th>
+                                    <th>Width</th>
+                                    <th>Cert</th>
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Quantity</th>
@@ -172,10 +180,10 @@
                                             </td>
                                             <td>
                                                 {{ucwords($variation->variation->title)}}
-                                                //{{ucwords($variation->size->size)}}
-                                                {{$variation->width?'/'.($variation->width->width):''}}
-                                                {{$variation->certificate?'/'.($variation->certificate->certificate):''}}
                                             </td>
+                                            <td>{{ucwords($variation->size->size)}}</td>
+                                            <td> {{$variation->width?($variation->width->width):''}}</td>
+                                            <td>{{$variation->certificate?($variation->certificate->certificate):''}}</td>
                                             <td>
                                                 <input name="price" type="number" value="{{$variation->price}}"
                                                        class="form-control" min="0"/>

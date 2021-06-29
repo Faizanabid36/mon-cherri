@@ -140,7 +140,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Product  Brand:</label>
+											<label>Product  Vendor:</label>
 											<select class="form-control @error('brand') is-invalid @enderror" style="width: 100%" id="_brands" name="brand" required>
 												@foreach ($product->categories as $p_categories)
 													@foreach ($p_categories->brands as $p_cat_brands)

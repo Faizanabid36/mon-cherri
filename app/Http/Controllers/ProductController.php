@@ -361,7 +361,7 @@ class ProductController extends Controller
         ]);
         for ($i = 1; $i <= 15; $i++) {
 
-            \App\RotatoryImage::create(['title' => $request->title, 'path' => asset('images/defult.jpg'), 'product_album_id' => ($album->id)]);
+            \App\RotatoryImage::create(['title' => $request->title, 'path' => url('images/defult.jpg'), 'product_album_id' => ($album->id)]);
         }
         return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
     }

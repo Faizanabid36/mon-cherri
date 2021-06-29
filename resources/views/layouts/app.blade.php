@@ -34,7 +34,7 @@
 </head>
 <body>
 <div class="main-wrapper" id="app">
-    
+
         <!-- Header -->
     <div class="header">
         <!-- Logo -->
@@ -47,22 +47,22 @@
             </a>
         </div>
         <!-- /Logo -->
-        
+
         <a href="javascript:void(0);" id="toggle_btn">
             <i class="fe fe-text-align-left"></i>
         </a>
-        
+
         <!-- Mobile Menu Toggle -->
         <a class="mobile_btn" id="mobile_btn">
             <i class="fa fa-bars" style="color: #000;"></i>
         </a>
         <!-- /Mobile Menu Toggle -->
-        
+
         <!-- Header Right Menu -->
         <ul class="nav user-menu">
             <li class="nav-item dropdown noti-dropdown">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" id="show_notification">
-                    <i class="fe fe-bell" style="color: #000;"></i> 
+                    <i class="fe fe-bell" style="color: #000;"></i>
                     <span id="unread_count"></span>
                 </a>
                 <div class="dropdown-menu notifications">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </li>
-            
+
             <!-- User Menu -->
             <li class="nav-item dropdown has-arrow">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -110,34 +110,34 @@
                 </div>
             </li>
             <!-- /User Menu -->
-            
+
         </ul>
         <!-- /Header Right Menu -->
-        
+
     </div>
         <!-- /Header -->
-        
+
         <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
-                    <li class="menu-title"> 
+                    <li class="menu-title">
                         <span>Main</span>
                     </li>
                     @permission('view.dashboard')
-                    <li> 
+                    <li>
                         <a href="{{url('/dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                     </li>
                     @endpermission
                     @permission('view.products')
-                    <li> 
+                    <li>
                         <a href="{{route('products.index')}}"><i class="fe fe-tiled"></i> <span>Products</span></a>
                     </li>
                     @endpermission
                     @permission('view.orders')
                     <li>
-                        <?php 
+                        <?php
                             $orders_count = App\Invoice::where('status','!=',1)->count();
                         ?>
                         <a href="{{route('orders.index')}}"><i class="fe fe-cart"></i> <span> Orders</span>
@@ -159,7 +159,7 @@
                     @endpermission
                     @permission('view.reviews')
                      <li>
-                        <?php 
+                        <?php
                             $reviews_count = App\Review::where('is_viewed','!=',1)->count();
                         ?>
                         <a href="{{route('reviews.index')}}"><i class="fe fe-document"></i> <span>Reviews</span>
@@ -171,7 +171,7 @@
                     @endpermission
                     @permission('view.comments')
                      <li>
-                        <?php 
+                        <?php
                             $comments_count = App\Comment::where('status','!=',1)->count();
                         ?>
                         <a href="{{route('comments.index')}}"><i class="fe fe-comments"></i> <span>Comments</span>
@@ -183,7 +183,7 @@
                     @endpermission
                     @permission('view.messages')
                     <li>
-                        <?php 
+                        <?php
                         $messages_count = App\Contact::where('status','!=',1)->count();
                         ?>
                         <a href="{{route('messages.index')}}"><i class="fe fe-messanger"></i> <span>Messages</span>
@@ -193,8 +193,8 @@
                         </a>
                     </li>
                     @endpermission
-                    <li class="menu-title"> 
-                        <span>Settings</span>
+                    <li class="menu-title">
+                        <span>Product Settings</span>
                     </li>
                     @permission('view.categories')
                      <li class="submenu">
@@ -206,67 +206,70 @@
                     </li>
                     @endpermission
                     @permission('view.brands')
-                     <li> 
-                        <a href="{{route('brands.index')}}"><i class="fe fe-tag"></i> <span>Brands</span></a>
+                     <li>
+                        <a href="{{route('brands.index')}}"><i class="fe fe-tag"></i> <span>Vendors</span></a>
                     </li>
                     @endpermission
                     @permission('view.sizes')
-                     <li> 
+                     <li>
                         <a href="{{route('sizes.index')}}"><i class="fe fe-bar-chart"></i> <span>Sizes</span></a>
                     </li>
                     @endpermission
                     @permission('view.colors')
-                     <li> 
+                     <li>
                         <a href="{{route('colors.index')}}"><i class="fe fe-target"></i> <span>Colors</span></a>
                     </li>
                     @endpermission
                     @permission('view.certificates')
-                     <li> 
-                        <a href="{{route('certificates.index')}}"><i class="fe fe-align-left"></i> <span>Certificates</span></a>
+                     <li>
+                        <a href="{{route('certificates.index')}}"><i class="fe fe-document"></i> <span>Certificates</span></a>
                     </li>
                     @endpermission
                     @permission('view.widths')
-                     <li> 
+                     <li>
                         <a href="{{route('widths.index')}}"><i class="fe fe-align-right"></i> <span>Widths</span></a>
                     </li>
                     @endpermission
                     @permission('view.variations')
-                     <li> 
+                     <li>
                         <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i> <span>Variations</span></a>
                     </li>
                     @endpermission
+                    <li class="menu-title">
+                        <span>Site Settings</span>
+                    </li>
                     @permission('view.users')
-                    <li> 
+                    <li>
                         <a href="{{route('users.index')}}"><i class="fe fe-users"></i> <span>Users</span></a>
                     </li>
                     @endpermission
                     @role('admin')
-                    <li> 
+                    <li>
                         <a href="{{route('laravelroles::roles.index')}}"><i class="fe fe-share"></i> <span>Roles</span></a>
                     </li>
                     @endrole
                     @permission('view.countries')
-                    <li> 
+                    <li>
                         <a href="{{route('countries.index')}}"><i class="fe fe-globe"></i> <span>Countries</span></a>
                     </li>
                     @endpermission
                     @permission('view.states')
-                    <li> 
+                    <li>
                         <a href="{{route('states.index')}}"><i class="fe fe-map"></i> <span>States</span></a>
                     </li>
                     @endpermission
                     @permission('view.cities')
-                    <li> 
+                    <li>
                         <a href="{{route('cities.index')}}"><i class="fe fe-location"></i> <span>Cities</span></a>
                     </li>
                     @endpermission
                     @permission('view.currencies')
-                    <li> 
+                    <li>
                         <a href="{{route('currencies.index')}}"><i class="fe fe-hash"></i> <span>Currencies</span></a>
                     </li>
                     @endpermission
                     @role(['admin','editor','translator'])
-                    <li> 
+                    <li>
                         <a href="{{url('/languages')}}"><i class="fe fe-flag"></i> <span>Translation</span></a>
                     </li>
                     @endrole
@@ -285,11 +288,11 @@
 <!-- select2 -->
 <script src="{{asset('js/select2.js')}}"></script>
 
-        
+
 <!-- Bootstrap Core JS -->
 <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-        
+
 <!-- Slimscroll JS -->
 <script src="{{asset('plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
@@ -350,7 +353,7 @@
                 $(".bs_dtrow_checkbox").prop('checked', true);
             } else {
                 $(".bs_dtrow_checkbox").prop('checked',false);
-            }       
+            }
         });
         $(document).on('click','#show_notification',function(){
             $.ajax({

@@ -82,8 +82,8 @@
                                     </div>
                                     <div class="product-price-circle py-1">
                                         <div class="product-price-items d-flex">
-                                            @foreach($product->tags as $tag)
-                                                <h1>{{$tag->name}}</h1>
+                                            @foreach($product_variations as $variation)
+                                                <h1 style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
                                     </div>
@@ -170,14 +170,16 @@
                                         <div class="tab-content py-3  px-sm-0" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                                  aria-labelledby="nav-home-tab">
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <h1 class="text-dark">
                                                         {!! $product->description !!}
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Metal</h1>
                                                     </div>
@@ -187,7 +189,8 @@
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Width</h1>
                                                     </div>
@@ -197,7 +200,8 @@
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Prong Metal </h1>
                                                     </div>
@@ -214,7 +218,8 @@
                                                 enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
                                                 adipisicing aliqua ullamco irure incididunt irure non esse consectetur
                                                 nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est
-                                                eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                                                eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
+                                                mollit
                                                 sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
                                                 reprehenderit occaecat anim ullamco ad duis occaecat ex.
                                             </div>
@@ -225,7 +230,8 @@
                                                 enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
                                                 adipisicing aliqua ullamco irure incididunt irure non esse consectetur
                                                 nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est
-                                                eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                                                eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
+                                                mollit
                                                 sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis
                                                 reprehenderit occaecat anim ullamco ad duis occaecat ex.
                                             </div>
@@ -709,19 +715,17 @@
 
             $('.minusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
-                console.log('val',val)
+                console.log('val', val)
                 if (val > 1)
-                    document.getElementById('Quantity').value =parseInt(val) - 1;
+                    document.getElementById('Quantity').value = parseInt(val) - 1;
             })
             $('.plusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
                 let limit = {{$product->stock}}
-                console.log('val',val)
-                if (val < limit)
-                {
-                    document.getElementById('Quantity').value =parseInt(val) + 1;
-                }
-                else{
+                console.log('val', val)
+                if (val < limit) {
+                    document.getElementById('Quantity').value = parseInt(val) + 1;
+                } else {
                     alert('Quantity not present in stock')
                 }
                 return null;

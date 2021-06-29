@@ -48,7 +48,7 @@
 									<th>Count</th>
 									<th>Name</th>
 									<th>Category</th>
-									<th>Brand</th>
+									<th>Vendor</th>
 									<th>Price</th>
 									<th>Old Price</th>
 									<th>Stock</th>

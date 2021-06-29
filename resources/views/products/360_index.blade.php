@@ -38,6 +38,7 @@
                                         <input type="file" class="btn btn-secondary" name="path">
                                         <!-- <button class="btn btn-secondary">upload</button> -->
                                         <button type="submit" class="btn btn-primary ">Submit</button>
+                                        <button type="submit" value="reset" name="action" class="btn btn-secondary ">Reset</button>
                                     </div>
                                 </form>
                             </div>

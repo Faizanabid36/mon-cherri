@@ -7,22 +7,22 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col">
-				<h3 class="page-title">Brands</h3>
+				<h3 class="page-title">Vendors</h3>
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
-					<li class="breadcrumb-item active">Brands</li>
+					<li class="breadcrumb-item active">Vendors</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- /Page Header -->
-	
+
 	<div class="row">
 		@permission('create.brands')
 		<div class="col-sm-6">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Brand Details</h4>
+					<h4 class="card-title">Vendor Details</h4>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -62,7 +62,7 @@
 		<div class="col-sm-6">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Brands</h4>
+					<h4 class="card-title">Vendors</h4>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -78,7 +78,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>	
+									<tbody>
 										<?php $count = 1; ?>
 										@foreach(App\Brand::all() as $brand)
 											<tr>
