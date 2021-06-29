@@ -225,6 +225,11 @@
                         <a href="{{route('certificates.index')}}"><i class="fe fe-align-left"></i> <span>Certificates</span></a>
                     </li>
                     @endpermission
+                    @permission('view.widths')
+                     <li> 
+                        <a href="{{route('widths.index')}}"><i class="fe fe-align-right"></i> <span>Widths</span></a>
+                    </li>
+                    @endpermission
                     @permission('view.variations')
                      <li> 
                         <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i> <span>Variations</span></a>

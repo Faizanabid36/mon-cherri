@@ -26,6 +26,18 @@ class ProductVariation extends Model
     {
         return $this->belongsTo('App\Size','size_id','id');
     }
+    public function certificate()
+    {
+        return $this->belongsTo('App\Certificate','certificate_id','id');
+    }
+    public function width()
+    {
+        return $this->belongsTo('App\Width','width_id','id');
+    }
+    public function album()
+    {
+        return $this->belongsTo('App\ProductAlbum', 'album_id','id');
+    }
     public function images()
     {
         return $this->morphMany('App\Image', 'imageable');

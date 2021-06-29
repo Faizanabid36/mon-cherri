@@ -18,10 +18,13 @@ class CreateProductVariationsTable extends Migration
             $table->integer('product_id');
             $table->integer('variation_id');
             $table->integer('size_id');
+            $table->integer('certificate_id')->nullable();
+            $table->integer('album_id')->nullable();
+            $table->integer('width_id')->nullable();
             $table->float('price');
             $table->float('weight');
             $table->integer('qty');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

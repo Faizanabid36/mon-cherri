@@ -19,4 +19,8 @@ class ProductAlbum extends Model
     {
         return $this->hasMany(RotatoryImage::class, 'product_album_id');
     }
+    public function product_variations()
+    {
+        return $this->hasMany('App\ProductVariation', 'album_id','id');
+    }
 }
