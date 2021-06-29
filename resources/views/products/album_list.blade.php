@@ -65,8 +65,8 @@
                                             <td>{{$image->created_at->format('d-m-Y')}}</td>
                                             <td>
                                                 <div class="actions">
-                                                    <a href="#"
-                                                       {{--                                                    <a href="{{route('product.variations.add',$image->id)}}"--}}
+                                                    {{--                                                    <a href="#"--}}
+                                                    <a href="{{route('product.album.edit',[$image->product->id,$image->title])}}"
                                                        class="btn btn-sm bg-success-light mr-2">
                                                         <i class="fe fe-pencil"></i> Edit
                                                     </a>

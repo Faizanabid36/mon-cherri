@@ -18,8 +18,7 @@ Route::group(['middleware' => 'locale'], function () {
     Route::middleware(['auth', 'admin_panel_access'])->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
         Route::resource('products', 'ProductController');
-        Route::get('upload_360/{product}', 'RotatoryImageController@upload_image')->name('upload_360_image');
-        Route::post('update_360/{id}', 'RotatoryImageController@update_image')->name('update_360_image');
+
         Route::resource('orders', 'OrderController');
         Route::resource('categories', 'CategoryController');
         Route::resource('subcategories', 'SubCategoryController');
@@ -47,6 +46,9 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('all/{id}', 'ProductController@product_album')->name('product_album');
             Route::get('create/{id}', 'ProductController@create_album')->name('create');
             Route::post('store/{id}', 'ProductController@store_album')->name('store');
+            Route::get('edit/{id}/{title}', 'ProductController@edit_album')->name('edit');
+            Route::get('upload_360/{product_abum_id}', 'RotatoryImageController@upload_image')->name('upload_360_image');
+            Route::post('update_360/{id}', 'RotatoryImageController@update_image')->name('update_360_image');
         });
         Route::name('product.variations.')->prefix('variations')->group(function () {
             Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');
@@ -89,11 +91,11 @@ Route::group(['middleware' => 'locale'], function () {
 
         // Colors delete routes
         Route::post('colors_bulk_delete', 'ColorController@bulk_delete')->name('colors.bulkDelete');
-         // Widths delete routes
-         Route::post('widths_bulk_delete', 'WidthController@bulk_delete')->name('widths.bulkDelete');
+        // Widths delete routes
+        Route::post('widths_bulk_delete', 'WidthController@bulk_delete')->name('widths.bulkDelete');
 
-         // Certificate delete routes
-         Route::post('certificates_bulk_delete', 'CertificateController@bulk_delete')->name('certificates.bulkDelete');
+        // Certificate delete routes
+        Route::post('certificates_bulk_delete', 'CertificateController@bulk_delete')->name('certificates.bulkDelete');
 
         // Variations delete routes
         Route::post('variations_bulk_delete', 'VariationController@bulk_delete')->name('variations.bulkDelete');

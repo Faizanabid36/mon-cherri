@@ -14,6 +14,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\VariationRequest;
 use App\Http\Requests\BulkDeleteItemRequest;
 use Illuminate\Support\Facades\File;
+use function foo\func;
 
 
 class ProductController extends Controller
@@ -117,14 +118,14 @@ class ProductController extends Controller
     public function get_variations($product_id)
     {
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation')->get();
-        
+
         return view('products.variations', compact('variations', 'product_id'));
     }
 
     public function add_variations($product_id)
     {
-        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation','certificate')->get();
-       
+        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate')->get();
+
         return view('products.create_variation', compact('product_id', 'variations'));
     }
 
@@ -135,93 +136,85 @@ class ProductController extends Controller
         foreach ($request->variations as $var) {
             if ($request->sizes) {
                 foreach ($request->sizes as $size) {
-                    
-                    if($request->widths)
-                    {
+
+                    if ($request->widths) {
                         foreach ($request->widths as $width) {
                             if ($request->certificates) {
-                        
+
                                 foreach ($request->certificates as $certificate) {
-                                   
+
                                     $product_variation = ProductVariation::create(
                                         [
-                                            'product_id'=>$request->product_id,
-                                            'variation_id'=>$var,
-                                            'size_id'=>$size,
-                                            'weight'=>0,
-                                            'qty'=>0,
-                                            'price'=>0,
-                                            'description'=>"",
-                                            'certificate_id'=>$certificate,
-                                            'width_id'=>$width
-                                        ] 
-                                     );
-                                    
+                                            'product_id' => $request->product_id,
+                                            'variation_id' => $var,
+                                            'size_id' => $size,
+                                            'weight' => 0,
+                                            'qty' => 0,
+                                            'price' => 0,
+                                            'description' => "",
+                                            'certificate_id' => $certificate,
+                                            'width_id' => $width
+                                        ]
+                                    );
+
                                 }
-                            }
-                            else
-                            {
-                                
+                            } else {
+
                                 $product_variation = ProductVariation::create(
                                     [
-                                        'product_id'=>$request->product_id,
-                                        'variation_id'=>$var,
-                                        'size_id'=>$size,
-                                        'weight'=>0,
-                                        'qty'=>0,
-                                        'price'=>0,
-                                        'description'=>"",
-                                        'width_id'=>$width
-                                    ] 
-                                 );
+                                        'product_id' => $request->product_id,
+                                        'variation_id' => $var,
+                                        'size_id' => $size,
+                                        'weight' => 0,
+                                        'qty' => 0,
+                                        'price' => 0,
+                                        'description' => "",
+                                        'width_id' => $width
+                                    ]
+                                );
                             }
 
                         }
-                        
-                    }
-                    else if($request->certificates)
-                    {
+
+                    } else if ($request->certificates) {
                         foreach ($request->certificates as $certificate) {
-                                   
+
                             $product_variation = ProductVariation::create(
                                 [
-                                    'product_id'=>$request->product_id,
-                                    'variation_id'=>$var,
-                                    'size_id'=>$size,
-                                    'weight'=>0,
-                                    'qty'=>0,
-                                    'price'=>0,
-                                    'description'=>"",
-                                    'certificate_id'=>$certificate
-                                    
-                                ] 
-                             );
-                            
+                                    'product_id' => $request->product_id,
+                                    'variation_id' => $var,
+                                    'size_id' => $size,
+                                    'weight' => 0,
+                                    'qty' => 0,
+                                    'price' => 0,
+                                    'description' => "",
+                                    'certificate_id' => $certificate
+
+                                ]
+                            );
+
                         }
-                    }
-                    else
-                    {
+                    } else {
                         $product_variation = ProductVariation::create(
                             [
-                                'product_id'=>$request->product_id,
-                                'variation_id'=>$var,
-                                'size_id'=>$size,
-                                'weight'=>0,
-                                'qty'=>0,
-                                'price'=>0,
-                                'description'=>"",
-                            ] 
-                         );
+                                'product_id' => $request->product_id,
+                                'variation_id' => $var,
+                                'size_id' => $size,
+                                'weight' => 0,
+                                'qty' => 0,
+                                'price' => 0,
+                                'description' => "",
+                            ]
+                        );
                     }
 
-                    
-                    
+
                 }
 
             }
         }
 
-      
+
         // $product_variation=ProductVariation::create(
         //     $request->except(['_token','images'])
         // );
@@ -311,6 +304,7 @@ class ProductController extends Controller
 
     public function product_album($id)
     {
+        $product = Product::whereId($id)->firstOrFail();
         $album = ProductAlbum::whereProductId($id)->get()->unique('title');
         $product_id = $id;
         return view('products.album_list', compact('album', 'product_id'));
@@ -319,6 +313,24 @@ class ProductController extends Controller
     public function create_album($product_id)
     {
         return view('products.create_album', compact('product_id'));
+    }
+
+    public function edit_album($product_album_id, $title)
+    {
+        $product_album_all = ProductAlbum::whereProductId($product_album_id)->whereTitle($title)->with('product')->get();
+        $product_album = collect($product_album_all)->map(function ($alb) {
+            if ($alb->url)
+                return $alb;
+        })->filter(function ($a) {
+            return $a != null;
+        });
+        $id_360 = collect($product_album_all)->filter(function ($al) {
+            return $al->has_rotatory_image != null;
+        })->first();
+        $product = $product_album->first()->product;
+        $product_id = $product->id;
+
+        return view('products.create_album', compact('product_album_id', 'product_id', 'product', 'product_album', 'id_360'));
     }
 
     public function store_album(Request $request, $product_id)
@@ -348,8 +360,9 @@ class ProductController extends Controller
             'has_rotatory_image' => 1
         ]);
         for ($i = 1; $i <= 15; $i++) {
-            \App\RotatoryImage::create(['title' => $request->title, 'path' => asset('images/defult.jpg'), 'product_album_id' => ($album->id )]);
+
+            \App\RotatoryImage::create(['title' => $request->title, 'path' => asset('images/defult.jpg'), 'product_album_id' => ($album->id)]);
         }
-        return redirect()->route('product.album.product_album',$product_id)->withSuccess('Album Created Successfully');
+        return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
     }
 }
