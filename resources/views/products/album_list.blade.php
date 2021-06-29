@@ -66,13 +66,13 @@
                                             <td>
                                                 <div class="actions">
                                                     <a href="#"
-{{--                                                    <a href="{{route('product.variations.add',$image->id)}}"--}}
+                                                       {{--                                                    <a href="{{route('product.variations.add',$image->id)}}"--}}
                                                        class="btn btn-sm bg-success-light mr-2">
                                                         <i class="fe fe-pencil"></i> Edit
                                                     </a>
                                                     <a href="javascript:void(0)"
                                                        class="btn btn-sm bg-danger-light bs_delete"
-{{--                                                       data-route="{{route('product.variations.destroy',$image)}}">--}}
+                                                       {{--                                                       data-route="{{route('product.variations.destroy',$image)}}">--}}
                                                        data-route="#">
                                                         <i class="fe fe-trash"></i> Delete
                                                     </a>
