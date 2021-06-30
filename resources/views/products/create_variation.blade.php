@@ -114,7 +114,9 @@
                     <div class="card-header">
                         <div class="card-title">Products</div>
                         <div class="pull-right">
-                            <form action="#" method="post" enctype="multipart/form-data">
+                            <form action="{{route('product.variations.import_csv')}}" method="post" enctype="multipart/form-data">
+                           @csrf
+                            <input type="text" name="product_id" value="{{$product_id}}" hidden>
                                 <input type="file" class="btn btn-secondary" name="file">
                                 <button class="btn btn-primary">Submit</button>
                             </form>

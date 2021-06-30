@@ -15,6 +15,9 @@ use App\Http\Requests\VariationRequest;
 use App\Http\Requests\BulkDeleteItemRequest;
 use Illuminate\Support\Facades\File;
 use function foo\func;
+use Excel;
+use App\Imports\VariationImport;
+use Session;
 
 
 class ProductController extends Controller
@@ -364,5 +367,16 @@ class ProductController extends Controller
             \App\RotatoryImage::create(['title' => $request->title, 'path' => url('images/defult.jpg'), 'product_album_id' => ($album->id)]);
         }
         return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
+    }
+
+    public function import_csv(Request $request)
+    {
+        $this->validate($request, [
+            'file'  => 'required|mimes:xls,xlsx'
+           ]);
+        $path = $request->file('file')->getRealPath();
+        Session::put('product_id',$request->product_id);
+        Excel::import(new VariationImport,$path);
+        return back()->with('success', 'Variations has been updated');
     }
 }

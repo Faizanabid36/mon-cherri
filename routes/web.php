@@ -60,6 +60,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::delete('destroy_variation/{variation}', 'ProductController@destroy_variation')->name('destroy');
             Route::get('delete_variation/{id}', 'ProductController@delete_variation')->name('delete_var');
             Route::post('bulk_delete_variations', 'ProductController@bulk_delete_variations')->name('bulk_delete');
+            Route::post('import_csv', 'ProductController@import_csv')->name('import_csv');
         });
 
         // Prodcuc ajax route
