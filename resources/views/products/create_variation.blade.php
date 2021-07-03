@@ -161,21 +161,8 @@
 
                                             <td>{{$loop->iteration}}</td>
                                             <td>
-                                                <select name="album_id" class="form-control">
-                                                    <option value="" selected disabled>Album</option>
-                                                    @foreach(App\ProductAlbum::whereProductId($product_id)->get()->unique('title') as $album)
-                                                        <option
-                                                            title="{{$album->title}}"
-                                                            value="{{$album->id}}"
-                                                        <?php
-                                                            if ($album->id == $variation->album_id) {
-                                                                echo 'selected';
-                                                            }
-
-                                                            ?>
-                                                        >{{ucwords($album->title)}}</option>
-                                                    @endforeach
-                                                </select>
+                                            {{ucwords($variation->album->title??"N/A")}}
+                                             
                                             </td>
                                             <td>
                                                 {{ucwords($variation->variation->title)}}
@@ -243,7 +230,91 @@
                                             @csrf
       <input value="" hidden name="id" id="id"/>
       <div class="modal-body">
-
+      
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Album</label>
+                    <select id="album" name="album_id" class="form-control">
+                        <option value="" selected disabled>Album</option>
+                        @foreach(App\ProductAlbum::whereProductId($product_id)->get()->unique('title') as $album)
+                            <option
+                                title="{{$album->title}}"
+                                value="{{$album->id}}"
+                            >{{ucwords($album->title)}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Variation</label>
+                    <select class="form-control @error('variation') is-invalid @enderror"
+                            id="variation" data-route="" name="variation_id">
+                        <option value="" disabled>Choose Variation</option>
+                        @foreach(App\Variation::all() as $variation)
+                            <option
+                                title="{{$variation->title}}"
+                                value="{{$variation->id}}">{{ucwords($variation->title)}}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('variations'))
+                        @foreach($errors->get('variations') as $message)
+                            <span style="color:red">{{$message}}</span>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Size</label>
+                    <select class="form-control @error('sizes') is-invalid @enderror"
+                            id="size" data-route="" name="size_id">
+                        <option value="" disabled>Choose Size</option>
+                        @foreach(App\Size::all() as $size)
+                            <option value="{{$size->id}}">{{ucwords($size->size)}}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('sizes'))
+                        @foreach($errors->get('sizes') as $message)
+                            <span style="color:red">{{$message}}</span>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Width</label>
+                    <select class="form-control @error('widths') is-invalid @enderror"
+                            id="width" data-route="" name="width_id">
+                        <option value="" disabled>Choose Size</option>
+                        @foreach(App\Width::all() as $width)
+                            <option value="{{$width->id}}">{{ucwords($width->width)}}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('widths'))
+                        @foreach($errors->get('widths') as $message)
+                            <span style="color:red">{{$message}}</span>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Certificate</label>
+                    <select class="form-control @error('certificates') is-invalid @enderror"
+                            id="certificate" data-route="" name="certificate_id">
+                        <option value="" disabled>Choose Size</option>
+                        @foreach(App\Certificate::all() as $certificate)
+                            <option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('certificates'))
+                        @foreach($errors->get('certificates') as $message)
+                            <span style="color:red">{{$message}}</span>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Price</label>
@@ -311,8 +382,12 @@
 
                 })
                 .done(function(result) {
-
                     $('#id').val(id);
+                    $('#album').val(''+result['album_id']+'');
+                    $('#variation').val(''+result['variation_id']+'');
+                    $('#certificate').val(''+result['certificate_id']+'');
+                    $('#width').val(''+result['width_id']+'');
+                    $('#size').val(''+result['size_id']+'');
                     $('#price').val(result['price']);
                     $('#weight').val(result['weight']);
                     $('#description').val(result['description']);

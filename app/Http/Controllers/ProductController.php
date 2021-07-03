@@ -127,8 +127,7 @@ class ProductController extends Controller
 
     public function add_variations($product_id)
     {
-        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate')->get();
-
+        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate','album')->get();
         return view('products.create_variation', compact('product_id', 'variations'));
     }
 
