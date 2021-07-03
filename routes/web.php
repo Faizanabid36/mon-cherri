@@ -54,7 +54,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');
             Route::get('add_variations/{id}', 'ProductController@add_variations')->name('add');
             Route::post('store_variations', 'ProductController@store_variations')->name('store');
-            Route::get('edit_variations/{id}', 'ProductController@edit_variations')->name('edit');
+            Route::post('edit_variations', 'ProductController@edit_variations')->name('edit');
             Route::post('edit_variation', 'ProductController@edit_variation')->name('edit_var');
             Route::post('update_variations', 'ProductController@update_variations')->name('update');
             Route::delete('destroy_variation/{variation}', 'ProductController@destroy_variation')->name('destroy');

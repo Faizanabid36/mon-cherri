@@ -242,39 +242,39 @@ class ProductController extends Controller
         return redirect()->route('product.variations.add', $request->product_id);
     }
 
-    public function edit_variations($id)
+    public function edit_variations(Request $request)
     {
-        $product_variation = ProductVariation::whereId($id)->with('images')->first();
-
-        return view('products.edit_variation', compact('product_variation'));
+        $product_variation = ProductVariation::whereId($request->id)->first();
+        
+        return response()->json($product_variation);
     }
 
-    public function update_variations(VariationRequest $request)
-    {
-        $product_variation = ProductVariation::updateOrcreate(
-            [
-                'id' => $request->id
-            ],
-            $request->except(['_token', 'images'])
-        );
-        $product = Product::whereId($product_variation->product_id)->first();
+    // public function update_variations(VariationRequest $request)
+    // {
+    //     $product_variation = ProductVariation::updateOrcreate(
+    //         [
+    //             'id' => $request->id
+    //         ],
+    //         $request->except(['_token', 'images'])
+    //     );
+    //     $product = Product::whereId($product_variation->product_id)->first();
 
-        $path = 'images/product_variations/' . $product->slug . '-bs_00' . $product_variation->id;
+    //     $path = 'images/product_variations/' . $product->slug . '-bs_00' . $product_variation->id;
 
-        if ($request->hasFile('images')) {
-            $files = $request->file('images');
-            $count = 1;
-            foreach ($files as $file) {
-                $extension = $file->extension();
-                $image = $product->slug . $count++ . "." . $extension;
-                $file->move(public_path($path), $image);
-                $product_variation->images()->create(['url' => $path . '/' . $image]);
-            }
-        }
+    //     if ($request->hasFile('images')) {
+    //         $files = $request->file('images');
+    //         $count = 1;
+    //         foreach ($files as $file) {
+    //             $extension = $file->extension();
+    //             $image = $product->slug . $count++ . "." . $extension;
+    //             $file->move(public_path($path), $image);
+    //             $product_variation->images()->create(['url' => $path . '/' . $image]);
+    //         }
+    //     }
 
-        return redirect()->route('product.variations.get', $product_variation->product_id);
-        // return view('products.edit_variation',compact('product_variation'));
-    }
+    //     return redirect()->route('product.variations.get', $product_variation->product_id);
+    //     // return view('products.edit_variation',compact('product_variation'));
+    // }
 
     public function edit_variation(Request $request)
     {
