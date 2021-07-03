@@ -152,10 +152,7 @@
                                 <tbody>
                                 @foreach($variations as $variation)
                                     <tr>
-                                        <form action="{{route('product.variations.edit_var')}}"
-                                              method="post">
-                                            @csrf
-
+                                       
                                             <td style="padding:10px 18px;">
                                                 <input type="checkbox" value="{{$variation->id}}"
                                                        class="bs_dtrow_checkbox bs_checkItem">
@@ -186,49 +183,39 @@
                                             <td>{{ucwords($variation->size->size)}}</td>
                                             <td> {{$variation->width?($variation->width->width):''}}</td>
                                             <td>{{$variation->certificate?($variation->certificate->certificate):''}}</td>
-                                            <td>
-                                                <input name="price" type="number" value="{{$variation->price}}"
-                                                       class="form-control" min="0"/>
-                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            <td>{{$variation->price}}
+                                              
                                             </td>
                                             <td>
-                                                <input name="description" class="form-control"
-                                                       value="{{$variation->description}}"/>
-                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            {{$variation->description}}
+                                               
                                             </td>
                                             <td>
-                                                <input name="qty" type="number" class="form-control"
-                                                       min="0"
-                                                       value="{{$variation->qty}}"/>
-                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            {{$variation->qty}}
+                                               
                                             </td>
                                             {{--                                            <td style="display: none">--}}
                                             {{--                                                {{$variation->weight}}--}}
                                             {{--                                            </td>--}}
                                             <td>
-                                                <input name="weight" type="number" class="form-control"
-                                                       min="0"
-                                                       value="{{$variation->weight}}"/>
-                                            <!-- {{currency($variation->price, 'USD')}} -->
+                                            {{$variation->weight}}
+                                            
                                             </td>
                                             <td>
                                                 <div class="actions">
+                                                <button data-id="{{$variation->id}}" class="btn btn-sm bg-success-light mr-2 edit_btn" ><i class="fe fe-edit"></i></button>
+                                                   
 
-                                                    <button type="submit"
-                                                            title="update"
-                                                            class="btn btn-sm bg-success-light mr-2">
-                                                        <i class="fe fe-check"></i>
-                                                    </button>
-z
                                                     <a href="{{route('product.variations.delete_var',$variation->id)}}"
                                                        class="btn btn-sm bg-danger-light bs_delete"
                                                        title="Delete"
                                                        data-route="{{route('product.variations.delete_var',$variation->id)}}">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
+                                                    
                                                 </div>
                                             </td>
-                                        </form>
+                                     
                                     </tr>
 
                                 @endforeach
@@ -240,6 +227,57 @@ z
             </div>
         </div>
     </div>
+
+
+<div class="modal fade" id="edit_var_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update Variation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{route('product.variations.edit_var')}}"
+                                              method="post">
+                                            @csrf
+      <input value="" hidden name="id" id="id"/>
+      <div class="modal-body">
+       
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" id="price" value="" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Weight</label>
+                    <input type="number" name="weight" id="weight" value="" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" name="description" id="description" value="" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" name="qty" id="qty" value="" class="form-control" required>
+                </div>
+            </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection
 @section('javascript')
     <script type="text/javascript">
@@ -258,6 +296,29 @@ z
                     $('#widths').select2();
                     $(this).hide();
                 }
+            })
+
+            $(".edit_btn").on('click',function(){
+                
+                var id=$(this).attr("data-id");
+                $.ajax({
+                    url:"{{route('product.variations.edit')}}",
+                    type:'post',
+                    data:{
+                        id:$(this).attr("data-id"),
+                        _token:'{{csrf_token()}}'
+                    }
+                    
+                })
+                .done(function(result) {
+    
+                    $('#id').val(id);
+                    $('#price').val(result['price']);
+                    $('#weight').val(result['weight']);
+                    $('#description').val(result['description']);
+                    $('#qty').val(result['qty']);
+                    $('#edit_var_modal').modal('show');
+                });
             })
         })
     </script>
