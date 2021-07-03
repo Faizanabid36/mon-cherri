@@ -152,7 +152,7 @@
                                 <tbody>
                                 @foreach($variations as $variation)
                                     <tr>
-                                       
+
                                             <td style="padding:10px 18px;">
                                                 <input type="checkbox" value="{{$variation->id}}"
                                                        class="bs_dtrow_checkbox bs_checkItem">
@@ -184,27 +184,27 @@
                                             <td> {{$variation->width?($variation->width->width):''}}</td>
                                             <td>{{$variation->certificate?($variation->certificate->certificate):''}}</td>
                                             <td>{{$variation->price}}
-                                              
+
                                             </td>
                                             <td>
                                             {{$variation->description}}
-                                               
+
                                             </td>
                                             <td>
                                             {{$variation->qty}}
-                                               
+
                                             </td>
                                             {{--                                            <td style="display: none">--}}
                                             {{--                                                {{$variation->weight}}--}}
                                             {{--                                            </td>--}}
                                             <td>
                                             {{$variation->weight}}
-                                            
+
                                             </td>
                                             <td>
                                                 <div class="actions">
                                                 <button data-id="{{$variation->id}}" class="btn btn-sm bg-success-light mr-2 edit_btn" ><i class="fe fe-edit"></i></button>
-                                                   
+
 
                                                     <a href="{{route('product.variations.delete_var',$variation->id)}}"
                                                        class="btn btn-sm bg-danger-light bs_delete"
@@ -212,10 +212,10 @@
                                                        data-route="{{route('product.variations.delete_var',$variation->id)}}">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
-                                                    
+
                                                 </div>
                                             </td>
-                                     
+
                                     </tr>
 
                                 @endforeach
@@ -243,32 +243,32 @@
                                             @csrf
       <input value="" hidden name="id" id="id"/>
       <div class="modal-body">
-       
-            <div class="col-md-6">
+
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Price</label>
                     <input type="number" name="price" id="price" value="" class="form-control" required>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Weight</label>
                     <input type="number" name="weight" id="weight" value="" class="form-control" required>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Description</label>
                     <input type="text" name="description" id="description" value="" class="form-control" required>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" name="qty" id="qty" value="" class="form-control" required>
                 </div>
             </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -299,7 +299,7 @@
             })
 
             $(".edit_btn").on('click',function(){
-                
+
                 var id=$(this).attr("data-id");
                 $.ajax({
                     url:"{{route('product.variations.edit')}}",
@@ -308,10 +308,10 @@
                         id:$(this).attr("data-id"),
                         _token:'{{csrf_token()}}'
                     }
-                    
+
                 })
                 .done(function(result) {
-    
+
                     $('#id').val(id);
                     $('#price').val(result['price']);
                     $('#weight').val(result['weight']);
