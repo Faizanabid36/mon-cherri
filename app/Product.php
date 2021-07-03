@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     // use SoftDeletes;
-    
+
     use Rateable;
     use \Conner\Tagging\Taggable;
-    
+
     protected $fillable = [
     	'name', 'slug', 'price','metal','prong_metal','width', 'description', 'brand_id', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
     ];

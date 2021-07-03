@@ -114,9 +114,10 @@
                     <div class="card-header">
                         <div class="card-title">Products</div>
                         <div class="pull-right">
-                            <form action="{{route('product.variations.import_csv')}}" method="post" enctype="multipart/form-data">
-                           @csrf
-                            <input type="text" name="product_id" value="{{$product_id}}" hidden>
+                            <form action="{{route('product.variations.import_csv')}}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" name="product_id" value="{{$product_id}}" hidden>
                                 <input type="file" class="btn btn-secondary" name="file">
                                 <button class="btn btn-primary">Submit</button>
                             </form>
@@ -145,7 +146,6 @@
                                     <th>Description</th>
                                     <th>Quantity</th>
                                     <th>Weight</th>
-                                    <th>Created On</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -193,7 +193,6 @@
                                             </td>
                                             <td>
                                                 <input name="description" class="form-control"
-
                                                        value="{{$variation->description}}"/>
                                             <!-- {{currency($variation->price, 'USD')}} -->
                                             </td>
@@ -203,13 +202,15 @@
                                                        value="{{$variation->qty}}"/>
                                             <!-- {{currency($variation->price, 'USD')}} -->
                                             </td>
+                                            {{--                                            <td style="display: none">--}}
+                                            {{--                                                {{$variation->weight}}--}}
+                                            {{--                                            </td>--}}
                                             <td>
                                                 <input name="weight" type="number" class="form-control"
                                                        min="0"
                                                        value="{{$variation->weight}}"/>
                                             <!-- {{currency($variation->price, 'USD')}} -->
                                             </td>
-                                            <td>{{$variation->created_at->format('d-m-Y')}}</td>
                                             <td>
                                                 <div class="actions">
 
@@ -218,7 +219,7 @@
                                                             class="btn btn-sm bg-success-light mr-2">
                                                         <i class="fe fe-check"></i>
                                                     </button>
-
+z
                                                     <a href="{{route('product.variations.delete_var',$variation->id)}}"
                                                        class="btn btn-sm bg-danger-light bs_delete"
                                                        title="Delete"
