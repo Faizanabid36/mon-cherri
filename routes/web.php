@@ -44,6 +44,8 @@ Route::group(['middleware' => 'locale'], function () {
 
         Route::name('center_stone.')->prefix('center_stone')->group(function () {
             Route::get('index', 'CenterStoneController@index')->name('index');
+            Route::get('create', 'CenterStoneController@create')->name('create');
+            Route::post('create', 'CenterStoneController@store')->name('store');
 
             Route::get('sizes/index', 'CenterStoneController@sizes_index')->name('sizes.index');
             Route::post('sizes/store', 'CenterStoneController@store_size')->name('sizes.store');

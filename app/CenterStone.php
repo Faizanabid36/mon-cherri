@@ -10,16 +10,16 @@ class CenterStone extends Model
 
     public function clarity()
     {
-        return $this->hasOne(CenterStoneClarity::class);
+        return $this->hasOne(CenterStoneClarity::class,'id');
     }
 
     public function size()
     {
-        return $this->hasOne(CenterStoneSize::class);
+        return $this->hasOne(CenterStoneSize::class,'id');
     }
 
     public function color()
     {
-        return $this->hasOne(CenterStoneColor::class);
+        return $this->hasOne(CenterStoneColor::class,'id');
     }
 }

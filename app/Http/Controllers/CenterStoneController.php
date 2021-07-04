@@ -16,6 +16,35 @@ class CenterStoneController extends Controller
         return view('center_stones.index', compact('center_stones'));
     }
 
+    public function create()
+    {
+        return view('center_stones.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'diamond_id' => 'required',
+            'shape' => 'required',
+            'description' => 'required',
+            'center_stone_sizes_id' => 'required',
+            'center_stone_colors_id' => 'required',
+            'center_stone_clarities_id' => 'required',
+            'polish' => 'required',
+            'fluor' => 'required',
+            'symm' => 'required',
+            'lab' => 'required',
+            'certificate_no' => 'required',
+            'vendor_stock_no' => 'required',
+            'price_cc' => 'required',
+            'total_price' => 'required',
+            'seller' => 'required',
+            'ham_page' => 'required',
+        ]);
+        $stone = CenterStone::create($request->except('_token'));
+        return redirect()->route('center_stone.index')->withSuccess('Stone Created Successfully');
+    }
+
 
     public function sizes_index()
     {

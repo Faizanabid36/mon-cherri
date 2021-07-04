@@ -14,7 +14,7 @@
                 </div>
                 <div class="col">
                     @permission('create.products')
-                    <a href="{{route('products.create')}}"
+                    <a href="{{route('center_stone.create')}}"
                        class="btn btn-success bs_dashboard_btn bs_btn_color float-right">Create New</a>
                     @endpermission
                 </div>
@@ -45,48 +45,59 @@
                                         <input type="checkbox" id="checkAll">
                                     </th>
                                     @endpermission
-                                    <th>S.No</th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Vendor</th>
+                                    <th>Diamond Id</th>
+                                    <th>Description</th>
+                                    <th>Shape</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Clarity</th>
+                                    <th>Polish</th>
+                                    <th>Symm</th>
+                                    <th>Fluor</th>
+                                    <th>Lab</th>
+                                    <th>Certificate No</th>
+                                    <th>Vendor Stock No</th>
                                     <th>Price</th>
-                                    <th>Old Price</th>
-                                    <th>Stock</th>
-                                    <th>Created On</th>
+                                    <th>Price CC</th>
+                                    <th>Seller</th>
+                                    <th>Ham Page</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php $count = 1; ?>
-                                @foreach($products as $product)
+                                @foreach($center_stones as $stone)
                                     <tr>
                                         @permission('delete.products')
                                         <td style="padding:10px 18px;">
-                                            <input type="checkbox" value="{{$product->id}}"
+                                            <input type="checkbox" value="{{$stone->id}}"
                                                    class="bs_dtrow_checkbox bs_checkItem">
                                         </td>
                                         @endpermission
-                                        <td><?=$count++?></td>
-                                        <td><a href="{{url('/'.$product->slug)}}"
-                                               target="_blank">{{ucwords($product->name)}}</a></td>
+                                        <td>{{ucwords($stone->diamond_id)}}</td>
                                         <td>
-                                            @foreach($product->categories as $category)
-                                                {{ucwords($category->title)}}
-                                            @endforeach
+                                            {{ucwords($stone->description??'')}}
                                         </td>
                                         <td>
-                                            {{($product->brand) ? ucwords($product->brand->title) : "---" }}
+                                            {{ucwords($stone->shape??'')}}
                                         </td>
-                                        <td>{{currency($product->price, 'USD')}}</td>
-                                        <td>
-                                            {{($product->old_price) ? currency($product->old_price, 'USD') : '---' }}
-                                        </td>
-                                        <td>{{$product->stock}}</td>
-                                        <td>{{$product->created_at->format('d-m-Y')}}</td>
+                                        <td>{{ucwords($stone->size->title??'')}}</td>
+                                        <td>{{ucwords($stone->color->title??'')}}</td>
+                                        <td>{{ucwords($stone->clarity->title??'')}}</td>
+                                        <td>{{ucwords($stone->polish??'')}}</td>
+                                        <td>{{ucwords($stone->symm??'')}}</td>
+                                        <td>{{ucwords($stone->fluor??'')}}</td>
+                                        <td>{{ucwords($stone->lab??'')}}</td>
+                                        <td>{{ucwords($stone->certificate_no??'')}}</td>
+                                        <td>{{ucwords($stone->vendor_stock_no??'')}}</td>
+                                        <td>{{ucwords($stone->total_price??'')}}</td>
+                                        <td>{{ucwords($stone->price_cc??'')}}</td>
+                                        <td>{{ucwords($stone->seller??'')}}</td>
+                                        <td>{{ucwords($stone->ham_page??'')}}</td>
                                         <td>
                                             <div class="actions">
                                                 @permission('edit.products')
-                                                <a href="{{route('products.edit',$product->id)}}"
+                                                <a href="{{route('products.edit',$stone->id)}}"
                                                    class="btn btn-sm bg-success-light mr-2">
                                                     <i class="fe fe-pencil"></i> Edit
                                                 </a>
@@ -94,20 +105,10 @@
                                                 @permission('delete.products')
                                                 <a href="javascript:void(0)"
                                                    class="btn btn-sm bg-danger-light bs_delete"
-                                                   data-route="{{route('products.destroy',$product)}}">
+                                                   data-route="{{route('products.destroy',$stone)}}">
                                                     <i class="fe fe-trash"></i> Delete
                                                 </a>
                                                 @endpermission
-                                                <a href="{{route('product.album.product_album',$product->id)}}"
-                                                   class="btn btn-sm bg-warning-light"
-                                                   data-route="{{route('product.album.product_album',$product->id)}}">
-                                                    <i class="fe fe-file-image"></i> Album
-                                                </a>
-                                                <a href="{{route('product.variations.add',$product->id)}}"
-                                                   class="btn btn-sm bg-info-light"
-                                                   data-route="{{route('product.variations.get',$product->id)}}">
-                                                    <i class="fe fe-activity"></i> Variations
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>
