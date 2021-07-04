@@ -161,8 +161,8 @@
 
                                             <td>{{$loop->iteration}}</td>
                                             <td>
-                                            {{ucwords($variation->album->title??"N/A")}}
-                                             
+                                            {{ucwords($variation->album->title??"NA")}}
+
                                             </td>
                                             <td>
                                                 {{ucwords($variation->variation->title)}}
@@ -230,12 +230,12 @@
                                             @csrf
       <input value="" hidden name="id" id="id"/>
       <div class="modal-body">
-      
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Album</label>
                     <select id="album" name="album_id" class="form-control">
-                        <option value="" selected disabled>Album</option>
+                        <option selected disabled>Album</option>
                         @foreach(App\ProductAlbum::whereProductId($product_id)->get()->unique('title') as $album)
                             <option
                                 title="{{$album->title}}"

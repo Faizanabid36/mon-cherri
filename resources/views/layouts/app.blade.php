@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
     <!-- CSRF Token -->
-    <link href="{{asset('favicon.png')}}" rel="icon" />
+    <link href="{{asset('favicon.png')}}" rel="icon"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-id" content="{{ Auth::check() ? Auth::user()->id : ''}}">
     <title>@yield('title')</title>
@@ -35,7 +35,7 @@
 <body>
 <div class="main-wrapper" id="app">
 
-        <!-- Header -->
+    <!-- Header -->
     <div class="header">
         <!-- Logo -->
         <div class="header-left">
@@ -80,25 +80,27 @@
             <!-- User Menu -->
             <li class="nav-item dropdown has-arrow">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <span class="user-img"><img class="rounded-circle" src="{{url('images/user',Auth::user()->avatar)}}" width="31" alt="Profile"></span>
+                    <span class="user-img"><img class="rounded-circle" src="{{url('images/user',Auth::user()->avatar)}}"
+                                                width="31" alt="Profile"></span>
                 </a>
                 <div class="dropdown-menu">
                     <div class="user-header">
                         <div class="avatar avatar-sm">
-                            <img src="{{url('images/user',Auth::user()->avatar)}}" alt="{{Auth::user()->name}}" class="avatar-img rounded-circle">
+                            <img src="{{url('images/user',Auth::user()->avatar)}}" alt="{{Auth::user()->name}}"
+                                 class="avatar-img rounded-circle">
                         </div>
                         <div class="user-text">
                             <h6>{{ucwords(Auth::user()->name)}} {{ucwords(Auth::user()->lastname)}}</h6>
                             <p class="text-muted mb-0">
                                 @foreach(Auth::user()->roles as $user_role)
-                                {{$user_role->name}}
+                                    {{$user_role->name}}
                                 @endforeach
                             </p>
                         </div>
                     </div>
                     <a class="dropdown-item" href="{{route('users.show',Auth::user()->id)}}">Profile</a>
                     <a class="dropdown-item" href="{{url('settings')}}">Account Settings</a>
-                     <a class="dropdown-item" href="{{ route('logout') }}"
+                    <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -115,9 +117,9 @@
         <!-- /Header Right Menu -->
 
     </div>
-        <!-- /Header -->
+    <!-- /Header -->
 
-        <!-- Sidebar -->
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
             <div id="sidebar-menu" class="sidebar-menu">
@@ -138,11 +140,11 @@
                     @permission('view.orders')
                     <li>
                         <?php
-                            $orders_count = App\Invoice::where('status','!=',1)->count();
+                        $orders_count = App\Invoice::where('status', '!=', 1)->count();
                         ?>
                         <a href="{{route('orders.index')}}"><i class="fe fe-cart"></i> <span> Orders</span>
                             @if($orders_count > 0)
-                            <span class="badge badge-danger">{{$orders_count}}</span>
+                                <span class="badge badge-danger">{{$orders_count}}</span>
                             @endif
                         </a>
                     </li>
@@ -158,37 +160,37 @@
                     </li>
                     @endpermission
                     @permission('view.reviews')
-                     <li>
+                    <li>
                         <?php
-                            $reviews_count = App\Review::where('is_viewed','!=',1)->count();
+                        $reviews_count = App\Review::where('is_viewed', '!=', 1)->count();
                         ?>
                         <a href="{{route('reviews.index')}}"><i class="fe fe-document"></i> <span>Reviews</span>
-                        @if($reviews_count > 0)
-                            <span class="badge badge-danger">{{$reviews_count}}</span>
-                        @endif
+                            @if($reviews_count > 0)
+                                <span class="badge badge-danger">{{$reviews_count}}</span>
+                            @endif
                         </a>
                     </li>
                     @endpermission
                     @permission('view.comments')
-                     <li>
+                    <li>
                         <?php
-                            $comments_count = App\Comment::where('status','!=',1)->count();
+                        $comments_count = App\Comment::where('status', '!=', 1)->count();
                         ?>
                         <a href="{{route('comments.index')}}"><i class="fe fe-comments"></i> <span>Comments</span>
-                        @if($comments_count > 0)
-                            <span class="badge badge-danger">{{$comments_count}}</span>
-                        @endif
+                            @if($comments_count > 0)
+                                <span class="badge badge-danger">{{$comments_count}}</span>
+                            @endif
                         </a>
                     </li>
                     @endpermission
                     @permission('view.messages')
                     <li>
                         <?php
-                        $messages_count = App\Contact::where('status','!=',1)->count();
+                        $messages_count = App\Contact::where('status', '!=', 1)->count();
                         ?>
                         <a href="{{route('messages.index')}}"><i class="fe fe-messanger"></i> <span>Messages</span>
                             @if($messages_count > 0)
-                            <span class="badge badge-danger">{{$messages_count}}</span>
+                                <span class="badge badge-danger">{{$messages_count}}</span>
                             @endif
                         </a>
                     </li>
@@ -197,8 +199,9 @@
                         <span>Product Settings</span>
                     </li>
                     @permission('view.categories')
-                     <li class="submenu">
-                        <a href="#"><i class="fe fe-align-left"></i> <span> Categories</span> <span class="menu-arrow"></span></a>
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-align-left"></i> <span> Categories</span> <span
+                                class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="{{route('categories.index')}}">Main Categories</a></li>
                             <li><a href="{{route('subcategories.index')}}">Sub Categories</a></li>
@@ -206,33 +209,58 @@
                     </li>
                     @endpermission
                     @permission('view.brands')
-                     <li>
+                    <li>
                         <a href="{{route('brands.index')}}"><i class="fe fe-tag"></i> <span>Vendors</span></a>
                     </li>
                     @endpermission
                     @permission('view.sizes')
-                     <li>
+                    <li>
                         <a href="{{route('sizes.index')}}"><i class="fe fe-bar-chart"></i> <span>Sizes</span></a>
                     </li>
                     @endpermission
                     @permission('view.colors')
-                     <li>
+                    <li>
                         <a href="{{route('colors.index')}}"><i class="fe fe-target"></i> <span>Colors</span></a>
                     </li>
                     @endpermission
                     @permission('view.certificates')
-                     <li>
-                        <a href="{{route('certificates.index')}}"><i class="fe fe-document"></i> <span>Certificates</span></a>
+                    <li>
+                        <a href="{{route('certificates.index')}}"><i class="fe fe-document"></i>
+                            <span>Certificates</span></a>
                     </li>
                     @endpermission
                     @permission('view.widths')
-                     <li>
+                    <li>
                         <a href="{{route('widths.index')}}"><i class="fe fe-align-right"></i> <span>Widths</span></a>
                     </li>
                     @endpermission
                     @permission('view.variations')
-                     <li>
-                        <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i> <span>Variations</span></a>
+                    <li>
+                        <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i>
+                            <span>Variations</span></a>
+                    </li>
+                    <li class="menu-title">
+                        <span>Center Stones</span>
+                    </li>
+                    <li>
+                        <a href="{{route('center_stone.index')}}">
+                            <i class="fe fe-diamond"></i><span>Center Stone</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('center_stone.sizes.index')}}">
+                            <i class="fe fe-text-size"></i><span>Stone Sizes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('center_stone.colors.index')}}">
+                            <i class="fe fe-target"></i><span>Stone Colors</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('center_stone.clarities.index')}}">
+                            <i class="fe fe-rice-cracker"></i><span>Stone Clarities</span>
+                        </a>
                     </li>
                     @endpermission
                     <li class="menu-title">
@@ -277,7 +305,7 @@
             </div>
         </div>
     </div>
-        <!-- /Sidebar -->
+    <!-- /Sidebar -->
     <div class="page-wrapper">
         @yield('content')
     </div>
@@ -321,66 +349,66 @@
 <script src="{{asset('js/noty.min.js')}}"></script>
 
 <script type="text/javascript">
-   $(document).ready(function () {
-        $(document).on('click','.bs_delete',function(){
+    $(document).ready(function () {
+        $(document).on('click', '.bs_delete', function () {
             var route = $(this).attr('data-route');
-            $('#bs_delete_form').attr('action',route);
+            $('#bs_delete_form').attr('action', route);
             $('.bs_delete_modal').modal('show');
         })
-        $(document).on('click','.bs_edit',function(){
+        $(document).on('click', '.bs_edit', function () {
             var route = $(this).attr('data-route');
             var id = $(this).attr('data-id');
             $.ajax({
-                url:route,
-                method:'GET',
-                success:function(data){
+                url: route,
+                method: 'GET',
+                success: function (data) {
                     $("#edit_data").html(data.html);
                     $(".bs_edit_modal").modal('show');
                 }
             });
         });
-        $(document).on('input','.product_prices',function(){
+        $(document).on('input', '.product_prices', function () {
             var current_price = parseInt($('#price').val());
-            var old_price     = parseInt($('#old_price').val());
-            var off_price     = ((current_price/old_price) * 100).toFixed(0);
-            if(!isNaN(current_price) && !isNaN(old_price)){
+            var old_price = parseInt($('#old_price').val());
+            var off_price = ((current_price / old_price) * 100).toFixed(0);
+            if (!isNaN(current_price) && !isNaN(old_price)) {
                 $("#percent_off").val(off_price);
             }
         });
-        $(document).on('change','#checkAll',function(){
-            if($(this).is(':checked',true))
-            {
+        $(document).on('change', '#checkAll', function () {
+            if ($(this).is(':checked', true)) {
                 $(".bs_dtrow_checkbox").prop('checked', true);
             } else {
-                $(".bs_dtrow_checkbox").prop('checked',false);
+                $(".bs_dtrow_checkbox").prop('checked', false);
             }
         });
-        $(document).on('click','#show_notification',function(){
+        $(document).on('click', '#show_notification', function () {
             $.ajax({
-                url:'<?=route("notifications")?>',
-                method:'GET',
-                success:function(data){
+                url: '<?=route("notifications")?>',
+                method: 'GET',
+                success: function (data) {
                     $("#notification").empty();
                     $("#notification").html(data.html);
                 }
             });
         });
 
-        function unread_notification_count(){
-           $.ajax({
-                url:'<?=route("notifications.Unreadcount")?>',
-                method:'GET',
-                success:function(data){
+        function unread_notification_count() {
+            $.ajax({
+                url: '<?=route("notifications.Unreadcount")?>',
+                method: 'GET',
+                success: function (data) {
                     if (data > 0) {
                         $("#unread_count").html('<i class="badge badge-pill"> ' + data + '</i>');
                     }
                 }
             });
         }
+
         unread_notification_count();
-        setInterval(function(){
+        setInterval(function () {
             unread_notification_count();
-        },30000);
+        }, 30000);
     });
 </script>
 @yield('javascript')

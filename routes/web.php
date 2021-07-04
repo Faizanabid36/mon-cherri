@@ -42,6 +42,20 @@ Route::group(['middleware' => 'locale'], function () {
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
 
+        Route::name('center_stone.')->prefix('center_stone')->group(function () {
+            Route::get('index', 'CenterStoneController@index')->name('index');
+
+            Route::get('sizes/index', 'CenterStoneController@sizes_index')->name('sizes.index');
+            Route::post('sizes/store', 'CenterStoneController@store_size')->name('sizes.store');
+
+            Route::get('clarities/index', 'CenterStoneController@clarities_index')->name('clarities.index');
+            Route::post('clarity/store', 'CenterStoneController@store_clarity')->name('clarity.store');
+
+            Route::get('colors/index', 'CenterStoneController@colors_index')->name('colors.index');
+            Route::post('color/store', 'CenterStoneController@store_color')->name('color.store');
+
+        });
+
         Route::name('product.album.')->prefix('album')->group(function () {
             Route::get('all/{id}', 'ProductController@product_album')->name('product_album');
             Route::get('create/{id}', 'ProductController@create_album')->name('create');
