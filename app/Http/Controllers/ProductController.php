@@ -244,7 +244,7 @@ class ProductController extends Controller
     public function edit_variations(Request $request)
     {
         $product_variation = ProductVariation::whereId($request->id)->first();
-        
+
         return response()->json($product_variation);
     }
 
@@ -371,10 +371,11 @@ class ProductController extends Controller
     public function import_csv(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|mimes:xls,xlsx'
+            'file'  => 'required|mimes:xls,xlsx,csv'
            ]);
         $path = $request->file('file')->getRealPath();
         Session::put('product_id',$request->product_id);
+        dd($path);
         Excel::import(new VariationImport,$path);
         return back()->with('success', 'Variations has been updated');
     }
