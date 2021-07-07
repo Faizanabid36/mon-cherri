@@ -379,7 +379,7 @@ class ProductController extends Controller
         $path = 'images/sheet';
         // image upload
         $extension = $file->extension();
-        $image = time() . $extension;
+        $image = time() . '.' .$extension;
         $file->move(public_path($path), $image);
         Session::put('product_id', $request->product_id);
         $url = $path . '/' . $image;
