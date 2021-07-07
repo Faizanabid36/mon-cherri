@@ -383,7 +383,6 @@ class ProductController extends Controller
         $file->move(public_path($path), $image);
         Session::put('product_id', $request->product_id);
         $url = $path . '/' . $image;
-        dd($url);
         Excel::import(new VariationImport, $url);
         return back()->with('success', 'Variations has been updated');
     }
