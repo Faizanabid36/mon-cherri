@@ -127,7 +127,7 @@ class ProductController extends Controller
 
     public function add_variations($product_id)
     {
-        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate','album')->get();
+        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         return view('products.create_variation', compact('product_id', 'variations'));
     }
 
@@ -371,12 +371,19 @@ class ProductController extends Controller
     public function import_csv(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|mimes:xls,xlsx,csv'
-           ]);
-        $path = $request->file('file')->getRealPath();
-        Session::put('product_id',$request->product_id);
+            'file' => 'required|mimes:xls,xlsx,csv'
+        ]);
+//        $path = $request->file('file')->getRealPath();
+
+        $file = $request->file('file');
+        $path = 'images/sheet';
+        // image upload
+        $extension = $file->extension();
+        $image = time() . $extension;
+        $file->move(public_path($path), $image);
+        Session::put('product_id', $request->product_id);
         dd($path);
-        Excel::import(new VariationImport,$path);
+        Excel::import(new VariationImport, $path);
         return back()->with('success', 'Variations has been updated');
     }
 }
