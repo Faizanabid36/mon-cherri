@@ -127,7 +127,7 @@ class ProductController extends Controller
 
     public function add_variations($product_id)
     {
-        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate','album')->get();
+        $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         return view('products.create_variation', compact('product_id', 'variations'));
     }
 
@@ -244,7 +244,7 @@ class ProductController extends Controller
     public function edit_variations(Request $request)
     {
         $product_variation = ProductVariation::whereId($request->id)->first();
-        
+
         return response()->json($product_variation);
     }
 
@@ -371,11 +371,19 @@ class ProductController extends Controller
     public function import_csv(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|mimes:xls,xlsx'
-           ]);
-        $path = $request->file('file')->getRealPath();
-        Session::put('product_id',$request->product_id);
-        Excel::import(new VariationImport,$path);
+            'file' => 'required|mimes:xls,xlsx,csv'
+        ]);
+//        $path = $request->file('file')->getRealPath();
+
+        $file = $request->file('file');
+        $path = 'images/sheet';
+        // image upload
+        $extension = $file->extension();
+        $image = time() . '.' .$extension;
+        $file->move(public_path($path), $image);
+        Session::put('product_id', $request->product_id);
+        $url = $path . '/' . $image;
+        Excel::import(new VariationImport, $url);
         return back()->with('success', 'Variations has been updated');
     }
 }
