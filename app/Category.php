@@ -23,8 +23,5 @@ class Category extends Model
     {
     	return $this->hasMany('App\Brand');
     }
-    public function sizes()
-    {
-        return $this->hasMany('App\Size');
-    }
+   
 }

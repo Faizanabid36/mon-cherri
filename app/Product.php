@@ -20,7 +20,7 @@ class Product extends Model
     use \Conner\Tagging\Taggable;
 
     protected $fillable = [
-    	'name', 'slug', 'price','metal','prong_metal','width', 'description', 'brand_id', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
+    	'name', 'slug', 'price','metal','prong_metal','width', 'description',  'old_price', 'percent_off', 'is_new', 'stock', 'video',
     ];
     public function categories()
     {
@@ -30,10 +30,10 @@ class Product extends Model
     {
         return $this->belongsToMany('App\SubCategory');
     }
-    public function brand()
-    {
-        return $this->belongsTo('App\Brand');
-    }
+    // public function brand()
+    // {
+    //     return $this->belongsTo('App\Brand');
+    // }
     public function colors()
     {
         return $this->belongsToMany(Color::class);

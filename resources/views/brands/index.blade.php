@@ -74,7 +74,7 @@
 											<th>Count</th>
 											<th>Name</th>
 											<th>Category</th>
-											<th>Products</th>
+											
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -85,7 +85,7 @@
 												<td><?=$count++?></td>
 												<td>{{ucwords($brand->title)}}</td>
 												<td>{{ucwords($brand->category->title)}}</td>
-												<td>{{$brand->products->count()}}</td>
+												
 												<td>
 													<div class="btn-group btn-group-sm">
 														@permission('edit.brands')

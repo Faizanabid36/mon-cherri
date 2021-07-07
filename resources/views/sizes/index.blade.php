@@ -40,14 +40,7 @@
 										@endif
 									</div>
 								</div>
-								<div class="form-group">
-									<label>Category</label>
-									<select class="form-control" name="category" required>
-										@foreach(App\Category::all() as $category)
-										<option value="{{$category->id}}">{{ucwords($category->title)}}</option>
-										@endforeach
-									</select>
-								</div>
+								
 								<div>
 									<button class="btn btn-success bs_dashboard_btn bs_btn_color float-right" style="border-radius: 0px;">Add</button>
 								</div>
@@ -73,7 +66,7 @@
 										<tr>
 											<th>Count</th>
 											<th>Size</th>
-											<th>Category</th>
+											
 											<th>Products</th>
 											<th>Action</th>
 										</tr>
@@ -84,7 +77,7 @@
 											<tr>
 												<td><?=$count++?></td>
 												<td>{{ucwords($size->size)}}</td>
-												<td>{{ucwords($size->category->title)}}</td>
+												
 												<td>{{$size->products->count()}}</td>
 												<td>
 													<div class="btn-group btn-group-sm">

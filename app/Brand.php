@@ -14,10 +14,10 @@ class Brand extends Model
     	'slug', 'title', 'category_id',
     ];
 
-    public function products()
-    {
-        return $this->hasMany('App\Product');
-    } 
+    // public function products()
+    // {
+    //     return $this->hasMany('App\Product');
+    // } 
     public function category()
     {
     	return $this->belongsTo('App\Category');

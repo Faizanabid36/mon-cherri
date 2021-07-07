@@ -39,7 +39,7 @@ class SizeController extends Controller
         Size::findOrFail($id)->update([
             'size'=>$size,
             'slug'=>Str::slug($size),
-            'category_id'=>$request->input('category')
+            
         ]);
         return redirect('sizes')->with('success','Size Updated');
     }
@@ -50,7 +50,7 @@ class SizeController extends Controller
         Size::create([
             'size'=>$size,
             'slug'=>Str::slug($size),
-            'category_id'=>$request->input('category'),
+            // 'category_id'=>$request->input('category'),
         ]);
         return back()->with('success','Size has been added');
     }

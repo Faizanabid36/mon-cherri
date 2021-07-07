@@ -19,7 +19,7 @@ class ProductService
         $product = Product::create([
             'name'        => $product_name,
             'slug'        => $slug,
-            'brand_id'    => $request->input('brand'),
+            // 'brand_id'    => $request->input('brand'),
             'price'       => $request->input('price'),
             'old_price'   => $request->input('old_price'),
             'percent_off' => $request->input('percent_off'),
@@ -27,13 +27,13 @@ class ProductService
             'stock'       => $request->input('stock'),
             'video'       => $request->input('video_link'),
             'description' => $request->input('description'),
-            'metal' => $request->input('metal'),
-            'prong_metal' => $request->input('prong_metal'),
-            'width' => $request->input('width'),
+            // 'metal' => $request->input('metal'),
+            // 'prong_metal' => $request->input('prong_metal'),
+            // 'width' => $request->input('width'),
         ]);
         $product->tag($request->input('tags'));
-        $product->sizes()->sync($request->input('size'));
-        $product->colors()->sync($request->input('color'));
+        // $product->sizes()->sync($request->input('size'));
+        // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
         $path = 'images/product/'.$slug.'-bs_00'.$product->id;
@@ -97,7 +97,7 @@ class ProductService
         $slug         = Str::slug($product_name);
 
         $product->name        = $product_name;
-        $product->brand_id    = $request->input('brand');
+        // $product->brand_id    = $request->input('brand');
         $product->price       = $request->input('price');
         $product->old_price   = $request->input('old_price');
         $product->percent_off = $request->input('percent_off');
@@ -107,8 +107,8 @@ class ProductService
         $product->description = $request->input('description');
 
         $product->tag($request->input('tags'));
-        $product->sizes()->sync($request->input('size'));
-        $product->colors()->sync($request->input('color'));
+        // $product->sizes()->sync($request->input('size'));
+        // $product->colors()->sync($request->input('color'));  
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
 

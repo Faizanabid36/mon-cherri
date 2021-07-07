@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('slug');
             $table->string('name');
-            $table->unsignedBigInteger('brand_id')->unsinged();
+            // $table->unsignedBigInteger('brand_id')->unsinged();
             $table->integer('price');
             $table->integer('old_price')->nullable();
             $table->string('percent_off')->nullable();
@@ -28,7 +28,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             // $table->softDeletes();
 
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 
         });
     }
