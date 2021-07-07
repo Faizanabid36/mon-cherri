@@ -191,20 +191,15 @@
                                             <td>
                                                 <div class="actions">
                                                 <button data-id="{{$variation->id}}" class="btn btn-sm bg-success-light mr-2 edit_btn" ><i class="fe fe-edit"></i></button>
-
-
                                                     <a href="{{route('product.variations.delete_var',$variation->id)}}"
                                                        class="btn btn-sm bg-danger-light bs_delete"
                                                        title="Delete"
                                                        data-route="{{route('product.variations.delete_var',$variation->id)}}">
                                                         <i class="fe fe-trash"></i>
                                                     </a>
-
                                                 </div>
                                             </td>
-
                                     </tr>
-
                                 @endforeach
                                 </tbody>
                             </table>
