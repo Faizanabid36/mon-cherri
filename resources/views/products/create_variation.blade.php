@@ -141,7 +141,6 @@
                                     <th>Metal</th>
                                     <th>Size</th>
                                     <th>Width</th>
-                                    <th>Cert</th>
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Quantity</th>
@@ -169,7 +168,6 @@
                                             </td>
                                             <td>{{ucwords($variation->size->size)}}</td>
                                             <td> {{$variation->width?($variation->width->width):''}}</td>
-                                            <td>{{$variation->certificate?($variation->certificate->certificate):''}}</td>
                                             <td>{{$variation->price}}
 
                                             </td>
@@ -226,7 +224,7 @@
       <input value="" hidden name="id" id="id"/>
       <div class="modal-body">
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Album</label>
                     <select id="album" name="album_id" class="form-control">
@@ -240,7 +238,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Variation</label>
                     <select class="form-control @error('variation') is-invalid @enderror"
@@ -259,7 +257,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Size</label>
                     <select class="form-control @error('sizes') is-invalid @enderror"
@@ -276,7 +274,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Width</label>
                     <select class="form-control @error('widths') is-invalid @enderror"
@@ -288,23 +286,6 @@
                     </select>
                     @if($errors->has('widths'))
                         @foreach($errors->get('widths') as $message)
-                            <span style="color:red">{{$message}}</span>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Certificate</label>
-                    <select class="form-control @error('certificates') is-invalid @enderror"
-                            id="certificate" data-route="" name="certificate_id">
-                        <option value="" disabled>Choose Size</option>
-                        @foreach(App\Certificate::all() as $certificate)
-                            <option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('certificates'))
-                        @foreach($errors->get('certificates') as $message)
                             <span style="color:red">{{$message}}</span>
                         @endforeach
                     @endif
@@ -354,10 +335,6 @@
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
             $('#add_variant_btn').on('click', function () {
                 if (variant === 0) {
-                    $('#variants').html(' <div class="col-md-6"  ><div class="form-group"><label>Certificate</label> <select class="form-control @error("certificates") is-invalid @enderror"id="certificates" data-route="" name="certificates[]" multiple><option value="" disabled>Choose Certificate</option>@foreach(App\Certificate::all() as $certificate)<option value="{{$certificate->id}}">{{ucwords($certificate->certificate)}}</option>@endforeach </select> </div>  </div>');
-                    $('#certificates').select2();
-                    variant += 1;
-                } else {
                     $('#variants').append(' <div class="col-md-6"><div class="form-group"><label>Width</label> <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>Choose Width</option> @foreach(App\Width::all() as $width)<option value="{{$width->id}}">{{ucwords($width->width)}}</option>@endforeach </select> </div></div>');
                     $('#widths').select2();
                     $(this).hide();
@@ -365,7 +342,6 @@
             })
 
             $(".edit_btn").on('click',function(){
-
                 var id=$(this).attr("data-id");
                 $.ajax({
                     url:"{{route('product.variations.edit')}}",
@@ -380,7 +356,6 @@
                     $('#id').val(id);
                     $('#album').val(''+result['album_id']+'');
                     $('#variation').val(''+result['variation_id']+'');
-                    $('#certificate').val(''+result['certificate_id']+'');
                     $('#width').val(''+result['width_id']+'');
                     $('#size').val(''+result['size_id']+'');
                     $('#price').val(result['price']);

@@ -33,11 +33,11 @@
 									<div class="col-md-9">
 										<div class="form-group">
 											<label>Width</label>
-											<input type="number" name="width" class="form-control" required>
+											<input type="text" name="width" class="form-control" required>
 										</div>
 									</div>
-									
-								</div>	
+
+								</div>
 								<div class="form-group text-right">
 									<button class="btn btn-success bs_dashboard_btn bs_btn_width">Add</button>
 								</div>
@@ -67,7 +67,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php $count = 1; ?>		
+										<?php $count = 1; ?>
 										@foreach($widths as $width)
 											<tr>
 												<td><?=$count++?></td>

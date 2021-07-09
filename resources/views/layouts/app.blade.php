@@ -208,11 +208,11 @@
                         </ul>
                     </li>
                     @endpermission
-                    @permission('view.brands')
-                    <li>
-                        <a href="{{route('brands.index')}}"><i class="fe fe-tag"></i> <span>Vendors</span></a>
-                    </li>
-                    @endpermission
+{{--                    @permission('view.brands')--}}
+{{--                    <li>--}}
+{{--                        <a href="{{route('brands.index')}}"><i class="fe fe-tag"></i> <span>Vendors</span></a>--}}
+{{--                    </li>--}}
+{{--                    @endpermission--}}
                     @permission('view.sizes')
                     <li>
                         <a href="{{route('sizes.index')}}"><i class="fe fe-bar-chart"></i> <span>Sizes</span></a>

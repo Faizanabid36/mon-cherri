@@ -113,7 +113,7 @@
 							</div>
 							<div class="col-md-12">
 								<div class="row" id="more_details" style="overflow: auto;">
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group">
 											<label>Product  SubCategories:</label>
 											<select class="form-control bs_categories @error('subcategory') is-invalid @enderror" data-route="{{url('get_sub_subcategories')}}" name="subcategory[]" id="_subcategories" multiple style="width: 100%"> required>
@@ -136,71 +136,6 @@
 									              <span style="color:red">{{$message}}</span>
 									            @endforeach
 									         @endif
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Product  Vendor:</label>
-											<select class="form-control @error('brand') is-invalid @enderror" style="width: 100%" id="_brands" name="brand" required>
-												@foreach ($product->categories as $p_categories)
-													@foreach ($p_categories->brands as $p_cat_brands)
-														<option value="{{$p_cat_brands->id}}" <?=$p_cat_brands->id == $product->brand->id ? 'selected' : '' ?>>{{ucwords($p_cat_brands->title)}}</option>
-													@endforeach
-												@endforeach
-											</select>
-											@if($errors->has('brand'))
-									            @foreach($errors->get('brand') as $message)
-									              <span style="color:red">{{$message}}</span>
-									            @endforeach
-									         @endif
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Product Sizes</label>
-											<select class="form-control " name="size[]" id="_sizes" style="width: 100%" multiple required>
-											@foreach ($product->categories as $p_categories)
-												@foreach ($p_categories->sizes as $p_cat_sizes)
-													<option value="{{$p_cat_sizes->id}}"
-														<?php
-															foreach ($product->sizes as $p_size) {
-																if ($p_cat_sizes->id == $p_size->id) {
-																	echo 'selected';
-																}
-															}
-														?>
-													>{{ucwords($p_cat_sizes->size)}}</option>
-												@endforeach
-											@endforeach
-											</select>
-											@if($errors->has('size'))
-									            @foreach($errors->get('size') as $message)
-									              <span style="color:red">{{$message}}</span>
-									            @endforeach
-									        @endif
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Product  Color:</label>
-											<select class="form-control @error('color') is-invalid @enderror" style="width: 100%" name="color[]" id="_colors" multiple required>
-												@foreach(App\Color::all() as $color)
-													<option value="{{$color->id}}"
-													<?php
-														foreach ($product->colors as $p_color) {
-															if ($color->id == $p_color->id) {
-																echo 'selected';
-															}
-														}
-													?>
-													>{{ucwords($color->color)}}</option>
-												@endforeach
-											</select>
-											@if($errors->has('color'))
-									            @foreach($errors->get('color') as $message)
-									              <span style="color:red">{{$message}}</span>
-									            @endforeach
-									        @endif
 										</div>
 									</div>
 									<div class="col-md-6">
