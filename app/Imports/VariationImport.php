@@ -5,6 +5,7 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use App\ProductVariation;
+use App\ProductAlbum;
 use Session;
 class VariationImport implements ToCollection
 {
@@ -14,10 +15,19 @@ class VariationImport implements ToCollection
     public function collection(Collection $collection)
     {
         $variations=ProductVariation::whereProductId(Session::get('product_id'))->get();
-
+        $albums=ProductAlbum::whereProductId(Session::get('product_id'))->get();
         $j=0;
         for($i=2;$i<count($collection);$i++)
         {
+            $product_album = $albums->firstWhere('title',$collection[$i][2] );
+            if($product_album)
+            {
+                $variations[$j]->album_id=$product_album->id;
+            }
+            else
+            {
+                $variations[$j]->album_id=null;
+            }
             if($collection[$i][6])
                 $variations[$j]->price=$collection[$i][6];
             else

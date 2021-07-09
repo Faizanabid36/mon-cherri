@@ -55,6 +55,7 @@ Route::group(['middleware' => 'locale'], function () {
 
             Route::get('colors/index', 'CenterStoneController@colors_index')->name('colors.index');
             Route::post('color/store', 'CenterStoneController@store_color')->name('color.store');
+            Route::post('import_csv', 'CenterStoneController@import_csv')->name('import_csv');
 
         });
 

@@ -7,6 +7,8 @@ use App\CenterStoneClarity;
 use App\CenterStoneColor;
 use App\CenterStoneSize;
 use Illuminate\Http\Request;
+use App\Imports\CenterStonesImport;
+use Excel;
 
 class CenterStoneController extends Controller
 {
@@ -27,9 +29,9 @@ class CenterStoneController extends Controller
             'diamond_id' => 'required',
             'shape' => 'required',
             'description' => 'required',
-            'center_stone_sizes_id' => 'required',
-            'center_stone_colors_id' => 'required',
-            'center_stone_clarities_id' => 'required',
+            'center_stone_sizes' => 'required',
+            'center_stone_colors' => 'required',
+            'center_stone_clarities' => 'required',
             'polish' => 'required',
             'fluor' => 'required',
             'symm' => 'required',
@@ -92,5 +94,23 @@ class CenterStoneController extends Controller
         ]);
         CenterStoneColor::create($request->only(['title', 'priority']));
         return back()->with('success', 'Stone Size Created');
+    }
+    public function import_csv(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx,csv'
+        ]);
+//        $path = $request->file('file')->getRealPath();
+
+        $file = $request->file('file');
+        $path = 'images/sheet';
+        // image upload
+        $extension = $file->extension();
+        $image = time() . '.' .$extension;
+        $file->move(public_path($path), $image);
+        // Session::put('center_stones_id', $request->id);
+        $url = $path . '/' . $image;
+        Excel::import(new CenterStonesImport, $url);
+        return back()->with('success', 'Center Stones has been updated');
     }
 }

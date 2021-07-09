@@ -13,10 +13,10 @@
                     </ul>
                 </div>
                 <div class="col">
-                    @permission('create.products')
+                    <!-- @permission('create.products')
                     <a href="{{route('center_stone.create')}}"
                        class="btn btn-success bs_dashboard_btn bs_btn_color float-right">Create New</a>
-                    @endpermission
+                    @endpermission -->
                 </div>
             </div>
         </div>
@@ -27,6 +27,15 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Center Stones</h4>
+                        <div class="pull-right">
+                            <form action="{{route('center_stone.import_csv')}}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                               
+                                <input type="file" class="btn btn-secondary" name="file">
+                                <button class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
 
@@ -81,9 +90,9 @@
                                         <td>
                                             {{ucwords($stone->shape??'')}}
                                         </td>
-                                        <td>{{ucwords($stone->size->title??'')}}</td>
-                                        <td>{{ucwords($stone->color->title??'')}}</td>
-                                        <td>{{ucwords($stone->clarity->title??'')}}</td>
+                                        <td>{{ucwords($stone->center_stone_sizes??'')}}</td>
+                                        <td>{{ucwords($stone->center_stone_colors??'')}}</td>
+                                        <td>{{ucwords($stone->center_stone_clarities??'')}}</td>
                                         <td>{{ucwords($stone->polish??'')}}</td>
                                         <td>{{ucwords($stone->symm??'')}}</td>
                                         <td>{{ucwords($stone->fluor??'')}}</td>
