@@ -90,12 +90,21 @@
 
                                     <div class="product-selection py-1">
                                         <div class="row">
+                                            <div class="col-lg-12 mb-2">
+                                                <select name="product_width" class="form-control" id="product_width" required>
+                                                    <option value="" selected disabled>Select Width</option>
+                                                    @foreach($product_widths as $width)
+                                                        <option value="{{$width->width->width}}">{{$width->width->width}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             <div class="col-lg-6">
                                                 <div class="product-range-size">
                                                     <select class="form-control" name="size" id="product_size" required>
-                                                        <option value="">{{__('Select Size')}}</option>
-                                                        @foreach($product->sizes as $size)
-                                                            <option value="{{$size->size}}">{{$size->size}}</option>
+                                                        <option value="" selected disabled>{{__('Select Size')}}</option>
+                                                        @foreach($product_sizes as $p_size)
+                                                            <option
+                                                                value="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
