@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard - Variations')
+@section('title', 'Dashboard - Center Stone Clarity')
 @section('content')
     <div class="content container-fluid">
 

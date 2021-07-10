@@ -247,11 +247,11 @@
                             <i class="fe fe-diamond"></i><span>Center Stone</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{route('center_stone.sizes.index')}}">
-                            <i class="fe fe-text-size"></i><span>Stone Sizes</span>
-                        </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a href="{{route('center_stone.sizes.index')}}">--}}
+{{--                            <i class="fe fe-text-size"></i><span>Stone Sizes</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li>
                         <a href="{{route('center_stone.colors.index')}}">
                             <i class="fe fe-target"></i><span>Stone Colors</span>

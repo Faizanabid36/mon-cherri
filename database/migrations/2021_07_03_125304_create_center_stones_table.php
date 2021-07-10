@@ -27,8 +27,8 @@ class CreateCenterStonesTable extends Migration
             $table->string('lab')->nullable();
             $table->string('certificate_no')->nullable();
             $table->string('vendor_stock_no')->nullable();
-            $table->float('total_price')->nullable();
-            $table->float('price_cc')->nullable();
+            $table->string('total_price')->nullable();
+            $table->string('price_cc')->nullable();
             $table->string('seller')->nullable();
             $table->string('ham_page')->nullable();
             $table->timestamps();

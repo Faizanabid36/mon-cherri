@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard - Products')
+@section('title', 'Dashboard - Center Stones')
 @section('content')
     <div class="content container-fluid">
         <!-- Page Header -->
@@ -31,7 +31,7 @@
                             <form action="{{route('center_stone.import_csv')}}" method="post"
                                   enctype="multipart/form-data">
                                 @csrf
-                               
+
                                 <input type="file" class="btn btn-secondary" name="file">
                                 <button class="btn btn-primary">Submit</button>
                             </form>
