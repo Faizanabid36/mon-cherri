@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\CenterStone;
+use App\CenterStoneClarity;
+use App\CenterStoneColor;
+use App\CenterStoneSize;
 use App\Product;
 use App\Category;
 use App\ProductAlbum;
+use App\ProductStone;
 use App\SubCategory;
 use App\Variation;
 use App\ProductVariation;
@@ -313,6 +318,23 @@ class ProductController extends Controller
         return view('products.album_list', compact('album', 'product_id'));
     }
 
+    public function center_stone($product_id)
+    {
+        $product = Product::whereId($product_id)->firstOrFail();
+        $stone_sizes = CenterStoneSize::orderBy('title')->get();
+        $stone_clarities = CenterStoneClarity::orderBy('priority')->get();
+        $stone_colors = CenterStoneColor::orderBy('priority')->get();
+        $stone_shapes = CenterStone::get()->pluck('shape')->unique();
+        $product_stones = ProductStone::whereProductId($product_id)->get();
+        return view('products.add_stones', compact('product_id', 'stone_clarities', 'stone_sizes', 'stone_colors', 'stone_shapes', 'product_stones'));
+    }
+
+    public function store_center_stone(Request $request)
+    {
+        ProductStone::create($request->except('_token'));
+        return back()->withSuccess('Created Successfully');
+    }
+
     public function create_album($product_id)
     {
         return view('products.create_album', compact('product_id'));
@@ -380,7 +402,7 @@ class ProductController extends Controller
         $path = 'images/sheet';
         // image upload
         $extension = $file->extension();
-        $image = time() . '.' .$extension;
+        $image = time() . '.' . $extension;
         $file->move(public_path($path), $image);
         Session::put('product_id', $request->product_id);
         $url = $path . '/' . $image;

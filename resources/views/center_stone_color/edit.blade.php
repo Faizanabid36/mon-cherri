@@ -1,18 +1,18 @@
-<form action="{{route('variations.update',$variation->id)}}" method="post">
+<form action="{{route('center_stone.color.update',$color->id)}}" method="post">
     <input type="hidden" name="_method" value="put">
-    <input type="text" name="id" value="{{$variation->id}}" hidden/>
+    <input type="text" name="id" value="{{$color->id}}" hidden/>
     @csrf
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="form-group">
-                <label>Variation Title </label>
-                <input type="text" name="title" value="{{ucwords($variation->title)}}" class="form-control" required>
+                <label>Color Title </label>
+                <input type="text" name="title" value="{{ucwords($color->title)}}" class="form-control" required>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="form-group">
-                <label>Variation Sub Title </label>
-                <input type="text" name="sub_title" value="{{ucwords($variation->sub_title)}}" class="form-control" required>
+                <label>Color Ranking </label>
+                <input type="text" name="priority" value="{{ucwords($color->priority)}}" class="form-control" required>
             </div>
         </div>
         <div class="col-md-12">

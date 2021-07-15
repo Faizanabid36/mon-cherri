@@ -42,7 +42,7 @@
                                                     @foreach(App\Variation::all() as $variation)
                                                         <option
                                                             title="{{$variation->title}}"
-                                                            value="{{$variation->id}}">{{ucwords($variation->title)}}</option>
+                                                            value="{{$variation->id}}">{{ucwords($variation->sub_title)}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('variations'))

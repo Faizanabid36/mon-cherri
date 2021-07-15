@@ -50,11 +50,18 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('sizes/index', 'CenterStoneController@sizes_index')->name('sizes.index');
             Route::post('sizes/store', 'CenterStoneController@store_size')->name('sizes.store');
 
+
             Route::get('clarities/index', 'CenterStoneController@clarities_index')->name('clarities.index');
             Route::post('clarity/store', 'CenterStoneController@store_clarity')->name('clarity.store');
+            Route::get('edit_clarity/{id}', 'CenterStoneController@edit_clarity')->name('clarity.edit');
+            Route::put('update_clarity/{id}', 'CenterStoneController@update_clarity')->name('clarity.update');
+
 
             Route::get('colors/index', 'CenterStoneController@colors_index')->name('colors.index');
             Route::post('color/store', 'CenterStoneController@store_color')->name('color.store');
+            Route::get('edit_color/{id}', 'CenterStoneController@edit_color')->name('color.edit');
+            Route::put('update_color/{id}', 'CenterStoneController@update_color')->name('color.update');
+
             Route::post('import_csv', 'CenterStoneController@import_csv')->name('import_csv');
 
         });
@@ -79,6 +86,11 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('bulk_delete_variations', 'ProductController@bulk_delete_variations')->name('bulk_delete');
             Route::post('import_csv', 'ProductController@import_csv')->name('import_csv');
         });
+        Route::name('product.center_stone.')->prefix('center_stone')->group(function () {
+            Route::get('add/{id}', 'ProductController@center_stone')->name('add');
+            Route::post('store', 'ProductController@store_center_stone')->name('store');
+        });
+
 
         // Prodcuc ajax route
         Route::post('get_more_product_details', 'ProductController@get_more_product_details');

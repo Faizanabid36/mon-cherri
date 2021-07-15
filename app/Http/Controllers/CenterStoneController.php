@@ -6,6 +6,7 @@ use App\CenterStone;
 use App\CenterStoneClarity;
 use App\CenterStoneColor;
 use App\CenterStoneSize;
+use App\Color;
 use Illuminate\Http\Request;
 use App\Imports\CenterStonesImport;
 use Excel;
@@ -47,7 +48,6 @@ class CenterStoneController extends Controller
         return redirect()->route('center_stone.index')->withSuccess('Stone Created Successfully');
     }
 
-
     public function sizes_index()
     {
         $center_stone_sizes = CenterStoneSize::orderBy('priority')->get();
@@ -80,6 +80,22 @@ class CenterStoneController extends Controller
         return back()->with('success', 'Stone Size Created');
     }
 
+    public function edit_clarity($id)
+    {
+        $clarity = CenterStoneClarity::find($id);
+        $view = view("center_stone_clarity.edit", compact('clarity'))->render();
+        return response()->json(['html' => $view]);
+    }
+
+    public function update_clarity(Request $request, $id)
+    {
+        CenterStoneClarity::whereId($id)->update([
+            'title' => $request->get('title'),
+            'priority' => $request->get('priority')
+        ]);
+        return redirect()->route('center_stone.clarities.index')->withSuccess('Updated Successfully');
+    }
+
     public function colors_index()
     {
         $center_stone_colors = CenterStoneColor::orderBy('priority')->get();
@@ -95,6 +111,23 @@ class CenterStoneController extends Controller
         CenterStoneColor::create($request->only(['title', 'priority']));
         return back()->with('success', 'Stone Size Created');
     }
+
+    public function edit_color($id)
+    {
+        $color = CenterStoneColor::find($id);
+        $view = view("center_stone_color.edit", compact('color'))->render();
+        return response()->json(['html' => $view]);
+    }
+
+    public function update_color(Request $request, $id)
+    {
+        CenterStoneColor::whereId($id)->update([
+            'title' => $request->get('title'),
+            'priority' => $request->get('priority')
+        ]);
+        return redirect()->route('center_stone.colors.index')->withSuccess('Updated Successfully');
+    }
+
     public function import_csv(Request $request)
     {
         $this->validate($request, [
@@ -106,7 +139,7 @@ class CenterStoneController extends Controller
         $path = 'images/sheet';
         // image upload
         $extension = $file->extension();
-        $image = time() . '.' .$extension;
+        $image = time() . '.' . $extension;
         $file->move(public_path($path), $image);
         // Session::put('center_stones_id', $request->id);
         $url = $path . '/' . $image;

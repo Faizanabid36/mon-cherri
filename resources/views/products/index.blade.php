@@ -49,11 +49,7 @@
                                     <th>Count</th>
                                     <th>Name</th>
                                     <th>Category</th>
-                                    <th>Vendor</th>
-                                    <th>Price</th>
-                                    <th>Old Price</th>
                                     <th>Stock</th>
-                                    <th>Created On</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -75,15 +71,7 @@
                                                 {{ucwords($category->title)}}
                                             @endforeach
                                         </td>
-                                        <td>
-                                            {{($product->brand) ? ucwords($product->brand->title) : "---" }}
-                                        </td>
-                                        <td>{{currency($product->price, 'USD')}}</td>
-                                        <td>
-                                            {{($product->old_price) ? currency($product->old_price, 'USD') : '---' }}
-                                        </td>
                                         <td>{{$product->stock}}</td>
-                                        <td>{{$product->created_at->format('d-m-Y')}}</td>
                                         <td>
                                             <div class="actions">
                                                 @permission('edit.products')
@@ -108,6 +96,11 @@
                                                    class="btn btn-sm bg-info-light"
                                                    data-route="{{route('product.variations.get',$product->id)}}">
                                                     <i class="fe fe-activity"></i> Variations
+                                                </a>
+                                                <a href="{{route('product.center_stone.add',$product->id)}}"
+                                                   class="btn btn-sm bg-secondary text-white"
+                                                   data-route="{{route('product.center_stone.add',$product->id)}}">
+                                                    <i class="fe fe-diamond"></i> Stone
                                                 </a>
                                             </div>
                                         </td>

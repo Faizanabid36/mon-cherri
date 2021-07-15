@@ -92,7 +92,7 @@
                                                         <a href="javascript:void(0)"
                                                            class="btn btn-sm bg-success-light mr-2 bs_edit"
                                                            data-id="{{$variation->id}}"
-                                                           data-route="{{route('variations.edit',$variation->id)}}"><i
+                                                           data-route="{{route('center_stone.clarity.edit',$variation->id)}}"><i
                                                                 class="fa fa-edit"></i></a>
                                                         @endpermission
                                                         @permission('delete.variations')
