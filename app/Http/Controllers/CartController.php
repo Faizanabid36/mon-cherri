@@ -35,14 +35,18 @@ class CartController extends Controller
         $product = Product::where('slug','=',$request->input('product'))->firstOrFail();
         if ($product && $product->stock > 0) 
         {
+           
             $size = $request->has('size') ? $request->input('size') : '';
             $qty  = $request->has('qty') ? $request->input('qty') : 1;
+            $width  = $request->has('width') ? $request->input('width') : 0;
+            $price  = $request->has('price') ? $request->input('price') : 0;
+            
             $cart = Cart::add([
                 'id' => $product->id,
                 'name' => $product->name,
                 'qty' => $qty,
-                'price' => $product->price,
-                'weight'=> 0,
+                'price' => $price,
+                'weight'=> $width,
                 'options' => ['size' =>  $size,'delivery_charges' => 0 ],
             ]);
             Cart::associate($cart->rowId, 'App\Product');

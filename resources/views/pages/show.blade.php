@@ -25,14 +25,14 @@
                                 <div class="row image-container">
                                     <div class="small-image product-dec-slider-2">
                                         @foreach($product->images as $p_img)
-                                            <div class="img-responsive">
+                                            <!-- <div class="img-responsive">
                                                 <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
                                                      src="{{asset($p_img->url)}}">
-                                            </div>
+                                            </div> -->
                                         @endforeach
                                     </div>
                                     <div class="big-image">
-                                        <img src="{{asset($product->image->url)}}" alt="" class="img-fluid">
+                                        <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
                                     <!---iMAGE Filter-->
                                     <!----End of the Image filter Gallery-->
@@ -71,10 +71,10 @@
                                         </div>
                                     </div>
                                     <div class="product-price">
-                                        <h1>
+                                        <!-- <h1>
                                             <del>{{$product->FormatedOldPrice()}}</del>
-                                        </h1>
-                                        <h1>{{$product->FormatedPrice()}}</h1>
+                                        </h1> {{$product->FormatedPrice()}} -->
+                                        <h1 class="chnge-price"></h1>
                                     </div>
                                     <div class="product-metal">
                                         <span><h3><b>Metal:</b> 14kt White Gold</h3></span>
@@ -83,28 +83,29 @@
                                     <div class="product-price-circle py-1">
                                         <div class="product-price-items d-flex">
                                             @foreach($product_variations as $variation)
-                                                <h1 style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
+                                                <h1 class="setvariations" data-id="{{$variation->variation_id}}" style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
+                                        <input type="hidden" class="getvariations" name="getvariations" value="{{$product_variations[0]->variation_id}}">
                                     </div>
 
                                     <div class="product-selection py-1">
                                         <div class="row">
                                             <div class="col-lg-12 mb-2">
-                                                <select name="product_width" class="form-control" id="product_width" required>
+                                                <select name="product_width" class="form-control getoptions" id="product_width" required>
                                                     <option value="" selected disabled>Select Width</option>
-                                                    @foreach($product_widths as $width)
-                                                        <option value="{{$width->width->width}}">{{$width->width->width}}</option>
+                                                    @foreach($product_widths as $key => $width)
+                                                        <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}" data-val="{{$width->width->width}}">{{$width->width->width}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="product-range-size">
-                                                    <select class="form-control" name="size" id="product_size" required>
+                                                    <select class="form-control getoptions" name="size" id="product_size" required>
                                                         <option value="" selected disabled>{{__('Select Size')}}</option>
-                                                        @foreach($product_sizes as $p_size)
-                                                            <option
-                                                                value="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
+                                                        @foreach($product_sizes as $key => $p_size)
+                                                            <option <?php echo $key == 0 ? 'selected' : ''; ?>  
+                                                                value="{{$p_size->size->id}}" data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -137,7 +138,7 @@
                                         @auth()
                                             <button type="button" name="add"
                                                     class="product-form__cart-submit add_to_cart single_page_add_to_cart"
-                                                    data-product_quantity="1" data-product_id="{{$product->slug}}"
+                                                    data-product_quantity="0" data-product_id="{{$product->slug}}"
                                                     data-product_size="">
                                                 <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
                                             </button>
@@ -683,7 +684,9 @@
 @section('javascript')
 
     <script type="text/javascript">
+
         $(document).ready(function () {
+            changeimages(); 
             $(document).on('change', '#Quantity', function () {
                 var qty = $("#Quantity").val();
                 if (qty != "" || qty != null) {
@@ -692,10 +695,11 @@
             });
 
             $(document).on('change', '#product_size', function () {
-                var size = $("#product_size").val();
-                if (check_size(size)) {
-                    $('.single_page_add_to_cart').attr('data-product_size', size);
-                }
+                // var selected = $(this).find('option:selected');
+                // var size = selected.data('val');
+                // if (check_size(size)) {
+                //     $('.single_page_add_to_cart').attr('data-product_size', size);
+                // }
             });
             var size = $("#product_size").val();
 
@@ -725,15 +729,22 @@
             $('.minusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
                 console.log('val', val)
-                if (val > 1)
+                if (val > 1){
                     document.getElementById('Quantity').value = parseInt(val) - 1;
+                    $('.single_page_add_to_cart').attr('data-product_quantity', val-1);
+                }
+
             })
             $('.plusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
+                
                 let limit = {{$product->stock}}
                 console.log('val', val)
                 if (val < limit) {
                     document.getElementById('Quantity').value = parseInt(val) + 1;
+                    
+                    $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1 );
+
                 } else {
                     alert('Quantity not present in stock')
                 }
@@ -755,6 +766,60 @@
                         }
                     }]
             });
+            //Owais
+            $('.setvariations').on('click',function () {
+                var data = $(this).data('id');
+                $('.getvariations').val(data);
+                changeimages();
+            })
+            $('.getoptions').on('change',function () {
+                changeimages();
+            });
+            $(document).on('click','.slideimg',function () {
+                var src = $(this).attr('src');
+                $('.big-image img').attr('src',src);
+                
+            });
+            
+            
         });
+        function changeimages() {
+            var selected = $('#product_size').find('option:selected');
+            var size = selected.data('val');
+            $('.single_page_add_to_cart').attr('data-product_size', size);
+            var psize  = $('#product_size').val();
+                var pwidth =  $('#product_width').val();
+                var provar =  $('.getvariations').val();
+                var product_id = $('.product-form__cart-submit').data('product_id');
+                
+                
+                $.ajax({
+                url: "{{ route('ChangeAlbum.post')}}",
+                type: 'post',
+                data: { psize: psize , provar:provar , pwidth: pwidth , product_id:product_id , _token: '{{csrf_token()}}' },
+                success: function(response)
+                {
+              
+                    $('.product-dec-slider-2').slick('unslick');
+                    var html = '';
+                    for (let index = 0; index < response[0].length; index++) {
+                        html += "<div class='img-responsive'><img class='img-fluid slideimg' src='";
+                        html += response[0][index]['url'];
+                        html +="'></div>";
+                        
+                    }
+                    html2 = '';
+                    html2 += "<img class='img-fluid' src='";
+                    html2 += response[0][0]['url'];
+                    html2 +="'>";
+                    
+
+                    $('.big-image').html(html2);
+                    $('.small-image').html(html);
+                    $('.chnge-price').html('$'+response[1]);
+                }
+            });
+           
+        }
     </script>
 @endsection

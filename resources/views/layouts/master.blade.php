@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <link href="{{asset('favicon.png')}}" rel="apple-touch-icon"/>
     <link href="{{asset('favicon.png')}}" rel="icon"/>
     <title>{{env('APP_NAME')}} - @yield('title')</title>
@@ -431,10 +432,13 @@
             var bs_product = $(this).attr('data-product_id');
             var bs_size = $(this).attr('data-product_size');
             var bs_qty = $(this).attr('data-product_quantity');
+            var bs_width =  $('#product_width').val();
+            var bs_price = $('.chnge-price').html();
+            var bs_price = bs_price.substring(1);
             $.ajax({
                 url: '<?=url("addToCart")?>',
                 method: 'POST',
-                data: {product: bs_product, qty: bs_qty, size: bs_size, "_token": "<?=csrf_token()?>"},
+                data: {product: bs_product, price : bs_price , width:bs_width , qty: bs_qty, size: bs_size, "_token": "<?=csrf_token()?>"},
                 success: function (data) {
                     notify(data);
                     top_cart();

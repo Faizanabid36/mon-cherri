@@ -15,7 +15,9 @@ class AccessDashboard
      */
     public function handle($request, Closure $next)
     {
+        
         if (Auth::check() && Auth::user()->hasRole(['admin', 'editor','employe'])){
+            
             return $next($request);
         }
         return redirect('/my-account/dashboard');

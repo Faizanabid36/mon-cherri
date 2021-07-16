@@ -6,9 +6,12 @@ use App\Category;
 use App\Invoice;
 use App\Post;
 use App\Product;
+use App\ProductVariation;
+use App\ProductAlbum;
 use App\Services\FilterProductService;
 use Auth;
 use Cart;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -125,5 +128,15 @@ class FrontController extends Controller
             return view('pages.invoice', compact('invoice'));
         }
         return abort(404);
+    }
+    //Owais
+
+    public function ChangeAlbum(request $request)
+    {
+        $product = Product::where('slug', $request->product_id)->firstOrFail();
+        $product_variations = ProductVariation::where([['product_id', $product->id],['size_id',$request->psize],['width_id',$request->pwidth],['variation_id',$request->provar]])->firstOrFail();
+        $gettitle = ProductAlbum::where('id',$product_variations->album_id)->firstOrFail();
+        $images = ProductAlbum::where([['title',$gettitle->title],['url' , '!=', 'null']])->get('url');
+        return array($images,$product_variations->price);
     }
 }

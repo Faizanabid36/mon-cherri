@@ -216,6 +216,9 @@ Route::group(['middleware' => 'locale'], function () {
     Route::get('/{slug}', 'FrontController@show_product');
     Route::get('/post/{slug}', 'FrontController@post');
     Route::post('contact', 'BaseController@contact_store')->name('contact.store');
+    //Owais
+    Route::post('/ChangeAlbum', 'FrontController@ChangeAlbum')->name('ChangeAlbum.post');
+
 
 
     // Api Routes
