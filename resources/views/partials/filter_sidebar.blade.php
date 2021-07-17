@@ -4,35 +4,38 @@
         <div class="closeFilter d-block d-md-none d-lg-none"><i class="fa fa-times" aria-hidden="true"></i></div>
         <div class="sidebar_tags">
             <!--Categories-->
-            <div class="sidebar_widget filterBox filter-widget">
-                <div class="title-widget"style="display: inline">
-                    <h2 style="float: left" class="fontofheading">{{__('Categories')}}</h2>
-                    <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>
+            @if(count($major_category->subcategories)>0)
+                <div class="sidebar_widget filterBox filter-widget">
+                    <div class="title-widget" style="display: inline">
+                        <h2 style="float: left" class="fontofheading">{{__('Categories')}}</h2>
+                        <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>
+                    </div>
+                    <ul class="filter-color swacth-list">
+                        @php $subcategory = $major_category->subcategories; @endphp
+                        @foreach($subcategory as $subcat)
+                            @php
+                                $subcat_filter_id = $subcat->slug.$subcat->id;
+                            @endphp
+
+                            <li data-filter-id="{{$subcat_filter_id}}" class="filter_item">
+
+                                <input type="checkbox" data-filter-id="{{$subcat_filter_id}}"
+                                       class="filter_item" {{(request()->subcategory == $subcat->slug) ? 'checked' : ''}}>
+
+                                <label data-filter-id="{{$subcat_filter_id}}"
+                                       class="filter_item"><span><span></span></span>{{__(ucwords($subcat->title))}}
+                                </label>
+
+                                <input type="radio" name="subcategory" id="{{$subcat_filter_id}}"
+                                       value="{{$subcat->slug}}"
+                                       style="visibility: hidden;" {{(request()->subcategory == $subcat->slug) ? 'checked' : ''}}>
+
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <ul class="filter-color swacth-list">
-                    @php $subcategory = $major_category->subcategories; @endphp
-                    @foreach($subcategory as $subcat)
-
-                        @php
-                            $subcat_filter_id = $subcat->slug.$subcat->id;
-                        @endphp
-
-                        <li data-filter-id="{{$subcat_filter_id}}" class="filter_item">
-
-                            <input type="checkbox" data-filter-id="{{$subcat_filter_id}}"
-                                   class="filter_item" {{(request()->subcategory == $subcat->slug) ? 'checked' : ''}}>
-
-                            <label data-filter-id="{{$subcat_filter_id}}"
-                                   class="filter_item"><span><span></span></span>{{__(ucwords($subcat->title))}}</label>
-
-                            <input type="radio" name="subcategory" id="{{$subcat_filter_id}}" value="{{$subcat->slug}}"
-                                   style="visibility: hidden;" {{(request()->subcategory == $subcat->slug) ? 'checked' : ''}}>
-
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <!--Categories-->
+            @endif
+        <!--Categories-->
             <!--Price Filter-->
             <div class="sidebar_widget filterBox filter-widget">
                 <div class="title-widget" style="">
@@ -74,7 +77,7 @@
                 <div class="filter-color swacth-list">
                     <ul>
                         @php $sizes = $major_category->sizes; @endphp
-                        @foreach($sizes->chunk(4) as $chunk)
+                        @foreach(\App\Size::all()->chunk(4) as $chunk)
                             @foreach($chunk as $size)
 
                                 @php
@@ -120,7 +123,7 @@
                             <span
                                 class="swacth-btn {{$color->color}} {{(request()->color == $color->slug) ? 'checked' : ''}}  filter_item"
                                 data-filter-id="{{$color_filter_id}}">
-                                {{ucwords($color->color)}}
+{{--                                {{ucwords($color->color)}}--}}
                                 <input type="radio" name="color" id="{{$color_filter_id}}" value="{{$color->slug}}"
                                        style="visibility: hidden;" {{(request()->color == $color->slug) ? 'checked' : ''}}>
                             </span>
@@ -170,36 +173,21 @@
                 </div>
                 <div class="filter-color swacth-list">
                     <ul>
-                        <li data-filter-id="1" class="filter_item">
-
-                            <input type="checkbox" data-filter-id="1"
-                                   class="filter_item">
-                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
+                        @foreach(\App\CenterStone::get()->pluck('shape')->unique() as $stone)
+                            <li data-filter-id="{{$stone}}" class="filter_item">
+                                <input type="checkbox" data-filter-id="{{$stone}}"
+                                       class="filter_item">
+                                <label data-filter-id="{{$stone}}" class="filter_item" style="font-size: 14px;">
                                 <span>
                                         <span></span>
                                 </span>
-                                Stone 1
-                                <input type="radio" name="stone" id="1" value="1"
-                                       style="visibility: hidden;"
-                                       class="filter_checkbox">
-
-                            </label>
-                        </li>
-                        <li data-filter-id="1" class="filter_item">
-
-                            <input type="checkbox" data-filter-id="1"
-                                   class="filter_item">
-                            <label data-filter-id="1" class="filter_item" style="font-size: 14px;">
-                                <span>
-                                        <span></span>
-                                </span>
-                                Stone 2
-                                <input type="radio" name="stone" id="1" value="1"
-                                       style="visibility: hidden;"
-                                       class="filter_checkbox">
-
-                            </label>
-                        </li>
+                                    {{$stone}}
+                                    <input type="radio" name="stone" id="1" value="1"
+                                           style="visibility: hidden;"
+                                           class="filter_checkbox">
+                                </label>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

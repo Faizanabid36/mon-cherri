@@ -86,7 +86,7 @@
                                                 <h1 class="setvariations" data-id="{{$variation->variation_id}}" style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
-                                        <input type="hidden" class="getvariations" name="getvariations" value="{{$product_variations[0]->variation_id}}">
+                                        @if(isset($product_variations[0]))<input type="hidden" class="getvariations" name="getvariations" value="{{$product_variations[0]->variation_id}}">@endif
                                     </div>
 
                                     <div class="product-selection py-1">
@@ -104,7 +104,7 @@
                                                     <select class="form-control getoptions" name="size" id="product_size" required>
                                                         <option value="" selected disabled>{{__('Select Size')}}</option>
                                                         @foreach($product_sizes as $key => $p_size)
-                                                            <option <?php echo $key == 0 ? 'selected' : ''; ?>  
+                                                            <option <?php echo $key == 0 ? 'selected' : ''; ?>
                                                                 value="{{$p_size->size->id}}" data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
                                                         @endforeach
                                                     </select>
@@ -686,7 +686,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            changeimages(); 
+            changeimages();
             $(document).on('change', '#Quantity', function () {
                 var qty = $("#Quantity").val();
                 if (qty != "" || qty != null) {
@@ -737,12 +737,12 @@
             })
             $('.plusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
-                
+
                 let limit = {{$product->stock}}
                 console.log('val', val)
                 if (val < limit) {
                     document.getElementById('Quantity').value = parseInt(val) + 1;
-                    
+
                     $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1 );
 
                 } else {
@@ -778,10 +778,10 @@
             $(document).on('click','.slideimg',function () {
                 var src = $(this).attr('src');
                 $('.big-image img').attr('src',src);
-                
+
             });
-            
-            
+
+
         });
         function changeimages() {
             var selected = $('#product_size').find('option:selected');
@@ -791,35 +791,35 @@
                 var pwidth =  $('#product_width').val();
                 var provar =  $('.getvariations').val();
                 var product_id = $('.product-form__cart-submit').data('product_id');
-                
-                
+
+
                 $.ajax({
                 url: "{{ route('ChangeAlbum.post')}}",
                 type: 'post',
                 data: { psize: psize , provar:provar , pwidth: pwidth , product_id:product_id , _token: '{{csrf_token()}}' },
                 success: function(response)
                 {
-              
+
                     $('.product-dec-slider-2').slick('unslick');
                     var html = '';
                     for (let index = 0; index < response[0].length; index++) {
                         html += "<div class='img-responsive'><img class='img-fluid slideimg' src='";
                         html += response[0][index]['url'];
                         html +="'></div>";
-                        
+
                     }
                     html2 = '';
-                    html2 += "<img class='img-fluid' src='";
+                    html2 += "<img style='width:100%;height:100vh' class='img-fluid' src='";
                     html2 += response[0][0]['url'];
                     html2 +="'>";
-                    
+
 
                     $('.big-image').html(html2);
                     $('.small-image').html(html);
                     $('.chnge-price').html('$'+response[1]);
                 }
             });
-           
+
         }
     </script>
 @endsection

@@ -365,7 +365,7 @@ class ProductController extends Controller
             $count = 1;
             foreach ($files as $file) {
                 $album = ProductAlbum::create([
-                    'title' => $request->title,
+                    'title' => strtolower($request->title),
                     'product_id' => $product_id
                 ]);
                 $path = 'images/product_albums/' . $product->slug . '-album_0' . $album->id;
@@ -380,7 +380,7 @@ class ProductController extends Controller
             }
         }
         $album = ProductAlbum::create([
-            'title' => $request->title,
+            'title' => strtolower($request->title),
             'product_id' => $product_id,
             'has_rotatory_image' => 1
         ]);

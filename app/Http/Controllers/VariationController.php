@@ -63,7 +63,7 @@ class VariationController extends Controller
         return back()->with('success','Variation has been deleted');
     }
     public function bulk_delete(BulkDeleteItemRequest $request)
-    {  
+    {
         $variations = explode(',',$request->items);
         Variation::destroy($variations);
         return redirect()->route('variations.index')->with('success','Variations have been deleted');

@@ -17,9 +17,9 @@ class CenterStonesImport implements ToCollection
     public function collection(Collection $collection)
     {
         CenterStone::getQuery()->delete();
-        CenterStoneClarity::getQuery()->delete();
-        CenterStoneColor::getQuery()->delete();
-        CenterStoneSize::getQuery()->delete();
+//        CenterStoneClarity::getQuery()->delete();
+//        CenterStoneColor::getQuery()->delete();
+//        CenterStoneSize::getQuery()->delete();
         $colors = $clarities = $sizes = [];
         for ($i = 2; $i < count($collection); $i++) {
             if (!in_array($collection[$i][5], $colors))
@@ -28,7 +28,7 @@ class CenterStonesImport implements ToCollection
             if (!in_array($collection[$i][6], $clarities))
                 array_push($clarities, $collection[$i][6]);
 
-            if (!in_array($collection[$i][4], $colors))
+            if (!in_array($collection[$i][4], $sizes))
                 array_push($sizes, $collection[$i][4]);
 
             CenterStone::create(

@@ -34,8 +34,8 @@
         <div class="collection-header mb-3">
             <div class="collection-hero">
                 <div class="collection-hero__image">
-                    <img class="blur-up lazyload" src="{{asset('images/header.jpg')}}"
-                         alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
+{{--                    <img class="blur-up lazyload" src="{{asset('images/header.jpg')}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>--}}
+                    <img class="blur-up lazyload" height="325" src="{{($major_category->image)}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
                 </div>
                 <div class="collection-hero__title-wrapper">
                     <h1 class="collection-hero__title page-width">
@@ -70,13 +70,13 @@
                                                 <a href="{{url('/'.$product->slug)}}" class="grid-view-item__link">
                                                     <!-- image -->
                                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                                         style="height: 285px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
+                                                         style="height: 275px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End image -->
                                                     <!-- Hover image -->
                                                     <img class="grid-view-item__image hover blur-up lazyload"
-                                                         style="height: 285px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
+                                                         style="height: 275px;border-radius: 5px;box-shadow: black 0 0 1px 0;"
                                                          src="{{asset($product->image->url)}}" alt="image"
                                                          title="{{__(ucwords($product->name))}}">
                                                     <!-- End hover image -->

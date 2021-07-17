@@ -8,7 +8,7 @@ class FilterProductService
 {
     public static function filter_with_categories($major_category,$paginate)
     {
-        
+
         $products = $major_category->products()->orderBy('created_at', 'desc')->paginate($paginate);
 
             if(request()->hasAny(['color', 'subcategory', 'subcategory_type', 'size', 'brand', 'price_min', 'price_max', 'keyword'])){
@@ -58,10 +58,10 @@ class FilterProductService
                     $keyword = request()->keyword;
                     $products->withAllTags([$keyword]);
 
-                    $products->orWhere('products.name', 'LIKE', '%'. $keyword .'%')
-                    ->orWhereHas('brand', function($q) use ($keyword){
-                        $q->where('title', 'LIKE', '%' . $keyword . '%');
-                    });
+//                    $products->orWhere('products.name', 'LIKE', '%'. $keyword .'%')
+//                    ->orWhereHas('brand', function($q) use ($keyword){
+//                        $q->where('title', 'LIKE', '%' . $keyword . '%');
+//                    });
 
                     $filters += ['keyword'=>$keyword];
                 }
