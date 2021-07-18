@@ -21,32 +21,49 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">360 Images Album "{{$images->first()->title}}"
-                            of Product "{{ucfirst($images->first()->product_album->product->name)}}"
+                        <div class="card-title">360 Images Album "{{ucfirst($album->title)}}"
+                            of Product "{{ucfirst($album->product->name)}}"
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row mb-1">
-                            @foreach($images as $image)
-                            <div class="col-md-4">
-                                <form action="{{route('product.album.update_360_image',$image->id)}}" method="post"
+                    <form action="{{route('product.album.update_360_image')}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
-                                    <div>
-                                        <img class="img-responsive" src="{{url($image->path)}}" alt="image" width="270"
-                                             height="150">
-                                        <input type="file" class="btn btn-secondary" name="path">
-                                        <!-- <button class="btn btn-secondary">upload</button> -->
-                                        <button type="submit" class="btn btn-primary ">Submit</button>
-                                        <button type="submit" value="reset" name="action" class="btn btn-secondary ">Reset</button>
-                                    </div>
-                                </form>
+
+                            <div class="container">
+                                <div class="row">
+                                    @foreach($images as $image)
+                                        <div class="col-sm-2 edit_images">
+                                            <a href="{{route('product.album.delete_image',$image->id)}}"
+                                                
+                                                class="btn del_p_image_btn"><i
+                                                    class="material-icons">clear</i></a>
+                                            <img src="{{url($image->path)}}" width="100%">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>      
+                            <div class="input-images"></div>
+                            <input value="{{$album->id}}" hidden name="product_album_id"/>
+                            <input value="{{$album->product->id}}" hidden name="product_id"/>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-lg btn-success bs_dashboard_btn bs_btn_color">
+                                    Save
+                                </button>
                             </div>
-                            @endforeach
-                        </div>
+                           
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function () {
+    
+            $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
+        })
+    </script>
 @endsection
