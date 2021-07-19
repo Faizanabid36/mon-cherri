@@ -44,9 +44,15 @@ class FrontController extends Controller
         $product_sizes = collect($product->product_variations)->unique(function ($var) {
             return $var['product_id'] . $var['size_id'];;
         });
-        $product_widths = collect($product->product_variations)->unique(function ($var) {
-            return $var['product_id'] . $var['width_id'];;
-        });
+        // dd($product->product_variations[0]->width_id);
+        if($product->product_variations[0]->width_id){
+            $product_widths = collect($product->product_variations)->unique(function ($var) {
+                return $var['product_id'] . $var['width_id'];;
+            });
+        }
+        else{
+            $product_widths = array();
+        }
         $related_products = Product::where('id', '!=', $product->id)->limit(8)->latest()->get();
         session()->flash('after_login_url', '/' . $product->slug);
         return view('pages.show', compact('product', 'related_products', 'product_variations', 'product_sizes', 'product_widths'));

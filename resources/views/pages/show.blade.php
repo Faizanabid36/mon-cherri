@@ -94,6 +94,7 @@
                                             <div class="col-lg-12 mb-2">
                                                 <select name="product_width" class="form-control getoptions" id="product_width" required>
                                                     <option value="" selected disabled>Select Width</option>
+                                                    
                                                     @foreach($product_widths as $key => $width)
                                                         <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}" data-val="{{$width->width->width}}">{{$width->width->width}}</option>
                                                     @endforeach
