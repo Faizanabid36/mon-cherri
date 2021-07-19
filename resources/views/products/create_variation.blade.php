@@ -42,7 +42,15 @@
                                                     @foreach(App\Variation::all() as $variation)
                                                         <option
                                                             title="{{$variation->title}}"
-                                                            value="{{$variation->id}}">{{ucwords($variation->sub_title)}}</option>
+                                                            value="{{$variation->id}}" 
+                                                            <?php
+                                                            if(isset($product->variations))
+                                                            { if(in_array($variation->id, json_decode($product->variations)))
+                                                            {
+                                                                echo "selected";
+                                                            }}
+                                                            ?>
+                                                            >{{ucwords($variation->sub_title)}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('variations'))
@@ -59,7 +67,18 @@
                                                         id="sizes" data-route="" name="sizes[]" multiple>
                                                     <option value="" disabled>Choose Size</option>
                                                     @foreach(App\Size::all() as $size)
-                                                        <option value="{{$size->id}}">{{ucwords($size->size)}}</option>
+                                                        <option value="{{$size->id}}" 
+                                                        <?php
+                                                        if(isset($product->sizes))
+                                                        { 
+                                                            if(in_array($size->id, json_decode($product->sizes)))
+                                                            {
+                                                                echo "selected";
+                                                            }
+                                                        }
+                                                            ?>    
+                                                        
+                                                        >{{ucwords($size->size)}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('sizes'))
@@ -335,7 +354,14 @@
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
             $('#add_variant_btn').on('click', function () {
                 if (variant === 0) {
-                    $('#variants').append(' <div class="col-md-6"><div class="form-group"><label>Width</label> <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>Choose Width</option> @foreach(App\Width::all() as $width)<option value="{{$width->id}}">{{ucwords($width->width)}}</option>@endforeach </select> </div></div>');
+                    $('#variants').append(`<div class="col-md-6"><div class="form-group"><label>Width</label>
+                     <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>
+                     Choose Width
+                     </option> 
+                     @foreach(App\Width::all() as $width)
+                     <option value="{{$width->id}}">{{ucwords($width->width)}}</option>
+                     @endforeach 
+                     </select> </div></div>`);
                     $('#widths').select2();
                     $(this).hide();
                 }

@@ -25,6 +25,9 @@ class CreateProductsTable extends Migration
             $table->integer('stock')->unsinged();
             $table->boolean('is_new')->default(false);
             $table->longText('video')->nullable();
+            $table->longText('variations')->nullable();
+            $table->longText('sizes')->nullable();
+            $table->longText('widths')->nullable();
             $table->timestamps();
             // $table->softDeletes();
 

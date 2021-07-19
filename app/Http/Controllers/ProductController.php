@@ -133,20 +133,28 @@ class ProductController extends Controller
 
     public function add_variations($product_id)
     {
+        
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
-        return view('products.create_variation', compact('product_id', 'variations'));
+        $product=Product::whereId($product_id)->first();
+        return view('products.create_variation', compact('product_id', 'variations','product'));
     }
 
     public function store_variations(Request $request)
     {
         //  dd($request->all());
         ProductVariation::whereProductId($request->product_id)->delete();
+        $product=Product::whereId($request->product_id)->first();
+        $product->variations=json_encode($request->variations);
+        $product->sizes=json_encode($request->sizes);
+        $product->widths=json_encode($request->widths);
+        $product->save();
         foreach ($request->variations as $var) {
             if ($request->sizes) {
+                
                 foreach ($request->sizes as $size) {
-
                     if ($request->widths) {
                         foreach ($request->widths as $width) {
+                            
                             if ($request->certificates) {
 
                                 foreach ($request->certificates as $certificate) {
@@ -365,7 +373,7 @@ class ProductController extends Controller
             $count = 1;
             foreach ($files as $file) {
                 $album = ProductAlbum::create([
-                    'title' => $request->title,
+                    'title' => strtolower($request->title),
                     'product_id' => $product_id
                 ]);
                 $path = 'images/product_albums/' . $product->slug . '-album_0' . $album->id;
@@ -380,14 +388,14 @@ class ProductController extends Controller
             }
         }
         $album = ProductAlbum::create([
-            'title' => $request->title,
+            'title' => strtolower($request->title),
             'product_id' => $product_id,
             'has_rotatory_image' => 1
         ]);
-        for ($i = 1; $i <= 15; $i++) {
+        // for ($i = 1; $i <= 15; $i++) {
 
-            \App\RotatoryImage::create(['title' => $request->title, 'path' => url('images/defult.jpg'), 'product_album_id' => ($album->id)]);
-        }
+        //     \App\RotatoryImage::create(['title' => $request->title, 'path' => url('images/defult.jpg'), 'product_album_id' => ($album->id)]);
+        // }
         return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
     }
 
