@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Database\Seeds\PermissionsTableSeeder;
+// use Database\Seeds\PermissionsTableSeeder;
 use Database\Seeds\RolesTableSeeder;
 use Database\Seeds\ConnectRelationshipsSeeder;
 

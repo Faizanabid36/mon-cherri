@@ -20,6 +20,13 @@
     <!-- google font-family  -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=poppins"> -->
     <!-- css file  -->
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/rainbow.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/github.css')}}" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">

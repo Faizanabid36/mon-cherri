@@ -25,9 +25,9 @@ class RotatoryImageController extends Controller
         // dd();
         $path = 'images/product_albums/' . Product::whereId($request->product_id)->first()->slug. '-album_0' . $request->product_album_id.'/360_album';
         
-        if (! File::exists($path)) {
-            File::makeDirectory($path);
-        }
+        // if (! File::exists($path)) {
+        //     File::makeDirectory($path);
+        // }
      
         foreach($request->images as $image)
         {

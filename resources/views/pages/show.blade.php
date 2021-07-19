@@ -31,9 +31,11 @@
                                             </div> -->
                                         @endforeach
                                     </div>
+                                    
                                     <div class="big-image">
                                         <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
+                                   
                                     <!---iMAGE Filter-->
                                     <!----End of the Image filter Gallery-->
                                 </div>
@@ -683,7 +685,8 @@
     <!--End Body Content-->
 @endsection
 @section('javascript')
-
+<script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
+<link rel="stylesheet" href="{{asset('css/tikslus360.css')}}" />
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -779,6 +782,13 @@
             $(document).on('click','.slideimg',function () {
                 var src = $(this).attr('src');
                 $('.big-image img').attr('src',src);
+                $('#view360').hide();
+                $('.big-image').show();
+
+            });
+            $(document).on('click','.slide360',function () {
+                $('.big-image').hide();
+                $('#view360').show();
 
             });
 
@@ -800,7 +810,8 @@
                 data: { psize: psize , provar:provar , pwidth: pwidth , product_id:product_id , _token: '{{csrf_token()}}' },
                 success: function(response)
                 {
-
+                   
+                    $('#view360').remove();
                     $('.product-dec-slider-2').slick('unslick');
                     var html = '';
                     for (let index = 0; index < response[0].length; index++) {
@@ -809,13 +820,23 @@
                         html +="'></div>";
 
                     }
+
+                    if(response[2][0]){
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
+                    }
                     html2 = '';
                     html2 += "<img style='width:100%;height:100vh' class='img-fluid' src='";
                     html2 += response[0][0]['url'];
                     html2 +="'>";
 
-
+                    if(response[2][0]){
+                    var path = response[2][0]['path'];
+                    path = path.substring(0, path.lastIndexOf("/") + 1);
+                    $('.big-image').after( "<div id='view360' style='display:none'></div>" );
+		            $("#view360").tikslus360({imageDir:path,imageCount:response[3],imageExt:'jpg',canvasID:'mycar',canvasWidth:380,canvasHeight:380,autoRotate:false});
+                    }
                     $('.big-image').html(html2);
+                    $('.big-image').show();
                     $('.small-image').html(html);
                     $('.chnge-price').html('$'+response[1]);
                 }
