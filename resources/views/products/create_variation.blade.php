@@ -91,10 +91,28 @@
 
                                     </div>
                                     <div class="row" id="variants">
-
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>Width</label>
+                                                <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>
+                                                Choose Width
+                                                </option> 
+                                                @foreach(App\Width::all() as $width)
+                                                <option value="{{$width->id}}"  
+                                                    <?php
+                                                            if(isset($product->widths))
+                                                            { if(in_array($width->id, json_decode($product->widths)))
+                                                            {
+                                                                echo "selected";
+                                                            }}
+                                                    ?>
+                                                >{{ucwords($width->width)}}</option>
+                                                @endforeach 
+                                                </select> 
+                                            </div>
+                                        </div>
                                     </div>
-                                    <a href="#" id="add_variant_btn" class="link-primary"><i class="fe fe-plus"></i> Add
-                                        variant</a>
+                                    <!-- <a href="#" id="add_variant_btn" class="link-primary"><i class="fe fe-plus"></i> Add
+                                        variant</a> -->
 
                                 </div>
 
@@ -108,7 +126,7 @@
                             @endif
                                 </div> -->
                                 <div class="col-md-12">
-
+                                        
                                 </div>
                             <!-- <div class="col-md-12">
 								@if($errors->has('description'))
@@ -351,6 +369,7 @@
             var variant = 0
             $('#variations').select2();
             $('#sizes').select2();
+            $('#widths').select2();
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
             $('#add_variant_btn').on('click', function () {
                 if (variant === 0) {
@@ -362,7 +381,7 @@
                      <option value="{{$width->id}}">{{ucwords($width->width)}}</option>
                      @endforeach 
                      </select> </div></div>`);
-                    $('#widths').select2();
+                    
                     $(this).hide();
                 }
             })
