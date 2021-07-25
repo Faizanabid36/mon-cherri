@@ -79,7 +79,7 @@
                                         <h1 class="chnge-price"></h1>
                                     </div>
                                     <div class="product-metal">
-                                        <span><h3><b>Metal:</b> 14kt White Gold</h3></span>
+                                        <span><h3><b>Metal:</b><span class="dynamic-product-metal">14kt White Gold</span></h3></span>
                                         <span></span>
                                     </div>
                                     <div class="product-price-circle py-1">
@@ -194,8 +194,8 @@
                                                  aria-labelledby="nav-home-tab">
                                                 <div
                                                     class="stock-number d-flex align-items-center justify-content-between">
-                                                    <h1 class="text-dark">
-                                                        {!! $product->description !!}
+                                                    <h1 class="text-dark dynamic-des">
+                                                        
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -205,8 +205,8 @@
                                                     <div class="stock-number-title">
                                                         <h1>Metal</h1>
                                                     </div>
-                                                    <div class="stock-number-price ml-5">
-                                                        <h1>{{$product->metal}}</h1>
+                                                    <div class="stock-number-price ml-5 ">
+                                                        <h1 class="dynamic-product-metal"></h1>
                                                     </div>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -217,7 +217,7 @@
                                                         <h1>Width</h1>
                                                     </div>
                                                     <div class="stock-number-price ml-5">
-                                                        <h1>{{$product->width}}</h1>
+                                                        <h1 class="dynamic-width"></h1>
                                                     </div>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -228,7 +228,7 @@
                                                         <h1>Prong Metal </h1>
                                                     </div>
                                                     <div class="stock-number-price ml-5">
-                                                        <h1>{{$product->prong_metal}}</h1>
+                                                        <h1 class="dynamic-prong-metal"></h1>
                                                     </div>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -859,10 +859,14 @@
                             autoRotate: true
                         });
                     }
+                    $('.dynamic-des').html(response[1]['description']);
+                    $('.dynamic-width').html(response[5][0]);
+                    $('.dynamic-prong-metal').html(response[4]['title']);
+                    $('.dynamic-product-metal').html(response[4]['sub_title']);
                     $('.big-image').html(html2);
                     $('.big-image').show();
                     $('.small-image').html(html);
-                    $('.chnge-price').html('$' + response[1]);
+                    $('.chnge-price').html('$' + response[1]['price']);
                 }
             });
 
