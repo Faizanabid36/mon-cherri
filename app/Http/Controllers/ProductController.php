@@ -334,13 +334,53 @@ class ProductController extends Controller
         $stone_colors = CenterStoneColor::orderBy('priority')->get();
         $stone_shapes = CenterStone::get()->pluck('shape')->unique();
         $product_stones = ProductStone::whereProductId($product_id)->get();
+        // dd($product_stones);
         return view('products.add_stones', compact('product_id', 'stone_clarities', 'stone_sizes', 'stone_colors', 'stone_shapes', 'product_stones'));
     }
 
     public function store_center_stone(Request $request)
     {
-        ProductStone::create($request->except('_token'));
-        return back()->withSuccess('Created Successfully');
+        // dd($request->all());
+        ProductStone::where([['product_id',$request->product_id],['stone_shape',$request->stone_shape]])->delete();
+         $stone_sizes = CenterStoneSize::where([
+            ['id','>=',$request->size_from],
+            ['id','<=',$request->size_to]
+        ])
+        ->orderBy('title')->get();
+        // dd($stone_sizes);
+         $stone_clarities = CenterStoneClarity::where([
+            ['id','>=',$request->clarity_from],
+            ['id','<=',$request->clarity_to]
+        ])
+        ->orderBy('priority')->get();
+        // dd($stone_clarities);
+         $stone_colors = CenterStoneColor::where([
+            ['id','>=',$request->color_from],
+            ['id','<=',$request->color_to]
+        ])
+        ->orderBy('priority')->get();
+        // dd($stone_colors);
+        foreach($stone_sizes as $size)
+        {
+            // dd("size");
+            foreach($stone_clarities as $clarity)
+            {
+                // dd("clarity");
+                foreach($stone_colors as $color)
+                { 
+                    // dd("color");
+                    ProductStone::create([
+                        'stone_shape'=>$request->stone_shape,
+                        'product_id'=>$request->product_id,
+                        'color_id'=>$color->id,
+                        'clarity_id'=>$clarity->id,
+                        'size_id'=>$size->id
+                    ]);
+                }
+            }
+        }
+        //  ProductStone::create($request->except('_token'));
+         return back()->withSuccess('Created Successfully');
     }
 
     public function create_album($product_id)

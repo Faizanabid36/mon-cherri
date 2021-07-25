@@ -45,6 +45,7 @@ class CenterStoneController extends Controller
             'ham_page' => 'required',
         ]);
         $stone = CenterStone::create($request->except('_token'));
+
         return redirect()->route('center_stone.index')->withSuccess('Stone Created Successfully');
     }
 

@@ -205,12 +205,12 @@
                                     </th>
                                     <th>S.No</th>
                                     <th>Shape</th>
-                                    <th>Color From</th>
-                                    <th>Color To</th>
-                                    <th>Clarity From</th>
-                                    <th>Clarity To</th>
-                                    <th>Size From</th>
-                                    <th>Size To</th>
+                                    <th>Color </th>
+                                    <!-- <th>Color To</th> -->
+                                    <th>Clarity</th>
+                                    <!-- <th>Clarity To</th> -->
+                                    <th>Size</th>
+                                    <!-- <th>Size To</th> -->
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -224,12 +224,12 @@
                                         </td>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ucfirst($stone->stone_shape)}}</td>
-                                        <td>{{ucfirst($stone->p_color_from->title)}}</td>
-                                        <td>{{ucfirst($stone->p_color_to->title)}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_from->title)}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_to->title)}}</td>
-                                        <td>{{ucfirst($stone->p_size_from->title)}}</td>
-                                        <td>{{ucfirst($stone->p_size_to->title)}}</td>
+                                        <td>{{ucfirst($stone->center_stone_color->title)??""}}</td>
+                                        
+                                        <td>{{ucfirst($stone->center_stone_clarity->title)??""}}</td>
+                                        
+                                        <td>{{ucfirst($stone->center_stone_size->title)??""}}</td>
+                                        
                                 @endforeach
                                 {{--                                @foreach($variations as $variation)--}}
                                 {{--                                                                    <tr>--}}

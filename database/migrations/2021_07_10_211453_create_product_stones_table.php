@@ -17,12 +17,12 @@ class CreateProductStonesTable extends Migration
             $table->bigIncrements('id');
             $table->string('stone_shape');
             $table->string('product_id');
-            $table->string('color_from');
-            $table->string('color_to');
-            $table->string('clarity_from');
-            $table->string('clarity_to');
-            $table->string('size_from');
-            $table->string('size_to');
+            $table->string('color_id');
+            // $table->string('color_to');
+            $table->string('clarity_id');
+            // $table->string('clarity_to');
+            $table->string('size_id');
+            // $table->string('size_to');
             $table->timestamps();
         });
     }

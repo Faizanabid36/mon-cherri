@@ -21,6 +21,7 @@ class CreateCenterStonesTable extends Migration
             $table->string('center_stone_sizes')->nullable();
             $table->string('center_stone_colors')->nullable();
             $table->string('center_stone_clarities')->nullable();
+            $table->string('cut')->nullable();
             $table->string('polish')->nullable();
             $table->string('symm')->nullable();
             $table->string('fluor')->nullable();

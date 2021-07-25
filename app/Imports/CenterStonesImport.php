@@ -30,25 +30,26 @@ class CenterStonesImport implements ToCollection
 
             if (!in_array($collection[$i][4], $sizes))
                 array_push($sizes, $collection[$i][4]);
-
+            
             CenterStone::create(
                 [
-                    'diamond_id' => $collection[$i][1],
-                    'shape' => $collection[$i][3],
-                    'description' => $collection[$i][2],
-                    'center_stone_sizes' => $collection[$i][4],
-                    'center_stone_colors' => $collection[$i][5],
-                    'center_stone_clarities' => $collection[$i][6],
+                    'diamond_id' => $collection[$i][0],
+                    'shape' => $collection[$i][2],
+                    'description' => $collection[$i][1],
+                    'center_stone_sizes' => $collection[$i][3],
+                    'center_stone_colors' => $collection[$i][4],
+                    'center_stone_clarities' => $collection[$i][5],
+                    'cut'=> $collection[$i][6],
                     'polish' => $collection[$i][7],
                     'fluor' => $collection[$i][9],
                     'symm' => $collection[$i][8],
                     'lab' => $collection[$i][10],
                     'certificate_no' => $collection[$i][11],
                     'vendor_stock_no' => $collection[$i][12],
-                    'price_cc' => $collection[$i][14],
-                    'total_price' => $collection[$i][13],
-                    'seller' => $collection[$i][15],
-                    'ham_page' => $collection[$i][16],
+                    'price_cc' => $collection[$i][13],
+                    'total_price' => $collection[$i][14],
+                    'seller' => "",
+                    'ham_page' => "",
                 ]
             );
         }
