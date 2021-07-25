@@ -24,18 +24,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="row image-container">
                                     <div class="small-image product-dec-slider-2">
-                                        @foreach($product->images as $p_img)
-                                            <!-- <div class="img-responsive">
+                                    @foreach($product->images as $p_img)
+                                        <!-- <div class="img-responsive">
                                                 <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
                                                      src="{{asset($p_img->url)}}">
                                             </div> -->
                                         @endforeach
                                     </div>
-                                    
+
                                     <div class="big-image">
-                                        <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
+                                    <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
-                                   
+
                                     <!---iMAGE Filter-->
                                     <!----End of the Image filter Gallery-->
                                 </div>
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="product-price">
-                                        <!-- <h1>
+                                    <!-- <h1>
                                             <del>{{$product->FormatedOldPrice()}}</del>
                                         </h1> {{$product->FormatedPrice()}} -->
                                         <h1 class="chnge-price"></h1>
@@ -85,30 +85,39 @@
                                     <div class="product-price-circle py-1">
                                         <div class="product-price-items d-flex">
                                             @foreach($product_variations as $variation)
-                                                <h1 class="setvariations" data-id="{{$variation->variation_id}}" style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
+                                                <h1 class="setvariations" data-id="{{$variation->variation_id}}"
+                                                    style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
-                                        @if(isset($product_variations[0]))<input type="hidden" class="getvariations" name="getvariations" value="{{$product_variations[0]->variation_id}}">@endif
+                                        @if(isset($product_variations[0]))<input type="hidden" class="getvariations"
+                                                                                 name="getvariations"
+                                                                                 value="{{$product_variations[0]->variation_id}}">@endif
                                     </div>
 
                                     <div class="product-selection py-1">
                                         <div class="row">
                                             <div class="col-lg-12 mb-2">
-                                                <select name="product_width" class="form-control getoptions" id="product_width" required>
+                                                <select name="product_width" class="form-control getoptions"
+                                                        id="product_width" required>
                                                     <option value="" selected disabled>Select Width</option>
-                                                    
+
                                                     @foreach($product_widths as $key => $width)
-                                                        <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}" data-val="{{$width->width->width}}">{{$width->width->width}}</option>
+                                                        <option
+                                                            <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}"
+                                                            data-val="{{$width->width->width}}">{{$width->width->width}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="product-range-size">
-                                                    <select class="form-control getoptions" name="size" id="product_size" required>
-                                                        <option value="" selected disabled>{{__('Select Size')}}</option>
+                                                    <select class="form-control getoptions" name="size"
+                                                            id="product_size" required>
+                                                        <option value="" selected
+                                                                disabled>{{__('Select Size')}}</option>
                                                         @foreach($product_sizes as $key => $p_size)
                                                             <option <?php echo $key == 0 ? 'selected' : ''; ?>
-                                                                value="{{$p_size->size->id}}" data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
+                                                                    value="{{$p_size->size->id}}"
+                                                                    data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -685,8 +694,9 @@
     <!--End Body Content-->
 @endsection
 @section('javascript')
-<script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/tikslus360.css')}}" />
+    <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
+
+    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}"/>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -733,9 +743,9 @@
             $('.minusQty').on('click', function () {
                 let val = document.getElementById('Quantity').value;
                 console.log('val', val)
-                if (val > 1){
+                if (val > 1) {
                     document.getElementById('Quantity').value = parseInt(val) - 1;
-                    $('.single_page_add_to_cart').attr('data-product_quantity', val-1);
+                    $('.single_page_add_to_cart').attr('data-product_quantity', val - 1);
                 }
 
             })
@@ -747,7 +757,7 @@
                 if (val < limit) {
                     document.getElementById('Quantity').value = parseInt(val) + 1;
 
-                    $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1 );
+                    $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1);
 
                 } else {
                     alert('Quantity not present in stock')
@@ -771,22 +781,22 @@
                     }]
             });
             //Owais
-            $('.setvariations').on('click',function () {
+            $('.setvariations').on('click', function () {
                 var data = $(this).data('id');
                 $('.getvariations').val(data);
                 changeimages();
             })
-            $('.getoptions').on('change',function () {
+            $('.getoptions').on('change', function () {
                 changeimages();
             });
-            $(document).on('click','.slideimg',function () {
+            $(document).on('click', '.slideimg', function () {
                 var src = $(this).attr('src');
-                $('.big-image img').attr('src',src);
+                $('.big-image img').attr('src', src);
                 $('#view360').hide();
                 $('.big-image').show();
 
             });
-            $(document).on('click','.slide360',function () {
+            $(document).on('click', '.slide360', function () {
                 $('.big-image').hide();
                 $('#view360').show();
 
@@ -794,51 +804,65 @@
 
 
         });
+
         function changeimages() {
             var selected = $('#product_size').find('option:selected');
             var size = selected.data('val');
             $('.single_page_add_to_cart').attr('data-product_size', size);
-            var psize  = $('#product_size').val();
-                var pwidth =  $('#product_width').val();
-                var provar =  $('.getvariations').val();
-                var product_id = $('.product-form__cart-submit').data('product_id');
+            var psize = $('#product_size').val();
+            var pwidth = $('#product_width').val();
+            var provar = $('.getvariations').val();
+            var product_id = $('.product-form__cart-submit').data('product_id');
 
 
-                $.ajax({
+            $.ajax({
                 url: "{{ route('ChangeAlbum.post')}}",
                 type: 'post',
-                data: { psize: psize , provar:provar , pwidth: pwidth , product_id:product_id , _token: '{{csrf_token()}}' },
-                success: function(response)
-                {
-                   
+                data: {
+                    psize: psize,
+                    provar: provar,
+                    pwidth: pwidth,
+                    product_id: product_id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function (response) {
+
                     $('#view360').remove();
                     $('.product-dec-slider-2').slick('unslick');
                     var html = '';
                     for (let index = 0; index < response[0].length; index++) {
                         html += "<div class='img-responsive'><img class='img-fluid slideimg' src='";
                         html += response[0][index]['url'];
-                        html +="'></div>";
+                        html += "'></div>";
 
                     }
 
-                    if(response[2][0]){
+                    if (response[2][0]) {
                         html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
                     }
                     html2 = '';
-                    html2 += "<img style='width:100%;height:100vh' class='img-fluid' src='";
+                    html2 += "<img class='img-fluid' src='";
                     html2 += response[0][0]['url'];
-                    html2 +="'>";
+                    html2 += "'>";
 
-                    if(response[2][0]){
-                    var path = response[2][0]['path'];
-                    path = path.substring(0, path.lastIndexOf("/") + 1);
-                    $('.big-image').after( "<div id='view360' style='display:none'></div>" );
-		            $("#view360").tikslus360({imageDir:path,imageCount:response[3],imageExt:'jpg',canvasID:'mycar',canvasWidth:380,canvasHeight:380,autoRotate:false});
+                    if (response[2][0]) {
+                        var path = response[2][0]['path'];
+                        path = path.substring(0, path.lastIndexOf("/") + 1);
+                        $('.big-image').after("<div style='display:none;margin: 0 auto' id='view360'></div>");
+                        $("#view360").tikslus360({
+                            imageDir: path,
+                            imageCount: response[3],
+                            imageExt: 'jpg',
+                            canvasID: 'product',
+                            canvasWidth: 275,
+                            canvasHeight: 275,
+                            autoRotate: true
+                        });
                     }
                     $('.big-image').html(html2);
                     $('.big-image').show();
                     $('.small-image').html(html);
-                    $('.chnge-price').html('$'+response[1]);
+                    $('.chnge-price').html('$' + response[1]);
                 }
             });
 

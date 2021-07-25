@@ -14,8 +14,8 @@ class RotatoryImageController extends Controller
     public function upload_image($product_abum_id)
     {
         $images = RotatoryImage::where('product_album_id', $product_abum_id)->with('product_album')->get();
-        $album=ProductAlbum::whereId($product_abum_id)->with('product')->first();
-        return view('products.360_index', compact('images','album'));
+        $album = ProductAlbum::whereId($product_abum_id)->with('product')->first();
+        return view('products.360_index', compact('images', 'album'));
     }
 
     public function update_image(Request $request)
@@ -23,27 +23,28 @@ class RotatoryImageController extends Controller
         // RotatoryImage::where("product_album_id",$request->product_album_id)->delete();
 
         // dd();
-        $path = 'images/product_albums/' . Product::whereId($request->product_id)->first()->slug. '-album_0' . $request->product_album_id.'/360_album';
-        
+        $path = 'images/product_albums/' . Product::whereId($request->product_id)->first()->slug . '-album_0' . $request->product_album_id . '/360_album';
+
         // if (! File::exists($path)) {
         //     File::makeDirectory($path);
         // }
-     
-        foreach($request->images as $image)
-        {
-            $file =time().'-'. $image->getClientOriginalName();
-            $file_path=$path.'/'.$file;
+
+        foreach ($request->images as $key => $image) {
+//            dd();
+//            $file =time().'-'. $image->getClientOriginalName();
+            $file = ($key + 1) . '.' . $image->getClientOriginalExtension();
+            $file_path = $path . '/' . $file;
             $image->move(public_path($path), $file);
             RotatoryImage::create(
                 [
-                    "path"=>$file_path,
-                    "product_album_id"=>$request->product_album_id,
-                    "title"=>'album_0' . $request->product_album_id
+                    "path" => $file_path,
+                    "product_album_id" => $request->product_album_id,
+                    "title" => 'album_0' . $request->product_album_id
                 ]
             );
         }
         return back()->with('success', 'images updated');
-        
+
         // if (isset($request->action)) {
         //     $imageOr = RotatoryImage::find($id);
         //     $imageOr->path = url('images/defult.jpg');
@@ -62,10 +63,11 @@ class RotatoryImageController extends Controller
         //     $imageOr->save();
         //     return back()->with('success', 'images updated');
         // }
-        
+
         // mkdir(public_path($path),0700);
-      
+
     }
+
     public function delete_image($id)
     {
         RotatoryImage::whereId($id)->delete();

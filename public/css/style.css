@@ -620,6 +620,10 @@
     width: 73.5%;
     margin:0 20px;
 }
+ product-single .image-360{
+     width: 73.5%;
+     margin:0 20px;
+ }
 .image-active-product
 {
 border: .2rem solid #344ceb;
@@ -818,7 +822,9 @@ text-align: center;
 
     .product-single .big-image {
         width: 75% !important;
-
+    }
+    .product-single .image-360 {
+        width: 75% !important;
     }
 
     #zoompro-setting {
