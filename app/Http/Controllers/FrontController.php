@@ -8,6 +8,8 @@ use App\Post;
 use App\Product;
 use App\ProductVariation;
 use App\ProductAlbum;
+use App\Variation;
+use App\Width;
 use App\RotatoryImage;
 use App\Services\FilterProductService;
 use Auth;
@@ -142,11 +144,42 @@ class FrontController extends Controller
     {
         $product = Product::where('slug', $request->product_id)->firstOrFail();
         $product_variations = ProductVariation::where([['product_id', $product->id],['size_id',$request->psize],['width_id',$request->pwidth],['variation_id',$request->provar]])->firstOrFail();
-        $gettitle = ProductAlbum::where('id',$product_variations->album_id)->firstOrFail();
-        $images = ProductAlbum::where([['title',$gettitle->title],['url' , '!=', 'Null' ]])->get('url');
-        $rotateimagesid = ProductAlbum::where([['title',$gettitle->title],['has_rotatory_image', '1'  ]])->get('id');
+        if($product_variations->price == '0.00'){
+            $product_variations->price = $product->price;
+        }
+        if($product_variations->description == null){
+            $product_variations->description = $product->description;
+        }
+        $variations = Variation::where('id',$product_variations->variation_id)->firstOrFail();
+        if($variations->title == null)
+            $variations->title = $product->prong_metal;
+        if($variations->sub_title == null)
+            $variations->sub_title = $product->metal;
+        if($product_variations->width_id == null){
+            if($product->width != null)
+            $width = $product->width;
+            else
+            $width = '';
+        }
+        else{
+        $width = Width::where('id',$product_variations->width_id)->get();
+        }
+        if($product_variations->album_id == null){
+            foreach($product->images as $p_img){
+                $images[] = $p_img;
+            }
+            
+            $rotateimages = '';
+            $countRimages = '';
+
+        }
+        else{
+        $gettitle = ProductAlbum::where('id',$product_variations->album_id)->get();
+        $images = ProductAlbum::where([['title',$gettitle[0]->title],['url' , '!=', 'Null' ]])->get('url');
+        $rotateimagesid = ProductAlbum::where([['title',$gettitle[0]->title],['has_rotatory_image', '1'  ]])->get('id');
         $rotateimages = RotatoryImage::where('product_album_id',$rotateimagesid[0]->id)->get('path');
         $countRimages = count($rotateimages);
-        return array($images,$product_variations->price,$rotateimages,$countRimages);
+        }
+        return array($images,$product_variations,$rotateimages,$countRimages,$variations,$width);
     }
 }
