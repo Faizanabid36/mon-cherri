@@ -133,28 +133,28 @@ class ProductController extends Controller
 
     public function add_variations($product_id)
     {
-        
+
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
-        $product=Product::whereId($product_id)->first();
-        return view('products.create_variation', compact('product_id', 'variations','product'));
+        $product = Product::whereId($product_id)->first();
+        return view('products.create_variation', compact('product_id', 'variations', 'product'));
     }
 
     public function store_variations(Request $request)
     {
         //  dd($request->all());
         ProductVariation::whereProductId($request->product_id)->delete();
-        $product=Product::whereId($request->product_id)->first();
-        $product->variations=json_encode($request->variations);
-        $product->sizes=json_encode($request->sizes);
-        $product->widths=json_encode($request->widths);
+        $product = Product::whereId($request->product_id)->first();
+        $product->variations = json_encode($request->variations);
+        $product->sizes = json_encode($request->sizes);
+        $product->widths = json_encode($request->widths);
         $product->save();
         foreach ($request->variations as $var) {
             if ($request->sizes) {
-                
+
                 foreach ($request->sizes as $size) {
                     if ($request->widths) {
                         foreach ($request->widths as $width) {
-                            
+
                             if ($request->certificates) {
 
                                 foreach ($request->certificates as $certificate) {
@@ -340,52 +340,57 @@ class ProductController extends Controller
 
     public function store_center_stone(Request $request)
     {
-        // dd($request->all());
-        ProductStone::where([['product_id',$request->product_id],['stone_shape',$request->stone_shape]])->delete();
-         $stone_sizes = CenterStoneSize::where([
-            ['id','>=',$request->size_from],
-            ['id','<=',$request->size_to]
+        ProductStone::create($request->except('_token'));
+        return back()->withSuccess('Created Successfully');
+    }
+
+    public function OLDstore_center_stone(Request $request)
+    {
+        ProductStone::whereProductId($request->product_id)->whereStoneShape($request->stone_shape)->delete();
+        $stone_sizes = CenterStoneSize::where([
+            ['id', '>=', $request->size_from],
+            ['id', '<=', $request->size_to]
         ])
-        ->orderBy('title')->get();
-        // dd($stone_sizes);
-         $stone_clarities = CenterStoneClarity::where([
-            ['id','>=',$request->clarity_from],
-            ['id','<=',$request->clarity_to]
+            ->orderBy('title')->get();
+//        dd($stone_sizes);
+        $stone_clarities = CenterStoneClarity::where([
+            ['id', '>=', $request->clarity_from],
+            ['id', '<=', $request->clarity_to]
         ])
-        ->orderBy('priority')->get();
-        // dd($stone_clarities);
-         $stone_colors = CenterStoneColor::where([
-            ['id','>=',$request->color_from],
-            ['id','<=',$request->color_to]
+            ->orderBy('priority')->get();
+//        dd($stone_clarities);
+        $stone_colors = CenterStoneColor::where([
+            ['id', '>=', $request->color_from],
+            ['id', '<=', $request->color_to]
         ])
-        ->orderBy('priority')->get();
-        // dd($stone_colors);
-        foreach($stone_sizes as $size)
-        {
+            ->orderBy('priority')->get();
+//         dd($stone_colors);
+        foreach ($stone_sizes as $size) {
             // dd("size");
-            foreach($stone_clarities as $clarity)
-            {
+            foreach ($stone_clarities as $clarity) {
                 // dd("clarity");
-                foreach($stone_colors as $color)
-                { 
-                    // dd("color");
-                    ProductStone::create([
-                        'stone_shape'=>$request->stone_shape,
-                        'product_id'=>$request->product_id,
-                        'color_id'=>$color->id,
-                        'clarity_id'=>$clarity->id,
-                        'size_id'=>$size->id
-                    ]);
+                foreach ($stone_colors as $color) {
+                    $stone = CenterStone::whereShape($request->stone_shape)
+                        ->whereCenterStoneSizes($size->title)->whereCenterStoneClarities($clarity->title)->whereCenterStoneColors($color->title)->first();
+                    if (!is_null($stone))
+                        ProductStone::create([
+                            'stone_shape' => $request->stone_shape,
+                            'product_id' => $request->product_id,
+                            'color_id' => $color->id,
+                            'clarity_id' => $clarity->id,
+                            'size_id' => $size->id
+                        ]);
                 }
             }
         }
         //  ProductStone::create($request->except('_token'));
-         return back()->withSuccess('Created Successfully');
+        return back()->withSuccess('Created Successfully');
     }
 
     public function create_album($product_id)
     {
-        return view('products.create_album', compact('product_id'));
+        $product = Product::find($product_id);
+        return view('products.create_album', compact('product_id', 'product'));
     }
 
     public function edit_album($product_album_id, $title)

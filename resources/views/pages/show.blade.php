@@ -195,7 +195,7 @@
                                                 <div
                                                     class="stock-number d-flex align-items-center justify-content-between">
                                                     <h1 class="text-dark dynamic-des">
-                                                        
+
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -856,7 +856,7 @@
                             canvasID: 'product',
                             canvasWidth: 275,
                             canvasHeight: 275,
-                            autoRotate: true
+                            autoRotate: false,
                         });
                     }
                     $('.dynamic-des').html(response[1]['description']);

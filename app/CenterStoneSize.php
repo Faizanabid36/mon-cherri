@@ -12,8 +12,8 @@ class CenterStoneSize extends Model
     {
         return $this->belongsTo(CenterStone::class);
     }
-    public function products()
-    {
-        return $this->hasMany(ProductStone::class,'size_id');
-    }
+//    public function products()
+//    {
+//        return $this->hasMany(ProductStone::class,'size_id');
+//    }
 }

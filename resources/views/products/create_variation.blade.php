@@ -10,6 +10,7 @@
                     <h3 class="page-title">Create Variation</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
                         <li class="breadcrumb-item active">Create Variation</li>
                     </ul>
                 </div>
@@ -42,7 +43,7 @@
                                                     @foreach(App\Variation::all() as $variation)
                                                         <option
                                                             title="{{$variation->title}}"
-                                                            value="{{$variation->id}}" 
+                                                            value="{{$variation->id}}"
                                                             <?php
                                                             if(isset($product->variations))
                                                             { if(in_array($variation->id, json_decode($product->variations)))
@@ -67,17 +68,17 @@
                                                         id="sizes" data-route="" name="sizes[]" multiple>
                                                     <option value="" disabled>Choose Size</option>
                                                     @foreach(App\Size::all() as $size)
-                                                        <option value="{{$size->id}}" 
+                                                        <option value="{{$size->id}}"
                                                         <?php
                                                         if(isset($product->sizes))
-                                                        { 
+                                                        {
                                                             if(in_array($size->id, json_decode($product->sizes)))
                                                             {
                                                                 echo "selected";
                                                             }
                                                         }
-                                                            ?>    
-                                                        
+                                                            ?>
+
                                                         >{{ucwords($size->size)}}</option>
                                                     @endforeach
                                                 </select>
@@ -95,9 +96,9 @@
                                             <div class="form-group"><label>Width</label>
                                                 <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>
                                                 Choose Width
-                                                </option> 
+                                                </option>
                                                 @foreach(App\Width::all() as $width)
-                                                <option value="{{$width->id}}"  
+                                                <option value="{{$width->id}}"
                                                     <?php
                                                             if(isset($product->widths))
                                                             { if(in_array($width->id, json_decode($product->widths)))
@@ -106,8 +107,8 @@
                                                             }}
                                                     ?>
                                                 >{{ucwords($width->width)}}</option>
-                                                @endforeach 
-                                                </select> 
+                                                @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +127,7 @@
                             @endif
                                 </div> -->
                                 <div class="col-md-12">
-                                        
+
                                 </div>
                             <!-- <div class="col-md-12">
 								@if($errors->has('description'))
@@ -376,12 +377,12 @@
                     $('#variants').append(`<div class="col-md-6"><div class="form-group"><label>Width</label>
                      <select class="form-control @error("widths") is-invalid @enderror"id="widths" data-route="" name="widths[]" multiple><option value="" disabled>
                      Choose Width
-                     </option> 
+                     </option>
                      @foreach(App\Width::all() as $width)
                      <option value="{{$width->id}}">{{ucwords($width->width)}}</option>
-                     @endforeach 
+                     @endforeach
                      </select> </div></div>`);
-                    
+
                     $(this).hide();
                 }
             })

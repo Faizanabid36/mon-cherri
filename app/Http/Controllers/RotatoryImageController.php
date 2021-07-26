@@ -15,7 +15,8 @@ class RotatoryImageController extends Controller
     {
         $images = RotatoryImage::where('product_album_id', $product_abum_id)->with('product_album')->get();
         $album = ProductAlbum::whereId($product_abum_id)->with('product')->first();
-        return view('products.360_index', compact('images', 'album'));
+        $product_id = $album->product_id;
+        return view('products.360_index', compact('images', 'album', 'product_id'));
     }
 
     public function update_image(Request $request)

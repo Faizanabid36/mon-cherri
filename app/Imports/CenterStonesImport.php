@@ -22,15 +22,15 @@ class CenterStonesImport implements ToCollection
 //        CenterStoneSize::getQuery()->delete();
         $colors = $clarities = $sizes = [];
         for ($i = 2; $i < count($collection); $i++) {
-            if (!in_array($collection[$i][5], $colors))
-                array_push($colors, $collection[$i][5]);
+            if (!in_array($collection[$i][4], $colors))
+                array_push($colors, $collection[$i][4]);
 
-            if (!in_array($collection[$i][6], $clarities))
-                array_push($clarities, $collection[$i][6]);
+            if (!in_array($collection[$i][5], $clarities))
+                array_push($clarities, $collection[$i][5]);
 
-            if (!in_array($collection[$i][4], $sizes))
-                array_push($sizes, $collection[$i][4]);
-            
+            if (!in_array($collection[$i][3], $sizes))
+                array_push($sizes, $collection[$i][3]);
+
             CenterStone::create(
                 [
                     'diamond_id' => $collection[$i][0],
