@@ -192,6 +192,11 @@ class FrontController extends Controller
     public function ChangeAlbum(request $request)
     {
         $product = Product::where('slug', $request->product_id)->firstOrFail();
+        $stones = [];
+        foreach ($product->product_stones as $product_stone) {
+            $stones = $this->getStones($product_stone, $stones);
+        }
+        // dd($stones);
         $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
         if ($product_variations->price == '0.00') {
             $product_variations->price = $product->price;
@@ -227,6 +232,6 @@ class FrontController extends Controller
             $rotateimages = RotatoryImage::where('product_album_id', $rotateimagesid[0]->id)->get('path');
             $countRimages = count($rotateimages);
         }
-        return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width);
+        return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width,$stones);
     }
 }
