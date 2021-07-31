@@ -102,9 +102,9 @@
 														@permission('edit.variations')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$variation->id}}"data-route="{{route('variations.edit',$variation->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														@permission('delete.variations')
+														
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('variations.destroy',$variation)}}"><i class="fa fa-trash"></i></a>
-														@endpermission
+														
 													</div>
 												</td>
 											</tr>

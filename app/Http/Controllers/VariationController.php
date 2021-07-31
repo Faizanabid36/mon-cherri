@@ -14,7 +14,7 @@ class VariationController extends Controller
         $this->middleware('permission:view.variations',['only' => ['index']]);
         $this->middleware('permission:create.variations',['only' => ['store']]);
         $this->middleware('permission:edit.variations',['only' => ['edit']]);
-        $this->middleware('permission:delete.variations',['only' => ['destroy']]);
+        // $this->middleware('permission:delete.variations',['only' => ['destroy']]);
         $this->middleware('permission:view.deleted.variations',['only' => ['get_deleted_variations']]);
         $this->middleware('permission:restore.deleted.variations',['only' => ['restore_all','restore_single']]);
         $this->middleware('permission:delete.forever.variations',['only' => ['force_delete_single','force_delete_all']]);

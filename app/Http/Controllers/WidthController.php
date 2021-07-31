@@ -14,7 +14,7 @@ class WidthController extends Controller
         $this->middleware('permission:view.widths',['only' => ['index']]);
         $this->middleware('permission:create.widths',['only' => ['store']]);
         $this->middleware('permission:edit.widths',['only' => ['edit']]);
-        $this->middleware('permission:delete.widths',['only' => ['destroy']]);
+        // $this->middleware('permission:delete.widths',['only' => ['destroy']]);
         $this->middleware('permission:view.deleted.widths',['only' => ['get_deleted_widths']]);
         $this->middleware('permission:restore.deleted.widths',['only' => ['restore_all','restore_single']]);
         $this->middleware('permission:delete.forever.widths',['only' => ['force_delete_single','force_delete_all']]);

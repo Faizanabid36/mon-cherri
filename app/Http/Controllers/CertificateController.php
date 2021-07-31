@@ -15,7 +15,7 @@ class CertificateController extends Controller
         $this->middleware('permission:view.certificates',['only' => ['index']]);
         $this->middleware('permission:create.certificates',['only' => ['store']]);
         $this->middleware('permission:edit.certificates',['only' => ['edit']]);
-        $this->middleware('permission:delete.certificates',['only' => ['destroy']]);
+        // $this->middleware('permission:delete.certificates',['only' => ['destroy']]);
         $this->middleware('permission:view.deleted.certificates',['only' => ['get_deleted_certificates']]);
         $this->middleware('permission:restore.deleted.certificates',['only' => ['restore_all','restore_single']]);
         $this->middleware('permission:delete.forever.certificates',['only' => ['force_delete_single','force_delete_all']]);

@@ -77,9 +77,9 @@
 														@permission('edit.widths')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$width->id}}"data-route="{{route('widths.edit',$width->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														@permission('delete.widths')
+														
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('widths.destroy',$width)}}"><i class="fa fa-trash"></i></a>
-														@endpermission
+														
 													</div>
 												</td>
 											</tr>

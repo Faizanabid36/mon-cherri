@@ -15,7 +15,7 @@ class ColorController extends Controller
         $this->middleware('permission:view.colors',['only' => ['index']]);
         $this->middleware('permission:create.colors',['only' => ['store']]);
         $this->middleware('permission:edit.colors',['only' => ['edit']]);
-        $this->middleware('permission:delete.colors',['only' => ['destroy']]);
+        // $this->middleware('permission:delete.colors',['only' => ['destroy']]);
         $this->middleware('permission:view.deleted.colors',['only' => ['get_deleted_colors']]);
         $this->middleware('permission:restore.deleted.colors',['only' => ['restore_all','restore_single']]);
         $this->middleware('permission:delete.forever.colors',['only' => ['force_delete_single','force_delete_all']]);

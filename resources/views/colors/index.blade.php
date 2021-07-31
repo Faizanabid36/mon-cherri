@@ -86,9 +86,9 @@
 														@permission('edit.colors')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$color->id}}"data-route="{{route('colors.edit',$color->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														@permission('delete.colors')
+														
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('colors.destroy',$color)}}"><i class="fa fa-trash"></i></a>
-														@endpermission
+														
 													</div>
 												</td>
 											</tr>

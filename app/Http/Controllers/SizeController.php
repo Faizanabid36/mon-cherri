@@ -14,7 +14,7 @@ class SizeController extends Controller
         $this->middleware('permission:view.sizes',['only' => ['index']]);
         $this->middleware('permission:create.sizes',['only' => ['store']]);
         $this->middleware('permission:edit.sizes',['only' => ['edit']]);
-        $this->middleware('permission:delete.sizes',['only' => ['destroy']]);
+        // $this->middleware('permission:delete.sizes',['only' => ['destroy']]);
         $this->middleware('permission:view.deleted.sizes',['only' => ['get_deleted_sizes']]);
         $this->middleware('permission:restore.deleted.sizes',['only' => ['restore_all','restore_single']]);
         $this->middleware('permission:delete.forever.sizes',['only' => ['force_delete_single','force_delete_all']]);

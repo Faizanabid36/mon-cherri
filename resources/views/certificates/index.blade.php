@@ -78,9 +78,9 @@
 														@permission('edit.certificates')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$certificate->id}}"data-route="{{route('certificates.edit',$certificate->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														@permission('delete.certificates')
+														
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('certificates.destroy',$certificate)}}"><i class="fa fa-trash"></i></a>
-														@endpermission
+														
 													</div>
 												</td>
 											</tr>
