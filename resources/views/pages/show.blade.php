@@ -79,7 +79,8 @@
                                         <h1 class="chnge-price"></h1>
                                     </div>
                                     <div class="product-metal">
-                                        <span><h3><b>Metal:</b><span class="dynamic-product-metal">14kt White Gold</span></h3></span>
+                                        <span><h3><b>Metal:</b><span
+                                                    class="dynamic-product-metal">14kt White Gold</span></h3></span>
                                         <span></span>
                                     </div>
                                     <div class="product-price-circle py-1">
@@ -194,8 +195,8 @@
                                                  aria-labelledby="nav-home-tab">
                                                 <div
                                                     class="stock-number d-flex align-items-center justify-content-between">
-                                                    <h1 class="text-dark dynamic-des">
-
+                                                    <h1 class="text-dark">
+                                                        {{$product->description}}
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -380,7 +381,7 @@
                                                 <button class="filter-btn">filter</button>
 
                                                 <div class="ml-3">
-                                                    <p class="no-margin"><input id="amount" type="text"
+                                                    <p class="no-margin"><input id="weight_filter" type="text"
                                                                                 class="filter-input"></p>
                                                 </div>
                                             </div>
@@ -401,7 +402,6 @@
 
                             <div class="dimond-slider">
 
-                                
 
                             </div>
                         </div>
@@ -617,7 +617,7 @@
                 return null;
             })
 
-            
+
             //Owais
             $('.setvariations').on('click', function () {
                 var data = $(this).data('id');
@@ -701,51 +701,50 @@
                             autoRotate: false,
                         });
                     }
-                    $('.dynamic-des').html(response[1]['description']);
                     $('.dynamic-width').html(response[5][0]);
                     $('.dynamic-prong-metal').html(response[4]['title']);
                     $('.dynamic-product-metal').html(response[4]['sub_title']);
                     $('.big-image').html(html2);
-                   
+
                     $('.big-image').show();
                     $('.small-image').html(html);
                     $('.chnge-price').html('$' + response[1]['price']);
                     var html3 = '';
                     for (let index = 0; index < response[6].length; index++) {
-                        
+
                         var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
-                        html3 +="<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
-                        html3 +=" <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                        html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                        html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
                         html3 += price;
-                        html3 +="</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 +=response[6][index]['shape'];
-                        html3 +="</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 +=response[6][index]['center_stone_sizes'];
-                        html3 +="</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 +=response[6][index]['center_stone_colors'];
-                        html3 +="</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 +=response[6][index]['center_stone_clarities'];
-                        html3 +="</h3><p>Clarity</p> </div></div></div></div>";
+                        html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['shape'];
+                        html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_sizes'];
+                        html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_colors'];
+                        html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_clarities'];
+                        html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                     }
                     $('.dimond-slider').html(html3);
-                    
+
                     $(".dimond-slider").slick({
-                dots: false,
-                infinite: true,
-                arrows: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                        }
-                    }]
-                });
-                // console.log(response[0][0]['url']);
-                $('.ring-imgtag').attr('src', response[0][0]['url']);
+                        dots: false,
+                        infinite: true,
+                        arrows: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                }
+                            }]
+                    });
+                    // console.log(response[0][0]['url']);
+                    $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
 

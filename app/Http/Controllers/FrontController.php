@@ -20,6 +20,7 @@ use App\Services\FilterProductService;
 use Auth;
 use Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class FrontController extends Controller
 {
@@ -45,28 +46,40 @@ class FrontController extends Controller
 
     public function show_product($slug)
     {
-        $product = Product::where('slug', $slug)->with('product_variations')->firstOrFail();
-        $product_variations = collect($product->product_variations)->unique(function ($var) {
-            return $var['product_id'] . $var['variation_id'];;
+        $product = Cache::remember($slug, '99999', function () use ($slug) {
+            return Product::where('slug', $slug)->with('product_variations')->firstOrFail();
         });
-        $product_sizes = collect($product->product_variations)->unique(function ($var) {
-            return $var['product_id'] . $var['size_id'];;
+//        $product_variations = collect($product->product_variations)->unique(function ($var) {
+//            return $var['product_id'] . $var['variation_id'];
+//        });
+        $product_variations = Cache::remember($product->id . 'variations', '99999', function () use ($product) {
+            return collect($product->product_variations)->unique(function ($var) {
+                return $var['product_id'] . $var['variation_id'];
+            });
         });
+        $product_sizes = Cache::remember($product->id . 'sizes', '99999', function () use ($product) {
+            return collect($product->product_variations)->unique(function ($var) {
+                return $var['product_id'] . $var['size_id'];;
+            });
+        });
+//        $product_sizes = collect($product->product_variations)->unique(function ($var) {
+//            return $var['product_id'] . $var['size_id'];;
+//        });
 
         if (isset($product->product_variations[0]) && $product->product_variations[0]->width_id) {
-            $product_widths = collect($product->product_variations)->unique(function ($var) {
-                return $var['product_id'] . $var['width_id'];;
+            $product_widths = Cache::remember($product->id . 'widths', '99999', function () use ($product) {
+                return collect($product->product_variations)->unique(function ($var) {
+                    return $var['product_id'] . $var['width_id'];;
+                });
             });
         } else {
             $product_widths = array();
         }
-        $related_products = Product::where('id', '!=', $product->id)->limit(8)->latest()->get();
-//        $center_stones = ProductStone::whereProductId()
-        $product_stone = $product->product_stones;
-
-        $stones = collect($product->product_stones)->map(function ($product_stone) {
-            return $this->getStones($product_stone, []);
+        $related_products = Cache::remember($slug.'-related', '99999', function () use ($product) {
+            return Product::where('id', '!=', $product->id)->limit(8)->latest()->get();
         });
+//        $related_products = Product::where('id', '!=', $product->id)->limit(8)->latest()->get();
+
         $stones = [];
         foreach ($product->product_stones as $product_stone) {
             $stones = $this->getStones($product_stone, $stones);
@@ -232,6 +245,6 @@ class FrontController extends Controller
             $rotateimages = RotatoryImage::where('product_album_id', $rotateimagesid[0]->id)->get('path');
             $countRimages = count($rotateimages);
         }
-        return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width,$stones);
+        return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width, $stones);
     }
 }
