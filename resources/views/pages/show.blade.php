@@ -195,7 +195,7 @@
                                                 <div
                                                     class="stock-number d-flex align-items-center justify-content-between">
                                                     <h1 class="text-dark dynamic-des">
-                                                        
+
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -401,155 +401,7 @@
 
                             <div class="dimond-slider">
 
-                                <div class="">
-                                    <div class="ring-price">
-                                        <div class="ring-img">
-                                            <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
-                                                 class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="ring-price-range mt-3">
-                                            <span class="featured-products-price">$2,000</span>
-
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">Round</h3>
-                                                <p>Shape</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">1.25</h3>
-                                                <p>Size</p>
-                                            </div>
-                                        </div>
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">D</h3>
-                                                <p>Color</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">VS2</h3>
-                                                <p>Clarity</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-                                <div class="">
-                                    <div class="ring-price">
-                                        <div class="ring-img">
-                                            <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
-                                                 class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="ring-price-range mt-3">
-                                            <span class="featured-products-price">$2,000</span>
-
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">Round</h3>
-                                                <p>Shape</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">1.25</h3>
-                                                <p>Size</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">D</h3>
-                                                <p>Color</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">VS2</h3>
-                                                <p>Clarity</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="">
-                                    <div class="ring-price">
-                                        <div class="ring-img">
-                                            <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
-                                                 class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="ring-price-range mt-3">
-                                            <span class="featured-products-price">$2,000</span>
-
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">Round</h3>
-                                                <p>Shape</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">1.25</h3>
-                                                <p>Size</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">D</h3>
-                                                <p>Color</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">VS2</h3>
-                                                <p>Clarity</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="">
-                                    <div class="ring-price">
-                                        <div class="ring-img">
-                                            <img src="{{asset('images/ring3.jpeg')}}" style="width: 90%;height: 170px"
-                                                 class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="ring-price-range mt-3">
-                                            <span class="featured-products-price">$2,000</span>
-
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">Round</h3>
-                                                <p>Shape</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">1.25</h3>
-                                                <p>Size</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="featured-product-shape-size d-flex justify-content-between ">
-                                            <div class="featured-product-hape">
-                                                <h3 class="font-weight-bold">D</h3>
-                                                <p>Color</p>
-                                            </div>
-                                            <div class="featured-product-size">
-                                                <h3 class="font-weight-bold">VS2</h3>
-                                                <p>Clarity</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -765,28 +617,17 @@
                 return null;
             })
 
-            $(".dimond-slider").slick({
-                dots: false,
-                infinite: true,
-                arrows: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                        }
-                    }]
-            });
+            
             //Owais
             $('.setvariations').on('click', function () {
                 var data = $(this).data('id');
                 $('.getvariations').val(data);
+                $(".dimond-slider").slick('unslick');
                 changeimages();
             })
             $('.getoptions').on('change', function () {
+                $(".dimond-slider").slick('unslick');
+
                 changeimages();
             });
             $(document).on('click', '.slideimg', function () {
@@ -794,6 +635,7 @@
                 $('.big-image img').attr('src', src);
                 $('#view360').hide();
                 $('.big-image').show();
+                $('.ring-imgtag').attr('src', src);
 
             });
             $(document).on('click', '.slide360', function () {
@@ -856,7 +698,7 @@
                             canvasID: 'product',
                             canvasWidth: 275,
                             canvasHeight: 275,
-                            autoRotate: true
+                            autoRotate: false,
                         });
                     }
                     $('.dynamic-des').html(response[1]['description']);
@@ -864,9 +706,46 @@
                     $('.dynamic-prong-metal').html(response[4]['title']);
                     $('.dynamic-product-metal').html(response[4]['sub_title']);
                     $('.big-image').html(html2);
+                   
                     $('.big-image').show();
                     $('.small-image').html(html);
                     $('.chnge-price').html('$' + response[1]['price']);
+                    var html3 = '';
+                    for (let index = 0; index < response[6].length; index++) {
+                        
+                        var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
+                        html3 +="<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                        html3 +=" <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                        html3 += price;
+                        html3 +="</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 +=response[6][index]['shape'];
+                        html3 +="</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 +=response[6][index]['center_stone_sizes'];
+                        html3 +="</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 +=response[6][index]['center_stone_colors'];
+                        html3 +="</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 +=response[6][index]['center_stone_clarities'];
+                        html3 +="</h3><p>Clarity</p> </div></div></div></div>";
+                    }
+                    $('.dimond-slider').html(html3);
+                    
+                    $(".dimond-slider").slick({
+                dots: false,
+                infinite: true,
+                arrows: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        }
+                    }]
+                });
+                // console.log(response[0][0]['url']);
+                $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
 

@@ -9,6 +9,7 @@
                     <h3 class="page-title">Add Stone</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
                         <li class="breadcrumb-item active">Add Stone</li>
                     </ul>
                 </div>
@@ -120,13 +121,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Size From</label>
-                                                <select name="size_from" id="size_from" class="form-control">
-                                                    <option value="" selected disabled>Select Starting Size</option>
-                                                    @foreach($stone_sizes as $size)
-                                                        <option
-                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="size_from" id="size_from" class="form-control">
+                                                {{--                                                <select name="size_from" id="size_from" class="form-control">--}}
+                                                {{--                                                    <option value="" selected disabled>Select Starting Size</option>--}}
+                                                {{--                                                    @foreach($stone_sizes as $size)--}}
+                                                {{--                                                        <option--}}
+                                                {{--                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>--}}
+                                                {{--                                                    @endforeach--}}
+                                                {{--                                                </select>--}}
                                                 @if($errors->has('size_from'))
                                                     @foreach($errors->get('size_from') as $message)
                                                         <span style="color:red">{{$message}}</span>
@@ -137,13 +139,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Size To</label>
-                                                <select name="size_to" id="size_to" class="form-control">
-                                                    <option value="" selected disabled>Select Ending Size</option>
-                                                    @foreach($stone_sizes as $size)
-                                                        <option
-                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="size_to" id="size_to" class="form-control">
+{{--                                                <select name="size_to" id="size_to" class="form-control">--}}
+{{--                                                    <option value="" selected disabled>Select Ending Size</option>--}}
+{{--                                                    @foreach($stone_sizes as $size)--}}
+{{--                                                        <option--}}
+{{--                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
                                                 @if($errors->has('size_to'))
                                                     @foreach($errors->get('size_to') as $message)
                                                         <span style="color:red">{{$message}}</span>
@@ -205,12 +208,12 @@
                                     </th>
                                     <th>S.No</th>
                                     <th>Shape</th>
-                                    <th>Color </th>
-                                    <!-- <th>Color To</th> -->
-                                    <th>Clarity</th>
-                                    <!-- <th>Clarity To</th> -->
-                                    <th>Size</th>
-                                    <!-- <th>Size To</th> -->
+                                    <th>Color From</th>
+                                    <th>Color To</th>
+                                    <th>Clarity From</th>
+                                    <th>Clarity To</th>
+                                    <th>Size From</th>
+                                    <th>Size To</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -224,63 +227,13 @@
                                         </td>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ucfirst($stone->stone_shape)}}</td>
-                                        <td>{{ucfirst($stone->center_stone_color->title)??""}}</td>
-                                        
-                                        <td>{{ucfirst($stone->center_stone_clarity->title)??""}}</td>
-                                        
-                                        <td>{{ucfirst($stone->center_stone_size->title)??""}}</td>
-                                        
+                                        <td>{{ucfirst($stone->p_color_from->title)}}</td>
+                                        <td>{{ucfirst($stone->p_color_to->title)}}</td>
+                                        <td>{{ucfirst($stone->p_clarity_from->title)}}</td>
+                                        <td>{{ucfirst($stone->p_clarity_to->title)}}</td>
+                                        <td>{{ucfirst($stone->size_from)}}</td>
+                                        <td>{{ucfirst($stone->size_to)}}</td>
                                 @endforeach
-                                {{--                                @foreach($variations as $variation)--}}
-                                {{--                                                                    <tr>--}}
-
-                                {{--                                                                        <td style="padding:10px 18px;">--}}
-                                {{--                                                                            <input type="checkbox" value="{{$variation->id}}"--}}
-                                {{--                                                                                   class="bs_dtrow_checkbox bs_checkItem">--}}
-                                {{--                                                                            <input value="{{$variation->id}}" hidden name="id"/>--}}
-                                {{--                                                                        </td>--}}
-
-                                {{--                                                                        <td>{{$loop->iteration}}</td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            {{ucwords($variation->album->title??"NA")}}--}}
-
-                                {{--                                        </td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            {{ucwords($variation->variation->title)}}--}}
-                                {{--                                        </td>--}}
-                                {{--                                        <td>{{ucwords($variation->size->size)}}</td>--}}
-                                {{--                                        <td> {{$variation->width?($variation->width->width):''}}</td>--}}
-                                {{--                                        <td>{{$variation->price}}--}}
-
-                                {{--                                        </td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            {{$variation->description}}--}}
-
-                                {{--                                        </td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            {{$variation->qty}}--}}
-
-                                {{--                                        </td>--}}
-                                {{--                                        --}}{{--                                            <td style="display: none">--}}
-                                {{--                                        --}}{{--                                                {{$variation->weight}}--}}
-                                {{--                                        --}}{{--                                            </td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            {{$variation->weight}}--}}
-
-                                {{--                                        </td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            <div class="actions">--}}
-                                {{--                                                <button data-id="{{$variation->id}}" class="btn btn-sm bg-success-light mr-2 edit_btn" ><i class="fe fe-edit"></i></button>--}}
-                                {{--                                                <a href="{{route('product.variations.delete_var',$variation->id)}}"--}}
-                                {{--                                                   class="btn btn-sm bg-danger-light bs_delete"--}}
-                                {{--                                                   title="Delete"--}}
-                                {{--                                                   data-route="{{route('product.variations.delete_var',$variation->id)}}">--}}
-                                {{--                                                    <i class="fe fe-trash"></i>--}}
-                                {{--                                                </a>--}}
-                                {{--                                            </div>--}}
-                                {{--                                        </td>--}}
-                                {{--                                    </tr>--}}
-                                {{--                                @endforeach--}}
                                 </tbody>
                             </table>
                         </div>

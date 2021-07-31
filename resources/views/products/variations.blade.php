@@ -10,6 +10,7 @@
 				<h3 class="page-title">Product Variations</h3>
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
 					<li class="breadcrumb-item active">Variations</li>
 				</ul>
 			</div>

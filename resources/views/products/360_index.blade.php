@@ -10,6 +10,9 @@
                     <h3 class="page-title">Products</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="{{route('product.album.product_album',$product_id)}}">Albums</a></li>
                         <li class="breadcrumb-item active">Products</li>
                     </ul>
                 </div>
@@ -35,14 +38,14 @@
                                     @foreach($images as $image)
                                         <div class="col-sm-2 edit_images">
                                             <a href="{{route('product.album.delete_image',$image->id)}}"
-                                                
+
                                                 class="btn del_p_image_btn"><i
                                                     class="material-icons">clear</i></a>
                                             <img src="{{url($image->path)}}" width="100%">
                                         </div>
                                     @endforeach
                                 </div>
-                            </div>      
+                            </div>
                             <div class="input-images"></div>
                             <input value="{{$album->id}}" hidden name="product_album_id"/>
                             <input value="{{$album->product->id}}" hidden name="product_id"/>
@@ -51,7 +54,7 @@
                                     Save
                                 </button>
                             </div>
-                           
+
                     </form>
                     </div>
                 </div>
@@ -62,7 +65,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function () {
-    
+
             $('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});
         })
     </script>

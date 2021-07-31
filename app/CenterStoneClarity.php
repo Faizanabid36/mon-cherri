@@ -12,8 +12,8 @@ class CenterStoneClarity extends Model
     {
         return $this->belongsTo(CenterStone::class);
     }
-    public function products()
-    {
-        return $this->hasMany(ProductStone::class,'clarity_id','id');
-    }
+//    public function products()
+//    {
+//        return $this->hasMany(ProductStone::class,'clarity_id','id');
+//    }
 }

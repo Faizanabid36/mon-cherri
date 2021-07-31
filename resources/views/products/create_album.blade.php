@@ -10,6 +10,9 @@
                     <h3 class="page-title">Create Album</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="{{route('product.album.product_album',$product_id)}}">Albums</a></li>
                         <li class="breadcrumb-item active">Create Album</li>
                     </ul>
                 </div>
