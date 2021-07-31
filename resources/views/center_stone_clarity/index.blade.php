@@ -95,12 +95,12 @@
                                                            data-route="{{route('center_stone.clarity.edit',$variation->id)}}"><i
                                                                 class="fa fa-edit"></i></a>
                                                         @endpermission
-                                                        @permission('delete.variations')
+                                                        
                                                         <a href="javascript:void(0)"
                                                            class="btn btn-sm bg-danger-light bs_delete"
-                                                           data-route="{{route('variations.destroy',$variation)}}"><i
+                                                           data-route="{{route('center_stone.clarity.delete',$variation->id)}}"><i
                                                                 class="fa fa-trash"></i></a>
-                                                        @endpermission
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>

@@ -88,6 +88,12 @@ class CenterStoneController extends Controller
         return response()->json(['html' => $view]);
     }
 
+    public function delete_clarity($id)
+    {
+        $clarity = CenterStoneClarity::whereId($id)->first()->delete();
+
+        return back()->with('success', 'Clarity deleted');
+    }
     public function update_clarity(Request $request, $id)
     {
         CenterStoneClarity::whereId($id)->update([
@@ -120,6 +126,12 @@ class CenterStoneController extends Controller
         return response()->json(['html' => $view]);
     }
 
+    public function delete_color($id)
+    {
+        $clarity = CenterStoneColor::whereId($id)->first()->delete();
+
+        return back()->with('success', 'Color deleted');
+    }
     public function update_color(Request $request, $id)
     {
         CenterStoneColor::whereId($id)->update([

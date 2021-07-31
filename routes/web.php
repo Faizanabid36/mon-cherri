@@ -55,12 +55,14 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('clarity/store', 'CenterStoneController@store_clarity')->name('clarity.store');
             Route::get('edit_clarity/{id}', 'CenterStoneController@edit_clarity')->name('clarity.edit');
             Route::put('update_clarity/{id}', 'CenterStoneController@update_clarity')->name('clarity.update');
+            Route::delete('delete_clarity/{id}', 'CenterStoneController@delete_clarity')->name('clarity.delete');
 
 
             Route::get('colors/index', 'CenterStoneController@colors_index')->name('colors.index');
             Route::post('color/store', 'CenterStoneController@store_color')->name('color.store');
             Route::get('edit_color/{id}', 'CenterStoneController@edit_color')->name('color.edit');
             Route::put('update_color/{id}', 'CenterStoneController@update_color')->name('color.update');
+            Route::delete('delete_color/{id}', 'CenterStoneController@delete_color')->name('color.delete');
 
             Route::post('import_csv', 'CenterStoneController@import_csv')->name('import_csv');
 
