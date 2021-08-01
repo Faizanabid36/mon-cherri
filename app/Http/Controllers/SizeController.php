@@ -57,8 +57,13 @@ class SizeController extends Controller
 
     public function destroy(Request $request, Size $size)
     {
-        Size::find($size->id)->delete();
-        return back()->with('success','Size has been deleted');
+        $size=Size::whereId($size->id)->with('product_variations')->first();
+        if(is_null($size->product_variations))
+        {
+            $size->delete();
+            return back()->with('success','Size has been deleted');
+        }
+        return back()->with('success','Size can not be deleted');
     }
 
       public function bulk_delete(BulkDeleteItemRequest $request)

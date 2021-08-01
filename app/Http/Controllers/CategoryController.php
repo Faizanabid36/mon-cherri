@@ -61,8 +61,14 @@ class CategoryController extends Controller
 
     public function destroy(Request $request,Category $category)
     {
-        Category::find($category->id)->delete();
-        return back()->with('success','Category has been deleted');
+        $category=Category::whereId($category->id)->with('subcategories')->first();
+        if(is_null($category->subcategories))
+        {
+            $category->delete();
+            return back()->with('success','Category has been deleted');
+        }
+        return back()->with('success','Category can not be deleted');
+       
     }
      public function bulk_delete(BulkDeleteItemRequest $request)
     {  

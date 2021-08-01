@@ -50,8 +50,13 @@ class WidthController extends Controller
     }
     public function destroy(Request $request, $width)
     {
-        Width::find($width)->delete();
-        return back()->with('success','Width has been deleted');
+        $width=Width::whereId($width)->with('product_variations')->first();
+        if(is_null($width->product_variations))
+        {
+            $width->delete();
+            return back()->with('success','Width has been deleted');
+        }
+        return back()->with('success','Width can not be deleted');
     }
     public function bulk_delete(BulkDeleteItemRequest $request)
     {  

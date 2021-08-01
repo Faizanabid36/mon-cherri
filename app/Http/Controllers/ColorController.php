@@ -57,8 +57,14 @@ class ColorController extends Controller
     }
     public function destroy(Request $request, $color)
     {
-        Color::find($color)->delete();
-        return back()->with('success','Color has been deleted');
+        $color=Color::whereId($color)->with(['products','variations'])->first();
+        if(is_null($color->variations))
+        {
+            $color->delete();
+            return back()->with('success','Color has been deleted');
+        }
+        return back()->with('success','Color can not be deleted');
+        
     }
     public function bulk_delete(BulkDeleteItemRequest $request)
     {  

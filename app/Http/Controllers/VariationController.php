@@ -59,8 +59,13 @@ class VariationController extends Controller
     }
     public function destroy(Request $request, $variation)
     {
-        Variation::find($variation)->delete();
-        return back()->with('success','Variation has been deleted');
+        $variation=Variation::whereId($variation)->first();
+        if(is_null($variation->product_variations))
+        {
+            $variation->delete();
+            return back()->with('success','Variation has been deleted');
+        }
+        return back()->with('success','Variation can not be deleted');
     }
     public function bulk_delete(BulkDeleteItemRequest $request)
     {

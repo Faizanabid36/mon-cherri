@@ -57,6 +57,14 @@ class CertificateController extends Controller
     {
         Certificate::find($certificate)->delete();
         return back()->with('success','Certificate has been deleted');
+        // $certificate=Certificate::whereId($certificate)->with('product_variations')->first();
+        // if(is_null($certificate->product_variations))
+        // {
+        //     $certificate->delete();
+        //     return back()->with('success','Certificate has been deleted');
+        // }
+
+        // return back()->with('success','Certificate can not be deleted');
     }
     public function bulk_delete(BulkDeleteItemRequest $request)
     {  
