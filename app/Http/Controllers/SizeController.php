@@ -58,7 +58,7 @@ class SizeController extends Controller
     public function destroy(Request $request, Size $size)
     {
         $size=Size::whereId($size->id)->with('product_variations')->first();
-        if(is_null($size->product_variations))
+        if(count($size->product_variations)==0)
         {
             $size->delete();
             return back()->with('success','Size has been deleted');

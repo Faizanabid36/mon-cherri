@@ -60,7 +60,8 @@ class VariationController extends Controller
     public function destroy(Request $request, $variation)
     {
         $variation=Variation::whereId($variation)->first();
-        if(is_null($variation->product_variations))
+        
+        if(count($variation->product_variations)==0)
         {
             $variation->delete();
             return back()->with('success','Variation has been deleted');

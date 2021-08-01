@@ -202,7 +202,7 @@
 
                                             </td>
                                             <td>
-                                                {{ucwords($variation->variation->title)}}
+                                                {{ucwords($variation->variation->title??"")}}
                                             </td>
                                             <td>{{ucwords($variation->size->size)}}</td>
                                             <td> {{$variation->width?($variation->width->width):''}}</td>
@@ -217,9 +217,7 @@
                                             {{$variation->qty}}
 
                                             </td>
-                                            {{--                                            <td style="display: none">--}}
-                                            {{--                                                {{$variation->weight}}--}}
-                                            {{--                                            </td>--}}
+                                      
                                             <td>
                                             {{$variation->weight}}
 

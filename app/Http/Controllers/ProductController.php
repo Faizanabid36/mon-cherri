@@ -136,6 +136,7 @@ class ProductController extends Controller
 
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         $product = Product::whereId($product_id)->first();
+        
         return view('products.create_variation', compact('product_id', 'variations', 'product'));
     }
 
@@ -334,7 +335,6 @@ class ProductController extends Controller
         $stone_colors = CenterStoneColor::orderBy('priority')->get();
         $stone_shapes = CenterStone::get()->pluck('shape')->unique();
         $product_stones = ProductStone::whereProductId($product_id)->get();
-        // dd($product_stones);
         return view('products.add_stones', compact('product_id', 'stone_clarities', 'stone_sizes', 'stone_colors', 'stone_shapes', 'product_stones'));
     }
 
@@ -443,7 +443,11 @@ class ProductController extends Controller
         // }
         return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
     }
-
+    public function delete_image_album($id)
+    {
+        ProductAlbum::whereId($id)->delete();
+        return back();
+    }
     public function import_csv(Request $request)
     {
         $this->validate($request, [

@@ -71,7 +71,7 @@
                                                     <div class="row">
                                                         @foreach($product_album as $image)
                                                             <div class="col-sm-2 edit_images">
-                                                                <a href="#"
+                                                                <a href="{{route('product.album.delete_image_album',$image->id)}}"
                                                                    {{--                                                                <a href="{{route('image.delete',$image->id)}}"--}}
                                                                    class="btn del_p_image_btn"><i
                                                                         class="material-icons">clear</i></a>

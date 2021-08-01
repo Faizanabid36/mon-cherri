@@ -76,6 +76,8 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('upload_360/{product_abum_id}', 'RotatoryImageController@upload_image')->name('upload_360_image');
             Route::post('update_360', 'RotatoryImageController@update_image')->name('update_360_image');
             Route::get('delete_image/{id}', 'RotatoryImageController@delete_image')->name('delete_image');
+            Route::get('delete_album_image/{id}', 'ProductController@delete_image_album')->name('delete_image_album');
+            
         });
         Route::name('product.variations.')->prefix('variations')->group(function () {
             Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');

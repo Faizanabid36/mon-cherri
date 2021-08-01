@@ -62,7 +62,8 @@ class CategoryController extends Controller
     public function destroy(Request $request,Category $category)
     {
         $category=Category::whereId($category->id)->with('subcategories')->first();
-        if(is_null($category->subcategories))
+        
+        if(count($category->subcategories)==0)
         {
             $category->delete();
             return back()->with('success','Category has been deleted');

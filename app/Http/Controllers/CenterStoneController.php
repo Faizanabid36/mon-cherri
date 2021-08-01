@@ -90,9 +90,15 @@ class CenterStoneController extends Controller
 
     public function delete_clarity($id)
     {
-        $clarity = CenterStoneClarity::whereId($id)->first()->delete();
-
-        return back()->with('success', 'Clarity deleted');
+        $clarity = CenterStoneClarity::find($id);
+        $stone=CenterStone::where('center_stone_clarities',$clarity->title)->first();
+        if(!$stone)
+        {
+            $clarity->delete();
+            return back()->with('success', 'Clarity deleted');
+        }
+        return back()->with('success', 'Clarity can not be deleted');
+        
     }
     public function update_clarity(Request $request, $id)
     {
@@ -128,9 +134,15 @@ class CenterStoneController extends Controller
 
     public function delete_color($id)
     {
-        $clarity = CenterStoneColor::whereId($id)->first()->delete();
-
-        return back()->with('success', 'Color deleted');
+        $color = CenterStoneColor::whereId($id)->first();
+        $stone=CenterStone::where('center_stone_colors',$color->title)->first();
+        
+        if(!$stone)
+        {
+            $color->delete();
+            return back()->with('success', 'Color has been deleted');
+        }
+        return back()->with('success', 'Color can not be deleted');
     }
     public function update_color(Request $request, $id)
     {

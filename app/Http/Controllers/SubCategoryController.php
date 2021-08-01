@@ -61,9 +61,13 @@ class SubCategoryController extends Controller
     }
     public function destroy($subCategory)
     {
-        $sbcategory = SubCategory::find($subCategory);
-        $sbcategory->delete();
-        return back()->with('success','Sub Category has been deleted');
+        $sbcategory = SubCategory::whereId($subCategory)->with('products')->first();
+        if(count($sbcategory->products)==0)
+        {
+            $sbcategory->delete();
+            return back()->with('success','Sub Category has been deleted');
+        }
+        return back()->with('success','Sub Category can not be deleted');
     }
 
      public function bulk_delete(BulkDeleteItemRequest $request)

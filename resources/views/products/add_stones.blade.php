@@ -226,13 +226,13 @@
                                             <input value="{{$stone->id}}" hidden name="id"/>
                                         </td>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{ucfirst($stone->stone_shape)}}</td>
-                                        <td>{{ucfirst($stone->p_color_from->title)}}</td>
-                                        <td>{{ucfirst($stone->p_color_to->title)}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_from->title)}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_to->title)}}</td>
-                                        <td>{{ucfirst($stone->size_from)}}</td>
-                                        <td>{{ucfirst($stone->size_to)}}</td>
+                                        <td>{{ucfirst($stone->stone_shape)??""}}</td>
+                                        <td>{{ucfirst($stone->p_color_from->title)??""}}</td>
+                                        <td>{{ucfirst($stone->p_color_to->title)??""}}</td>
+                                        <td>{{ucfirst($stone->p_clarity_from->title)??""}}</td>
+                                        <td>{{ucfirst($stone->p_clarity_to->title)??""}}</td>
+                                        <td>{{ucfirst($stone->size_from)??""}}</td>
+                                        <td>{{ucfirst($stone->size_to)??""}}</td>
                                 @endforeach
                                 </tbody>
                             </table>

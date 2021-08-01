@@ -51,7 +51,7 @@ class WidthController extends Controller
     public function destroy(Request $request, $width)
     {
         $width=Width::whereId($width)->with('product_variations')->first();
-        if(is_null($width->product_variations))
+        if(count($width->product_variations)==0)
         {
             $width->delete();
             return back()->with('success','Width has been deleted');

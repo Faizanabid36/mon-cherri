@@ -58,7 +58,7 @@ class ColorController extends Controller
     public function destroy(Request $request, $color)
     {
         $color=Color::whereId($color)->with(['products','variations'])->first();
-        if(is_null($color->variations))
+        if(count($color->variations)==0)
         {
             $color->delete();
             return back()->with('success','Color has been deleted');
