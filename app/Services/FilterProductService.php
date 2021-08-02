@@ -67,10 +67,10 @@ class FilterProductService
                 }
                 if (request()->filled('stone')) {
                     $stone = request()->stone;
-                    $products->whereIn('id', function($query) use ($stone) {
+                    $products->whereIn('products.id', function($query) use ($stone) {
                     $query->select('product_id')->from('product_stones')->where('stone_shape',$stone)->get();
                 });
-                    $filters += ['size'=>request()->size];
+                    $filters += ['stone'=>request()->stone];
             }
                 $products = $products->paginate($paginate)->appends($filters);
                 return $products;
