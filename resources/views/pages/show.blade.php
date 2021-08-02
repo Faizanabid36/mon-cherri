@@ -31,7 +31,8 @@
                                             </div> -->
                                         @endforeach
                                     </div>
-
+                                    <input type="hidden" value='' id='myprice_min'>
+                                    <input type="hidden" value='' id='myprice_max'>
                                     <div class="big-image">
                                     <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
@@ -368,7 +369,7 @@
                                 <div class="sidebar_widget filterBox filter-widget py-2 mt-5">
                                     <h1 class="">Carret Weight</h1>
                                     <form action="#" method="post" class="price-filter">
-                                        <div id="slider-range"
+                                        <div id="slider-range2"
                                              class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                             <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                             <span class="ui-slider-handle ui-state-default ui-corner-all"
@@ -746,6 +747,63 @@
                     // console.log(response[0][0]['url']);
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
+            });
+            $("#slider-range").on('click','span',function() {
+                $(".dimond-slider").slick('unslick');
+                var price_min = $('#myprice_min').val();
+                var price_max = $('#myprice_max').val();
+                $.ajax({
+                url: "{{ route('ChangeAlbum.post')}}",
+                type: 'post',
+                data: {
+                    psize: psize,
+                    provar: provar,
+                    pwidth: pwidth,
+                    product_id: product_id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function (response) {
+                    
+                    var html3 = '';
+                    for (let index = 0; index < response[6].length; index++) {
+
+                        var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
+                        if (price >= price_min && price <= price_max){
+                            html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                            html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                            html3 += price;
+                            html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['shape'];
+                            html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_sizes'];
+                            html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_colors'];
+                            html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_clarities'];
+                            html3 += "</h3><p>Clarity</p> </div></div></div></div>";
+                        }
+                    }
+                    $('.dimond-slider').html(html3);
+
+                    $(".dimond-slider").slick({
+                        dots: false,
+                        infinite: true,
+                        arrows: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                }
+                            }]
+                    });
+                    // console.log(response[0][0]['url']);
+                    $('.ring-imgtag').attr('src', response[0][0]['url']);
+                }
+            });
             });
 
         }

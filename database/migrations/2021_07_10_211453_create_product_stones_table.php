@@ -16,7 +16,7 @@ class CreateProductStonesTable extends Migration
         Schema::create('product_stones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('stone_shape');
-            $table->string('product_id');
+            $table->integer('product_id');
             $table->string('color_from');
             $table->string('color_to');
             $table->string('clarity_from');

@@ -8,10 +8,10 @@ class FilterProductService
 {
     public static function filter_with_categories($major_category,$paginate)
     {
-
+        // dd(request());
         $products = $major_category->products()->orderBy('created_at', 'desc')->paginate($paginate);
 
-            if(request()->hasAny(['color', 'subcategory', 'subcategory_type', 'size', 'brand', 'price_min', 'price_max', 'keyword'])){
+            if(request()->hasAny(['color', 'subcategory', 'subcategory_type', 'size', 'brand', 'price_min', 'price_max', 'keyword','stone'])){
 
                 $filters  = [];
 
@@ -65,7 +65,13 @@ class FilterProductService
 
                     $filters += ['keyword'=>$keyword];
                 }
-
+                if (request()->filled('stone')) {
+                    $stone = request()->stone;
+                    $products->whereIn('products.id', function($query) use ($stone) {
+                    $query->select('product_id')->from('product_stones')->where('stone_shape',$stone)->get();
+                });
+                    $filters += ['stone'=>request()->stone];
+            }
                 $products = $products->paginate($paginate)->appends($filters);
                 return $products;
             }

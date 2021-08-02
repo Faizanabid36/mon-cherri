@@ -182,7 +182,7 @@
                                         <span></span>
                                 </span>
                                     {{$stone}}
-                                    <input type="radio" name="stone" id="1" value="1"
+                                    <input type="radio" name="stone" id="{{$stone}}" value="{{$stone}}"
                                            style="visibility: hidden;"
                                            class="filter_checkbox">
                                 </label>

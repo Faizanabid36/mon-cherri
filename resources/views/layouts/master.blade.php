@@ -599,9 +599,10 @@
                 values: [0, 500],
                 slide: function (event, ui) {
                     $("#amount").val("<?=$currency_symbol?>" + ui.values[0] + " - <?=$currency_symbol?>" + ui.values[1]);
-
-                    document.getElementById('price_min').value = ui.values[0];
-                    document.getElementById('price_max').value = ui.values[1];
+                    
+                    
+                    $('#myprice_min').val(ui.values[0]);
+                    $('#myprice_max').val(ui.values[1]);
                 }
             });
             <?php
@@ -621,7 +622,7 @@
         }
 
         price_slider();
-
+       
         function start_spinner(this_item) {
             this_item.attr('class', '');
             this_item.addClass('fa fa-spinner fa-spin bs_spinner');
