@@ -10,13 +10,40 @@ use App\Color;
 use Illuminate\Http\Request;
 use App\Imports\CenterStonesImport;
 use Excel;
+use Illuminate\Support\Facades\Cache;
 
 class CenterStoneController extends Controller
 {
     public function index()
     {
-        $center_stones = CenterStone::all();
-        return view('center_stones.index', compact('center_stones'));
+        if (!empty(\request('stone_shape')) || !empty(\request('stone_size')) || !empty(\request('stone_color')) || !empty(\request('stone_clarity'))) {
+            $center_stones = CenterStone::when(request('stone_size'), function ($q) {
+                return $q->where('center_stone_sizes', request('stone_size'));
+            })->when(request('stone_shape'), function ($q) {
+                return $q->where('shape', request('stone_shape'));
+            })->when(request('stone_color'), function ($q) {
+                return $q->where('center_stone_colors', request('stone_color'));
+            })->when(request('stone_clarity'), function ($q) {
+                return $q->where('center_stone_clarities', request('stone_clarity'));
+            })->get();
+        } else {
+            $center_stones = Cache::remember('stones', 15, function () {
+                return CenterStone::all();
+            });
+        }
+        $stone_shapes = Cache::remember('stone_shapes', 15, function () use ($center_stones) {
+            return CenterStone::get()->unique('shape')->pluck('shape')->values();
+        });
+        $stone_sizes = Cache::remember('stone_sizes', 15, function () use ($center_stones) {
+            return CenterStone::get()->unique('center_stone_sizes')->pluck('center_stone_sizes')->values();
+        });
+        $stone_colors = Cache::remember('stone_colors', 15, function () use ($center_stones) {
+            return CenterStone::get()->unique('center_stone_colors')->pluck('center_stone_colors')->values();
+        });
+        $stone_clarities = Cache::remember('stone_clarities', 15, function () use ($center_stones) {
+            return CenterStone::get()->unique('center_stone_clarities')->pluck('center_stone_clarities')->values();
+        });
+        return view('center_stones.index', compact('center_stones', 'stone_shapes', 'stone_sizes', 'stone_colors', 'stone_clarities'));
     }
 
     public function create()
@@ -91,15 +118,15 @@ class CenterStoneController extends Controller
     public function delete_clarity($id)
     {
         $clarity = CenterStoneClarity::find($id);
-        $stone=CenterStone::where('center_stone_clarities',$clarity->title)->first();
-        if(!$stone)
-        {
+        $stone = CenterStone::where('center_stone_clarities', $clarity->title)->first();
+        if (!$stone) {
             $clarity->delete();
             return back()->with('success', 'Clarity deleted');
         }
         return back()->with('success', 'Clarity can not be deleted');
-        
+
     }
+
     public function update_clarity(Request $request, $id)
     {
         CenterStoneClarity::whereId($id)->update([
@@ -135,15 +162,15 @@ class CenterStoneController extends Controller
     public function delete_color($id)
     {
         $color = CenterStoneColor::whereId($id)->first();
-        $stone=CenterStone::where('center_stone_colors',$color->title)->first();
-        
-        if(!$stone)
-        {
+        $stone = CenterStone::where('center_stone_colors', $color->title)->first();
+
+        if (!$stone) {
             $color->delete();
             return back()->with('success', 'Color has been deleted');
         }
         return back()->with('success', 'Color can not be deleted');
     }
+
     public function update_color(Request $request, $id)
     {
         CenterStoneColor::whereId($id)->update([

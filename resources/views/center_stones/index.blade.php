@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <!-- @permission('create.products')
+                <!-- @permission('create.products')
                     <a href="{{route('center_stone.create')}}"
                        class="btn btn-success bs_dashboard_btn bs_btn_color float-right">Create New</a>
                     @endpermission -->
@@ -21,7 +21,64 @@
             </div>
         </div>
         <!-- /Page Header -->
-
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h4>Filter Stone</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="GET" class="form">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="stone_shape">Shape</label>
+                                    <select name="stone_shape" id="stone_shape" class="form-control">
+                                        <option value="" selected disabled>Select Shape</option>
+                                        @foreach($stone_shapes as $stone_shape)
+                                            <option value="{{$stone_shape}}">{{$stone_shape}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="stone_sizes">Size</label>
+                                    <select name="stone_size" id="stone_sizes" class="form-control">
+                                        <option value="" selected disabled>Select Size</option>
+                                        @foreach($stone_sizes as $stone_sizes)
+                                            <option value="{{$stone_sizes}}">{{$stone_sizes}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="stone_colors">Color</label>
+                                    <select name="stone_color" id="stone_colors" class="form-control">
+                                        <option value="" selected disabled>Select Color</option>
+                                        @foreach($stone_colors as $stone_color)
+                                            <option value="{{$stone_color}}">{{$stone_color}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="stone_clarity">Clarity</label>
+                                    <select name="stone_clarity" id="stone_clarity" class="form-control">
+                                        <option value="" selected disabled>Select Clarity</option>
+                                        @foreach($stone_clarities as $stone_clarity)
+                                            <option value="{{$stone_clarity}}">{{$stone_clarity}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <input type="submit" value="filter" class="btn btn-success float-right">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">

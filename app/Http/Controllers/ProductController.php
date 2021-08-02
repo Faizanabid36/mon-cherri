@@ -18,6 +18,7 @@ use App\Services\ProductService;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\VariationRequest;
 use App\Http\Requests\BulkDeleteItemRequest;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use function foo\func;
 use Excel;
@@ -41,7 +42,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Cache::remember('stones', 15, function () {
+            return Product::latest()->get();
+        });
         return view('products.index', compact('products'));
     }
 
@@ -136,7 +139,7 @@ class ProductController extends Controller
 
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         $product = Product::whereId($product_id)->first();
-        
+
         return view('products.create_variation', compact('product_id', 'variations', 'product'));
     }
 
@@ -443,11 +446,13 @@ class ProductController extends Controller
         // }
         return redirect()->route('product.album.product_album', $product_id)->withSuccess('Album Created Successfully');
     }
+
     public function delete_image_album($id)
     {
         ProductAlbum::whereId($id)->delete();
         return back();
     }
+
     public function import_csv(Request $request)
     {
         $this->validate($request, [
