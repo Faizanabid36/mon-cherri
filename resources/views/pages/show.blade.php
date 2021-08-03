@@ -197,7 +197,7 @@
                                                 <div
                                                     class="stock-number d-flex align-items-center justify-content-between">
                                                     <h1 class="text-dark">
-                                                        {{$product->description}}
+                                                        {!! $product->description !!}
                                                     </h1>
                                                 </div>
                                                 <hr style="margin: 10px 0;border-bottom: 1px;"/>
@@ -763,7 +763,7 @@
                     _token: '{{csrf_token()}}'
                 },
                 success: function (response) {
-                    
+
                     var html3 = '';
                     for (let index = 0; index < response[6].length; index++) {
 
