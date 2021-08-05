@@ -605,6 +605,18 @@
                     $('#myprice_max').val(ui.values[1]);
                 }
             });
+            $("#slider-range2").slider({
+                range: true,
+                min: 0.1,
+                max: 10,
+                step: .01,
+                values: [0.1, 10],
+                slide: function (event, ui) {                    
+                    
+                    $('.minsize').html(ui.values[0]);
+                    $('.maxsize').html(ui.values[1]);
+                }
+            });
             <?php
             if(request()->get('price_min') && request()->get('price_max')){
             $min_uprice = currency(request()->get('price_min'), 'USD', currency()->getUserCurrency());

@@ -382,7 +382,10 @@
                                                 <button class="filter-btn">filter</button>
 
                                                 <div class="ml-3">
-                                                    <p class="no-margin"><input id="weight_filter" type="text"
+                                                    <p class="no-margin">
+                                                        <span class="minsize">0.1</span>  
+                                                        <span> - </span><span class="maxsize">100</span>
+                                                        <input id="weight_filter" type="text"
                                                                                 class="filter-input"></p>
                                                 </div>
                                             </div>
@@ -748,10 +751,12 @@
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
-            $("#slider-range").on('click','span',function() {
+            $("#slider-range , #slider-range2 ").on('click','span',function() {
                 $(".dimond-slider").slick('unslick');
                 var price_min = $('#myprice_min').val();
                 var price_max = $('#myprice_max').val();
+                var size_min  = $('.minsize').html();
+                var size_max  = $('.maxsize').html();
                 $.ajax({
                 url: "{{ route('ChangeAlbum.post')}}",
                 type: 'post',
@@ -768,7 +773,7 @@
                     for (let index = 0; index < response[6].length; index++) {
 
                         var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
-                        if (price >= price_min && price <= price_max){
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes'] ){
                             html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
                             html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
                             html3 += price;
