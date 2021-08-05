@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
+
     <link href="{{asset('favicon.png')}}" rel="apple-touch-icon"/>
     <link href="{{asset('favicon.png')}}" rel="icon"/>
     <title>{{env('APP_NAME')}} - @yield('title')</title>
@@ -24,9 +24,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/rainbow.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('css/normalize.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/github.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/github.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">
@@ -35,8 +35,7 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{asset('css/plugin.css')}}">
     <!-- Bootstap CSS -->
-{{--	<link rel="stylesheet" href="https://www.annimexweb.com/items/belle/assets/css/bootstrap.min.css">--}}
-<!-- Main Style CSS -->
+    <!-- Main Style CSS -->
     <link href="{{asset('css/noty.min.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
@@ -50,8 +49,9 @@
         .container22 {
             position: relative;
         }
-        .adil-b{
-            display: block!important;
+
+        .adil-b {
+            display: block !important;
             padding-left: 0;
             padding-right: 0;
         }
@@ -74,10 +74,12 @@
                 margin: 0px auto;
                 transform: translateY(-92%) !important;
             }
-            .custom_gift_section .text p{
+
+            .custom_gift_section .text p {
                 font-size: 1.5rem !important;
             }
-            .custom_gift_section .text h2{
+
+            .custom_gift_section .text h2 {
                 font-size: 0.8rem !important;
             }
         }
@@ -91,12 +93,12 @@
     <div class="search__form">
         <form class="search-bar__form" id="bs_search_form" action="">
             <h3 class="mb-4"><strong>{{__('Search what are you looking for')}}</strong></h3>
-            <input class="search__input" type="search" name="keyword" style="width: 69%"
+            <input class="search__input" type="search" name="keyword" style="width: 55%;border-bottom: 1px black solid"
                    placeholder="{{__('Search entire store...')}}" aria-label="Search" required>
-            <select class="bs_search_input" id="bs_searchCategory" style="width: 29%;border:0" required>
+            <select class="search__input" id="bs_searchCategory" style="width: 25%;border-bottom: 1px black solid;padding: 0 10px!important;" required>
                 <option value="">{{ __('Select Category') }}</option>
                 <?php
-                $categories = App\Category::all();
+                    $categories = App\Category::all();
                 ?>
                 @foreach($categories as $category)
                     <option value="{{$category->slug}}">{{ __(ucwords($category->title)) }}</option>
@@ -405,9 +407,6 @@
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script data-cfasync="false"
-        src="https://www.annimexweb.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://www.annimexweb.com/items/belle/assets/js/vendor/jquery-3.3.1.min.js"></script>
 <script src="{{asset('js/Vendor/jqurey-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/Vendor/jqurey.cookie.js')}}"></script>
 <script src="{{asset('js/Vendor/modernizr-3.6.0.min.js')}}"></script>
@@ -439,13 +438,20 @@
             var bs_product = $(this).attr('data-product_id');
             var bs_size = $(this).attr('data-product_size');
             var bs_qty = $(this).attr('data-product_quantity');
-            var bs_width =  $('#product_width').val();
+            var bs_width = $('#product_width').val();
             var bs_price = $('.chnge-price').html();
             var bs_price = bs_price.substring(1);
             $.ajax({
                 url: '<?=url("addToCart")?>',
                 method: 'POST',
-                data: {product: bs_product, price : bs_price , width:bs_width , qty: bs_qty, size: bs_size, "_token": "<?=csrf_token()?>"},
+                data: {
+                    product: bs_product,
+                    price: bs_price,
+                    width: bs_width,
+                    qty: bs_qty,
+                    size: bs_size,
+                    "_token": "<?=csrf_token()?>"
+                },
                 success: function (data) {
                     notify(data);
                     top_cart();
@@ -599,8 +605,8 @@
                 values: [0, 500],
                 slide: function (event, ui) {
                     $("#amount").val("<?=$currency_symbol?>" + ui.values[0] + " - <?=$currency_symbol?>" + ui.values[1]);
-                    
-                    
+
+
                     $('#myprice_min').val(ui.values[0]);
                     $('#myprice_max').val(ui.values[1]);
                 }
@@ -611,8 +617,8 @@
                 max: 10,
                 step: .01,
                 values: [0.1, 10],
-                slide: function (event, ui) {                    
-                    
+                slide: function (event, ui) {
+
                     $('.minsize').html(ui.values[0]);
                     $('.maxsize').html(ui.values[1]);
                 }
@@ -634,7 +640,7 @@
         }
 
         price_slider();
-       
+
         function start_spinner(this_item) {
             this_item.attr('class', '');
             this_item.addClass('fa fa-spinner fa-spin bs_spinner');
