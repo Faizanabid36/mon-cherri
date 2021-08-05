@@ -384,7 +384,7 @@
                                                 <div class="ml-3">
                                                     <p class="no-margin">
                                                         <span class="minsize">0.1</span>  
-                                                        <span> - </span><span class="maxsize">100</span>
+                                                        <span> - </span><span class="maxsize">10</span>
                                                         <input id="weight_filter" type="text"
                                                                                 class="filter-input"></p>
                                                 </div>
