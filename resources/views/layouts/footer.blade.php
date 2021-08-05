@@ -2,16 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="header">
-                <h2>{{__('Join our mailing list')}}</h2>
-                    <p>{{__('Join our mailing list & receive updates on new products, Latest blog posts & more')}}</p>
+                <h2>Join our mailing list</h2>
+                <p>Join our mailing list &amp; receive updates on new products, Latest blog posts &amp; more</p>
             </div>
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <form>
-
-
-                    <fieldset>
-
+                    <fieldset style="min-width: 0;padding: 0;margin: 0;border: 0;">
                         <div class="row">
                             <div class="form-group col-md-6 col-lg-4 col-xl-4 required">
 
@@ -28,6 +25,8 @@
                 </form>
             </div>
             <div class="col-lg-4"></div>
+
+
         </div>
     </div>
 </div>
@@ -50,7 +49,7 @@
                     <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">About US</a>
                     </li>
                     <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Engagement</a></li>
-{{--                    <li style="font-size: 14px;" class="lvl1 parent dropdown"><a href="#">Rings</a></li>--}}
+                    {{--                    <li style="font-size: 14px;" class="lvl1 parent dropdown"><a href="#">Rings</a></li>--}}
                     <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Privacy Policy</a>
                     </li>
                     <li style="font-size: 14px" class="lvl1 parent megamenu"><a href="#">Terms And Conditions</a>
@@ -80,7 +79,7 @@
     </div>
 </div>
 
-  <!-- ---- footer ---  -->
+<!-- ---- footer ---  -->
 {{--      <footer id="footer">--}}
 {{--       <div class="container">--}}
 
@@ -166,4 +165,4 @@
 
 {{--       </div>--}}
 {{--      </footer>--}}
-    <!-- --- End footer ---  -->
+<!-- --- End footer ---  -->
