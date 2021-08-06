@@ -602,7 +602,7 @@
                 range: true,
                 min: 10,
                 max: 10000,
-                values: [0, 500],
+                values: [0, 1000],
                 slide: function (event, ui) {
                     $("#amount").val("<?=$currency_symbol?>" + ui.values[0] + " - <?=$currency_symbol?>" + ui.values[1]);
 
