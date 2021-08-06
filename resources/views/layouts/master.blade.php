@@ -603,7 +603,10 @@
                     
                     $('#myprice_min').val(ui.values[0]);
                     $('#myprice_max').val(ui.values[1]);
-                }
+                },
+                stop: function() {
+                    changeimages();
+                } 
             });
             $("#slider-range2").slider({
                 range: true,
@@ -615,7 +618,13 @@
                     
                     $('.minsize').html(ui.values[0]);
                     $('.maxsize').html(ui.values[1]);
-                }
+                    
+
+                },
+                stop: function() {
+                    changeimages();
+                } 
+               
             });
             <?php
             if(request()->get('price_min') && request()->get('price_max')){
@@ -644,7 +653,116 @@
             this_item.attr('class', '');
             this_item.addClass('fa fa-check');
         }
+        function changeimages() {
+            
+            var selected = $('#product_size').find('option:selected');
+            var size = selected.data('val');
+            $('.single_page_add_to_cart').attr('data-product_size', size);
+            var psize = $('#product_size').val();
+            var pwidth = $('#product_width').val();
+            var provar = $('.getvariations').val();
+            var product_id = $('.product-form__cart-submit').data('product_id');
+            var price_min = $('#myprice_min').val();
+            var price_max = $('#myprice_max').val();
+            var size_min  = $('.minsize').html();
+            var size_max  = $('.maxsize').html();
 
+            $.ajax({
+                url: "{{ route('ChangeAlbum.post')}}",
+                type: 'post',
+                data: {
+                    psize: psize,
+                    provar: provar,
+                    pwidth: pwidth,
+                    product_id: product_id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function (response) {
+
+                    $('#view360').remove();
+                    $('.product-dec-slider-2').slick('unslick');
+                    $('.dimond-slider').slick('unslick');
+                    var html = '';
+                    for (let index = 0; index < response[0].length; index++) {
+                        html += "<div class='img-responsive'><img class='img-fluid slideimg' src='";
+                        html += response[0][index]['url'];
+                        html += "'></div>";
+
+                    }
+
+                    if (response[2][0]) {
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
+                    }
+                    html2 = '';
+                    html2 += "<img class='img-fluid' src='";
+                    html2 += response[0][0]['url'];
+                    html2 += "'>";
+
+                    if (response[2][0]) {
+                        var path = response[2][0]['path'];
+                        path = path.substring(0, path.lastIndexOf("/") + 1);
+                        $('.big-image').after("<div style='display:none;margin: 0 auto' id='view360'></div>");
+                        $("#view360").tikslus360({
+                            imageDir: path,
+                            imageCount: response[3],
+                            imageExt: 'jpg',
+                            canvasID: 'product',
+                            canvasWidth: 275,
+                            canvasHeight: 275,
+                            autoRotate: false,
+                        });
+                    }
+                    $('.dynamic-width').html(response[5][0]);
+                    $('.dynamic-prong-metal').html(response[4]['title']);
+                    $('.dynamic-product-metal').html(response[4]['sub_title']);
+                    $('.big-image').html(html2);
+
+                    $('.big-image').show();
+                    $('.small-image').html(html);
+                    $('.chnge-price').html('$' + response[1]['price']);
+                    var html3 = '';
+                    for (let index = 0; index < response[6].length; index++) {
+
+                        var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes'] ){
+                        html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                        html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                        html3 += price;
+                        html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['shape'];
+                        html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_sizes'];
+                        html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_colors'];
+                        html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_clarities'];
+                        html3 += "</h3><p>Clarity</p> </div></div></div></div>";
+                        }
+                    }
+                    $('.dimond-slider').html(html3);
+
+                    $(".dimond-slider").slick({
+                        dots: false,
+                        infinite: true,
+                        arrows: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                }
+                            }]
+                    });
+                    // console.log(response[0][0]['url']);
+                    $('.ring-imgtag').attr('src', response[0][0]['url']);
+                }
+            });
+            
+
+        }
     });
 </script>
 </body>
