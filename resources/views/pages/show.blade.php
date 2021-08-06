@@ -31,8 +31,8 @@
                                             </div> -->
                                         @endforeach
                                     </div>
-                                    <input type="hidden" value='' id='myprice_min'>
-                                    <input type="hidden" value='' id='myprice_max'>
+                                    <input type="hidden" value='10' id='myprice_min'>
+                                    <input type="hidden" value='1000' id='myprice_max'>
                                     <div class="big-image">
                                     <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
