@@ -1,4 +1,4 @@
-ssh -i "moncheri-key-pair.pem" ubuntu@ec2-13-212-204-95.ap-southeast-1.compute.amazonaws.com
+ssh -i "moncheri-key-pair.pem" ubuntu@ec2-13-212-101-166.ap-southeast-1.compute.amazonaws.com
 
 cd /var/www/html/mon-cherri
 
