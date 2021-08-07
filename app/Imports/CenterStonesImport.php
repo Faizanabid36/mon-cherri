@@ -39,7 +39,7 @@ class CenterStonesImport implements ToCollection
                     'center_stone_sizes' => $collection[$i][3],
                     'center_stone_colors' => $collection[$i][4],
                     'center_stone_clarities' => $collection[$i][5],
-                    'cut'=> $collection[$i][6],
+                    'cut' => $collection[$i][6],
                     'polish' => $collection[$i][7],
                     'fluor' => $collection[$i][9],
                     'symm' => $collection[$i][8],
@@ -53,19 +53,29 @@ class CenterStonesImport implements ToCollection
                 ]
             );
         }
-        foreach ($colors as $color)
-            CenterStoneColor::create([
-                'title' => $color,
-            ]);
+        foreach ($colors as $color) {
+            try {
+                CenterStoneColor::create([
+                    'title' => $color,
+                ]);
+            } catch (\Exception $exception) {
+            }
+        }
 
-        foreach ($clarities as $clarity)
-            CenterStoneClarity::create([
-                'title' => $clarity,
-            ]);
+        foreach ($clarities as $clarity) {
+            try {
+                CenterStoneClarity::create([
+                    'title' => $clarity,
+                ]);
+            } catch (\Exception $exception) {
+            }
+        }
 
         foreach ($sizes as $size)
-            CenterStoneSize::create([
-                'title' => $size,
-            ]);
+            try {
+                CenterStoneSize::create([
+                    'title' => $size,
+                ]);
+            }catch(\Exception $exception){}
     }
 }
