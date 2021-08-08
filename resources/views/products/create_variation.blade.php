@@ -84,7 +84,7 @@
                                                             title="{{$variation->title}}"
                                                             value="{{$variation->id}}"
                                                             <?php
-                                                            if(isset($product->variations))
+                                                            if($product->variations)
                                                             { if(in_array($variation->id, json_decode($product->variations)))
                                                             {
                                                                 echo "selected";
@@ -109,7 +109,7 @@
                                                     @foreach(App\Size::all() as $size)
                                                         <option value="{{$size->id}}"
                                                         <?php
-                                                        if(isset($product->sizes))
+                                                        if($product->sizes)
                                                         {
                                                             if(in_array($size->id, json_decode($product->sizes)))
                                                             {
@@ -139,7 +139,7 @@
                                                 @foreach(App\Width::all() as $width)
                                                 <option value="{{$width->id}}"
                                                     <?php
-                                                            if(isset($product->widths))
+                                                            if($product->widths)
                                                             { if(in_array($width->id, json_decode($product->widths)))
                                                             {
                                                                 echo "selected";
