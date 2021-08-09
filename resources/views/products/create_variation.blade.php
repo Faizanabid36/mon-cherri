@@ -85,7 +85,7 @@
                                                             value="{{$variation->id}}"
 {{--                                                            {{dd($product)}}--}}
                                                             <?php
-                                                            if(!is_null($product->variations))
+                                                            if(!is_null(json_decode($product->variations)))
                                                             {
                                                                 dd($product->variations);
                                                                 if(in_array($variation->id, json_decode($product->variations)))
