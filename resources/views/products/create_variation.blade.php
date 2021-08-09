@@ -86,8 +86,9 @@
 {{--                                                            {{dd($product)}}--}}
                                                             <?php
                                                             if(!is_null($product->variations))
-                                                            {{dd($product->variations)  }}
-                                                            { if(in_array($variation->id, json_decode($product->variations)))
+                                                            {
+                                                                dd($product->variations);
+                                                                if(in_array($variation->id, json_decode($product->variations)))
                                                             {
                                                                 echo "selected";
                                                             }}
