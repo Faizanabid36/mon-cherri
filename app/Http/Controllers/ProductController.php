@@ -139,7 +139,7 @@ class ProductController extends Controller
 
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         $product = Product::whereId($product_id)->first();
-
+        // dd($product);
         return view('products.create_variation', compact('product_id', 'variations', 'product'));
     }
 
@@ -151,6 +151,7 @@ class ProductController extends Controller
         $product->variations = json_encode($request->variations);
         $product->sizes = json_encode($request->sizes);
         $product->widths = json_encode($request->widths);
+        // dd($product->variations,$product->sizes,$product->widths );
         $product->save();
         foreach ($request->variations as $var) {
             if ($request->sizes) {

@@ -84,7 +84,7 @@
                                                             title="{{$variation->title}}"
                                                             value="{{$variation->id}}"
                                                             <?php
-                                                            if($product->variations)
+                                                            if(isset($product->variations) && $product->variations!="null")
                                                             { if(in_array($variation->id, json_decode($product->variations)))
                                                             {
                                                                 echo "selected";
@@ -109,7 +109,7 @@
                                                     @foreach(App\Size::all() as $size)
                                                         <option value="{{$size->id}}"
                                                         <?php
-                                                        if($product->sizes)
+                                                        if(isset($product->sizes) && $product->sizes!="null")
                                                         {
                                                             if(in_array($size->id, json_decode($product->sizes)))
                                                             {
@@ -139,8 +139,10 @@
                                                 @foreach(App\Width::all() as $width)
                                                 <option value="{{$width->id}}"
                                                     <?php
-                                                            if($product->widths)
-                                                            { if(in_array($width->id, json_decode($product->widths)))
+                                                    // dd($product->widths);
+                                                            if(isset($product->widths) && $product->widths!="null")
+                                                            { 
+                                                                if(in_array($width->id, json_decode($product->widths)))
                                                             {
                                                                 echo "selected";
                                                             }}
