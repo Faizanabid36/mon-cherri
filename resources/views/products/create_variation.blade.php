@@ -44,6 +44,7 @@
                                                         <option
                                                             title="{{$variation->title}}"
                                                             value="{{$variation->id}}"
+                                                            {{dd($product)}}
                                                             <?php
                                                             if(isset($product->variations))
                                                             { if(in_array($variation->id, json_decode($product->variations)))
@@ -217,7 +218,7 @@
                                             {{$variation->qty}}
 
                                             </td>
-                                      
+
                                             <td>
                                             {{$variation->weight}}
 
