@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
+
     <link href="{{asset('favicon.png')}}" rel="apple-touch-icon"/>
     <link href="{{asset('favicon.png')}}" rel="icon"/>
     <title>{{env('APP_NAME')}} - @yield('title')</title>
@@ -24,9 +24,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/rainbow.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('css/normalize.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/github.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/github.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">
@@ -35,8 +35,7 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{asset('css/plugin.css')}}">
     <!-- Bootstap CSS -->
-{{--	<link rel="stylesheet" href="https://www.annimexweb.com/items/belle/assets/css/bootstrap.min.css">--}}
-<!-- Main Style CSS -->
+    <!-- Main Style CSS -->
     <link href="{{asset('css/noty.min.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
@@ -50,8 +49,9 @@
         .container22 {
             position: relative;
         }
-        .adil-b{
-            display: block!important;
+
+        .adil-b {
+            display: block !important;
             padding-left: 0;
             padding-right: 0;
         }
@@ -74,10 +74,12 @@
                 margin: 0px auto;
                 transform: translateY(-92%) !important;
             }
-            .custom_gift_section .text p{
+
+            .custom_gift_section .text p {
                 font-size: 1.5rem !important;
             }
-            .custom_gift_section .text h2{
+
+            .custom_gift_section .text h2 {
                 font-size: 0.8rem !important;
             }
         }
@@ -91,12 +93,12 @@
     <div class="search__form">
         <form class="search-bar__form" id="bs_search_form" action="">
             <h3 class="mb-4"><strong>{{__('Search what are you looking for')}}</strong></h3>
-            <input class="search__input" type="search" name="keyword" style="width: 69%"
+            <input class="search__input" type="search" name="keyword" style="width: 55%;border-bottom: 1px black solid"
                    placeholder="{{__('Search entire store...')}}" aria-label="Search" required>
-            <select class="bs_search_input" id="bs_searchCategory" style="width: 29%;border:0" required>
+            <select class="search__input" id="bs_searchCategory" style="width: 25%;border-bottom: 1px black solid;padding: 0 10px!important;" required>
                 <option value="">{{ __('Select Category') }}</option>
                 <?php
-                $categories = App\Category::all();
+                    $categories = App\Category::all();
                 ?>
                 @foreach($categories as $category)
                     <option value="{{$category->slug}}">{{ __(ucwords($category->title)) }}</option>
@@ -405,9 +407,6 @@
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script data-cfasync="false"
-        src="https://www.annimexweb.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://www.annimexweb.com/items/belle/assets/js/vendor/jquery-3.3.1.min.js"></script>
 <script src="{{asset('js/Vendor/jqurey-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/Vendor/jqurey.cookie.js')}}"></script>
 <script src="{{asset('js/Vendor/modernizr-3.6.0.min.js')}}"></script>
@@ -439,13 +438,20 @@
             var bs_product = $(this).attr('data-product_id');
             var bs_size = $(this).attr('data-product_size');
             var bs_qty = $(this).attr('data-product_quantity');
-            var bs_width =  $('#product_width').val();
+            var bs_width = $('#product_width').val();
             var bs_price = $('.chnge-price').html();
             var bs_price = bs_price.substring(1);
             $.ajax({
                 url: '<?=url("addToCart")?>',
                 method: 'POST',
-                data: {product: bs_product, price : bs_price , width:bs_width , qty: bs_qty, size: bs_size, "_token": "<?=csrf_token()?>"},
+                data: {
+                    product: bs_product,
+                    price: bs_price,
+                    width: bs_width,
+                    qty: bs_qty,
+                    size: bs_size,
+                    "_token": "<?=csrf_token()?>"
+                },
                 success: function (data) {
                     notify(data);
                     top_cart();
@@ -596,14 +602,17 @@
                 range: true,
                 min: 10,
                 max: 10000,
-                values: [0, 500],
+                values: [0, 1000],
                 slide: function (event, ui) {
                     $("#amount").val("<?=$currency_symbol?>" + ui.values[0] + " - <?=$currency_symbol?>" + ui.values[1]);
-                    
-                    
+
+
                     $('#myprice_min').val(ui.values[0]);
                     $('#myprice_max').val(ui.values[1]);
-                }
+                },
+                stop: function() {
+                    changeimages();
+                } 
             });
             $("#slider-range2").slider({
                 range: true,
@@ -611,11 +620,17 @@
                 max: 10,
                 step: .01,
                 values: [0.1, 10],
-                slide: function (event, ui) {                    
-                    
+                slide: function (event, ui) {
+
                     $('.minsize').html(ui.values[0]);
                     $('.maxsize').html(ui.values[1]);
-                }
+                    
+
+                },
+                stop: function() {
+                    changeimages();
+                } 
+               
             });
             <?php
             if(request()->get('price_min') && request()->get('price_max')){
@@ -634,7 +649,7 @@
         }
 
         price_slider();
-       
+
         function start_spinner(this_item) {
             this_item.attr('class', '');
             this_item.addClass('fa fa-spinner fa-spin bs_spinner');
@@ -644,7 +659,116 @@
             this_item.attr('class', '');
             this_item.addClass('fa fa-check');
         }
+        function changeimages() {
+            
+            var selected = $('#product_size').find('option:selected');
+            var size = selected.data('val');
+            $('.single_page_add_to_cart').attr('data-product_size', size);
+            var psize = $('#product_size').val();
+            var pwidth = $('#product_width').val();
+            var provar = $('.getvariations').val();
+            var product_id = $('.product-form__cart-submit').data('product_id');
+            var price_min = $('#myprice_min').val();
+            var price_max = $('#myprice_max').val();
+            var size_min  = $('.minsize').html();
+            var size_max  = $('.maxsize').html();
 
+            $.ajax({
+                url: "{{ route('ChangeAlbum.post')}}",
+                type: 'post',
+                data: {
+                    psize: psize,
+                    provar: provar,
+                    pwidth: pwidth,
+                    product_id: product_id,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function (response) {
+
+                    $('#view360').remove();
+                    $('.product-dec-slider-2').slick('unslick');
+                    $('.dimond-slider').slick('unslick');
+                    var html = '';
+                    for (let index = 0; index < response[0].length; index++) {
+                        html += "<div class='img-responsive'><img class='img-fluid slideimg' src='";
+                        html += response[0][index]['url'];
+                        html += "'></div>";
+
+                    }
+
+                    if (response[2][0]) {
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
+                    }
+                    html2 = '';
+                    html2 += "<img class='img-fluid' src='";
+                    html2 += response[0][0]['url'];
+                    html2 += "'>";
+
+                    if (response[2][0]) {
+                        var path = response[2][0]['path'];
+                        path = path.substring(0, path.lastIndexOf("/") + 1);
+                        $('.big-image').after("<div style='display:none;margin: 0 auto' id='view360'></div>");
+                        $("#view360").tikslus360({
+                            imageDir: path,
+                            imageCount: response[3],
+                            imageExt: 'jpg',
+                            canvasID: 'product',
+                            canvasWidth: 275,
+                            canvasHeight: 275,
+                            autoRotate: false,
+                        });
+                    }
+                    $('.dynamic-width').html(response[5][0]);
+                    $('.dynamic-prong-metal').html(response[4]['title']);
+                    $('.dynamic-product-metal').html(response[4]['sub_title']);
+                    $('.big-image').html(html2);
+
+                    $('.big-image').show();
+                    $('.small-image').html(html);
+                    $('.chnge-price').html('$' + response[1]['price']);
+                    var html3 = '';
+                    for (let index = 0; index < response[6].length; index++) {
+
+                        var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes'] ){
+                        html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                        html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                        html3 += price;
+                        html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['shape'];
+                        html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_sizes'];
+                        html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_colors'];
+                        html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                        html3 += response[6][index]['center_stone_clarities'];
+                        html3 += "</h3><p>Clarity</p> </div></div></div></div>";
+                        }
+                    }
+                    $('.dimond-slider').html(html3);
+
+                    $(".dimond-slider").slick({
+                        dots: false,
+                        infinite: true,
+                        arrows: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                }
+                            }]
+                    });
+                    // console.log(response[0][0]['url']);
+                    $('.ring-imgtag').attr('src', response[0][0]['url']);
+                }
+            });
+            
+
+        }
     });
 </script>
 </body>

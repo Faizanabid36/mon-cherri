@@ -15,7 +15,7 @@ class CreateWidthsTable extends Migration
     {
         Schema::create('widths', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('width');
+            $table->string('width')->unique();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateCenterStoneColorsTable extends Migration
     {
         Schema::create('center_stone_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->integer('priority')->nullable();
             $table->timestamps();
         });

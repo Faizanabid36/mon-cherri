@@ -15,9 +15,9 @@ class CreateSizesTable extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('size');
+            $table->string('size')->unique();
             // $table->unsignedBigInteger('category_id')->unsigned();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->timestamps();
             // $table->softDeletes();
 

@@ -107,30 +107,6 @@
             </div>
             <!--End Size Swatches-->
             <!--Color Swatches-->
-            <div class="sidebar_widget filterBox filter-widget">
-                <div class="title-widget">
-                    <h2 class="fontofheading" style="float: left">{{__('Color')}}</h2>
-                    <i class="fa fa-angle-double-down" style="float: right;cursor: pointer"></i>
-                </div>
-                <div class="filter-color swacth-list clearfix">
-                    @php  $colors = App\Color::all(); @endphp
-                    @foreach($colors as $color)
-                        @php
-                            $color_filter_id = $color->slug.$color->id;
-                        @endphp
-
-                        <label data-filter-id="{{$color_filter_id}}" class="filter_item">
-                            <span
-                                class="swacth-btn {{$color->color}} {{(request()->color == $color->slug) ? 'checked' : ''}}  filter_item"
-                                data-filter-id="{{$color_filter_id}}">
-{{--                                {{ucwords($color->color)}}--}}
-                                <input type="radio" name="color" id="{{$color_filter_id}}" value="{{$color->slug}}"
-                                       style="visibility: hidden;" {{(request()->color == $color->slug) ? 'checked' : ''}}>
-                            </span>
-                        </label>
-                    @endforeach
-                </div>
-            </div>
             <!--End Color Swatches-->
             <!--Brand-->
             {{--            <div class="sidebar_widget filterBox filter-widget">--}}

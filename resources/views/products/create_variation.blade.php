@@ -7,11 +7,50 @@
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Create Variation</h3>
+                    <button class="btn btn-primary btn-lg">
+                        <a href="{{url()->previous()}}" class="text-white"><i
+                                class="fe fe-arrow-left">{{' '}}{{ __('Back') }}</i></a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Navigation Links</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{url('/products')}}">Products</a></li>
-                        <li class="breadcrumb-item active">Create Variation</li>
+                        <li class="breadcrumb-item">
+                            <a href="{{url('/products')}}"
+                               class="btn btn-danger btn-sm text-white mr-2">
+                                <i class="fe fe-list-bullet"></i> Products
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="{{route('products.edit',$product->id)}}" class="btn btn-sm bg-success-light mr-2">
+                                <i class="fe fe-pencil"></i> Edit
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('product.album.product_album',$product->id)}}"
+                               class="btn btn-sm bg-warning-light"
+                               data-route="{{route('product.album.product_album',$product->id)}}">
+                                <i class="fe fe-file-image"></i> Album
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('product.variations.add',$product->id)}}"
+                               class="btn btn-sm bg-info-light"
+                               data-route="{{route('product.variations.get',$product->id)}}">
+                                <b><u><i><i class="fe fe-activity"></i> Variations</i></u></b>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('product.center_stone.add',$product->id)}}"
+                               class="btn btn-sm bg-secondary text-white"
+                               data-route="{{route('product.center_stone.add',$product->id)}}">
+                                <i class="fe fe-diamond"></i> Stone
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +85,7 @@
                                                             value="{{$variation->id}}"
                                                             {{dd($product)}}
                                                             <?php
-                                                            if(isset($product->variations))
+                                                            if($product->variations)
                                                             { if(in_array($variation->id, json_decode($product->variations)))
                                                             {
                                                                 echo "selected";
@@ -71,7 +110,7 @@
                                                     @foreach(App\Size::all() as $size)
                                                         <option value="{{$size->id}}"
                                                         <?php
-                                                        if(isset($product->sizes))
+                                                        if($product->sizes)
                                                         {
                                                             if(in_array($size->id, json_decode($product->sizes)))
                                                             {
@@ -101,7 +140,7 @@
                                                 @foreach(App\Width::all() as $width)
                                                 <option value="{{$width->id}}"
                                                     <?php
-                                                            if(isset($product->widths))
+                                                            if($product->widths)
                                                             { if(in_array($width->id, json_decode($product->widths)))
                                                             {
                                                                 echo "selected";
