@@ -228,12 +228,10 @@ class ProductController extends Controller
                             ]
                         );
                     }
-
-
                 }
 
             }
-            else 
+            else
             {
                 $product_variation = ProductVariation::create(
                     [
