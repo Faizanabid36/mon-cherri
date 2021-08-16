@@ -98,11 +98,12 @@
 
                                     <div class="product-selection py-1">
                                         <div class="row">
-                                           
+                                            @if(count($product_widths)>0)
                                             <div class="col-lg-12 mb-2">
                                                 <select name="product_width" class="form-control getoptions"
                                                         id="product_width" required>
                                                     <option value="" selected disabled>Select Width</option>
+
                                                     @foreach($product_widths as $key => $width)
                                                         <option
                                                             <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}"
@@ -110,8 +111,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            
-                                            
+                                            @endif
+                                            @if(count($product_sizes)>0)
                                             <div class="col-lg-6">
                                                 <div class="product-range-size">
                                                     <select class="form-control getoptions" name="size"
@@ -126,7 +127,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+                                            @endif
                                             <div class="col-lg-6">
                                                 <div class="product-form__item--quantity">
                                                     <div class="wrapQtyBtn">
@@ -264,8 +265,10 @@
                                             </div>
 
                                         </div>
+
                                     </div>
                                 </div>
+
                             </section>
                         </div>
                     </div>
@@ -309,20 +312,26 @@
                                     <img src="{{__('images/call.png')}}" class="img-fluid">
                                 </div>
                                 <div class="buying-card-name">
-                                    <h2>HAS SALE FREE RETURN</h2>
+                                    <h2>HASSALE FREE RETURN</h2>
                                     <p>No risk Purchase</p>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <!-- end of the make buying from us -->
+
+
                     <!-------Dimond section---------->
                     <div class="row py-5">
                         <div class="make-buying-heading">
                             <h1>{{__('Select a Diamond')}}</h1>
                             <div class="row">
                                 <div class="offset-1 col-lg-10">
+
                                     <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text..</p>
+
                                 </div>
                             </div>
                         </div>
@@ -345,15 +354,21 @@
                                         <div class="row">
                                             <div class="col-12 d-flex">
                                                 <button class="filter-btn">filter</button>
+
                                                 <div class="ml-3">
                                                     <p class="no-margin"><input id="amount" type="text"
                                                                                 class="filter-input"></p>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>
+
+
                                 <!-- end of the price filter  -->
+
+
                                 <!-- start carret weight  -->
                                 <div class="sidebar_widget filterBox filter-widget py-2 mt-5">
                                     <h1 class="">Carret Weight</h1>
@@ -369,6 +384,7 @@
                                         <div class="row">
                                             <div class="col-12 d-flex">
                                                 <button class="filter-btn">filter</button>
+
                                                 <div class="ml-3">
                                                     <p class="no-margin">
                                                         <span class="minsize">0.1</span>
@@ -377,15 +393,24 @@
                                                                                 class="filter-input"></p>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>
+
                                 <!-----End carret weight-------------->
+
+
                             </div>
                         </div>
+
                         <!---Dimond Slider--------->
                         <div class="col-lg-8 col-md-6">
+
+
                             <div class="dimond-slider">
+
+
                             </div>
                         </div>
 
@@ -731,9 +756,12 @@
                                 }
                             }]
                     });
+                    // console.log(response[0][0]['url']);
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
+
+
         }
 
     </script>

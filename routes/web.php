@@ -94,6 +94,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::name('product.center_stone.')->prefix('center_stone')->group(function () {
             Route::get('add/{id}', 'ProductController@center_stone')->name('add');
             Route::post('store', 'ProductController@store_center_stone')->name('store');
+            Route::post('delete', 'ProductController@delete_center_stone')->name('delete');
         });
 
 

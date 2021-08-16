@@ -234,11 +234,10 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <form action="{{route('product.variations.bulk_delete')}}" method="POST"
+                            <form action="{{route('product.center_stone.delete')}}" method="POST"
                                   id="deleteAll">
                                 @csrf
-                                <input type="hidden" name="items" id="bs_items_forbulkDelete">
-                            </form>
+                                <input type="submit" style="float:right" value="Delete"/>
                             <table class="datatable table table-stripped">
                                 <thead>
                                 <tr>
@@ -260,7 +259,7 @@
                                 @foreach($product_stones as $stone)
                                     <tr>
                                         <td style="padding:10px 18px;">
-                                            <input type="checkbox" value="{{$stone->id}}"
+                                            <input type="checkbox" name="ids[]" value="{{$stone->id}}"
                                                    class="bs_dtrow_checkbox bs_checkItem">
                                             <input value="{{$stone->id}}" hidden name="id"/>
                                         </td>
@@ -275,6 +274,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -401,6 +401,7 @@
             </div>
         </div>
     </div>
+    
 @endsection
 @section('javascript')
     <script type="text/javascript">

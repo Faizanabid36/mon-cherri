@@ -155,7 +155,6 @@ class ProductController extends Controller
         $product->save();
         foreach ($request->variations as $var) {
             if ($request->sizes) {
-
                 foreach ($request->sizes as $size) {
                     if ($request->widths) {
                         foreach ($request->widths as $width) {
@@ -233,6 +232,50 @@ class ProductController extends Controller
             }
             else
             {
+                if ($request->widths) {
+                    foreach ($request->widths as $width) {
+
+                        if ($request->certificates) {
+
+                            foreach ($request->certificates as $certificate) {
+
+                                $product_variation = ProductVariation::create(
+                                    [
+                                        'product_id' => $request->product_id,
+                                        'variation_id' => $var,
+                                        'size_id' => 0,
+                                        'weight' => 0,
+                                        'qty' => 0,
+                                        'price' => 0,
+                                        'description' => "",
+                                        'certificate_id' => $certificate,
+                                        'width_id' => $width
+                                    ]
+                                );
+
+                            }
+                        } else {
+
+                            $product_variation = ProductVariation::create(
+                                [
+                                    'product_id' => $request->product_id,
+                                    'variation_id' => $var,
+                                    'size_id' => 0,
+                                    'weight' => 0,
+                                    'qty' => 0,
+                                    'price' => 0,
+                                    'description' => "",
+                                    'width_id' => $width
+                                ]
+                            );
+                        }
+
+                    }
+
+                } 
+
+                else
+                {
                 $product_variation = ProductVariation::create(
                     [
                         'product_id' => $request->product_id,
@@ -244,6 +287,7 @@ class ProductController extends Controller
                         'description' => "",
                     ]
                 );
+            }
             }
         }
 
@@ -359,7 +403,12 @@ class ProductController extends Controller
         ProductStone::create($request->except('_token'));
         return back()->withSuccess('Created Successfully');
     }
-
+    public function delete_center_stone(Request $request)
+    {
+        ProductStone::destroy($request->ids);
+        return back();
+       
+    }
     public function OLDstore_center_stone(Request $request)
     {
         ProductStone::whereProductId($request->product_id)->whereStoneShape($request->stone_shape)->delete();
