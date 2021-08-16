@@ -58,11 +58,16 @@ class FrontController extends Controller
                 return $var['product_id'] . $var['variation_id'];
             });
         });
+        if (isset($product->product_variations[0]) && $product->product_variations[0]->size_id!=0){
         $product_sizes = Cache::remember($product->id . 'sizes', '99999', function () use ($product) {
             return collect($product->product_variations)->unique(function ($var) {
                 return $var['product_id'] . $var['size_id'];;
             });
-        });
+        });}
+        else
+        {
+            $product_sizes = array();
+        }
 //        $product_sizes = collect($product->product_variations)->unique(function ($var) {
 //            return $var['product_id'] . $var['size_id'];;
 //        });
@@ -86,6 +91,7 @@ class FrontController extends Controller
             $stones = $this->getStones($product_stone, $stones);
         }
         session()->flash('after_login_url', '/' . $product->slug);
+       // dd(compact('product', 'related_products', 'product_variations', 'product_sizes', 'product_widths', 'stones'));
         return view('pages.show', compact('product', 'related_products', 'product_variations', 'product_sizes', 'product_widths', 'stones'));
     }
 

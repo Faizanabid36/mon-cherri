@@ -233,6 +233,20 @@ class ProductController extends Controller
                 }
 
             }
+            else 
+            {
+                $product_variation = ProductVariation::create(
+                    [
+                        'product_id' => $request->product_id,
+                        'variation_id' => $var,
+                        'size_id' => 0,
+                        'weight' => 0,
+                        'qty' => 0,
+                        'price' => 0,
+                        'description' => "",
+                    ]
+                );
+            }
         }
 
 

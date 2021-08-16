@@ -244,8 +244,8 @@
                                         <td>
                                             {{ucwords($variation->variation->title??"")}}
                                         </td>
-                                        <td>{{ucwords($variation->size->size)}}</td>
-                                        <td> {{$variation->width?($variation->width->width):''}}</td>
+                                        <td>{{$variation->size?$variation->size->size:"NA"}}</td>
+                                        <td> {{$variation->width?($variation->width->width):'NA'}}</td>
                                         <td>{{$variation->price}}
 
                                         </td>

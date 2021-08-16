@@ -98,6 +98,7 @@
 
                                     <div class="product-selection py-1">
                                         <div class="row">
+                                            @if(count($product_widths)>0)
                                             <div class="col-lg-12 mb-2">
                                                 <select name="product_width" class="form-control getoptions"
                                                         id="product_width" required>
@@ -110,6 +111,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            @endif
+                                            @if(count($product_sizes)>0)
                                             <div class="col-lg-6">
                                                 <div class="product-range-size">
                                                     <select class="form-control getoptions" name="size"
@@ -124,6 +127,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            @endif
                                             <div class="col-lg-6">
                                                 <div class="product-form__item--quantity">
                                                     <div class="wrapQtyBtn">
