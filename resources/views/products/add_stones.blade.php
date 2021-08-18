@@ -179,13 +179,13 @@
                                             <div class="form-group">
                                                 <label>Size To</label>
                                                 <input type="text" name="size_to" id="size_to" class="form-control">
-{{--                                                <select name="size_to" id="size_to" class="form-control">--}}
-{{--                                                    <option value="" selected disabled>Select Ending Size</option>--}}
-{{--                                                    @foreach($stone_sizes as $size)--}}
-{{--                                                        <option--}}
-{{--                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
+                                                {{--                                                <select name="size_to" id="size_to" class="form-control">--}}
+                                                {{--                                                    <option value="" selected disabled>Select Ending Size</option>--}}
+                                                {{--                                                    @foreach($stone_sizes as $size)--}}
+                                                {{--                                                        <option--}}
+                                                {{--                                                            value="{{$size->id}}">{{ucfirst($size->title)}}</option>--}}
+                                                {{--                                                    @endforeach--}}
+                                                {{--                                                </select>--}}
                                                 @if($errors->has('size_to'))
                                                     @foreach($errors->get('size_to') as $message)
                                                         <span style="color:red">{{$message}}</span>
@@ -237,43 +237,43 @@
                             <form action="{{route('product.center_stone.delete')}}" method="POST"
                                   id="deleteAll">
                                 @csrf
-                                <input type="submit" style="float:right" value="Delete"/>
-                            <table class="datatable table table-stripped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" id="checkAll">
-                                    </th>
-                                    <th>S.No</th>
-                                    <th>Shape</th>
-                                    <th>Color From</th>
-                                    <th>Color To</th>
-                                    <th>Clarity From</th>
-                                    <th>Clarity To</th>
-                                    <th>Size From</th>
-                                    <th>Size To</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($product_stones as $stone)
+                                <input type="submit" style="float:left" class="btn btn-danger" value="Delete"/>
+                                <table class="table table-stripped">
+                                    <thead>
                                     <tr>
-                                        <td style="padding:10px 18px;">
-                                            <input type="checkbox" name="ids[]" value="{{$stone->id}}"
-                                                   class="bs_dtrow_checkbox bs_checkItem">
-                                            <input value="{{$stone->id}}" hidden name="id"/>
-                                        </td>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{ucfirst($stone->stone_shape)??""}}</td>
-                                        <td>{{ucfirst($stone->p_color_from->title)??""}}</td>
-                                        <td>{{ucfirst($stone->p_color_to->title)??""}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_from->title)??""}}</td>
-                                        <td>{{ucfirst($stone->p_clarity_to->title)??""}}</td>
-                                        <td>{{ucfirst($stone->size_from)??""}}</td>
-                                        <td>{{ucfirst($stone->size_to)??""}}</td>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                        <th>
+                                            <input type="checkbox" id="checkAll">
+                                        </th>
+                                        <th>S.No</th>
+                                        <th>Shape</th>
+                                        <th>Color From</th>
+                                        <th>Color To</th>
+                                        <th>Clarity From</th>
+                                        <th>Clarity To</th>
+                                        <th>Size From</th>
+                                        <th>Size To</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($product_stones as $stone)
+                                        <tr>
+                                            <td style="padding:10px 18px;">
+                                                <input type="checkbox" name="ids[]" value="{{$stone->id}}"
+                                                       class="bs_dtrow_checkbox bs_checkItem">
+                                                <input value="{{$stone->id}}" hidden name="id"/>
+                                            </td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{ucfirst($stone->stone_shape)??""}}</td>
+                                            <td>{{ucfirst($stone->p_color_from->title)??""}}</td>
+                                            <td>{{ucfirst($stone->p_color_to->title)??""}}</td>
+                                            <td>{{ucfirst($stone->p_clarity_from->title)??""}}</td>
+                                            <td>{{ucfirst($stone->p_clarity_to->title)??""}}</td>
+                                            <td>{{ucfirst($stone->size_from)??""}}</td>
+                                            <td>{{ucfirst($stone->size_to)??""}}</td>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </form>
                         </div>
                     </div>
@@ -401,7 +401,7 @@
             </div>
         </div>
     </div>
-    
+
 @endsection
 @section('javascript')
     <script type="text/javascript">

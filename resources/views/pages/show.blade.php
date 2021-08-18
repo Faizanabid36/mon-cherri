@@ -86,47 +86,51 @@
                                     </div>
                                     <div class="product-price-circle py-1">
                                         <div class="product-price-items d-flex">
+                                            <input type="hidden" id="product_variant_id" name="product_variant_id"
+                                                   value="">
                                             @foreach($product_variations as $variation)
                                                 <h1 class="setvariations" data-id="{{$variation->variation_id}}"
                                                     style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
-                                        @if(isset($product_variations[0]))<input type="hidden" class="getvariations"
-                                                                                 name="getvariations"
-                                                                                 value="{{$product_variations[0]->variation_id}}">@endif
+                                        @if(isset($product_variations[0]))
+                                            <input type="hidden" class="getvariations"
+                                                   name="getvariations"
+                                                   value="{{$product_variations[0]->variation_id}}">
+                                        @endif
                                     </div>
 
                                     <div class="product-selection py-1">
                                         <div class="row">
                                             @if(count($product_widths)>0)
-                                            <div class="col-lg-12 mb-2">
-                                                <select name="product_width" class="form-control getoptions"
-                                                        id="product_width" required>
-                                                    <option value="" selected disabled>Select Width</option>
+                                                <div class="col-lg-12 mb-2">
+                                                    <select name="product_width" class="form-control getoptions"
+                                                            id="product_width" required>
+                                                        <option value="" selected disabled>Select Width</option>
 
-                                                    @foreach($product_widths as $key => $width)
-                                                        <option
-                                                            <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}"
-                                                            data-val="{{$width->width->width}}">{{$width->width->width}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @endif
-                                            @if(count($product_sizes)>0)
-                                            <div class="col-lg-6">
-                                                <div class="product-range-size">
-                                                    <select class="form-control getoptions" name="size"
-                                                            id="product_size" required>
-                                                        <option value="" selected
-                                                                disabled>{{__('Select Size')}}</option>
-                                                        @foreach($product_sizes as $key => $p_size)
-                                                            <option <?php echo $key == 0 ? 'selected' : ''; ?>
-                                                                    value="{{$p_size->size->id}}"
-                                                                    data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
+                                                        @foreach($product_widths as $key => $width)
+                                                            <option
+                                                                <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}"
+                                                                data-val="{{$width->width->width}}">{{$width->width->width}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            @endif
+                                            @if(count($product_sizes)>0)
+                                                <div class="col-lg-6">
+                                                    <div class="product-range-size">
+                                                        <select class="form-control getoptions" name="size"
+                                                                id="product_size" required>
+                                                            <option value="" selected
+                                                                    disabled>{{__('Select Size')}}</option>
+                                                            @foreach($product_sizes as $key => $p_size)
+                                                                <option <?php echo $key == 0 ? 'selected' : ''; ?>
+                                                                        value="{{$p_size->size->id}}"
+                                                                        data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             @endif
                                             <div class="col-lg-6">
                                                 <div class="product-form__item--quantity">
@@ -390,7 +394,7 @@
                                                         <span class="minsize">0.1</span>
                                                         <span> - </span><span class="maxsize">10</span>
                                                         <input id="weight_filter" type="text"
-                                                                                class="filter-input"></p>
+                                                               class="filter-input"></p>
                                                 </div>
                                             </div>
 
@@ -630,6 +634,7 @@
             $('.setvariations').on('click', function () {
                 var data = $(this).data('id');
                 $('.getvariations').val(data);
+                $('#product_variant_id').val(data)
                 $(".dimond-slider").slick('unslick');
                 changeimages();
             })
@@ -665,8 +670,8 @@
             var product_id = $('.product-form__cart-submit').data('product_id');
             var price_min = $('#myprice_min').val();
             var price_max = $('#myprice_max').val();
-            var size_min  = $('.minsize').html();
-            var size_max  = $('.maxsize').html();
+            var size_min = $('.minsize').html();
+            var size_max = $('.maxsize').html();
 
             $.ajax({
                 url: "{{ route('ChangeAlbum.post')}}",
@@ -724,19 +729,19 @@
                     for (let index = 0; index < response[6].length; index++) {
 
                         var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
-                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes'] ){
-                        html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
-                        html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
-                        html3 += price;
-                        html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['shape'];
-                        html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_sizes'];
-                        html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_colors'];
-                        html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_clarities'];
-                        html3 += "</h3><p>Clarity</p> </div></div></div></div>";
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes']) {
+                            html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                            html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                            html3 += price;
+                            html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['shape'];
+                            html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_sizes'];
+                            html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_colors'];
+                            html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_clarities'];
+                            html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                         }
                     }
                     $('.dimond-slider').html(html3);

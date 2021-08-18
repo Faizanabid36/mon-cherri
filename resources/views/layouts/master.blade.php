@@ -438,6 +438,7 @@
             var bs_product = $(this).attr('data-product_id');
             var bs_size = $(this).attr('data-product_size');
             var bs_qty = $(this).attr('data-product_quantity');
+            var bs_variant = $('.getvariations').val();
             var bs_width = $('#product_width').val();
             var bs_price = $('.chnge-price').html();
             var bs_price = bs_price.substring(1);
@@ -445,6 +446,7 @@
                 url: '<?=url("addToCart")?>',
                 method: 'POST',
                 data: {
+                    bs_variant_id:bs_variant,
                     product: bs_product,
                     price: bs_price,
                     width: bs_width,
@@ -612,7 +614,7 @@
                 },
                 stop: function() {
                     changeimages();
-                } 
+                }
             });
             $("#slider-range2").slider({
                 range: true,
@@ -624,13 +626,13 @@
 
                     $('.minsize').html(ui.values[0]);
                     $('.maxsize').html(ui.values[1]);
-                    
+
 
                 },
                 stop: function() {
                     changeimages();
-                } 
-               
+                }
+
             });
             <?php
             if(request()->get('price_min') && request()->get('price_max')){
@@ -660,7 +662,7 @@
             this_item.addClass('fa fa-check');
         }
         function changeimages() {
-            
+
             var selected = $('#product_size').find('option:selected');
             var size = selected.data('val');
             $('.single_page_add_to_cart').attr('data-product_size', size);
@@ -766,7 +768,7 @@
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
-            
+
 
         }
     });
