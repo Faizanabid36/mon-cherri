@@ -2,10 +2,7 @@
 @section('title', __(ucwords($major_category->title)))
 @section('content')
     <style>
-        .fontofheading {
-            font-family: "Poppins" !important;
-        }
-
+     
         @media only screen and (max-width: 600px) {
             .filters-toolbar-wrapper select {
                 width: 80px;

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('http://fonts.cdnfonts.com/css/avalon');
+ 
  .body{
      font-family: "poppins" , sans-serif;
  }
@@ -1067,4 +1070,55 @@ font-size: 20px;
 
  #featured-img-res {
      width: 240px;
+ }
+
+ .selectadimond
+ {
+     margin-top: 10px;
+     background-color: white !important;
+     color: #674c34;
+     border: 1px solid #89715a;
+ }
+ .selectadimond a {
+     color:#4a341e;;
+     text-decoration:none;
+     
+ }
+ .selectadimond a:hover {
+     text-decoration: none;
+     color: #4a341e;;
+ }
+
+ #siteNav a {
+    font-family: 'Poppins', sans-serif !important;
+ }
+ #siteNavs a {
+    font-family: 'Poppins', sans-serif !important;
+ }
+ /* p{
+    font-family: 'Avalon', sans-serif !important;
+
+
+ }
+ .currencymsg {
+    font-family: 'Avalon', sans-serif !important;
+ } */
+
+ .ship p {
+    font-family: 'Avalon', sans-serif !important;
+ }
+ .store p {
+    font-family: 'Avalon', sans-serif !important;
+ }
+ .arrival p {
+    font-family: 'Avalon', sans-serif !important;
+ }
+
+ #tabs .nav-tabs .nav-link {
+  
+    font-family: "Baskerville Old Face";
+
+ }
+ .setvariations{
+    font-family: 'Poppins';
  }
