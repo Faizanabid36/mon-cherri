@@ -25,6 +25,7 @@
                                 <div class="row image-container">
                                     <div class="small-image product-dec-slider-2">
                                     @foreach($product->images as $p_img)
+                            
                                         <!-- <div class="img-responsive">
                                                 <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
                                                      src="{{asset($p_img->url)}}">
@@ -160,6 +161,9 @@
                                                     data-product_size="">
                                                 <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
                                             </button>
+                                            <button class="selectadimond">
+                                            <a href="#selectDiamond" class="bttn">Select a Diamond</a>
+                                      </button>
                                         @else
                                             <button type="button"
                                                     class="product-form__cart-submit add_to_cart single_page_add_to_cart">
@@ -324,7 +328,7 @@
 
 
                     <!-------Dimond section---------->
-                    <div class="row py-5">
+                    <div class="row py-5" id="selectDiamond">
                         <div class="make-buying-heading">
                             <h1>{{__('Select a Diamond')}}</h1>
                             <div class="row">
@@ -763,6 +767,8 @@
 
 
         }
+
+
 
     </script>
 @endsection
