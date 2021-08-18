@@ -194,7 +194,18 @@ class FrontController extends Controller
             $stones = $this->getStones($product_stone, $stones);
         }
         // dd($stones);
-        $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
+        if(!$request->psize && !$request->pwidth){
+            $product_variations = ProductVariation::where([['product_id', $product->id],['variation_id', $request->provar]])->firstOrFail();
+           }
+           else if(!$request->pwidth){
+            $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['variation_id', $request->provar]])->firstOrFail();
+           }
+           else if(!$request->psize){
+            $product_variations = ProductVariation::where([['product_id', $product->id],['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
+           }
+           else{
+            $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
+           }
         if ($product_variations->price == '0.00') {
             $product_variations->price = $product->price;
         }
