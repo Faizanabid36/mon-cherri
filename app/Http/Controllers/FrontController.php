@@ -49,23 +49,17 @@ class FrontController extends Controller
     {
         $product = Product::where('slug', $slug)->with('product_variations')->firstOrFail();
         $product_widths = $product_sizes = $related_products =$stones = [];
-        $product_variations = Cache::remember($product->id . 'variations-' . count($product->product_variations), '99999', function () use ($product) {
-            return collect($product->product_variations)->unique(function ($var) {
-                return $var['product_id'] . $var['variation_id'];
-            });
+        $product_variations = collect($product->product_variations)->unique(function ($var) {
+            return $var['product_id'] . $var['variation_id'];
         });
         if (isset($product->product_variations[0]) && $product->product_variations[0]->size_id != 0) {
-            $product_sizes = Cache::remember($product->id . 'sizes-' . count($product->product_variations), '99999', function () use ($product) {
-                return collect($product->product_variations)->unique(function ($var) {
-                    return $var['product_id'] . $var['size_id'];;
-                });
+            $product_sizes = collect($product->product_variations)->unique(function ($var) {
+                return $var['product_id'] . $var['size_id'];;
             });
         }
         if (isset($product->product_variations[0]) && $product->product_variations[0]->width_id) {
-            $product_widths = Cache::remember($product->id . 'widths-' . count($product->product_variations), '99999', function () use ($product) {
-                return collect($product->product_variations)->unique(function ($var) {
-                    return $var['product_id'] . $var['width_id'];;
-                });
+            $product_widths = collect($product->product_variations)->unique(function ($var) {
+                return $var['product_id'] . $var['width_id'];;
             });
         }
         $related_products = Cache::remember($slug . '-related', '99999', function () use ($product) {
