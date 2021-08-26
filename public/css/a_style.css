@@ -4133,3 +4133,53 @@ table.table-inbox tbody tr.checked {
     font-size: 1.2rem;
     padding: 6px;
 }
+
+
+
+.page-header .page-title {
+    font-family: "Baskerville Old Face" !important;
+ }
+ .breadcrumb-item.active{
+    font-family: 'Poppins', sans-serif !important;
+ }
+ .dash-widget-info h3 {
+    font-family: "Baskerville Old Face" !important;
+ }
+ .dash-widget-info h6{
+    font-family: "Baskerville Old Face" !important;
+ }
+ .page-header .card .card-header .card-title{
+	font-family: "Baskerville Old Face" !important;
+ }
+
+ .page-header .card-body h1 {
+	font-family: "Baskerville Old Face" !important;
+ }
+ .page-header .breadcrumb {
+    font-family: 'Poppins', sans-serif !important;
+ }
+.content .row .card .card-header .card-title {
+	font-family: "Baskerville Old Face" !important;
+}
+.content .card-body .row .form-group  label {
+    font-family: 'Poppins', sans-serif !important;
+}
+.table.dataTable tbody th, table.dataTable tbody td{
+	font-family: 'Poppins', sans-serif !important;
+}
+.dataTables_wrapper .dataTables_info{
+	font-family: 'Poppins', sans-serif !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button
+{
+	font-family: 'Poppins', sans-serif !important;
+}
+.user-name{
+	font-family: "Baskerville Old Face" !important;
+}
+.about-text{
+	font-family: 'Poppins', sans-serif !important;
+}
+p{
+	font-family: 'Poppins', sans-serif !important;
+}

@@ -7456,3 +7456,6 @@ body.home15-funiture-template {
     transition: filter 400ms, -webkit-filter 400ms;
     -webkit-transition: filter 400ms, -webkit-filter 400ms;
 }
+.product-stock span {
+    font-family: 'Poppins', sans-serif !important;
+}

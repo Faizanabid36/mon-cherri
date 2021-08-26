@@ -11100,3 +11100,6 @@ a.text-dark:focus {
   }
 }
 
+ .card-title {
+	font-family: "Baskerville Old Face" !important;
+}
