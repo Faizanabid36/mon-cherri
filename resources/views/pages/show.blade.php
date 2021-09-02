@@ -25,7 +25,7 @@
                                 <div class="row image-container">
                                     <div class="small-image product-dec-slider-2">
                                     @foreach($product->images as $p_img)
-                            
+
                                         <!-- <div class="img-responsive">
                                                 <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
                                                      src="{{asset($p_img->url)}}">
@@ -104,7 +104,8 @@
                                     <div class="product-selection py-1">
                                         <div class="row">
                                             @if(count($product_widths)>0)
-                                                <div class="col-lg-12 mb-2">
+                                                <div class="col-lg-6 mb-2">
+                                                    <label for="product_width" style="font-family: Poppins">Select Width</label>
                                                     <select name="product_width" class="form-control getoptions"
                                                             id="product_width" required>
                                                         <option value="" selected disabled>Select Width</option>
@@ -120,6 +121,7 @@
                                             @if(count($product_sizes)>0)
                                                 <div class="col-lg-6">
                                                     <div class="product-range-size">
+                                                        <label for="product_size" style="font-family: Poppins">Select Size</label>
                                                         <select class="form-control getoptions" name="size"
                                                                 id="product_size" required>
                                                             <option value="" selected
@@ -132,8 +134,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            @endif
-                                            <!-- <div class="col-lg-6">
+                                        @endif
+                                        <!-- <div class="col-lg-6">
                                                 <div class="product-form__item--quantity">
                                                     <div class="wrapQtyBtn">
                                                         <div class="qtyField">
@@ -148,11 +150,11 @@
                                                     </div>
                                                 </div>
                                                 {{--                                                <div class="product-quantity">--}}
-                                                {{--                                                    <input--}}
-                                                {{--                                                        style="border-radius: 5px"--}}
-                                                {{--                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"--}}
-                                                {{--                                                        class="product-form__input bs_product_qty qty">--}}
-                                                {{--                                                </div>--}}
+                                        {{--                                                    <input--}}
+                                        {{--                                                        style="border-radius: 5px"--}}
+                                        {{--                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"--}}
+                                        {{--                                                        class="product-form__input bs_product_qty qty">--}}
+                                        {{--                                                </div>--}}
                                             </div> -->
                                         </div>
 
@@ -166,8 +168,8 @@
                                                 <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
                                             </button>
                                             <button class="selectadimond">
-                                            <a href="#selectDiamond" class="bttn">Select a Diamond</a>
-                                      </button>
+                                                <a href="#selectDiamond" class="bttn">Select a Diamond</a>
+                                            </button>
                                         @else
                                             <button type="button"
                                                     class="product-form__cart-submit add_to_cart single_page_add_to_cart">
@@ -309,7 +311,7 @@
                                 </div>
                                 <div class="buying-card-name">
                                     <h2>FLAT RATE DELIVERY</h2>
-                                    <p>Pakistan and USA</p>
+                                    <p>USA</p>
                                 </div>
                             </div>
                         </div>
@@ -330,104 +332,103 @@
                     </div>
                     <!-- end of the make buying from us -->
 
-
+                @if($product->product_stones->count()>0)
                     <!-------Dimond section---------->
-                    <div class="row py-5" id="selectDiamond">
-                        <div class="make-buying-heading">
-                            <h1>{{__('Select a Diamond')}}</h1>
-                            <div class="row">
-                                <div class="offset-1 col-lg-10">
-
-                                    <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text..</p>
-
+                        <div class="row py-5" id="selectDiamond">
+                            <div class="make-buying-heading">
+                                <h1>{{__('Select a Diamond')}}</h1>
+                                <div class="row">
+                                    <div class="offset-1 col-lg-10">
+                                        <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text..</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row py-5" id="dimond-filter">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="diamond-filters-left">
-                                <!-- price filter  -->
-                                <div class="sidebar_widget filterBox filter-widget mt-4">
-                                    <h1 class="font-weight-700">Price</h1>
-                                    <form action="#" method="post" class="price-filter">
-                                        <div id="slider-range"
-                                             class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                  tabindex="0"></span>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                  tabindex="0"></span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <button class="filter-btn">filter</button>
-
-                                                <div class="ml-3">
-                                                    <p class="no-margin"><input id="amount" type="text"
-                                                                                class="filter-input"></p>
-                                                </div>
+                        <div class="row py-5" id="dimond-filter">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="diamond-filters-left">
+                                    <!-- price filter  -->
+                                    <div class="sidebar_widget filterBox filter-widget mt-4">
+                                        <h1 class="font-weight-700">Price</h1>
+                                        <form action="#" method="post" class="price-filter">
+                                            <div id="slider-range"
+                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      tabindex="0"></span>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      tabindex="0"></span>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex">
+                                                    <button class="filter-btn">filter</button>
 
-                                        </div>
-                                    </form>
-                                </div>
-
-
-                                <!-- end of the price filter  -->
-
-
-                                <!-- start carret weight  -->
-                                <div class="sidebar_widget filterBox filter-widget py-2 mt-5">
-                                    <h1 class="">Carret Weight</h1>
-                                    <form action="#" method="post" class="price-filter">
-                                        <div id="slider-range2"
-                                             class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                  tabindex="0"></span>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                  tabindex="0"></span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 d-flex">
-                                                <button class="filter-btn">filter</button>
-
-                                                <div class="ml-3">
-                                                    <p class="no-margin">
-                                                        <span class="minsize">0.1</span>
-                                                        <span> - </span><span class="maxsize">10</span>
-                                                        <input id="weight_filter" type="text"
-                                                               class="filter-input"></p>
+                                                    <div class="ml-3">
+                                                        <p class="no-margin"><input id="amount" type="text"
+                                                                                    class="filter-input"></p>
+                                                    </div>
                                                 </div>
+
                                             </div>
+                                        </form>
+                                    </div>
 
-                                        </div>
-                                    </form>
+
+                                    <!-- end of the price filter  -->
+
+
+                                    <!-- start carret weight  -->
+                                    <div class="sidebar_widget filterBox filter-widget py-2 mt-5">
+                                        <h1 class="">Carret Weight</h1>
+                                        <form action="#" method="post" class="price-filter">
+                                            <div id="slider-range2"
+                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      tabindex="0"></span>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      tabindex="0"></span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex">
+                                                    <button class="filter-btn">filter</button>
+
+                                                    <div class="ml-3">
+                                                        <p class="no-margin">
+                                                            <span class="minsize">0.1</span>
+                                                            <span> - </span><span class="maxsize">10</span>
+                                                            <input id="weight_filter" type="text"
+                                                                   class="filter-input"></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-----End carret weight-------------->
+
+
                                 </div>
-
-                                <!-----End carret weight-------------->
-
-
                             </div>
-                        </div>
 
-                        <!---Dimond Slider--------->
-                        <div class="col-lg-8 col-md-6">
-
-
-                            <div class="dimond-slider">
+                            <!---Dimond Slider--------->
+                            <div class="col-lg-8 col-md-6">
 
 
+                                <div class="dimond-slider">
+
+
+                                </div>
                             </div>
+
+                            <!--End of dimond slider------>
                         </div>
-
-                        <!--End of dimond slider------>
-                    </div>
-                    <!--------End of the Dimond Section---------->
+                        <!--------End of the Dimond Section---------->
+                @endif
 
 
-                    <!-- featured-produtcs -->
+                <!-- featured-produtcs -->
                     <div class="row py-5">
                         <div class="make-buying-heading mt-5">
                             <h1>{{__('You May Also Like')}}</h1>
@@ -749,10 +750,9 @@
                             html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                         }
                     }
-                    if(response[6].length > 0){
+                    if (response[6].length > 0) {
                         $('.selectadimond').show();
-                    }
-                    else{
+                    } else {
                         $('.selectadimond').hide();
                     }
                     $('.dimond-slider').html(html3);
@@ -779,7 +779,6 @@
 
 
         }
-
 
 
     </script>

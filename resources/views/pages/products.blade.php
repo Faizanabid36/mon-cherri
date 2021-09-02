@@ -2,7 +2,7 @@
 @section('title', __(ucwords($major_category->title)))
 @section('content')
     <style>
-     
+
         @media only screen and (max-width: 600px) {
             .filters-toolbar-wrapper select {
                 width: 80px;
@@ -32,7 +32,7 @@
             <div class="collection-hero">
                 <div class="collection-hero__image">
 {{--                    <img class="blur-up lazyload" src="{{asset('images/header.jpg')}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>--}}
-                    <img class="blur-up lazyload" height="325" src="{{($major_category->image)}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
+                    <img class="blur-up lazyload" height="225" src="{{($major_category->image)}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
                 </div>
                 <div class="collection-hero__title-wrapper">
                     <h1 class="collection-hero__title page-width">
