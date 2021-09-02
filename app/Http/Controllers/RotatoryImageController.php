@@ -29,20 +29,22 @@ class RotatoryImageController extends Controller
         // if (! File::exists($path)) {
         //     File::makeDirectory($path);
         // }
-
-        foreach ($request->images as $key => $image) {
-//            dd();
-//            $file =time().'-'. $image->getClientOriginalName();
-            $file = ($key + 1) . '.' . $image->getClientOriginalExtension();
-            $file_path = $path . '/' . $file;
-            $image->move(public_path($path), $file);
-            RotatoryImage::create(
-                [
-                    "path" => $file_path,
-                    "product_album_id" => $request->product_album_id,
-                    "title" => 'album_0' . $request->product_album_id
-                ]
-            );
+        if (is_array($request->images) || is_object($request->images))
+        {   
+            foreach ($request->images as $key => $image) {
+    //            dd();
+    //            $file =time().'-'. $image->getClientOriginalName();
+                $file = ($key + 1) . '.' . $image->getClientOriginalExtension();
+                $file_path = $path . '/' . $file;
+                $image->move(public_path($path), $file);
+                RotatoryImage::create(
+                    [
+                        "path" => $file_path,
+                        "product_album_id" => $request->product_album_id,
+                        "title" => 'album_0' . $request->product_album_id
+                    ]
+                );
+            }
         }
         return back()->with('success', 'images updated');
 

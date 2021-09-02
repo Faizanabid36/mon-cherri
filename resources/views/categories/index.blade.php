@@ -39,6 +39,7 @@
 											<th>Category</th>
 											<th>SubCategories</th>
 											<th>Products</th>
+											<th>Priority</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -50,6 +51,7 @@
 											<td>{{ucwords($category->title)}}</td>
 											<td>{{$category->subcategories->count()}}</td>
 											<td>{{$category->products->count()}}</td>
+											<td>{{$category->prority}}</td>
 											<td>
 												@permission('edit.categories')
 												<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$category->id}}"data-route="{{route('categories.edit',$category->id)}}"><i class="fa fa-edit"></i> Edit</a>
@@ -88,6 +90,15 @@
 						<label>Category</label>
 						<div class="input-group">
 							<input type="text" name="category" class="form-control" required>
+							<div class="input-group-prepend">	
+								<!-- <button type="submit" class="btn btn-success">Add</button> -->
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Priority</label>
+						<div class="input-group">
+							<input type="text" name="prority" class="form-control" required>
 							<div class="input-group-prepend">	
 								<!-- <button type="submit" class="btn btn-success">Add</button> -->
 							</div>

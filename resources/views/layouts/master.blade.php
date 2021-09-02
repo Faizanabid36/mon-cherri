@@ -256,7 +256,7 @@
                         <li class="lvl1 parent megamenu"><a href="#">About US</a>
                         </li>
 
-                        @php  $categories = App\Category::all() @endphp
+                        @php  $categories = App\Category::orderBy('prority')->get() @endphp
                         @foreach($categories as $category)
                             <li class="lvl1 parent megamenu {{count($category->subcategories)?'dropdown':''}}">
                                 <a href="{{url('/shop',$category->slug)}}">{{ucwords($category->title)}}

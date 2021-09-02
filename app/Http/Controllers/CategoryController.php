@@ -21,8 +21,8 @@ class CategoryController extends Controller
     }
 
     public function index()
-    {
-        $categories = Category::latest()->get();
+    {    
+        $categories = Category::orderBy('prority')->get();
         return view('categories.index',compact('categories'));
     }
 
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($category->id);
         $view = view("categories.edit",compact('category'))->render();
-
+        
         return response()->json(['html'=>$view]);
     }
 
@@ -39,7 +39,18 @@ class CategoryController extends Controller
     {
         $title           = Str::lower($request->input('title'));
         $slug            = Str::slug($title);
-        $category        = Category::where('id',$category->id)->update(['title'=>$title,'slug'=>$slug]);
+        $pr = $request->input('prority');
+        if($request->file('path')){
+        $image = $request->file('path');
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images/category/');
+        $image->move($destinationPath, $name);
+        $path=asset('images/category/'.$name);
+        $category        = Category::where('id',$category->id)->update(['title'=>$title,'slug'=>$slug,'image'=>$path,'prority'=>$pr]);
+        }
+        else{
+        $category        = Category::where('id',$category->id)->update(['title'=>$title,'slug'=>$slug,'prority'=>$pr]);
+        }
         return redirect('categories')->with('success','Category Updated');
     }
 
@@ -47,6 +58,8 @@ class CategoryController extends Controller
     {  
         
         $title = Str::lower($request->input('category'));
+        
+        $pr = $request->input('prority');
         $slug  = Str::slug($title);
         $image = $request->file('path');
         $name = time().'.'.$image->getClientOriginalExtension();
@@ -54,8 +67,8 @@ class CategoryController extends Controller
         $image->move($destinationPath, $name);
         $path=asset('images/category/'.$name);
     
-    
-        Category::create(['title'=>$title,'slug'=>$slug,'image'=>$path]);
+        
+        Category::create(['title'=>$title,'slug'=>$slug,'image'=>$path,'prority'=>2]);
         return back()->with('success','Category has been added');
     }
 

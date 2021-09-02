@@ -133,14 +133,14 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="col-lg-6">
+                                            <!-- <div class="col-lg-6">
                                                 <div class="product-form__item--quantity">
                                                     <div class="wrapQtyBtn">
                                                         <div class="qtyField">
                                                             <a class="minusQty" href="javascript:void(0);"><i
                                                                     class="fa fa-minus" aria-hidden="true"></i></a>
                                                             <input type="text" id="Quantity" name="quantity" min="1"
-                                                                   max="{{$product->stock}}" value="0"
+                                                                   max="{{$product->stock}}" value="1"
                                                                    class="product-form__input bs_product_qty qty">
                                                             <a class="plusQty" href="javascript:void(0);"><i
                                                                     class="fa fa-plus" aria-hidden="true"></i></a>
@@ -153,7 +153,7 @@
                                                 {{--                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"--}}
                                                 {{--                                                        class="product-form__input bs_product_qty qty">--}}
                                                 {{--                                                </div>--}}
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                     </div>
@@ -161,7 +161,7 @@
                                         @auth()
                                             <button type="button" name="add"
                                                     class="product-form__cart-submit add_to_cart single_page_add_to_cart"
-                                                    data-product_quantity="0" data-product_id="{{$product->slug}}"
+                                                    data-product_quantity="1" data-product_id="{{$product->slug}}"
                                                     data-product_size="">
                                                 <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
                                             </button>
@@ -568,6 +568,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+            $('.selectadimond').hide();
             changeimages();
             $(document).on('change', '#Quantity', function () {
                 var qty = $("#Quantity").val();
@@ -608,30 +609,30 @@
 
             });
 
-            $('.minusQty').on('click', function () {
-                let val = document.getElementById('Quantity').value;
-                console.log('val', val)
-                if (val > 1) {
-                    document.getElementById('Quantity').value = parseInt(val) - 1;
-                    $('.single_page_add_to_cart').attr('data-product_quantity', val - 1);
-                }
+            // $('.minusQty').on('click', function () {
+            //     let val = document.getElementById('Quantity').value;
+            //     console.log('val', val)
+            //     if (val > 1) {
+            //         document.getElementById('Quantity').value = parseInt(val) - 1;
+            //         // $('.single_page_add_to_cart').attr('data-product_quantity', val - 1);
+            //     }
 
-            })
-            $('.plusQty').on('click', function () {
-                let val = document.getElementById('Quantity').value;
+            // })
+            // $('.plusQty').on('click', function () {
+            //     let val = document.getElementById('Quantity').value;
 
-                let limit = {{$product->stock}}
-                console.log('val', val)
-                if (val < limit) {
-                    document.getElementById('Quantity').value = parseInt(val) + 1;
+            //     let limit = {{$product->stock}}
+            //     console.log('val', val)
+            //     if (val < limit) {
+            //         document.getElementById('Quantity').value = parseInt(val) + 1;
 
-                    $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1);
+            //         // $('.single_page_add_to_cart').attr('data-product_quantity', parseInt(val) + 1);
 
-                } else {
-                    alert('Quantity not present in stock')
-                }
-                return null;
-            })
+            //     } else {
+            //         alert('Quantity not present in stock')
+            //     }
+            //     return null;
+            // })
 
 
             //Owais
@@ -747,6 +748,12 @@
                             html3 += response[6][index]['center_stone_clarities'];
                             html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                         }
+                    }
+                    if(response[6].length > 0){
+                        $('.selectadimond').show();
+                    }
+                    else{
+                        $('.selectadimond').hide();
                     }
                     $('.dimond-slider').html(html3);
 
