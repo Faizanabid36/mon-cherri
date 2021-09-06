@@ -34,7 +34,7 @@ class WidthController extends Controller
     }
     public function store(Request $request)
     {
-        $width = Str::lower($request->input('width'));
+        $width = $request->input('width');
         Width::create([
             'width'=> $width
         ]);

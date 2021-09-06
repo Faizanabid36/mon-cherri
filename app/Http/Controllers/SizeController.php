@@ -36,7 +36,7 @@ class SizeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $size = Str::lower($request->input('size'));
+        $size = $request->input('size');
         Size::findOrFail($id)->update([
             'size' => $size,
             'slug' => Str::slug($size),
@@ -50,7 +50,7 @@ class SizeController extends Controller
         $this->validate($request, [
             'size' => 'required|unique:sizes'
         ]);
-        $size = Str::lower($request->input('size'));
+        $size = $request->input('size');
         Size::create([
             'size' => $size,
             'slug' => Str::slug($size),

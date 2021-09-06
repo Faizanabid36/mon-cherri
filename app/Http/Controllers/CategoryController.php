@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $title           = Str::lower($request->input('title'));
+        $title           = $request->input('title');
         $slug            = Str::slug($title);
         $pr = $request->input('prority');
         if($request->file('path')){
@@ -57,7 +57,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {  
         
-        $title = Str::lower($request->input('category'));
+        $title = $request->input('category');
         
         $pr = $request->input('prority');
         $slug  = Str::slug($title);

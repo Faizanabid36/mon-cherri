@@ -35,7 +35,7 @@ class ColorController extends Controller
     }
     public function store(Request $request)
     {
-        $color = Str::lower($request->input('color'));
+        $color = $request->input('color');
         Color::create([
             'color'=> $color,
             'code' => $request->input('code'),
@@ -46,7 +46,7 @@ class ColorController extends Controller
 
     public function update(Request $request, $color_id)
     {
-        $clr           = Str::lower($request->input('color'));
+        $clr           = $request->input('color');
         $slug          = Str::slug($clr);
         $color = Color::find($color_id);
         $color->color = $clr;

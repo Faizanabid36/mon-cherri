@@ -35,7 +35,7 @@ class CertificateController extends Controller
     }
     public function store(Request $request)
     {
-        $certificate = Str::lower($request->input('certificate'));
+        $certificate = $request->input('certificate');
         Certificate::create([
             'certificate'=> $certificate,
             'slug'=>  Str::slug($certificate),
@@ -45,7 +45,7 @@ class CertificateController extends Controller
 
     public function update(Request $request, $certificate_id)
     {
-        $clr           = Str::lower($request->input('certificate'));
+        $clr           = $request->input('certificate');
         $slug          = Str::slug($clr);
         $certificate = Certificate::find($certificate_id);
         $certificate->certificate = $clr;

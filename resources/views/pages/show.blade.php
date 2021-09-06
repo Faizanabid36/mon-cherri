@@ -638,6 +638,8 @@
 
             //Owais
             $('.setvariations').on('click', function () {
+                $('.setvariations').removeClass('text-decoration-underline');
+                $(this).addClass('text-decoration-underline');
                 var data = $(this).data('id');
                 $('.getvariations').val(data);
                 $('#product_variant_id').val(data)
