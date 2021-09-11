@@ -562,7 +562,7 @@
     </div>
     <!--End Body Content-->
 @endsection
-@section('javascript')
+@section('javascript')z
     <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}"/>
@@ -704,7 +704,7 @@
                     }
 
                     if (response[2][0]) {
-                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='{{asset('images/360.JPG')}}'></div>";
                     }
                     html2 = '';
                     html2 += "<img class='img-fluid' src='";
@@ -778,8 +778,6 @@
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
-
-
         }
 
 
