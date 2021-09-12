@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<!-- /Page Header -->
-	
+
 	<div class="row">
 		 @permission('create.sizes')
 		<div class="col-sm-6">
@@ -32,7 +32,7 @@
 								<div class="form-group">
 									<label>Size </label>
 									<div class="input-group">
-										<input type="text" name="size" value="{{old('size')}}" class="form-control @error('size') is-invalid @enderror" required>
+										<input type="number" min="0" name="size" value="{{old('size')}}" class="form-control @error('size') is-invalid @enderror" required>
 										@if($errors->has('size'))
 											@foreach($errors->get('size') as $message)
 											<span style="color:red">{{$message}}</span>
@@ -40,7 +40,7 @@
 										@endif
 									</div>
 								</div>
-								
+
 								<div>
 									<button class="btn btn-success bs_dashboard_btn bs_btn_color float-right" style="border-radius: 0px;">Add</button>
 								</div>
@@ -66,27 +66,27 @@
 										<tr>
 											<th>Count</th>
 											<th>Size</th>
-											
+
 											<th>Products</th>
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>	
+									<tbody>
 										<?php $count = 1 ; ?>
 										@foreach(App\Size::all() as $size)
 											<tr>
 												<td><?=$count++?></td>
 												<td>{{ucwords($size->size)}}</td>
-												
+
 												<td>{{$size->products->count()}}</td>
 												<td>
 													<div class="btn-group btn-group-sm">
 														@permission('edit.sizes')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$size->id}}"data-route="{{route('sizes.edit',$size->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														
+
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('sizes.destroy',$size)}}"><i class="fa fa-trash"></i></a>
-														
+
 													</div>
 												</td>
 											</tr>

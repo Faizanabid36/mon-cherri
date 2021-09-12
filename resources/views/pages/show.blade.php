@@ -33,7 +33,7 @@
                                         @endforeach
                                     </div>
                                     <input type="hidden" value='10' id='myprice_min'>
-                                    <input type="hidden" value='1000' id='myprice_max'>
+                                    <input type="hidden" value='100000' id='myprice_max'>
                                     <div class="big-image">
                                     <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
@@ -704,7 +704,7 @@
                     }
 
                     if (response[2][0]) {
-                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='{{asset('images/360.JPG')}}'></div>";
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='{{asset('images/360.jpg')}}'></div>";
                     }
                     html2 = '';
                     html2 += "<img class='img-fluid' src='";
@@ -722,7 +722,7 @@
                             canvasID: 'product',
                             canvasWidth: 275,
                             canvasHeight: 275,
-                            autoRotate: false,
+                            autoRotate: true,
                         });
                     }
                     $('.dynamic-width').html(response[5][0]);

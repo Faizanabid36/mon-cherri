@@ -251,10 +251,10 @@
                 <!--Desktop Menu-->
                 <nav class="grid__item" id="AccessibleNav"><!-- for mobile -->
                     <ul id="siteNav" class="site-nav medium center hidearrow">
-                        <li class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>
-                        </li>
-                        <li class="lvl1 parent megamenu"><a href="#">About US</a>
-                        </li>
+{{--                        <li class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="lvl1 parent megamenu"><a href="#">About US</a>--}}
+{{--                        </li>--}}
 
                         @php  $categories = App\Category::orderBy('prority')->get() @endphp
                         @foreach($categories as $category)
@@ -307,7 +307,7 @@
     </div>
     <ul id="MobileNav" class="mobile-nav">
         <li class="lvl1 parent megamenu"><a href="{{url('/')}}">{{__('Home')}}</a></li>
-        <li class="lvl1 parent megamenu"><a href="#">{{__('About Us')}}</a></li>
+{{--        <li class="lvl1 parent megamenu"><a href="#">{{__('About Us')}}</a></li>--}}
         @php  $categories = App\Category::all() @endphp
         @foreach($categories as $category)
             <li class="lvl1 parent megamenu {{count($category->subcategories)?'dropdown':''}}">
@@ -604,7 +604,7 @@
                 range: true,
                 min: 10,
                 max: 10000,
-                values: [0, 1000],
+                values: [0, 10000],
                 slide: function (event, ui) {
                     $("#amount").val("<?=$currency_symbol?>" + ui.values[0] + " - <?=$currency_symbol?>" + ui.values[1]);
 
@@ -699,7 +699,7 @@
                     }
 
                     if (response[2][0]) {
-                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='images/360.JPG'></div>";
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='{{asset('images/360.jpg')}}'></div>";
                     }
                     html2 = '';
                     html2 += "<img class='img-fluid' src='";
@@ -717,7 +717,7 @@
                             canvasID: 'product',
                             canvasWidth: 275,
                             canvasHeight: 275,
-                            autoRotate: false,
+                            autoRotate: true,
                         });
                     }
                     $('.dynamic-width').html(response[5][0]);

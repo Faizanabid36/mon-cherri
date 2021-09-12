@@ -101,7 +101,7 @@
                                             <td>
                                                 {{\App\ProductAlbum::whereProductId($image->product_id)->whereTitle($image->title)->whereNotNull('url')->count()}}
                                             </td>
-                                            <td>{{0}}</td>
+                                            <td>{{\App\ProductAlbum::whereProductId($image->product_id)->where('has_rotatory_image',1)->whereTitle($image->title)->whereNotNull('url')->count()}}</td>
                                             <td>{{$image->created_at->format('d-m-Y')}}</td>
                                             <td>
                                                 <div class="actions">

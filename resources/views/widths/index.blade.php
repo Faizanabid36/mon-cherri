@@ -30,7 +30,7 @@
 							<form action="{{route('widths.store')}}" method="post">
 								@csrf
 								<div class="row">
-									<div class="col-md-9">
+									<div class="col-md-12">
 										<div class="form-group">
 											<label>Width</label>
 											<input type="text" name="width" class="form-control" required>
@@ -77,9 +77,9 @@
 														@permission('edit.widths')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$width->id}}"data-route="{{route('widths.edit',$width->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														
+
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('widths.destroy',$width)}}"><i class="fa fa-trash"></i></a>
-														
+
 													</div>
 												</td>
 											</tr>

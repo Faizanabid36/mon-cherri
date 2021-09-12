@@ -30,14 +30,14 @@
 							<form action="{{route('certificates.store')}}" method="post">
 								@csrf
 								<div class="row">
-									<div class="col-md-9">
+									<div class="col-md-12">
 										<div class="form-group">
 											<label>Certificate Name </label>
 											<input type="text" name="certificate" class="form-control" required>
 										</div>
 									</div>
-									
-								</div>	
+
+								</div>
 								<div class="form-group text-right">
 									<button class="btn btn-success bs_dashboard_btn bs_btn_certificate">Add</button>
 								</div>
@@ -63,24 +63,24 @@
 										<tr>
 											<th>Count</th>
 											<th>Name</th>
-											
+
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php $count = 1; ?>		
+										<?php $count = 1; ?>
 										@foreach($certificates as $certificate)
 											<tr>
 												<td><?=$count++?></td>
-												<td>{{ucwords($certificate->certificate)}}</td>
+												<td>{{($certificate->certificate)}}</td>
 												<td>
 													<div class="btn-group btn-group-sm">
 														@permission('edit.certificates')
 														<a href="javascript:void(0)" class="btn btn-sm bg-success-light mr-2 bs_edit" data-id="{{$certificate->id}}"data-route="{{route('certificates.edit',$certificate->id)}}"><i class="fa fa-edit"></i></a>
 														@endpermission
-														
+
 														<a href="javascript:void(0)" class="btn btn-sm bg-danger-light bs_delete" data-route="{{route('certificates.destroy',$certificate)}}"><i class="fa fa-trash"></i></a>
-														
+
 													</div>
 												</td>
 											</tr>

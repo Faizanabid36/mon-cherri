@@ -5,9 +5,9 @@
 		<div class="col-md-12">
 			<div class="form-group">
 				<label>Size</label>
-				<input type="text" class="form-control" value="{{$size->size}}" name="size" required>
+				<input type="number" min="0" class="form-control" value="{{$size->size}}" name="size" required>
 			</div>
-			
+
 		</div>
 		<div class="col-md-12">
 			<button type="submit" class="btn btn-success bs_dashboard_btn bs_btn_color btn-block">UPDATE</button>

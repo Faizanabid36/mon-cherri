@@ -21,19 +21,14 @@ class RotatoryImageController extends Controller
 
     public function update_image(Request $request)
     {
-        // RotatoryImage::where("product_album_id",$request->product_album_id)->delete();
-
-        // dd();
         $path = 'images/product_albums/' . Product::whereId($request->product_id)->first()->slug . '-album_0' . $request->product_album_id . '/360_album';
 
         // if (! File::exists($path)) {
         //     File::makeDirectory($path);
         // }
-        if (is_array($request->images) || is_object($request->images))
-        {   
+        if (is_array($request->images) || is_object($request->images)) {
             foreach ($request->images as $key => $image) {
-    //            dd();
-    //            $file =time().'-'. $image->getClientOriginalName();
+
                 $file = ($key + 1) . '.' . $image->getClientOriginalExtension();
                 $file_path = $path . '/' . $file;
                 $image->move(public_path($path), $file);
@@ -46,6 +41,8 @@ class RotatoryImageController extends Controller
                 );
             }
         }
+        $productAlbum = ProductAlbum::whereId($request->product_album_id)->first();
+        return redirect()->route('product_album',$productAlbum->product_id);
         return back()->with('success', 'images updated');
 
         // if (isset($request->action)) {
