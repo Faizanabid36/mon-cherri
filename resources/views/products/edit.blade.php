@@ -84,7 +84,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Product Number</label>
-                                                <input type="text" value="{{ old('product_number') }}" id="product_number" name="product_number" class="form-control product_prices" required>
+                                                <input type="text" value="{{ $product->product_number }}" id="product_number" name="product_number" class="form-control product_prices" required>
                                                 @if($errors->has('product_number'))
                                                     @foreach($errors->get('product_number') as $message)
                                                         <span style="color:red">{{$message}}</span>
