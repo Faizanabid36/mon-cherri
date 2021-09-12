@@ -41,7 +41,18 @@
 							</div>
 							<div class="col-md-6">
 								<div class="row">
-									<div class="col-md-6">	
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Product Number</label>
+                                            <input type="text" value="{{ old('product_number') }}" id="product_number" name="product_number" class="form-control product_prices" required>
+                                            @if($errors->has('product_number'))
+                                                @foreach($errors->get('product_number') as $message)
+                                                    <span style="color:red">{{$message}}</span>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+									<div class="col-md-4">
 										<div class="form-group">
 											<label>Price ($)</label>
 											<input type="text" value="{{ old('price') }}" id="price" name="price" class="form-control product_prices" required>
@@ -52,7 +63,7 @@
 					                        @endif
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label>Old Price ($)</label>
 											<input type="text" value="{{ old('old_price') }}" id="old_price" name="old_price" class="form-control product_prices">
@@ -60,8 +71,8 @@
 									</div>
 								</div>
 							</div>
-							
-							
+
+
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Product Category</label>

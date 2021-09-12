@@ -14,43 +14,37 @@ class ProductService
     public static function upload_product($request)
     {
         $product_name = Str::lower($request->input('name'));
-        $slug         = Str::slug($product_name);
+        $slug = Str::slug($product_name);
 
         $product = Product::create([
-            'name'        => $product_name,
-            'slug'        => $slug,
-            // 'brand_id'    => $request->input('brand'),
-            'price'       => $request->input('price'),
-            'old_price'   => $request->input('old_price'),
+            'name' => $product_name,
+            'slug' => $slug,
+            'price' => $request->input('price'),
+            'old_price' => $request->input('old_price'),
             'percent_off' => $request->input('percent_off'),
-            'is_new'      => $request->input('is_new'),
-            'stock'       => $request->input('stock'),
-            'video'       => $request->input('video_link'),
+            'is_new' => $request->input('is_new'),
+            'stock' => $request->input('stock'),
+            'video' => $request->input('video_link'),
             'description' => $request->input('description'),
-            // 'metal' => $request->input('metal'),
-            // 'prong_metal' => $request->input('prong_metal'),
-            // 'width' => $request->input('width'),
+            'product_number' => $request->input('product_number'),
         ]);
         $product->tag($request->input('tags'));
-        // $product->sizes()->sync($request->input('size'));
-        // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
-        $path = 'images/product/'.$slug.'-bs_00'.$product->id;
-        // mkdir(public_path($path),0700);
-        if (! File::exists($path)) {
+        $path = 'images/product/' . $slug . '-bs_00' . $product->id;
+        if (!File::exists($path)) {
             File::makeDirectory($path);
         }
 
-        if($files=$request->file('images')){
+        if ($files = $request->file('images')) {
             $count = 1;
-            foreach($files as $file){
+            foreach ($files as $file) {
                 // image upload
                 $extension = $file->extension();
                 $image = $slug . $count++ . "." . $extension;
-                $file->move(public_path($path),$image);
+                $file->move(public_path($path), $image);
                 // image insert into database
-                $current_image = $product->images()->create(['url'=>$path.'/'.$image]);
+                $current_image = $product->images()->create(['url' => $path . '/' . $image]);
 
                 // Watermark
                 // $img = Image::make(public_path($current_image->url));
@@ -89,39 +83,40 @@ class ProductService
         $product->save();
         return $product;
     }
-    public static function update_product($request,$product)
+
+    public static function update_product($request, $product)
     {
         $product = Product::find($product->id);
 
         $product_name = Str::lower($request->input('name'));
-        $slug         = Str::slug($product_name);
+        $slug = Str::slug($product_name);
 
-        $product->name        = $product_name;
-        // $product->brand_id    = $request->input('brand');
-        $product->price       = $request->input('price');
-        $product->old_price   = $request->input('old_price');
+        $product->name = $product_name;
+        $product->product_number = $request->input('product_number');
+        $product->price = $request->input('price');
+        $product->old_price = $request->input('old_price');
         $product->percent_off = $request->input('percent_off');
-        $product->is_new      = $request->input('is_new');
-        $product->stock       = $request->input('stock');
-        $product->video       = $request->input('video_link');
+        $product->is_new = $request->input('is_new');
+        $product->stock = $request->input('stock');
+        $product->video = $request->input('video_link');
         $product->description = $request->input('description');
 
         $product->tag($request->input('tags'));
         // $product->sizes()->sync($request->input('size'));
-        // $product->colors()->sync($request->input('color'));  
+        // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
         $product->subcategories()->sync($request->input('subcategory'));
 
-        $path = 'images/product/'.$product->slug.'-bs_00'.$product->id;
+        $path = 'images/product/' . $product->slug . '-bs_00' . $product->id;
 
-        if($request->hasFile('images')){
-            $files=$request->file('images');
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
             $count = 1;
-            foreach($files as $file){
+            foreach ($files as $file) {
                 $extension = $file->extension();
                 $image = $slug . $count++ . "." . $extension;
-                $file->move(public_path($path),$image);
-                $product->images()->create(['url'=>$path.'/'.$image]);
+                $file->move(public_path($path), $image);
+                $product->images()->create(['url' => $path . '/' . $image]);
             }
         }
 
