@@ -235,9 +235,10 @@ class FrontController extends Controller
 
         } else {
             $gettitle = ProductAlbum::where('id', $product_variations->album_id)->get();
-            $images = ProductAlbum::where([['title', $gettitle[0]->title], ['url', '!=', 'Null']])->get('url');
-            $rotateimagesid = ProductAlbum::where([['title', $gettitle[0]->title], ['has_rotatory_image', '1']])->get('id');
-            $rotateimages = RotatoryImage::where('product_album_id', $rotateimagesid[0]->id)->get('path');
+            $images = ProductAlbum::where([['product_id',$gettitle[0]->product_id],['title', $gettitle[0]->title], ['url', '!=', 'Null']])->get('url');
+            $rotateimagesid = ProductAlbum::whereProductId($gettitle[0]->product_id)->whereTitle($gettitle[0]->title)
+                ->whereHasRotatoryImage(1)->with('rotatory_images')->first();
+            $rotateimages = $rotateimagesid->rotatory_images;
             $countRimages = count($rotateimages);
         }
         return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width, $stones);

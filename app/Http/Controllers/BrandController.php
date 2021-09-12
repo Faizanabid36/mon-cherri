@@ -35,7 +35,7 @@ class BrandController extends Controller
 
     public function update(Request $request, Brand $brand)
     {
-        $title           = Str::lower($request->input('title'));
+        $title           = $request->input('title');
         $category_id     = $request->input('category');
         $slug            = Str::slug($title);
 
@@ -52,7 +52,7 @@ class BrandController extends Controller
         if (!$validated) {
            return back()->withInput();
         }
-        $brand_name = Str::lower($request->input('brand'));
+        $brand_name = $request->input('brand');
         Brand::create([
             'title'=> $brand_name,
             'slug' => Str::slug($brand_name),

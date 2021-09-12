@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::find($request->input('parent_category_id'));
-        $subcategory  =  Str::lower($request->input('subcategory'));
+        $subcategory  =  $request->input('subcategory');
         $category->subcategories()->create([
             'title'=>$request->input('subcategory'),
             'slug'=>Str::slug($request->input('subcategory').'-'.$category->slug),
@@ -51,7 +51,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, $subCategory)
     {
         $subcategory     = SubCategory::find($subCategory);
-        $title           = Str::lower($request->input('subcategory'));
+        $title           = $request->input('subcategory');
         $slug            = Str::slug($title.'-'.$subcategory->category->slug);
         $subcategory->title = $title;
         $subcategory->slug  =  $slug;
