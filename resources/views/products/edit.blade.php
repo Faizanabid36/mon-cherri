@@ -205,7 +205,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Product K types</label>
+                                                <label>Product Search Tags</label>
                                                 <select class="form-control @error('tags') is-invalid @enderror"
                                                         style="width: 100%" id="_tags" name="tags[]" multiple>
                                                     @foreach($product->tags as $tag)
