@@ -101,7 +101,7 @@ class CenterStoneController extends Controller
     public function store_clarity(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:center_stone_clarities',
             'priority' => 'required|unique:center_stone_clarities'
         ]);
         CenterStoneClarity::create($request->only(['title', 'priority']));
@@ -145,7 +145,7 @@ class CenterStoneController extends Controller
     public function store_color(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:center_stone_colors',
             'priority' => 'required|unique:center_stone_colors'
         ]);
         CenterStoneColor::create($request->only(['title', 'priority']));
