@@ -42,7 +42,7 @@ class RotatoryImageController extends Controller
             }
         }
         $productAlbum = ProductAlbum::whereId($request->product_album_id)->first();
-        return redirect()->route('product_album',$productAlbum->product_id);
+        return redirect()->route('product.album.product_album',$productAlbum->product_id);
         return back()->with('success', 'images updated');
 
         // if (isset($request->action)) {
