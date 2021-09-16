@@ -31,6 +31,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{asset('css/plugin.css')}}">
@@ -84,6 +86,252 @@
             }
         }
 
+/*         
+.new_top_header .new_header_top {
+    text-align: center;
+    background-color: #8e765d;
+    padding: 10px 0;
+}
+.new_header_top h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color:#ffffff;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Middle one  */
+
+/* .new_nav_wrap .new_nav_header{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px; */
+   
+  
+
+}
+/* .new_nav_wrap .new_nav_wrapper
+{
+width: 16%;
+}
+.new_nav_wrap .new_nav_wrapper_logo 
+{
+    width: 33%;
+}
+.new_nav_wrap .new_nav_header .new_nav_wrapper .new_nav_contact a {
+    text-decoration: none;
+    color:#000000;
+    font-weight: 400;
+    font-size: 19px;
+}
+.new_nav_wrap .new_nav_wrapper_logo .new_nav_logo_wrapper
+{
+    width:300px;
+}
+.new_nav_wrap .new_nav_site .site_search button {
+    background: transparent;
+    border: none;
+    color: gray;
+    margin: 0;
+    
+    padding: 0;
+}
+.new_nav_wrap .new_nav_site .site_search i {
+    background: transparent;
+    border: none;
+    color: gray;
+    padding-right: 20px;
+    font-weight: 200;
+    font-size: 18px;
+    cursor:pointer;
+}
+.new_header_icon_wrapper{
+    position: relative;
+    
+}
+.new_header_icon{
+    text-align: center;
+}
+.new_header_icon_wrapper::before{
+    position: absolute;
+    content: '';
+    width: 100px;
+    left: 0;
+    top: 10px;
+    position: absolute;
+    content: '';
+    width: 49%;
+    left: 0;
+    top: 11px;
+    border-top: 2px solid #D3D3D3;
+    /* border-top: 2px solid #000000; */
+}
+/* .new_header_icon_wrapper::after{
+    position: absolute;
+    content: '';
+    width: 49%;
+    left: 51%;
+    top: 11px;
+    border-top: 2px solid #D3D3D3;
+    border-top: 2px solid #000000;
+}
+
+
+
+
+.new_header_menu_items {
+    padding: 0px 38px;
+}
+.new_header_menu_items .new_header_menu_list {
+    padding: 0;
+}
+.new_header_menu_items .new_header_menu_list ul {
+    list-style-type:none;
+    display:flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+.new_header_menu_items  .new_header_menu_list ul li {
+
+}
+.new_header_menu_items .new_header_menu_list ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #796959;
+    font-weight: 400;
+    font-size: 19px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.new_header_menu_items .new_header_menu_list ul li a:hover{
+    color:#7a5630;
+}
+
+.humbergur_new_header{
+    display: none;
+}
+
+
+
+
+.new_header_menu_items1 {
+    padding: 0px 38px;
+    display:none;
+}
+.new_header_menu_items1 .new_header_menu_list1 {
+    padding: 0;
+}
+.new_header_menu_items1 .new_header_menu_list1 ul {
+    list-style-type:none;
+    display:flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+.new_header_menu_items1  .new_header_menu_list1 ul li {
+
+}
+.new_header_menu_items1 .new_header_menu_list1 ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #796959;
+    font-weight: 400;
+    font-size: 19px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.new_header_menu_items1 .new_header_menu_list1 ul li a:hover{
+    color:#7a5630;
+}
+
+.new_header_menu_items1{
+    display:none;
+}
+
+
+@media  screen and (max-width: 600px) {
+  
+    .new_header_menu_items{
+        display:none;
+    }
+
+    .top_cart {
+        display:none;
+    }
+    .new_nav_wrap .new_nav_wrapper_logo .new_nav_logo_wrapper
+    {
+        width: auto;
+    }
+
+    .new_nav_wrap .new_nav_header .new_nav_wrapper .new_nav_contact a
+    {
+        font-size: 13px;
+    }
+    .new_nav_wrap .new_nav_wrapper {
+
+        width: 28%;
+        
+    }
+    .new_header_menu_items {
+    padding: 1px 0px;
+}
+
+.new_header_top h1 {
+font-size: 15px;
+}
+.humbergur_new_header{
+    display: block;
+    cursor:pointer;
+}
+.new_nav_wrap .new_nav_site .site_search
+
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.new_header_menu_items .new_header_menu_list ul {
+   
+    display: block;
+   
+    
+    width: 100%;
+    background: #eeeeee;
+}
+.new_header_menu_items .new_header_menu_list ul li {
+    padding: 10px;
+    margin-left:10px;
+}
+
+
+.new_header_menu_items1 {
+    padding: 1px 0px;
+}
+.new_header_menu_items1 .new_header_menu_list1 ul li {
+    padding: 10px;
+    margin-left:10px;
+}
+.new_header_menu_items1 .new_header_menu_list1 ul {
+   
+   display: block;
+  
+   
+   width: 100%;
+   background: #eeeeee;
+}
+}
+
+
+
+.new_header_icon .container-fluid {
+    padding:0px !important;
+}  */
 
     </style>
 </head>
@@ -111,7 +359,7 @@
 </div>
 <!--End Search Form Drawer-->
 
-<!--Header-->
+
 
 
 <div class="animated d-flex" style="background-color: #7a5630;">
@@ -230,7 +478,6 @@
 </div>
 
 
-<!--Header-->
 <div class="header-wrap animated d-flex">
     <div class="container">
         <div class="row align-items-center">
@@ -299,8 +546,130 @@
     </div>
 </div>
 
-<!--End Header-->
-<!--Mobile Menu-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-----Adil -------->
+<!--Header-->
+<!--
+<div class="new_top_header">
+        <div class="new_header_top">
+        <h1>Free Insternational Shipping</h1>
+        </div>
+    </div>
+<section class="new_nav_wrap">
+
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="new_nav_header">
+            <div class="new_nav_wrapper">
+                <div class="new_nav_contact">
+                    <a href="tel:+213-622-7922">Call:213-622-7922</a>
+                </div>
+            </div>
+            
+          
+            <div class="new_nav_wrapper_logo">
+                <div class="new_nav_logo_wrapper">
+                    <img src="{{asset('images/logo.png')}}" alt="moncheri Logo" class="img-fluid"/>
+          
+                </div>
+
+                 </div>
+
+                
+                 <div class="new_nav_site">
+                    <div class="site_search">
+                        <button type="button" class="search-trigger"><i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <i class="fas fa-heart"></i>
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        <i class="fas fa-bars humbergur_new_header"
+                       >
+                    
+                        </i>
+                    </div>
+
+                 </div>
+        </div>
+                
+    </div>
+    </div>
+</section>
+
+
+<section class="new_header_icon">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="new_header_icon_wrapper">
+            <i class="fas fa-gem"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="new_header_menu_items">
+    <div class="">
+    
+            <div class="row">
+                <div class="new_header_menu_list">
+                    <ul>
+                        <li><a href="">Engagement & Wedding</a></li>
+                        <li><a href="">Earrings</a></li>
+                        <li><a href="">rings</a></li>
+                        <li><a href="">bracelets bangles</a></li>
+                        <li><a href="">necklaces & pendants</a></li>
+                        <li><a href="">on-off-a-kand</a></li>
+                    </ul>
+                </div>
+          
+        </div>
+    </div>
+</section>
+
+
+For Mobile Menu
+
+<section class="new_header_menu_items1">
+    <div class="">
+    
+            <div class="row">
+                <div class="new_header_menu_list1">
+                    <ul>
+                        <li><a href="">Engagement & Wedding</a></li>
+                        <li><a href="">Earrings</a></li>
+                        <li><a href="">rings</a></li>
+                        <li><a href="">bracelets bangles</a></li>
+                        <li><a href="">necklaces & pendants</a></li>
+                        <li><a href="">on-off-a-kand</a></li>
+                    </ul>
+                </div>
+          
+        </div>
+    </div>
+</section>
+
+
+
+
+End adil----->
+
+
 <div class="mobile-nav-wrapper" role="navigation">
     <div class="closemobileMenu">
         <i class="fa fa-times" aria-hidden="true"></i> {{__('Close Menu')}}
@@ -770,6 +1139,12 @@
 
         }
     });
+    $(document).ready(function(){
+  $(".humbergur_new_header").click(function(){
+    $(".new_header_menu_items1").toggle("slideDown");
+
+  });
+});
 </script>
 </body>
 </html>

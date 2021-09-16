@@ -653,14 +653,20 @@ border: .2rem solid #344ceb;
 
  .product-price-circle .product-price-items h1 {
      border: 2px solid #d2a45d;
-     padding: 13px;
+
      border-radius: 50%;
      margin-right: 15px;
      font-size: 16px;
      cursor: pointer;
      position: relative;
+     padding: 12px;
+   
+     width: 69px;
+     height: 69px;
+     text-align: center;
+     line-height: 40px !important;
  }
-
+ 
  .product-price-items #product-first-price::after {
      content: '';
      position: absolute;
