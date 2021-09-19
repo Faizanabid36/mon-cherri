@@ -301,6 +301,10 @@
                         <a href="{{url('/languages')}}"><i class="fe fe-flag"></i> <span>Translation</span></a>
                     </li>
                     @endrole
+                    <li>
+                        <a href="{{url('/policies')}}"><i class="fe fe-flag"></i> <span>Policy</span></a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>

@@ -171,6 +171,7 @@ Route::group(['middleware' => 'locale'], function () {
     // customer after login routes
 
     Route::middleware(['auth'])->group(function () {
+
         //customer account routes
         Route::get('/my-account/dashboard', 'FrontController@customer_dashboard');
         Route::get('/my-account/orders', 'FrontController@customer_orders');
@@ -208,6 +209,13 @@ Route::group(['middleware' => 'locale'], function () {
         Route::get('remove_from_compare_list/{slug}', 'CompareController@remove_item');
         Route::post('addToCompare', 'CompareController@add_to_compare')->name('compare');
 
+        // policy routes
+        Route::get('/policies', 'PolicyController@get_policies')->name('policy.show');
+        Route::get('/policies/add_policy', 'PolicyController@add_policy')->name('policy.add');
+        Route::post('/policies/store_policy', 'PolicyController@store_policy')->name('policy.store');
+        Route::get('/policies/edit_policy/{id}', 'PolicyController@edit_policy')->name('policy.edit');
+        Route::get('/policies/delete_policy/{id}', 'PolicyController@delete_policy')->name('policy.delete');
+        
 
     });
 
