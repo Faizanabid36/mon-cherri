@@ -9,8 +9,10 @@ use App\Brand;
 use App\Category;
 use App\RotatoryImage;
 use App\Variation;
+use App\ProductAlbum;
 use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\File;
 
 class Product extends Model
 {
@@ -23,6 +25,28 @@ class Product extends Model
         'name', 'product_number', 'slug', 'price', 'metal', 'prong_metal', 'width', 'description', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
     ];
 
+    protected static function boot() {
+        parent::boot();
+    
+        static::deleting(function($product) {
+
+            foreach($product->images()->get() as $image)
+            {
+                File::delete($image->url);
+            }
+            $product->images()->delete();
+            $product->product_variations()->delete();
+            $product->reviews()->delete();
+            $product->product_variations()->delete();
+            $productAlbums=ProductAlbum::whereProductId($product->id)->get();
+            foreach($productAlbums as $album)
+            {
+                File::delete($album->url);
+            }
+            ProductAlbum::whereProductId($product->id)->delete();
+            
+        });
+    }
     public function categories()
     {
         return $this->belongsToMany('App\Category');

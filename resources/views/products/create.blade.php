@@ -142,8 +142,30 @@
 								</div>
 							</div>
 							<div class="col-md-12">
-								<div class="row" id="more_details" style="display: none;"></div>
-							</div>
+                                    <div class="row" id="more_details" style="overflow: auto;">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Product SubCategories:</label>
+                                                <select
+                                                    class="form-control bs_categories @error('subcategory') is-invalid @enderror"
+                                                    multiple style="width: 100%" id="_subcategories" >
+                                                        
+                                                </select>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Product Search Tags</label>
+                                                <select class="form-control @error('tags') is-invalid @enderror"
+                                                        style="width: 100%" id="_tags" multiple>
+                                                   
+                                                </select>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 							<div class="col-md-12">
 								<div class="input-images"></div>
 								<br>
@@ -181,6 +203,10 @@
 @section('javascript')
 <script type="text/javascript">
 $(document).ready(function () {
+	$('#_tags').select2({
+						tags:true,
+					});
+	$('#_subcategories').select2();
 	$(document).on('change','#category',function(){
 		var cat_id = $(this).val();
 		var route = $(this).attr('data-route');
@@ -201,8 +227,33 @@ $(document).ready(function () {
 				}
 			});
 		}else{
-			$("#more_details").slideUp('slow')
-			$("#more_details").empty();
+			// $("#more_details").slideUp('slow')
+			// $("#more_details").empty();
+			$("#more_details").html(`<div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Product SubCategories:</label>
+                                                <select
+                                                    class="form-control bs_categories @error('subcategory') is-invalid @enderror"
+                                                    multiple style="width: 100%" id="_subcategories">
+                                                        
+                                                </select>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Product Search Tags</label>
+                                                <select class="form-control @error('tags') is-invalid @enderror"
+                                                        style="width: 100%" id="_tags" multiple>
+                                                   
+                                                </select>
+                                            
+                                            </div>
+                                        </div>`);
+		$('#_tags').select2({
+							tags:true,
+						});
+		$('#_subcategories').select2();
 		}
 	});
 	$('.input-images').imageUploader({Default: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']});

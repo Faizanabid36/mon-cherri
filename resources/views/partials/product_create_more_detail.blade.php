@@ -1,7 +1,7 @@
 <div class="col-md-6">
 	<div class="form-group">
 		<label>Product  SubCategories</label>
-		<select class="form-control bs_categories @error('subcategory') is-invalid @enderror" name="subcategory[]" id="_subcategories" multiple required>
+		<select class="form-control bs_categories @error('subcategory') is-invalid @enderror" name="subcategory[]" id="_subcategories" multiple >
 			@foreach($category->subcategories as $subcategory)
 				<option value="{{$subcategory->id}}">{{ucwords($subcategory->title)}}</option>
 			@endforeach

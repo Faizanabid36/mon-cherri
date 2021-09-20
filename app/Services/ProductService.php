@@ -30,7 +30,11 @@ class ProductService
         ]);
         $product->tag($request->input('tags'));
         $product->categories()->sync($request->input('category'));
-        $product->subcategories()->sync($request->input('subcategory'));
+        if($request->has('subcategory'))
+        {
+            $product->subcategories()->sync($request->input('subcategory'));
+        }
+       
         $path = 'images/product/' . $slug . '-bs_00' . $product->id;
         if (!File::exists($path)) {
             File::makeDirectory($path);
@@ -105,8 +109,10 @@ class ProductService
         // $product->sizes()->sync($request->input('size'));
         // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
+        if($request->has('subcategory'))
+        {
         $product->subcategories()->sync($request->input('subcategory'));
-
+        }
         $path = 'images/product/' . $product->slug . '-bs_00' . $product->id;
 
         if ($request->hasFile('images')) {
