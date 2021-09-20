@@ -102,4 +102,14 @@ class Product extends Model
         return $this->hasMany(ProductStone::class);
     }
 
+    public function return_policy()
+    {
+        return $this->hasMany(Policy::class)->where('type','Return');
+    }
+
+    public function shipping_policy()
+    {
+        return $this->hasMany(Policy::class)->where('type','Shipping');
+    }
+
 }
