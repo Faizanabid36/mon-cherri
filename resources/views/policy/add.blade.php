@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Dashboard - Policies')
-@section('content') 
+@section('content')
 <div class="content container-fluid">
 
 	<!-- Page Header -->
@@ -44,7 +44,7 @@
 								<div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Days</label>
+                                            <label>Days/Value</label>
                                             <input type="text" value="{{ $policy->days??''}}" id="days" name="days" class="form-control product_prices" required>
                                             @if($errors->has('days'))
                                                 @foreach($errors->get('days') as $message)
@@ -100,7 +100,7 @@
 @include('partials.attr_modal')
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript">
         tinymce.init({
             selector: '#content',

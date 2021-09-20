@@ -6,6 +6,7 @@ use App\CenterStone;
 use App\CenterStoneClarity;
 use App\CenterStoneColor;
 use App\CenterStoneSize;
+use App\Policy;
 use App\Product;
 use App\Category;
 use App\ProductAlbum;
@@ -50,7 +51,10 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $policies = Policy::all();
+        $return_policies = $policies->where('type','Return');
+        $shipping_policies = $policies->where('type','Shipping');
+        return view('products.create',compact('return_policies','shipping_policies'));
     }
 
     public function store(ProductRequest $request)
@@ -272,7 +276,7 @@ class ProductController extends Controller
 
                     }
 
-                } 
+                }
 
                 else
                 {
@@ -407,7 +411,7 @@ class ProductController extends Controller
     {
         ProductStone::destroy($request->ids);
         return back();
-       
+
     }
     public function OLDstore_center_stone(Request $request)
     {

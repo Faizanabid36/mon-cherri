@@ -71,6 +71,28 @@
 									</div>
 								</div>
 							</div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="return_policy">Return Policy</label>
+                                    <select class="form-control" name="return_policy" id="return_policy">
+                                        <option selected disabled>Select Return Type</option>
+                                        @foreach($return_policies as $policy)
+                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="shipping_policy">Shipping Policy</label>
+                                    <select class="form-control" name="shipping_policy" id="shipping_policy">
+                                        <option selected disabled>Select Shipping Type</option>
+                                        @foreach($shipping_policies as $policy)
+                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
 
 							<div class="col-md-6">

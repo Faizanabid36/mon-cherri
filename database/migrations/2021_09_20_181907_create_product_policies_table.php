@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoliciesTable extends Migration
+class CreateProductPoliciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePoliciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('policies', function (Blueprint $table) {
+        Schema::create('product_policies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('type', ['Return', 'Shipping']);
-            $table->string('name');
-            $table->integer('days');
-            $table->string('content');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreatePoliciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('policies');
+        Schema::dropIfExists('product_policies');
     }
 }

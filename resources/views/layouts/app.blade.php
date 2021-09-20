@@ -239,6 +239,9 @@
                         <a href="{{route('variations.index')}}"><i class="fe fe-activity"></i>
                             <span>Variations</span></a>
                     </li>
+                    <li>
+                        <a href="{{route('policy.show')}}"><i class="fe fe-check"></i> <span>Policy</span></a>
+                    </li>
                     <li class="menu-title">
                         <span>Center Stones</span>
                     </li>
@@ -247,11 +250,6 @@
                             <i class="fe fe-diamond"></i><span>Center Stone</span>
                         </a>
                     </li>
-{{--                    <li>--}}
-{{--                        <a href="{{route('center_stone.sizes.index')}}">--}}
-{{--                            <i class="fe fe-text-size"></i><span>Stone Sizes</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
                     <li>
                         <a href="{{route('center_stone.colors.index')}}">
                             <i class="fe fe-target"></i><span>Stone Colors</span>
@@ -301,10 +299,6 @@
                         <a href="{{url('/languages')}}"><i class="fe fe-flag"></i> <span>Translation</span></a>
                     </li>
                     @endrole
-                    <li>
-                        <a href="{{url('/policies')}}"><i class="fe fe-flag"></i> <span>Policy</span></a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>
