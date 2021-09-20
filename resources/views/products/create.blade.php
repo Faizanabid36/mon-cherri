@@ -149,9 +149,9 @@
                                                 <select
                                                     class="form-control bs_categories @error('subcategory') is-invalid @enderror"
                                                     multiple style="width: 100%" id="_subcategories" >
-                                                        
+
                                                 </select>
-                                               
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -159,9 +159,9 @@
                                                 <label>Product Search Tags</label>
                                                 <select class="form-control @error('tags') is-invalid @enderror"
                                                         style="width: 100%" id="_tags" multiple>
-                                                   
+
                                                 </select>
-                                            
+
                                             </div>
                                         </div>
                                     </div>
@@ -235,9 +235,9 @@ $(document).ready(function () {
                                                 <select
                                                     class="form-control bs_categories @error('subcategory') is-invalid @enderror"
                                                     multiple style="width: 100%" id="_subcategories">
-                                                        
+
                                                 </select>
-                                               
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -245,9 +245,9 @@ $(document).ready(function () {
                                                 <label>Product Search Tags</label>
                                                 <select class="form-control @error('tags') is-invalid @enderror"
                                                         style="width: 100%" id="_tags" multiple>
-                                                   
+
                                                 </select>
-                                            
+
                                             </div>
                                         </div>`);
 		$('#_tags').select2({

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\ProductPolicy;
 use Image;
 use DomDocument;
 use App\Product;
@@ -30,11 +31,9 @@ class ProductService
         ]);
         $product->tag($request->input('tags'));
         $product->categories()->sync($request->input('category'));
-        if($request->has('subcategory'))
-        {
+        if ($request->has('subcategory'))
             $product->subcategories()->sync($request->input('subcategory'));
-        }
-       
+
         $path = 'images/product/' . $slug . '-bs_00' . $product->id;
         if (!File::exists($path)) {
             File::makeDirectory($path);
@@ -85,6 +84,14 @@ class ProductService
         // $product->description = $dom->saveHTML();
 
         $product->save();
+
+        if ($request->has('return_policy'))
+            ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('return_policy'), 'type' => 'Return']);
+
+        if ($request->has('shipping_policy'))
+            ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('shipping_policy'), 'type' => 'Shipping']);
+
+
         return $product;
     }
 
@@ -109,9 +116,8 @@ class ProductService
         // $product->sizes()->sync($request->input('size'));
         // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
-        if($request->has('subcategory'))
-        {
-        $product->subcategories()->sync($request->input('subcategory'));
+        if ($request->has('subcategory')) {
+            $product->subcategories()->sync($request->input('subcategory'));
         }
         $path = 'images/product/' . $product->slug . '-bs_00' . $product->id;
 
@@ -152,8 +158,16 @@ class ProductService
         // }
         // $product->description = $dom->saveHTML();
 
+        if ($request->has('return_policy'))
+        {
+            $p=ProductPolicy::where('product_id', $product->id)->where('type','Return')->update(['policy_id' => $request->get('return_policy')]);
+        }
+
+        if ($request->has('shipping_policy'))
+            ProductPolicy::where('product_id', $product->id)->where('type','Shipping')->update(['policy_id' => $request->get('shipping_policy')]);
 
         $product->save();
+
         return $product;
     }
 }

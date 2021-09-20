@@ -84,7 +84,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Product Number</label>
-                                                <input type="text" value="{{ $product->product_number }}" id="product_number" name="product_number" class="form-control product_prices" required>
+                                                <input type="text" value="{{ $product->product_number }}"
+                                                       id="product_number" name="product_number"
+                                                       class="form-control product_prices" required>
                                                 @if($errors->has('product_number'))
                                                     @foreach($errors->get('product_number') as $message)
                                                         <span style="color:red">{{$message}}</span>
@@ -112,6 +114,32 @@
                                                        name="old_price" class="form-control product_prices">
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="return_policy">Return Policy</label>
+                                        <select class="form-control" name="return_policy" id="return_policy">
+                                            <option selected disabled>Select Return Type</option>
+                                            @foreach($return_policies as $policy)
+                                                <option
+                                                    {{$policy->id==$product->return_policy->policy_id?'selected':''}}
+                                                    value="{{$policy->id}}">{{$policy->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="shipping_policy">Shipping Policy</label>
+                                        <select class="form-control" name="shipping_policy" id="shipping_policy">
+                                            <option selected disabled>Select Shipping Type</option>
+                                            @foreach($shipping_policies as $policy)
+                                                <option
+                                                    {{$policy->id==$product->shipping_policy->policy_id?'selected':''}}
+                                                    value="{{$policy->id}}">{{$policy->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

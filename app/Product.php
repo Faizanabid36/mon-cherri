@@ -25,28 +25,29 @@ class Product extends Model
         'name', 'product_number', 'slug', 'price', 'metal', 'prong_metal', 'width', 'description', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
     ];
 
-    protected static function boot() {
-        parent::boot();
-    
-        static::deleting(function($product) {
+    protected $with = ['return_policy', 'shipping_policy'];
 
-            foreach($product->images()->get() as $image)
-            {
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($product) {
+
+            foreach ($product->images()->get() as $image)
                 File::delete($image->url);
-            }
+
             $product->images()->delete();
             $product->product_variations()->delete();
             $product->reviews()->delete();
             $product->product_variations()->delete();
-            $productAlbums=ProductAlbum::whereProductId($product->id)->get();
-            foreach($productAlbums as $album)
-            {
+            $productAlbums = ProductAlbum::whereProductId($product->id)->get();
+            foreach ($productAlbums as $album) {
                 File::delete($album->url);
             }
             ProductAlbum::whereProductId($product->id)->delete();
-            
         });
     }
+
     public function categories()
     {
         return $this->belongsToMany('App\Category');
@@ -56,10 +57,7 @@ class Product extends Model
     {
         return $this->belongsToMany('App\SubCategory');
     }
-    // public function brand()
-    // {
-    //     return $this->belongsTo('App\Brand');
-    // }
+
     public function colors()
     {
         return $this->belongsToMany(Color::class);
@@ -128,12 +126,12 @@ class Product extends Model
 
     public function return_policy()
     {
-        return $this->hasMany(Policy::class)->where('type','Return');
+        return $this->hasOne(ProductPolicy::class)->where('type', 'Return');
     }
 
     public function shipping_policy()
     {
-        return $this->hasMany(Policy::class)->where('type','Shipping');
+        return $this->hasOne(ProductPolicy::class)->where('type', 'Shipping');
     }
 
 }

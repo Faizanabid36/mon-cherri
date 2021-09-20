@@ -15,6 +15,9 @@ class CreateProductPoliciesTable extends Migration
     {
         Schema::create('product_policies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('product_id');
+            $table->integer('policy_id');
+            $table->enum('type', ['Return', 'Shipping']);
             $table->timestamps();
         });
     }

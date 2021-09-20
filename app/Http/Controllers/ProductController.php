@@ -52,16 +52,16 @@ class ProductController extends Controller
     public function create()
     {
         $policies = Policy::all();
-        $return_policies = $policies->where('type','Return');
-        $shipping_policies = $policies->where('type','Shipping');
-        return view('products.create',compact('return_policies','shipping_policies'));
+        $return_policies = $policies->where('type', 'Return');
+        $shipping_policies = $policies->where('type', 'Shipping');
+        return view('products.create', compact('return_policies', 'shipping_policies'));
     }
 
     public function store(ProductRequest $request)
     {
 
-        ProductService::upload_product($request);
-        return redirect()->route('products.create')->with('success', 'Product has been uploaded successfuly');
+        $product = ProductService::upload_product($request);
+        return redirect()->route('products.edit', $product->id)->with('success', 'Product has been uploaded successfuly');
     }
 
     public function show(Product $product)
@@ -71,8 +71,10 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-//        $product = Product::find($product->id);
-        return view('products.edit', compact('product'));
+        $policies = Policy::all();
+        $return_policies = $policies->where('type', 'Return');
+        $shipping_policies = $policies->where('type', 'Shipping');
+        return view('products.edit', compact('product', 'return_policies', 'shipping_policies'));
     }
 
     public function update(Request $request, Product $product)
@@ -143,19 +145,16 @@ class ProductController extends Controller
 
         $variations = ProductVariation::whereProductId($product_id)->with('product', 'variation', 'certificate', 'album')->get();
         $product = Product::whereId($product_id)->first();
-        // dd($product);
         return view('products.create_variation', compact('product_id', 'variations', 'product'));
     }
 
     public function store_variations(Request $request)
     {
-        //  dd($request->all());
         ProductVariation::whereProductId($request->product_id)->delete();
         $product = Product::whereId($request->product_id)->first();
         $product->variations = json_encode($request->variations);
         $product->sizes = json_encode($request->sizes);
         $product->widths = json_encode($request->widths);
-        // dd($product->variations,$product->sizes,$product->widths );
         $product->save();
         foreach ($request->variations as $var) {
             if ($request->sizes) {
@@ -233,9 +232,7 @@ class ProductController extends Controller
                     }
                 }
 
-            }
-            else
-            {
+            } else {
                 if ($request->widths) {
                     foreach ($request->widths as $width) {
 
@@ -276,22 +273,19 @@ class ProductController extends Controller
 
                     }
 
+                } else {
+                    $product_variation = ProductVariation::create(
+                        [
+                            'product_id' => $request->product_id,
+                            'variation_id' => $var,
+                            'size_id' => 0,
+                            'weight' => 0,
+                            'qty' => 0,
+                            'price' => 0,
+                            'description' => "",
+                        ]
+                    );
                 }
-
-                else
-                {
-                $product_variation = ProductVariation::create(
-                    [
-                        'product_id' => $request->product_id,
-                        'variation_id' => $var,
-                        'size_id' => 0,
-                        'weight' => 0,
-                        'qty' => 0,
-                        'price' => 0,
-                        'description' => "",
-                    ]
-                );
-            }
             }
         }
 
@@ -407,12 +401,14 @@ class ProductController extends Controller
         ProductStone::create($request->except('_token'));
         return back()->withSuccess('Created Successfully');
     }
+
     public function delete_center_stone(Request $request)
     {
         ProductStone::destroy($request->ids);
         return back();
 
     }
+
     public function OLDstore_center_stone(Request $request)
     {
         ProductStone::whereProductId($request->product_id)->whereStoneShape($request->stone_shape)->delete();
@@ -421,23 +417,18 @@ class ProductController extends Controller
             ['id', '<=', $request->size_to]
         ])
             ->orderBy('title')->get();
-//        dd($stone_sizes);
         $stone_clarities = CenterStoneClarity::where([
             ['id', '>=', $request->clarity_from],
             ['id', '<=', $request->clarity_to]
         ])
             ->orderBy('priority')->get();
-//        dd($stone_clarities);
         $stone_colors = CenterStoneColor::where([
             ['id', '>=', $request->color_from],
             ['id', '<=', $request->color_to]
         ])
             ->orderBy('priority')->get();
-//         dd($stone_colors);
         foreach ($stone_sizes as $size) {
-            // dd("size");
             foreach ($stone_clarities as $clarity) {
-                // dd("clarity");
                 foreach ($stone_colors as $color) {
                     $stone = CenterStone::whereShape($request->stone_shape)
                         ->whereCenterStoneSizes($size->title)->whereCenterStoneClarities($clarity->title)->whereCenterStoneColors($color->title)->first();
