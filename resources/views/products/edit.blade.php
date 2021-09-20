@@ -123,7 +123,7 @@
                                             <option selected disabled>Select Return Type</option>
                                             @foreach($return_policies as $policy)
                                                 <option
-                                                    {{$policy->id==$product->return_policy->policy_id?'selected':''}}
+                                                    {{$product->return_policy && $policy->id==$product->return_policy->policy_id?'selected':''}}
                                                     value="{{$policy->id}}">{{$policy->name}}</option>
                                             @endforeach
                                         </select>
@@ -136,7 +136,7 @@
                                             <option selected disabled>Select Shipping Type</option>
                                             @foreach($shipping_policies as $policy)
                                                 <option
-                                                    {{$policy->id==$product->shipping_policy->policy_id?'selected':''}}
+                                                    {{$product->shipping_policy && $policy->id==$product->shipping_policy->policy_id?'selected':''}}
                                                     value="{{$policy->id}}">{{$policy->name}}</option>
                                             @endforeach
                                         </select>
