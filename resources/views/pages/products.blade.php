@@ -2,27 +2,23 @@
 @section('title', __(ucwords($major_category->title)))
 @section('content')
     <style>
-
         @media only screen and (max-width: 600px) {
             .filters-toolbar-wrapper select {
                 width: 80px;
                 font-size: 13px;
             }
-
         }
 
         @media only screen and (min-width: 768px) {
             .filters-toolbar-wrapper select {
                 width: 138px;
             }
-
         }
 
         @media only screen and (min-width: 1200px) {
             .filters-toolbar-wrapper select {
                 width: auto;
             }
-
         }
     </style>
     <!--Body Content-->
@@ -31,8 +27,8 @@
         <div class="collection-header mb-3">
             <div class="collection-hero">
                 <div class="collection-hero__image">
-{{--                    <img class="blur-up lazyload" src="{{asset('images/header.jpg')}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>--}}
-                    <img class="blur-up lazyload" height="225" src="{{($major_category->image)}}" alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
+                    <img class="blur-up lazyload" height="225" src="{{($major_category->image)}}"
+                         alt="{{__(ucwords($major_category->title))}}" title="{{__(ucwords($major_category->title))}}"/>
                 </div>
                 <div class="collection-hero__title-wrapper">
                     <h1 class="collection-hero__title page-width">
@@ -42,7 +38,6 @@
             </div>
         </div>
         <!--End Collection Banner-->
-
         <div class="container">
             <div class="row">
                 <!--Sidebar-->
@@ -61,7 +56,7 @@
                                 <div class="row">
                                     @foreach($products as $product)
                                         <div class="col-sm-6 col-md-4 grid-view-item style2 item">
-{{--                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">--}}
+                                            {{--                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">--}}
                                             <div class="grid-view_image">
                                                 <!-- start product image -->
                                                 <a href="{{url('/'.$product->slug)}}" class="grid-view-item__link">
@@ -139,12 +134,13 @@
                                                 </div>
                                                 <!-- End product details -->
                                                 <div class="product-name text-left">
-                                                    <a class="underline-on-hover" style="font-size: 16px" href="{{url('/'.$product->slug)}}">{{__(ucwords($product->name))}}</a>
+                                                    <a class="underline-on-hover" style="font-size: 16px"
+                                                       href="{{url('/'.$product->slug)}}">{{__(ucwords($product->name))}}</a>
                                                 </div>
                                                 <!-- End product name -->
                                                 <!-- product price -->
                                                 <div class="product-price text-left">
-                                                    <span class="old-price">{{$product->FormatedOldPrice()}}</span>
+{{--                                                    <span class="old-price">{{$product->FormatedOldPrice()}}</span>--}}
                                                     <span class="price">{{$product->FormatedPrice()}}</span>
                                                 </div>
                                                 <!-- End product price -->
