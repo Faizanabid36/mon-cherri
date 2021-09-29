@@ -44,14 +44,14 @@
 								<div class="row">
 									<div class="col-md-6 form-group">
 										<label>Commission</label>
-										<select class="form-control" name="commission">
+										<select class="form-control" name="commission" id="commission">
 											<option value="flat">Flat</option>
 											<option value="percent">Percent</option>
 										</select>
 									</div>
 									<div class="col-md-6 form-group">
-										<label>Rate</label>
-										<input type="number" class="form-control" min="0" name="commission_rate">
+										<label>Rate <span id="rate_unit">$</span> </label>
+										<input type="number" class="form-control" value="100" min="0" name="commission_rate" id="commission_rate">
 									</div>
 								</div>
 							</div>
@@ -216,6 +216,19 @@ $(document).ready(function () {
 						tags:true,
 					});
 	$('#_subcategories').select2();
+	$('#commission').on('change',function(){
+		if($(this).val()=='flat')
+		{
+			$('#commission_rate').val('100');
+			$('#rate_unit').html('$');
+		}
+		else
+		{
+			$('#rate_unit').html('%');
+			$('#commission_rate').val('10');
+		}
+		
+	})
 	$(document).on('change','#category',function(){
 		var cat_id = $(this).val();
 		var route = $(this).attr('data-route');
