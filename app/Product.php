@@ -22,10 +22,10 @@ class Product extends Model
     use \Conner\Tagging\Taggable;
 
     protected $fillable = [
-        'name', 'product_number', 'slug', 'price', 'metal', 'prong_metal', 'width', 'description', 'old_price', 'percent_off', 'is_new', 'stock', 'video',
+        'name', 'product_number', 'slug', 'price', 'metal', 'prong_metal', 'width', 'commission','commission_rate'
     ];
 
-    protected $with = ['return_policy', 'shipping_policy'];
+    protected $with = ['return_policy', 'shipping_policy_1','shipping_policy_2'];
 
     protected static function boot()
     {
@@ -130,9 +130,13 @@ class Product extends Model
         return $this->hasOne(ProductPolicy::class)->where('type', 'Return');
     }
 
-    public function shipping_policy()
+    public function shipping_policy_1()
     {
-        return $this->hasOne(ProductPolicy::class)->where('type', 'Shipping');
+        return $this->hasOne(ProductPolicy::class)->where('type', 'Shipping1');
+    }
+    public function shipping_policy_2()
+    {
+        return $this->hasOne(ProductPolicy::class)->where('type', 'Shipping2');
     }
 
 }
