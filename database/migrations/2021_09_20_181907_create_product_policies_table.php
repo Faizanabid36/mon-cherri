@@ -17,7 +17,7 @@ class CreateProductPoliciesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('product_id');
             $table->integer('policy_id');
-            $table->enum('type', ['Return', 'Shipping']);
+            $table->enum('type', ['Return', 'Shipping1','Shipping2']);
             $table->timestamps();
         });
     }

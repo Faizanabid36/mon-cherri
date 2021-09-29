@@ -20,16 +20,18 @@ class ProductService
         $product = Product::create([
             'name' => $product_name,
             'slug' => $slug,
-            'price' => $request->input('price'),
-            'old_price' => $request->input('old_price'),
-            'percent_off' => $request->input('percent_off'),
-            'is_new' => $request->input('is_new'),
-            'stock' => $request->input('stock'),
-            'video' => $request->input('video_link'),
-            'description' => $request->input('description'),
+            // 'price' => $request->input('price'),
+            // 'old_price' => $request->input('old_price'),
+            // 'percent_off' => $request->input('percent_off'),
+            // 'is_new' => $request->input('is_new'),
+            // 'stock' => $request->input('stock'),
+            // 'video' => $request->input('video_link'),
+            // 'description' => $request->input('description'),
             'product_number' => $request->input('product_number'),
+            'commission'=>$request->input('commission'),
+            'commission_rate'=>$request->input('commission_rate')
         ]);
-        $product->tag($request->input('tags'));
+        // $product->tag($request->input('tags'));
         $product->categories()->sync($request->input('category'));
         if ($request->has('subcategory'))
             $product->subcategories()->sync($request->input('subcategory'));
@@ -88,8 +90,11 @@ class ProductService
         if ($request->has('return_policy'))
             ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('return_policy'), 'type' => 'Return']);
 
-        if ($request->has('shipping_policy'))
-            ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('shipping_policy'), 'type' => 'Shipping']);
+        if ($request->has('shipping_policy_1'))
+            ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('shipping_policy_1'), 'type' => 'Shipping1']);
+        
+        if ($request->has('shipping_policy_2'))
+            ProductPolicy::create(['product_id' => $product->id, 'policy_id' => $request->get('shipping_policy_2'), 'type' => 'Shipping2']);
 
 
         return $product;
@@ -104,15 +109,17 @@ class ProductService
 
         $product->name = $product_name;
         $product->product_number = $request->input('product_number');
-        $product->price = $request->input('price');
-        $product->old_price = $request->input('old_price');
-        $product->percent_off = $request->input('percent_off');
-        $product->is_new = $request->input('is_new');
-        $product->stock = $request->input('stock');
-        $product->video = $request->input('video_link');
-        $product->description = $request->input('description');
+        $product->commission=$request->input('commission');
+        $product->commission_rate=$request->input('commission_rate');
+        // $product->price = $request->input('price');
+        // $product->old_price = $request->input('old_price');
+        // $product->percent_off = $request->input('percent_off');
+        // $product->is_new = $request->input('is_new');
+        // $product->stock = $request->input('stock');
+        // $product->video = $request->input('video_link');
+        // $product->description = $request->input('description');
 
-        $product->tag($request->input('tags'));
+        // $product->tag($request->input('tags'));
         // $product->sizes()->sync($request->input('size'));
         // $product->colors()->sync($request->input('color'));
         $product->categories()->sync($request->input('category'));
@@ -163,8 +170,11 @@ class ProductService
             $p=ProductPolicy::where('product_id', $product->id)->where('type','Return')->update(['policy_id' => $request->get('return_policy')]);
         }
 
-        if ($request->has('shipping_policy'))
-            ProductPolicy::where('product_id', $product->id)->where('type','Shipping')->update(['policy_id' => $request->get('shipping_policy')]);
+        if ($request->has('shipping_policy_1'))
+            ProductPolicy::where('product_id', $product->id)->where('type','Shipping1')->update(['policy_id' => $request->get('shipping_policy_1')]);
+        
+        if ($request->has('shipping_policy_2'))
+            ProductPolicy::where('product_id', $product->id)->where('type','Shipping2')->update(['policy_id' => $request->get('shipping_policy_2')]);
 
         $product->save();
 

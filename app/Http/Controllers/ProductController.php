@@ -59,7 +59,7 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-
+        // dd($request->all());
         $product = ProductService::upload_product($request);
         return redirect()->route('products.edit', $product->id)->with('success', 'Product has been uploaded successfuly');
     }

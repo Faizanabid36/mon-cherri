@@ -30,62 +30,46 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Product Name</label>
-									<input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required>
-									@if($errors->has('name'))
-			                            @foreach($errors->get('name') as $message)
-			                              <span style="color:red">{{$message}}</span>
-			                            @endforeach
-			                         @endif
-								</div>
+									<label>Product Number</label>
+									<input type="text" value="{{ old('product_number') }}" id="product_number" name="product_number" class="form-control product_prices" required>
+									@if($errors->has('product_number'))
+										@foreach($errors->get('product_number') as $message)
+											<span style="color:red">{{$message}}</span>
+										@endforeach
+									@endif
+                                </div>
+								
 							</div>
 							<div class="col-md-6">
 								<div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Product Number</label>
-                                            <input type="text" value="{{ old('product_number') }}" id="product_number" name="product_number" class="form-control product_prices" required>
-                                            @if($errors->has('product_number'))
-                                                @foreach($errors->get('product_number') as $message)
-                                                    <span style="color:red">{{$message}}</span>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Price ($)</label>
-											<input type="text" value="{{ old('price') }}" id="price" name="price" class="form-control product_prices" required>
-											@if($errors->has('price'))
-					                            @foreach($errors->get('price') as $message)
-					                              <span style="color:red">{{$message}}</span>
-					                            @endforeach
-					                        @endif
-										</div>
+									<div class="col-md-6 form-group">
+										<label>Commission</label>
+										<select class="form-control" name="commission">
+											<option value="flat">Flat</option>
+											<option value="percent">Percent</option>
+										</select>
 									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Old Price ($)</label>
-											<input type="text" value="{{ old('old_price') }}" id="old_price" name="old_price" class="form-control product_prices">
-										</div>
+									<div class="col-md-6 form-group">
+										<label>Rate</label>
+										<input type="number" class="form-control" min="0" name="commission_rate">
 									</div>
 								</div>
 							</div>
-                            <div class="col-md-6">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Product Name</label>
+									<input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required>
+									@if($errors->has('name'))
+										@foreach($errors->get('name') as $message)
+										<span style="color:red">{{$message}}</span>
+										@endforeach
+									@endif
+								</div>
+							</div>
+							<div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="return_policy">Return Policy</label>
-                                    <select class="form-control" name="return_policy" id="return_policy">
-                                        <option selected disabled>Select Return Type</option>
-                                        @foreach($return_policies as $policy)
-                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="shipping_policy">Shipping Policy</label>
-                                    <select class="form-control" name="shipping_policy" id="shipping_policy">
+                                    <label for="shipping_policy_1">Shipping Policy 1</label>
+                                    <select class="form-control" name="shipping_policy_1" id="shipping_policy_1">
                                         <option selected disabled>Select Shipping Type</option>
                                         @foreach($shipping_policies as $policy)
                                             <option value="{{$policy->id}}">{{$policy->name}}</option>
@@ -93,8 +77,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Product Category</label>
@@ -112,6 +94,57 @@
 								</div>
 							</div>
 							<div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="shipping_policy_2">Shipping Policy 2</label>
+                                    <select class="form-control" name="shipping_policy_2" id="shipping_policy_2">
+                                        <option selected disabled>Select Shipping Type</option>
+                                        @foreach($shipping_policies as $policy)
+                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+							<div class="col-md-6">
+								<div class="row" id="more_details" style="overflow: auto;">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Product SubCategories:</label>
+											<select
+												class="form-control bs_categories @error('subcategory') is-invalid @enderror"
+												multiple style="width: 100%" id="_subcategories" >
+
+											</select>
+
+										</div>
+									</div>
+									<!-- <div class="col-md-6">
+										<div class="form-group">
+											<label>Product Search Tags</label>
+											<select class="form-control @error('tags') is-invalid @enderror"
+													style="width: 100%" id="_tags" multiple>
+
+											</select>
+
+										</div>
+									</div> -->
+								</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="return_policy">Return Policy</label>
+                                    <select class="form-control" name="return_policy" id="return_policy">
+                                        <option selected disabled>Select Return Type</option>
+                                        @foreach($return_policies as $policy)
+                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+
+
+							
+							<!-- <div class="col-md-6">
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
@@ -140,32 +173,8 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-12">
-                                    <div class="row" id="more_details" style="overflow: auto;">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Product SubCategories:</label>
-                                                <select
-                                                    class="form-control bs_categories @error('subcategory') is-invalid @enderror"
-                                                    multiple style="width: 100%" id="_subcategories" >
-
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Product Search Tags</label>
-                                                <select class="form-control @error('tags') is-invalid @enderror"
-                                                        style="width: 100%" id="_tags" multiple>
-
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+							</div> -->
+							
 							<div class="col-md-12">
 								<div class="input-images"></div>
 								<br>
@@ -175,20 +184,20 @@
 		                            @endforeach
 		                        @endif
 							</div>
-							<div class="col-md-12">
+							<!-- <div class="col-md-12">
 								<div class="form-group">
 									<label>Video Link</label>
 									<input type="text" id="video_link" name="video_link" value="{{ old('video_link') }}" class="form-control">
 								</div>
-							</div>
-							<div class="col-md-12">
+							</div> -->
+							<!-- <div class="col-md-12">
 								@if($errors->has('description'))
 		                            @foreach($errors->get('description') as $message)
 		                              <span style="color:red">{{$message}}</span>
 		                            @endforeach
 		                        @endif
 								<textarea rows="8" name="description" class="form-control summernote @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
-							</div>
+							</div> -->
 						</div>
 						<div class="text-right">
 							<button type="submit" class="btn btn-lg btn-success bs_dashboard_btn bs_btn_color">UPLOAD</button>
