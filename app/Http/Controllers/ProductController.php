@@ -460,9 +460,8 @@ class ProductController extends Controller
         $id_360 = collect($product_album_all)->filter(function ($al) {
             return $al->has_rotatory_image != null;
         })->first();
-        dd($product_album_all, $product_album, $id_360);
-        $product = $product_album->first()->product;
-        $product_id = $product->id;
+        $product = $product_album->first() ? $product_album->first()->product : [];
+        $product_id = $product_album_id;
 
         return view('products.create_album', compact('product_album_id', 'product_id', 'product', 'product_album', 'id_360'));
     }
