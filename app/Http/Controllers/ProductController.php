@@ -2,30 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\CenterStone;
 use App\CenterStoneClarity;
 use App\CenterStoneColor;
 use App\CenterStoneSize;
+use App\Http\Requests\BulkDeleteItemRequest;
+use App\Http\Requests\ProductRequest;
+use App\Imports\VariationImport;
 use App\Policy;
 use App\Product;
-use App\Category;
 use App\ProductAlbum;
 use App\ProductStone;
-use App\SubCategory;
-use App\Variation;
 use App\ProductVariation;
-use Illuminate\Http\Request;
 use App\Services\ProductService;
-use App\Http\Requests\ProductRequest;
-use App\Http\Requests\VariationRequest;
-use App\Http\Requests\BulkDeleteItemRequest;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
-use function foo\func;
 use Excel;
-use App\Imports\VariationImport;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Session;
+use function foo\func;
 
 
 class ProductController extends Controller
@@ -465,6 +460,7 @@ class ProductController extends Controller
         $id_360 = collect($product_album_all)->filter(function ($al) {
             return $al->has_rotatory_image != null;
         })->first();
+        dd($product_album_all, $product_album, $id_360);
         $product = $product_album->first()->product;
         $product_id = $product->id;
 
