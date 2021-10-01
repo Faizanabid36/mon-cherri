@@ -210,11 +210,12 @@ Route::group(['middleware' => 'locale'], function () {
         Route::post('addToCompare', 'CompareController@add_to_compare')->name('compare');
 
         // policy routes
-        Route::get('/policies', 'PolicyController@get_policies')->name('policy.show');
+        Route::get('/policies/get_by_type/{type?}', 'PolicyController@get_policies')->name('policy.show');
         Route::get('/policies/add_policy', 'PolicyController@add_policy')->name('policy.add');
         Route::post('/policies/store_policy', 'PolicyController@store_policy')->name('policy.store');
         Route::get('/policies/edit_policy/{id}', 'PolicyController@edit_policy')->name('policy.edit');
         Route::get('/policies/delete_policy/{id}', 'PolicyController@delete_policy')->name('policy.delete');
+        Route::get('/policies/mark_policy/{id}/{type}', 'PolicyController@mark_policy')->name('policy.mark_policy');
         
 
     });

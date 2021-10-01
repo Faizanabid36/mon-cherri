@@ -71,8 +71,16 @@
                                     <label for="shipping_policy_1">Shipping Policy 1</label>
                                     <select class="form-control" name="shipping_policy_1" id="shipping_policy_1">
                                         <option selected disabled>Select Shipping Type</option>
-                                        @foreach($shipping_policies as $policy)
-                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @foreach($shipping_policies1 as $policy)
+                                            <option value="{{$policy->id}}"
+											<?php
+											if($policy->is_default)
+											{
+												echo 'selected';
+											}
+											
+											?>	
+											>{{$policy->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -98,8 +106,16 @@
                                     <label for="shipping_policy_2">Shipping Policy 2</label>
                                     <select class="form-control" name="shipping_policy_2" id="shipping_policy_2">
                                         <option selected disabled>Select Shipping Type</option>
-                                        @foreach($shipping_policies as $policy)
-                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                        @foreach($shipping_policies2 as $policy)
+                                            <option value="{{$policy->id}}"
+											<?php
+											if($policy->is_default)
+											{
+												echo 'selected';
+											}
+											
+											?>	
+											>{{$policy->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -135,7 +151,13 @@
                                     <select class="form-control" name="return_policy" id="return_policy">
                                         <option selected disabled>Select Return Type</option>
                                         @foreach($return_policies as $policy)
-                                            <option value="{{$policy->id}}">{{$policy->name}}</option>
+                                            <option value="{{$policy->id}}" <?php
+											if($policy->is_default)
+											{
+												echo 'selected';
+											}
+											
+											?>>{{$policy->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

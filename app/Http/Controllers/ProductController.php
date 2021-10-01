@@ -48,8 +48,10 @@ class ProductController extends Controller
     {
         $policies = Policy::all();
         $return_policies = $policies->where('type', 'Return');
-        $shipping_policies = $policies->where('type', 'Shipping');
-        return view('products.create', compact('return_policies', 'shipping_policies'));
+        $shipping_policies1 = $policies->where('type', 'Shipping1');
+        $shipping_policies2 = $policies->where('type', 'Shipping2');
+        
+        return view('products.create', compact('return_policies', 'shipping_policies1','shipping_policies2'));
     }
 
     public function store(ProductRequest $request)

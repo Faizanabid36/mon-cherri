@@ -65,11 +65,18 @@
                                                 ?> value="Return">Return</option>
                                                 <option
                                                 <?php
-                                                if($policy ?? false and $policy->Type=='Shipping')
+                                                if($policy ?? false and $policy->Type=='Shipping1')
                                                 {
                                                     echo 'selected';
                                                 }
-                                                ?>  value="Shipping">Shipping</option>
+                                                ?>  value="Shipping1">Shipping Policy 1</option>
+												<option
+                                                <?php
+                                                if($policy ?? false and $policy->Type=='Shipping2')
+                                                {
+                                                    echo 'selected';
+                                                }
+                                                ?>  value="Shipping2">Shipping Policy 2</option>
                                             </select>
 										</div>
 									</div>

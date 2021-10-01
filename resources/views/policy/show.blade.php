@@ -27,6 +27,9 @@
 			<div class="card">
 				<div class="card-header">
 					<h4 class="card-title">Policies</h4>
+					<a href="{{route('policy.show','Return')}}"  class="btn btn-success bs_dashboard_btn bs_btn_color {{$type=='Return'?'active':''}} " >Return Policy</a>	
+					<a href="{{route('policy.show','Shipping1')}}" class="btn btn-success bs_dashboard_btn bs_btn_color {{$type=='Shipping1'?'active':''}} " >Shipping Policy 1</a>	
+					<a href="{{route('policy.show','Shipping2')}}" class="btn btn-success bs_dashboard_btn bs_btn_color {{$type=='Shipping2'?'active':''}} " >Shipping Policy 2</a>	
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -39,6 +42,7 @@
 											<th>Name</th>
 											<th>Days</th>
 											<th>Type</th>
+											<th>Default</th>
 											
 											<th>Action</th>
 										</tr>
@@ -51,7 +55,7 @@
 											<td>{{ucwords($policy->name)}}</td>
 											<td>{{$policy->days}}</td>
 											<td>{{$policy->type}}</td>
-											
+											<td><a href="{{route('policy.mark_policy',[$policy->id,$policy->type])}}"><span class="badge {{$policy->is_default?'bg-primary':'bg-secondary'}}  text-light float-end">Default</span></a></td>
 											<td>
 												
 												<a href="{{route('policy.edit',$policy->id)}}" class="btn btn-sm bg-success-light mr-2 "><i class="fa fa-edit"></i> Edit</a>
