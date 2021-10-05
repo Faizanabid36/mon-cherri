@@ -2,25 +2,24 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     // use SoftDeletes;
-    
+
     use Notifiable;
     use HasRoleAndPermission;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','slug','facebook_id','google_id'
+        'name', 'email', 'password', 'slug', 'facebook_id', 'google_id'
     ];
 
     /**
@@ -45,28 +44,39 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\UserInfo');
     }
+
     public function roles()
     {
         return $this->belongsToMany('App\Role');
     }
+
     public function permissions()
     {
         return $this->belongsToMany('App\Permission');
     }
+
     public function orders()
     {
         return $this->hasManyThrough('App\Order', 'App\Invoice');
     }
+
     public function invoices()
     {
-       return $this->hasMany('App\Invoice');
+        return $this->hasMany('App\Invoice');
     }
+
     public function reviews()
     {
-       return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review');
     }
+
     public function wishlist()
     {
-       return $this->belongsToMany('App\Product','user_wishes')->withTimestamps();
+        return $this->belongsToMany('App\Product', 'user_wishes')->withTimestamps();
+    }
+
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class);
     }
 }
