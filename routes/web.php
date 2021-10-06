@@ -233,6 +233,8 @@ Route::group(['middleware' => 'locale'], function () {
 
     // view pages routes
     Route::get('/', 'FrontController@index');
+    Route::get('/customer_form', 'FrontController@customer_form')->name('customer_form');
+    Route::post('/customer_store_voucher', 'FrontController@customer_store_voucher')->name('customer_store_voucher');
     Route::get('/shop/{slug}', 'FrontController@products')->name('shop.category');
     Route::get('/blog', 'FrontController@blog');
     Route::get('/about', 'FrontController@about');
@@ -246,7 +248,6 @@ Route::group(['middleware' => 'locale'], function () {
 
 
     // Api Routes
-
     Route::get('gmail/redirect', 'SocialAuthGoogleController@redirect');
     Route::get('gmail/callback', 'SocialAuthGoogleController@callback');
 

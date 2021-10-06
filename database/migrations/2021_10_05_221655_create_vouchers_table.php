@@ -19,6 +19,7 @@ class CreateVouchersTable extends Migration
             $table->boolean('status')->default(0);
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('default')->default(0);
             $table->dateTime('starting_date');
             $table->dateTime('ending_date');
             $table->timestamps();

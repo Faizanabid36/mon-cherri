@@ -8,6 +8,8 @@ class VoucherAssigment extends Model
 {
     protected $guarded = [];
 
+    protected $with = 'voucher';
+
     public function user()
     {
         return $this->belongsTo(User::class);

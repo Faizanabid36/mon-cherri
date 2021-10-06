@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 // use Database\Seeds\PermissionsTableSeeder;
-use Database\Seeds\RolesTableSeeder;
-use Database\Seeds\ConnectRelationshipsSeeder;
+//use Database\Seeds\RolesTableSeeder;
+//use Database\Seeds\ConnectRelationshipsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             $this->call(CountrySeeder::class);
             $this->call(StateSeeder::class);
             $this->call(CitySeeder::class);
+            $this->call(VoucherSeeder::class);
 
         Model::reguard();
     }

@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<!-- /Page Header -->
-	
+
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
@@ -32,6 +32,7 @@
 									<th>Count</th>
 									<th>Name</th>
 									<th>Email</th>
+									<th>Vouchers</th>
 									<th>Phone</th>
 									<th>Orders</th>
 									<th>Created On</th>
@@ -39,14 +40,15 @@
 							</thead>
 							<tbody>
 								<?php $count = 1; ?>
-								@foreach($customers as $customer)
-								<tr>
-									<td><?=$count++?></td>
-									<td>{{$customer->name}} {{$customer->lastname}}</td>
-									<td>{{$customer->email}}</td>
+                                @foreach($customers as $customer)
+                                    <tr>
+                                    <td><?=$count++?></td>
+                                    <td>{{$customer->name}} {{$customer->lastname}}</td>
+                                    <td>{{$customer->email}}</td>
+                                    <td>{{$customer->voucherDecorated}}</td>
 									<td>{{$customer->info->phone}}</td>
 									<td>
-										<ul>											
+										<ul>
 										@foreach($customer->orders()->latest()->get() as $c_order)
 											<li>{{$c_order->product->name}}</li>
 										@endforeach

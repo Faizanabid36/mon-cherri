@@ -24,7 +24,7 @@
                         <form action="{{route('voucher.store')}}" method="post">
                             @csrf
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Promotion Code</label>
                                         <input type="text" name="promotion_code" value="{{ old('promotion_code') }}"
@@ -37,7 +37,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Active</label>
                                         <select class="form-control input-sm @error('status') is-invalid @enderror"
@@ -53,7 +53,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Starting Date</label>
                                         <input type="datetime-local" name="starting_date"
@@ -67,11 +67,28 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="form-group">
+                                        <label>Ending Type</label>
+                                        <select onchange="changeInput()"
+                                                class="form-control input-sm @error('ending_type') is-invalid @enderror"
+                                                name="ending_type" id="ending_type" required>
+                                            <option disabled selected>Select Status</option>
+                                            <option value="day">Day</option>
+                                            <option value="date">Date</option>
+                                        </select>
+                                        @if($errors->has('ending_type'))
+                                            @foreach($errors->get('ending_type') as $message)
+                                                <span style="color:red">{{$message}}</span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" id="insert_date_input">
                                         <label>Ending Date</label>
-                                        <input type="datetime-local" name="ending_date" value="{{ old('ending_date') }}"
-                                               class="form-control @error('ending_date') is-invalid @enderror" required>
+                                        {{--                                        <input type="datetime-local" name="ending_date" value="{{ old('ending_date') }}"--}}
+                                        {{--                                               class="form-control @error('ending_date') is-invalid @enderror" required>--}}
                                         @if($errors->has('ending_date'))
                                             @foreach($errors->get('ending_date') as $message)
                                                 <span style="color:red">{{$message}}</span>
@@ -105,4 +122,19 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function changeInput() {
+            if (document.getElementById('ending_date'))
+                document.getElementById('ending_date').remove()
+            const value = document.getElementById("ending_type").value;
+            let input = document.createElement("INPUT");
+            input.setAttribute('type', value === 'day' ? 'text' : 'datetime-local');
+            input.setAttribute('placeholder', value === 'day' ? 'Enter days' : 'Select Date');
+            input.setAttribute('class', 'form-control');
+            input.setAttribute('required', 'true');
+            input.setAttribute('name', 'ending_date');
+            input.setAttribute('id', 'ending_date');
+            document.getElementById("insert_date_input").append(input);
+        }
+    </script>
 @endsection

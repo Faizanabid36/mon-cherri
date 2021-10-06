@@ -77,6 +77,6 @@ class User extends Authenticatable
 
     public function vouchers()
     {
-        return $this->hasMany(Voucher::class);
+        return $this->hasMany(VoucherAssigment::class);
     }
 }
