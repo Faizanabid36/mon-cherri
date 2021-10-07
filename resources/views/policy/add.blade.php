@@ -42,12 +42,23 @@
 							</div>
 							<div class="col-md-12">
 								<div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Days/Value</label>
+                                            <label>Days</label>
                                             <input type="text" value="{{ $policy->days??''}}" id="days" name="days" class="form-control product_prices" required>
                                             @if($errors->has('days'))
                                                 @foreach($errors->get('days') as $message)
+                                                    <span style="color:red">{{$message}}</span>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+									<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Value</label>
+                                            <input type="text" value="{{ $policy->value??''}}" id="value" name="value" class="form-control product_prices" required>
+                                            @if($errors->has('value'))
+                                                @foreach($errors->get('value') as $message)
                                                     <span style="color:red">{{$message}}</span>
                                                 @endforeach
                                             @endif

@@ -41,6 +41,7 @@
 											<th>Count</th>
 											<th>Name</th>
 											<th>Days</th>
+											<th>Value</th>
 											<th>Type</th>
 											<th>Default</th>
 											
@@ -54,6 +55,7 @@
 											<td><?=$count++?></td>
 											<td>{{ucwords($policy->name)}}</td>
 											<td>{{$policy->days}}</td>
+											<td>{{$policy->value??"N/A"}}</td>
 											<td>{{$policy->type}}</td>
 											<td><a href="{{route('policy.mark_policy',[$policy->id,$policy->type])}}"><span class="badge {{$policy->is_default?'bg-primary':'bg-secondary'}}  text-light float-end">Default</span></a></td>
 											<td>
