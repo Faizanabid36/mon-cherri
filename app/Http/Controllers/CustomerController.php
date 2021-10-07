@@ -1,19 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
+
 use App\Role;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-	 public function __construct()
+    public function __construct()
     {
-        $this->middleware('permission:view.customers',['only' => ['index']]);
+        $this->middleware('permission:view.customers', ['only' => ['index']]);
     }
+
     public function index()
     {
-    	$customers = Role::where('slug', 'customer')->first()->users()->get();
-    	return view('customers.index',compact('customers'));
+        $usersData = Role::where('slug', 'customer')->first()->users()->get();
+        $customers = collect($usersData)->map(function ($user) {
+            $voucherDecorated = collect($user->vouchers)->map(function ($data) {
+                return $data->voucher->promotion_code;
+            });
+            $data = $user;
+            $data->voucherDecorated = $voucherDecorated;
+            return $data;
+        });
+        return view('customers.index', compact('customers'));
     }
 }

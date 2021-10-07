@@ -10,17 +10,20 @@ use App\CenterStoneSize;
 use App\Invoice;
 use App\Post;
 use App\Product;
-use App\ProductStone;
-use App\ProductVariation;
 use App\ProductAlbum;
-use App\Variation;
-use App\Width;
-use App\RotatoryImage;
+use App\ProductVariation;
 use App\Services\FilterProductService;
+use App\User;
+use App\Variation;
+use App\Voucher;
+use App\VoucherAssigment;
+use App\Width;
 use Auth;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class FrontController extends Controller
 {
@@ -48,7 +51,7 @@ class FrontController extends Controller
     public function show_product($slug)
     {
         $product = Product::where('slug', $slug)->with('product_variations')->firstOrFail();
-        $product_widths = $product_sizes = $related_products =$stones = [];
+        $product_widths = $product_sizes = $related_products = $stones = [];
         $product_variations = collect($product->product_variations)->unique(function ($var) {
             return $var['product_id'] . $var['variation_id'];
         });
@@ -194,18 +197,15 @@ class FrontController extends Controller
             $stones = $this->getStones($product_stone, $stones);
         }
         // dd($stones);
-        if(!$request->psize && !$request->pwidth){
-            $product_variations = ProductVariation::where([['product_id', $product->id],['variation_id', $request->provar]])->firstOrFail();
-           }
-           else if(!$request->pwidth){
+        if (!$request->psize && !$request->pwidth) {
+            $product_variations = ProductVariation::where([['product_id', $product->id], ['variation_id', $request->provar]])->firstOrFail();
+        } else if (!$request->pwidth) {
             $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['variation_id', $request->provar]])->firstOrFail();
-           }
-           else if(!$request->psize){
-            $product_variations = ProductVariation::where([['product_id', $product->id],['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
-           }
-           else{
+        } else if (!$request->psize) {
+            $product_variations = ProductVariation::where([['product_id', $product->id], ['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
+        } else {
             $product_variations = ProductVariation::where([['product_id', $product->id], ['size_id', $request->psize], ['width_id', $request->pwidth], ['variation_id', $request->provar]])->firstOrFail();
-           }
+        }
         if ($product_variations->price == '0.00') {
             $product_variations->price = $product->price;
         }
@@ -235,12 +235,54 @@ class FrontController extends Controller
 
         } else {
             $gettitle = ProductAlbum::where('id', $product_variations->album_id)->get();
-            $images = ProductAlbum::where([['product_id',$gettitle[0]->product_id],['title', $gettitle[0]->title], ['url', '!=', 'Null']])->get('url');
+            $images = ProductAlbum::where([['product_id', $gettitle[0]->product_id], ['title', $gettitle[0]->title], ['url', '!=', 'Null']])->get('url');
             $rotateimagesid = ProductAlbum::whereProductId($gettitle[0]->product_id)->whereTitle($gettitle[0]->title)
                 ->whereHasRotatoryImage(1)->with('rotatory_images')->first();
             $rotateimages = $rotateimagesid->rotatory_images;
             $countRimages = count($rotateimages);
         }
         return array($images, $product_variations, $rotateimages, $countRimages, $variations, $width, $stones);
+    }
+
+    public function customer_form()
+    {
+        return view('auth.customer_form');
+    }
+
+    public function customer_store_voucher(Request $request)
+    {
+        if (!is_null($request->get('voucher_code'))) {
+            $voucher = Voucher::wherePromotionCode($request->get('voucher_code'))->first();
+            if (is_null($voucher))
+                $voucher = Voucher::whereDefault(1)->first();
+        }
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:user_infos',
+            'password' => 'required|confirmed:',
+        ]);
+        $user = User::create([
+            'name' => $request->get('name'),
+            'slug' => Str::slug($request->get('name')),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+        ]);
+        $role = config('roles.models.role')::where('name', '=', 'customer')->first();
+        $user->attachRole($role);
+        $user->info()->create([
+            'first_name' => explode(' ', $request->get('name'))[0],
+            'last_name' => explode(' ', $request->get('name'))[1] ?? '',
+            'phone' => $request->get('phone'),
+        ]);
+        $role = config('roles.models.role')::where('name', '=', 'customer')->first();
+        $user->attachRole($role);
+        VoucherAssigment::create([
+            'user_id' => $user->id,
+            'voucher_id' => $voucher->id,
+            'method' => 'email',
+            'cashed' => 0,
+        ]);
+        return back()->withSuccess('Successfully registered');
     }
 }

@@ -95,10 +95,11 @@
             <h3 class="mb-4"><strong>{{__('Search what are you looking for')}}</strong></h3>
             <input class="search__input" type="search" name="keyword" style="width: 55%;border-bottom: 1px black solid"
                    placeholder="{{__('Search entire store...')}}" aria-label="Search" required>
-            <select class="search__input" id="bs_searchCategory" style="width: 25%;border-bottom: 1px black solid;padding: 0 10px!important;" required>
+            <select class="search__input" id="bs_searchCategory"
+                    style="width: 25%;border-bottom: 1px black solid;padding: 0 10px!important;" required>
                 <option value="">{{ __('Select Category') }}</option>
                 <?php
-                    $categories = App\Category::all();
+                $categories = App\Category::all();
                 ?>
                 @foreach($categories as $category)
                     <option value="{{$category->slug}}">{{ __(ucwords($category->title)) }}</option>
@@ -181,6 +182,11 @@
                     <!--Minicart Popup-->
                     <div id="header-cart" class="site-header2  block-cart">
                         <ul class="mini-products-list">
+                            <li>
+                                <div class="u-login">
+                                    <a href="{{route('customer_form')}}" class="btn rounded">{{__('TEST voucher')}}</a>
+                                </div>
+                            </li>
                             @guest
                                 <li><h3>{{__('Login to Your Account')}}</h3></li>
                                 <li>
@@ -251,10 +257,10 @@
                 <!--Desktop Menu-->
                 <nav class="grid__item" id="AccessibleNav"><!-- for mobile -->
                     <ul id="siteNav" class="site-nav medium center hidearrow">
-{{--                        <li class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="lvl1 parent megamenu"><a href="#">About US</a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="lvl1 parent megamenu"><a href="{{url('/')}}">Home</a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li class="lvl1 parent megamenu"><a href="#">About US</a>--}}
+                        {{--                        </li>--}}
 
                         @php  $categories = App\Category::orderBy('prority')->get() @endphp
                         @foreach($categories as $category)
@@ -307,7 +313,7 @@
     </div>
     <ul id="MobileNav" class="mobile-nav">
         <li class="lvl1 parent megamenu"><a href="{{url('/')}}">{{__('Home')}}</a></li>
-{{--        <li class="lvl1 parent megamenu"><a href="#">{{__('About Us')}}</a></li>--}}
+        {{--        <li class="lvl1 parent megamenu"><a href="#">{{__('About Us')}}</a></li>--}}
         @php  $categories = App\Category::all() @endphp
         @foreach($categories as $category)
             <li class="lvl1 parent megamenu {{count($category->subcategories)?'dropdown':''}}">
@@ -446,7 +452,7 @@
                 url: '<?=url("addToCart")?>',
                 method: 'POST',
                 data: {
-                    bs_variant_id:bs_variant,
+                    bs_variant_id: bs_variant,
                     product: bs_product,
                     price: bs_price,
                     width: bs_width,
@@ -612,7 +618,7 @@
                     $('#myprice_min').val(ui.values[0]);
                     $('#myprice_max').val(ui.values[1]);
                 },
-                stop: function() {
+                stop: function () {
                     changeimages();
                 }
             });
@@ -629,7 +635,7 @@
 
 
                 },
-                stop: function() {
+                stop: function () {
                     changeimages();
                 }
 
@@ -661,6 +667,7 @@
             this_item.attr('class', '');
             this_item.addClass('fa fa-check');
         }
+
         function changeimages() {
 
             var selected = $('#product_size').find('option:selected');
@@ -672,8 +679,8 @@
             var product_id = $('.product-form__cart-submit').data('product_id');
             var price_min = $('#myprice_min').val();
             var price_max = $('#myprice_max').val();
-            var size_min  = $('.minsize').html();
-            var size_max  = $('.maxsize').html();
+            var size_min = $('.minsize').html();
+            var size_max = $('.maxsize').html();
 
             $.ajax({
                 url: "{{ route('ChangeAlbum.post')}}",
@@ -732,19 +739,19 @@
                     for (let index = 0; index < response[6].length; index++) {
 
                         var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
-                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes'] ){
-                        html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
-                        html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
-                        html3 += price;
-                        html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['shape'];
-                        html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_sizes'];
-                        html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_colors'];
-                        html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
-                        html3 += response[6][index]['center_stone_clarities'];
-                        html3 += "</h3><p>Clarity</p> </div></div></div></div>";
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes']) {
+                            html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                            html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                            html3 += price;
+                            html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['shape'];
+                            html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_sizes'];
+                            html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_colors'];
+                            html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += response[6][index]['center_stone_clarities'];
+                            html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                         }
                     }
                     $('.dimond-slider').html(html3);
