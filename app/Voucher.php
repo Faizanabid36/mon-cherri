@@ -8,8 +8,6 @@ class Voucher extends Model
 {
     protected $guarded = [];
 
-//    protected $appends = ['statusDecorated'];
-
     protected $dates = [
         'created_at',
         'updated_at',

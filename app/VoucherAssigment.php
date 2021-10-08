@@ -10,6 +10,8 @@ class VoucherAssigment extends Model
 
     protected $with = 'voucher';
 
+    protected $appends = ['cashedDecorated'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -18,5 +20,10 @@ class VoucherAssigment extends Model
     public function voucher()
     {
         return $this->belongsTo(Voucher::class);
+    }
+
+    public function getCashedDecoratedAttribute()
+    {
+        return $this->cashed ? 'Cashed' : 'Not Cashed';
     }
 }

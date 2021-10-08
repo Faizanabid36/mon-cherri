@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Voucher;
+use App\VoucherAssigment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -60,5 +61,18 @@ class VoucherController extends Controller
     {
         Voucher::destroy($id);
         return redirect()->route('voucher.index')->with('success', 'Voucher Deleted Successfully');
+    }
+
+    public function customer_voucher_index(Request $request)
+    {
+        $customers = VoucherAssigment::with('user')->get();
+        return view('vouchers.customer_vouchers', compact('customers'));
+    }
+
+    public function update_cashed(Request $request, $id)
+    {
+        $item = VoucherAssigment::whereId($id)->firstOrFail();
+        VoucherAssigment::whereId($id)->update(['cashed' => !$item->cashed]);
+        return back()->with('success', 'Operation Successful');
     }
 }

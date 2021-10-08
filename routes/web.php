@@ -107,6 +107,11 @@ Route::group(['middleware' => 'locale'], function () {
             Route::delete('delete/{id}', 'VoucherController@delete')->name('delete');
         });
 
+        Route::name('customer_vouchers.')->prefix('customer_vouchers')->group(function () {
+            Route::get('index', 'VoucherController@customer_voucher_index')->name('index');
+            Route::get('update_cashed/{id}', 'VoucherController@update_cashed')->name('update_cashed');
+        });
+
 
         // Prodcuc ajax route
         Route::post('get_more_product_details', 'ProductController@get_more_product_details');
