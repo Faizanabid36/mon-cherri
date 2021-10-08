@@ -156,6 +156,9 @@
                     <li>
                         <a href="{{route('voucher.index')}}"><i class="fe fe-file-image"></i> <span>Vouchers</span></a>
                     </li>
+                    <li>
+                        <a href="{{route('customer_vouchers.index')}}"><i class="fe fe-file-image"></i> <span>Customer Vouchers</span></a>
+                    </li>
                     @endpermission
                     @permission('view.posts')
                     <li>
