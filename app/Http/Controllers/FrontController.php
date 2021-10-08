@@ -8,6 +8,7 @@ use App\CenterStoneClarity;
 use App\CenterStoneColor;
 use App\CenterStoneSize;
 use App\Invoice;
+use App\Notifications\VoucherNotification;
 use App\Post;
 use App\Product;
 use App\ProductAlbum;
@@ -251,29 +252,32 @@ class FrontController extends Controller
 
     public function customer_store_voucher(Request $request)
     {
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:user_infos',
+            'password' => 'required|confirmed:',
+        ]);
+
         if (!is_null($request->get('voucher_code'))) {
             $voucher = Voucher::wherePromotionCode($request->get('voucher_code'))->first();
             if (is_null($voucher))
                 $voucher = Voucher::whereDefault(1)->first();
         }
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|unique:users',
-            'phone' => 'required|unique:user_infos',
-            'password' => 'required|confirmed:',
-        ]);
         $user = User::create([
-            'name' => $request->get('name'),
-            'slug' => Str::slug($request->get('name')),
+            'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
+            'slug' => Str::slug($request->get('first_name') . ' ' . $request->get('last_name')),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
         ]);
         $role = config('roles.models.role')::where('name', '=', 'customer')->first();
         $user->attachRole($role);
         $user->info()->create([
-            'first_name' => explode(' ', $request->get('name'))[0],
-            'last_name' => explode(' ', $request->get('name'))[1] ?? '',
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
             'phone' => $request->get('phone'),
+            'postal_code' => $request->get('postal_code'),
         ]);
         $role = config('roles.models.role')::where('name', '=', 'customer')->first();
         $user->attachRole($role);
@@ -283,6 +287,7 @@ class FrontController extends Controller
             'method' => 'email',
             'cashed' => 0,
         ]);
+        $user->notify(new VoucherNotification($user, $voucher));
         return back()->withSuccess('Successfully registered');
     }
 }

@@ -15,16 +15,49 @@
                             <div class="title">
                                 <h4>{{__('personal information')}}</h4>
                             </div>
-                            <div class="form-group">
-                                <label for="name">{{ __('Name') }}</label>
-                                <input style="margin: 5px 0 10px 0;" id="name" type="text"
-                                       class="form-control @error('name') is-invalid @enderror" name="name"
-                                       value="{{ old('name') }}" required autocomplete="name">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="first_name">{{ __('First name') }}</label>
+                                        <input style="margin: 5px 0 10px 0;" id="first_name" type="text"
+                                               class="form-control @error('first_name') is-invalid @enderror"
+                                               name="first_name"
+                                               value="{{ old('first_name') }}" required autocomplete="first_name">
+                                        @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="last_name">{{ __('Lat name') }}</label>
+                                        <input style="margin: 5px 0 10px 0;" id="last_name" type="text"
+                                               class="form-control @error('last_name') is-invalid @enderror"
+                                               name="last_name"
+                                               value="{{ old('last_name') }}" required autocomplete="name">
+                                        @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="postal_code">{{ __('Zip Code') }}</label>
+                                        <input style="margin: 5px 0 10px 0;" id="postal_code" type="text"
+                                               class="form-control @error('postal_code') is-invalid @enderror"
+                                               name="postal_code"
+                                               value="{{ old('postal_code') }}" required autocomplete="name">
+                                        @error('postal_code')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -60,7 +93,8 @@
                                         <label for="email">{{__('2 Digit Voucher Code') }}</label>
                                         <input style="margin: 5px 0 10px 0;" id="phone" type="text"
                                                maxlength="2"
-                                               class="form-control @error('voucher_code') is-invalid @enderror" name="voucher_code"
+                                               class="form-control @error('voucher_code') is-invalid @enderror"
+                                               name="voucher_code"
                                                value="{{ old('voucher_code') }}" required autocomplete="voucher_code">
 
                                         @error('voucher_code')
