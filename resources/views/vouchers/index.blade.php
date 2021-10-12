@@ -32,10 +32,6 @@
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            {{--                            <form action="{{route('voucher.destroy')}}" method="POST" id="deleteAll">--}}
-                            {{--                                @csrf--}}
-                            {{--                                <input type="hidden" name="items" id="bs_items_forbulkDelete">--}}
-                            {{--                            </form>--}}
                             <table class="datatable table table-stripped">
                                 <thead>
                                 <tr>
@@ -47,7 +43,7 @@
                                     <th>Promotion Code</th>
                                     <th>Status</th>
                                     <th>Description</th>
-                                    <th>Image</th>
+                                    <th>Default</th>
                                     <th>Starting Date</th>
                                     <th>Ending Date</th>
                                     <th>Action</th>
@@ -67,7 +63,10 @@
                                         <td>{{$voucher->promotion_code}}</td>
                                         <td>{{$voucher->status_decorated}}</td>
                                         <td>{{$voucher->description}}</td>
-                                        <td><img src="{{$voucher->image}}" width="100" alt=""></td>
+                                        <td>
+                                            <a href="{{route('voucher.default',$voucher->id)}}">
+                                                <span class="badge {{$voucher->default?'bg-primary':'bg-secondary'}}  text-light float-end">Default</span></a>
+                                        </td>
                                         <td>{{$voucher->starting_date->diffForHumans()}}</td>
                                         <td>{{$voucher->ending_date->diffForHumans()}}</td>
                                         <td>

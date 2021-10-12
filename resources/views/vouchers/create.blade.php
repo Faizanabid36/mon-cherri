@@ -71,14 +71,14 @@
                                     <div class="form-group">
                                         <label>Ending Type</label>
                                         <select onchange="changeInput()"
-                                                class="form-control input-sm @error('ending_type') is-invalid @enderror"
-                                                name="ending_type" id="ending_type" required>
+                                                class="form-control input-sm @error('type') is-invalid @enderror"
+                                                name="type" id="type" required>
                                             <option disabled selected>Select Status</option>
                                             <option value="day">Day</option>
                                             <option value="date">Date</option>
                                         </select>
-                                        @if($errors->has('ending_type'))
-                                            @foreach($errors->get('ending_type') as $message)
+                                        @if($errors->has('type'))
+                                            @foreach($errors->get('type') as $message)
                                                 <span style="color:red">{{$message}}</span>
                                             @endforeach
                                         @endif
@@ -87,8 +87,6 @@
                                 <div class="col-md-6">
                                     <div class="form-group" id="insert_date_input">
                                         <label>Ending Date</label>
-                                        {{--                                        <input type="datetime-local" name="ending_date" value="{{ old('ending_date') }}"--}}
-                                        {{--                                               class="form-control @error('ending_date') is-invalid @enderror" required>--}}
                                         @if($errors->has('ending_date'))
                                             @foreach($errors->get('ending_date') as $message)
                                                 <span style="color:red">{{$message}}</span>
@@ -98,12 +96,25 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Offers</label>
                                         <textarea required name="description"
                                                   rows="6"
                                                   class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                         @if($errors->has('description'))
                                             @foreach($errors->get('description') as $message)
+                                                <span style="color:red">{{$message}}</span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Restrictions</label>
+                                        <textarea required name="restriction"
+                                                  rows="6"
+                                                  class="form-control @error('restriction') is-invalid @enderror">{{ old('restriction') }}</textarea>
+                                        @if($errors->has('restriction'))
+                                            @foreach($errors->get('restriction') as $message)
                                                 <span style="color:red">{{$message}}</span>
                                             @endforeach
                                         @endif
@@ -126,13 +137,13 @@
         function changeInput() {
             if (document.getElementById('ending_date'))
                 document.getElementById('ending_date').remove()
-            const value = document.getElementById("ending_type").value;
+            const value = document.getElementById("type").value;
             let input = document.createElement("INPUT");
             input.setAttribute('type', value === 'day' ? 'text' : 'datetime-local');
             input.setAttribute('placeholder', value === 'day' ? 'Enter days' : 'Select Date');
             input.setAttribute('class', 'form-control');
             input.setAttribute('required', 'true');
-            input.setAttribute('name', 'ending_date');
+            input.setAttribute('name', value === 'day' ? 'days' : 'ending_date');
             input.setAttribute('id', 'ending_date');
             document.getElementById("insert_date_input").append(input);
         }

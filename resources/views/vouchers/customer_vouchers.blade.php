@@ -50,12 +50,12 @@
                                                 <td>{{$customer->voucher->id}}</td>
                                                 <td>{{$customer->voucher->promotion_code}}</td>
                                                 <td>{{$customer->method}}</td>
-                                                <td>{{\Carbon\Carbon::parse($customer->voucher->ending_date)->format('d-m-Y h:m:i')}}</td>
+                                                <td>{{\Carbon\Carbon::parse($customer->voucher->ending_date)->format('m-d-Y')}}</td>
                                                 <td>
                                                     <span
                                                         class="badge {{$customer->cashed?'bg-success':'bg-secondary'}}  text-light float-end">{{$customer->cashedDecorated}}</span>
                                                 </td>
-                                                <td>{{$customer->cashed? \Carbon\Carbon::parse($customer->updated_at)->format('d-m-Y h:m:i'): '---'}}</td>
+                                                <td>{{$customer->cashed? \Carbon\Carbon::parse($customer->updated_at)->format('m-d-Y'): '---'}}</td>
                                                 <td>
                                                     <a href="{{route('customer_vouchers.update_cashed',$customer->id)}}"
                                                        class="btn btn-sm {{$customer->cashed?'btn-danger':'btn-primary'}}">

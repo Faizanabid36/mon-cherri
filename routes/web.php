@@ -105,6 +105,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('update/{id}', 'VoucherController@update')->name('update');
             Route::post('store', 'VoucherController@store')->name('store');
             Route::delete('delete/{id}', 'VoucherController@delete')->name('delete');
+            Route::get('default/{voucher}', 'VoucherController@default')->name('default');
         });
 
         Route::name('customer_vouchers.')->prefix('customer_vouchers')->group(function () {

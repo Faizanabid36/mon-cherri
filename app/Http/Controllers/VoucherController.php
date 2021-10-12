@@ -26,11 +26,10 @@ class VoucherController extends Controller
             'promotion_code' => 'required|unique:vouchers',
             'status' => 'required',
             'starting_date' => 'required',
-            'ending_date' => 'required',
             'description' => 'required',
         ]);
-        if ($request->get('ending_type') == 'day')
-            $request->merge(['ending_date' => now()->addDays($request->get('ending_date'))->toDateTimeString()]);
+        if ($request->get('type') == 'day')
+            $request->merge(['ending_date' => now()->addDays($request->get('days'))->toDateTimeString()]);
         else
             $request->merge(['ending_date' => Carbon::parse($request->get('ending_date'))]);
         $request->merge(['starting_date' => Carbon::parse($request->get('starting_date'))]);
@@ -61,6 +60,12 @@ class VoucherController extends Controller
     {
         Voucher::destroy($id);
         return redirect()->route('voucher.index')->with('success', 'Voucher Deleted Successfully');
+    }
+
+    public function default(Request $request, Voucher $voucher)
+    {
+        Voucher::whereId($voucher->id)->update(['default' => !$voucher->default]);
+        return back()->withSuccess('Status Changed');
     }
 
     public function customer_voucher_index(Request $request)

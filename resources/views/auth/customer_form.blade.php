@@ -113,32 +113,6 @@
                                 <h4>{{__('Login information')}}</h4>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="password">{{__('Password') }}</label>
-                                        <input style="margin: 5px 0 10px 0;" id="password" type="password"
-                                               class="form-control @error('password') is-invalid @enderror"
-                                               name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                        <input style="margin: 5px 0 10px 0;" id="password-confirm" type="password"
-                                               class="form-control" name="password_confirmation" required
-                                               autocomplete="new-password">
-
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="bt-link">
                                 <div class="form-group">
                                     <button type="submit" class="btn bs_form_btn">{{ __('Register') }}</button>

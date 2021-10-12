@@ -257,7 +257,6 @@ class FrontController extends Controller
             'last_name' => 'required',
             'email' => 'required|unique:users',
             'phone' => 'required|unique:user_infos',
-            'password' => 'required|confirmed:',
         ]);
 
         if (!is_null($request->get('voucher_code'))) {
@@ -265,6 +264,7 @@ class FrontController extends Controller
             if (is_null($voucher))
                 $voucher = Voucher::whereDefault(1)->first();
         }
+        $request->merge(['password' => 'password']);
         $user = User::create([
             'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
             'slug' => Str::slug($request->get('first_name') . ' ' . $request->get('last_name')),

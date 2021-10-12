@@ -26,7 +26,7 @@ class AddValueInPolicies extends Migration
     public function down()
     {
         Schema::table('policies', function (Blueprint $table) {
-            $table->dropColumn('days');
+            $table->dropColumn('value');
         });
     }
 }
