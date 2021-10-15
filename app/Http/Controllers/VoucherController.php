@@ -49,9 +49,12 @@ class VoucherController extends Controller
             'promotion_code' => 'required',
             'status' => 'required',
             'starting_date' => 'required',
-            'ending_date' => 'required',
             'description' => 'required',
         ]);
+        if ($request->get('type') == 'day')
+            $request->merge(['ending_date' => now()->addDays($request->get('days'))->toDateTimeString()]);
+        else
+            $request->merge(['ending_date' => Carbon::parse($request->get('ending_date'))]);
         Voucher::whereId($id)->update($request->except('_token'));
         return redirect()->route('voucher.index')->with('success', 'Voucher Updated Successfully');
     }
