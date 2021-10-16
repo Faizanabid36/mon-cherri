@@ -85,4 +85,10 @@ class StateController extends Controller
         State::onlyTrashed()->forceDelete();
         return redirect()->route('states.deleted')->with('success','States have been deleted forever!');
     }
+
+    public function get_states_by_country($country_id)
+    {
+        $states=State::whereCountryId($country_id)->first();
+        return compact('states');
+    }
 }
