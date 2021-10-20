@@ -38,7 +38,10 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('currencies', 'CurrencyController');
         Route::resource('variations', 'VariationController');
         Route::resource('widths', 'WidthController');
+        //States routes
+        Route::get('get_states_by_country', 'StateController@get_states_by_country')->name('states.get_states_by_country');
 
+        
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
 

@@ -36,6 +36,7 @@
 									<th>Phone</th>
 									<th>Orders</th>
 									<th>Created On</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -55,6 +56,9 @@
 										</ul>
 									</td>
 									<td>{{$customer->created_at->format('d-m-Y')}}</td>
+									<td>
+										<a class="btn btn-sm bg-success-light mr-2 " href="{{route('customers.edit',$customer->id)}}"><i class="fa fa-edit"></a>
+									</td>
 								</tr>
 								@endforeach
 							</tbody>
