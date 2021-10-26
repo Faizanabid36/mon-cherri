@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="last_name">{{ __('Lat name') }}</label>
+                                        <label for="last_name">{{ __('Last name') }}</label>
                                         <input style="margin: 5px 0 10px 0;" id="last_name" type="text"
                                                class="form-control @error('last_name') is-invalid @enderror"
                                                name="last_name"
@@ -100,8 +100,17 @@
                                         @error('voucher_code')
                                         <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
-                                </span>
+                                     </span>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group email">
+                                        <label for="email">{{__('Preference') }}</label>
+                                        <select name="preference" style="margin: 5px 0 10px 0;" class="form-control">
+                                            <option value="email">E-Mail</option>
+                                            <option value="cell">Cell</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
