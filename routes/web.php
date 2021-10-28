@@ -41,7 +41,7 @@ Route::group(['middleware' => 'locale'], function () {
         //States routes
         Route::get('get_states_by_country', 'StateController@get_states_by_country')->name('states.get_states_by_country');
 
-        
+
         // Products delete routes
         Route::post('products_bulk_delete', 'ProductController@bulk_delete')->name('products.bulkDelete');
 
@@ -68,7 +68,6 @@ Route::group(['middleware' => 'locale'], function () {
             Route::delete('delete_color/{id}', 'CenterStoneController@delete_color')->name('color.delete');
 
             Route::post('import_csv', 'CenterStoneController@import_csv')->name('import_csv');
-
         });
 
         Route::name('product.album.')->prefix('album')->group(function () {
@@ -80,7 +79,6 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('update_360', 'RotatoryImageController@update_image')->name('update_360_image');
             Route::get('delete_image/{id}', 'RotatoryImageController@delete_image')->name('delete_image');
             Route::get('delete_album_image/{id}', 'ProductController@delete_image_album')->name('delete_image_album');
-
         });
         Route::name('product.variations.')->prefix('variations')->group(function () {
             Route::get('get_variations/{id}', 'ProductController@get_variations')->name('get');
@@ -235,10 +233,13 @@ Route::group(['middleware' => 'locale'], function () {
         Route::get('/policies/edit_policy/{id}', 'PolicyController@edit_policy')->name('policy.edit');
         Route::get('/policies/delete_policy/{id}', 'PolicyController@delete_policy')->name('policy.delete');
         Route::get('/policies/mark_policy/{id}/{type}', 'PolicyController@mark_policy')->name('policy.mark_policy');
-
-
     });
 
+    Route::prefix('staging')->name('fix_name.')->group(function () {
+        Route::get('/', 'FixMeController@index')->name('home');
+        Route::get('/shop/{slug}', 'FixMeController@products')->name('shop.category');
+        Route::get('/{slug}', 'FixMeController@show_product');
+    });
 
     // view pages routes
     Route::get('/', 'FrontController@index');
@@ -266,5 +267,4 @@ Route::group(['middleware' => 'locale'], function () {
     // Change Email
     Route::get('verify_changed_email/{user}/{email}', 'Auth\EmailChangeController@verify')->name('verify.changed-email');
     Route::post('change_email', 'Auth\EmailChangeController@change')->name('change_user_email');
-
 });

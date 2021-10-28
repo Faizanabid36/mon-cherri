@@ -1,0 +1,106 @@
+input[type="range"] {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 400px;
+  margin: 0;
+  padding: 0 2px;
+  /* Add some L/R padding to ensure box shadow of handle is shown */
+  overflow: hidden;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  /* background: linear-gradient(grey, grey) no-repeat center; */
+  background: linear-gradient(#9b795b, #9b795b) no-repeat center;
+  /* Use a linear gradient to generate only the 2px height background */
+  background-size: 100% 2px;
+  pointer-events: none;
+}
+input[type="range"]:active,
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 28px;
+  /* background-color: #fff; */
+  background-color: #9b795b;
+  position: relative;
+  margin: 5px 0;
+  /* Add some margin to ensure box shadow is shown */
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: all;
+  box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+}
+input[type="range"]::-webkit-slider-thumb::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 13px;
+  left: 100%;
+  width: 2000px;
+  height: 2px;
+}
+.multi-range {
+  position: relative;
+  /* left: 50%; */
+  height: 50px;
+  background-color: #fff;
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+.multi-range input[type="range"] {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+.multi-range input[type="range"]:nth-child(1)::-webkit-slider-thumb::before {
+  background-color: red;
+}
+.multi-range input[type="range"]:nth-child(2) {
+  background: none;
+}
+.multi-range input[type="range"]:nth-child(2)::-webkit-slider-thumb::before {
+  background-color: grey;
+}
+.coolBeans {
+  font-weight: 100;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+}
+.coolBeans:hover {
+  color: #fff !important;
+}
+.coolBeans::after {
+  background-color: #49341c;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: top left;
+  transition: 0.2s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+.coolBeans:hover::after {
+  transform: translate(0, 0);
+}
+.coolBeans:hover {
+  border-color: transparent;
+  transform: scale(1.05);
+  will-change: transform;
+}

@@ -95,11 +95,10 @@ class Product extends Model
 
     public function FormatedPrice()
     {
-//        dd($this->product_variations->first());
         if ($this->product_variations && $this->product_variations->first()) {
             return currency($this->product_variations->first()->price, 'USD', currency()->getUserCurrency());
         }
-        return 0;
+        return '$0';
     }
 
     public function FormatedOldPrice()
