@@ -70,6 +70,15 @@ input[type="range"]::-webkit-slider-thumb::before {
   background-color: grey;
 }
 .coolBeans {
+  transition: 0.3s ease-in;
+}
+.coolBeans:hover {
+  background-color: #49341c !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* .coolBeans {
   font-weight: 100;
   overflow: hidden;
   position: relative;
@@ -103,4 +112,4 @@ input[type="range"]::-webkit-slider-thumb::before {
   border-color: transparent;
   transform: scale(1.05);
   will-change: transform;
-}
+} */

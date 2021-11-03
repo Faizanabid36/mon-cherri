@@ -3,13 +3,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-12 mx-auto">
-                    <div class="logo_container">
+                    <a href="#" class="logo_container">
                         <img class="w-50 mx-auto d-block w-md-100" src="{{ asset('renameMe/images/logo.png') }}"
                             alt="" />
-                    </div>
+                    </a>
                 </div>
-                @php  $categories = App\Category::orderBy('prority')->get() @endphp
+
                 <div class="mt-4">
+                    @php  $categories = App\Category::orderBy('prority')->get() @endphp
                     <ul class="list-unstyled d-flex justify-content-between">
                         @foreach ($categories as $category)
                             @php

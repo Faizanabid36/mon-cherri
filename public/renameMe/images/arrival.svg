@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920.66" height="739.763" viewBox="0 0 1920.66 739.763">
 	<defs>
+		<style type="text/css">
+			@font-face {
+			font-family: Optima;
+			src: url("../font/OptimaNovaLTProRegular.otf");
+			}
+		</style>
+	</defs>
+	<defs>
 		<clipPath id="clip-path">
 			<rect id="Rectangle_10" data-name="Rectangle 10" width="1920.66" height="739.763" transform="translate(-140)" fill="#fff" stroke="#707070" stroke-width="1" />
 		</clipPath>
@@ -10,13 +18,13 @@
 	<g id="Mask_Group_5" data-name="Mask Group 5" transform="translate(140)" clip-path="url(#clip-path)">
 		<path id="Path_6" data-name="Path 6" d="M0,0H1919.879V799.116H0Z" transform="translate(-139.855 -30)" fill="url(#pattern)" />
 	</g>
-	<text id="NEW_ARRIVAL" data-name="NEW ARRIVAL" transform="translate(1035.382 269.403)" fill="#fff" font-size="104" font-family="SegoeUI, Segoe UI">
-		<tspan x="0" y="0">
-			NEW ARRIVAL
+	<text id="NEW_ARRIVAL" data-name="NEW ARRIVALS" transform="translate(1035.382 269.403)" fill="#fff" font-size="104">
+		<tspan style="font-family: 'Optima'" x="0" y="0">
+			NEW ARRIVALS
 		</tspan>
 	</text>
-	<text id="Hurry_up_Limited" data-name="Hurry up! Limited" transform="translate(1236.114 329.772)" fill="#fff" font-size="61" font-family="SegoeUI, Segoe UI">
-		<tspan x="0" y="0">
+	<text id="Hurry_up_Limited" data-name="Hurry up! Limited" transform="translate(1236.114 329.772)" fill="#fff" font-size="61">
+		<tspan style="font-family: 'Optima'" x="0" y="0">
 			Hurry up! Limited
 		</tspan>
 	</text>

@@ -12,6 +12,19 @@
 </head>
 
 <body>
+    <div id="preloader">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="back-home" style="display: none">
+        <img src="{{ asset('renameMe/images/dropdown-up.png') }}" alt="" />
+    </div>
+
+
+    @include('moncheri.components.cart')
+
     <!-- ===========================  UPPER HEADER START  =============================== -->
     @include('moncheri.partials.upper_header')
     <!-- ===========================  UPPER HEADER END  =============================== -->

@@ -3,6 +3,7 @@
 @section('title', 'Home Page')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('renameMe/style/preloader.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('renameMe/style/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('renameMe/style/utilities.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
         .swiper.mySwiper2.mySwiper2>.swiper-wrapper>.swiper-slide {
             margin-right: 26px !important;
@@ -56,11 +58,11 @@
         <div class="page_container h-100">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="text_content col-12 col-md-12 text-white">
+                    <div class="text_content col-12 col-md-12 text-white" data-aos="fade-up">
                         <img src="{{ asset('renameMe/images/bangles-cropped.png') }}"
                             class="w-50 mx-auto d-block mb-5 d-md-none bangles" alt="" />
                         <h1 class="fw600">TREAT YOURSELF WITH THE</h1>
-                        <h1 class="fw600 mb-1">BEST JEWELERY</h1>
+                        <h1 class="fw600 mb-1">BEST JEWELRY</h1>
                         <p class="f20">
                             There are many variations of passages of Lorem Ipsum available,
                             but the
@@ -84,14 +86,14 @@
                         </h1>
 
                         <div class="row">
-                            <div class="col-6 col-sm-4">
+                            <div class="col-6 col-sm-4" data-aos="fade-up" data-aos-delay="">
                                 <img class="w-100" src="{{ asset('renameMe/images/about/i1.png') }}" alt="" />
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-6 col-sm-4" data-aos="fade-up" data-aos-delay="100">
                                 <img class="w-100" src="{{ asset('renameMe/images/about/i2.png') }}" alt="" />
                             </div>
                             <div class="col-3 d-sm-none"></div>
-                            <div class="col-6 col-sm-4 mt-4 mt-sm-0">
+                            <div class="col-6 col-sm-4 mt-4 mt-sm-0" data-aos="fade-up" data-aos-delay="150">
                                 <img class="w-100" src="{{ asset('renameMe/images/about/i3.png') }}" alt="" />
                             </div>
                         </div>
@@ -424,11 +426,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="{{ asset('renameMe/images/product-slide-1.png') }}" alt="girf" />
+                                    <img src="{{ asset('renameMe/images/product-slide-1.png') }}" alt="gift" />
                                 </div>
-                                <div class="col-md-6 text">
+                                <div class="col-md-6 text" data-aos="fade" data-aos-delay="150">
                                     <div class="bg"></div>
-                                    <h1 class="color1">Need Help Finding That Perfect Girf?</h1>
+                                    <h1 class="color1">Need Help Finding That Perfect Gift?</h1>
                                     <p>
                                         Lorem Ipsum is simply dummy text PageMaker including
                                         versions of Lorem Ipsum.
@@ -445,11 +447,13 @@
 
     <!-- ===========================  NEED HELP END =============================== -->
 
+
+
     <!-- ===========================  GEMSTONE
-                        START =============================== -->
-    <section class="gemstone_container text-center">
+            START =============================== -->
+    <section class="gemstone_container text-center" data-aos="fade-up" data-aos-delay="150">
         <div class="inner_gemstone">
-            <h1 class="fw500 display-5">Gemstone Jewellery</h1>
+            <h1 class="fw500 display-5">Gemstone Jewelry</h1>
             <p class="color1">
                 Lorem Ipsum is simply dummy text PageMaker including versions of Lorem
                 Ipsum.
@@ -460,7 +464,7 @@
     <!-- ===========================  GEMSTONE END  =============================== -->
 
     <!-- ===========================  EXPLORE START =============================== -->
-    <section class="explore_container">
+    <section class="explore_container" data-aos="fade-up" data-aos-delay="150">
         <div class="page_container">
             <div class="container-fluid">
                 <div class="row">
@@ -472,8 +476,7 @@
 
                         <div class="row pt-4 mt-3 mt-sm-5">
                             <div class="col-12 col-sm-6 col-md-4">
-                                <img class="mx-auto d-block w-75 w-sm-100"
-                                    src="{{ asset('renameMe/images/explore/i1.png') }}" alt="" />
+                                <img class="mx-auto d-block w-75 w-sm-100" src="{{asset('renameMe/images/explore/i1.png')}}" alt="" />
                                 <div class="text-center mt-3">
                                     <h3 class="color1">Earrings</h3>
                                     <p class="sub-heading">
@@ -482,8 +485,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-md-4">
-                                <img class="mx-auto d-block w-75 w-sm-100"
-                                    src="{{ asset('renameMe/images/explore/i2.png') }}" alt="" />
+                                <img class="mx-auto d-block w-75 w-sm-100" src="{{asset('renameMe/images/explore/i2.png')}}" alt="" />
                                 <div class="text-center mt-3">
                                     <h3 class="color1">Ring</h3>
                                     <p class="sub-heading">
@@ -493,8 +495,7 @@
                             </div>
                             <div class="col-12 col-sm-3 d-md-none"></div>
                             <div class="col-12 col-sm-6 col-md-4">
-                                <img class="mx-auto d-block w-75 w-sm-100"
-                                    src="{{ asset('renameMe/images/explore/i3.png') }}" alt="" />
+                                <img class="mx-auto d-block w-75 w-sm-100" src="{{asset('renameMe/images/explore/i3.png')}}" alt="" />
                                 <div class="text-center mt-3">
                                     <h3 class="color1">Diamond Cocktail Ring</h3>
                                     <p class="sub-heading">
@@ -504,7 +505,8 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center mt-3 mt-md-5">
-                            <button class="outlined-btn coolBeans">See More</button>
+                            <a href="#" class="outlined-btn coolBeans">See More
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -518,6 +520,11 @@
 @section('scripts')
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('renameMe/js/textFit.js') }}"></script>
+    <script src="{{ asset('renameMe/js/jquery.min.js') }}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ asset('renameMe/js/index.js') }}"></script>
+    <script src="{{ asset('renameMe/js/app.js') }}"></script>
     <script>
         textFit(document.querySelectorAll(".fit"));
         var swiper = new Swiper(".mySwiper", {
