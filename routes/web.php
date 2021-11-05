@@ -238,7 +238,7 @@ Route::group(['middleware' => 'locale'], function () {
     Route::prefix('staging')->name('fix_name.')->group(function () {
         Route::get('/', 'FixMeController@index')->name('home');
         Route::get('/shop/{slug}', 'FixMeController@products')->name('shop.category');
-        Route::get('/{slug}', 'FixMeController@show_product');
+        Route::get('/{slug}', 'FixMeController@show_product')->name('shop.product');
     });
 
     // view pages routes

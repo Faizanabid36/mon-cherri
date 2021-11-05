@@ -1,9 +1,11 @@
 @extends('layouts.moncheri')
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('renameMe/style/preloader.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('renameMe/style/utilities.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('renameMe/style/style.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
@@ -17,8 +19,8 @@
 
 @section('hero_container')
     <section class="hero_products_container" style="background-image:url('{{ $major_category->image }}')!important ">
-        <h1>{{ $major_category->title }}</h1>
-        <p>
+        <h1 data-aos="fade-up">{{ $major_category->title }}</h1>
+        <p data-aos="fade-up" data-aos-delay="150">
             Search hundreds of engagement ring settings to find the perfect ring.
             Styles range from solitaire to vintage-inspired <br />
             to everything in between. Start designing your own custom engagement
@@ -167,6 +169,9 @@
     </script>
     <script src="{{ asset('renameMe/js/textFit.js') }}"></script>
     <script src="{{ asset('renameMe/js/products.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ asset('renameMe/js/app.js') }}"></script>
+    <script src="{{ asset('renameMe/js/index.js') }}"></script>
     <script>
         new Swiper(".product-slider", {
             spaceBetween: 30,

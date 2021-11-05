@@ -2,7 +2,6 @@
 <div id="cart-wrapper">
     <div>
         <div id="close">&times;</div>
-
         <h2>My Basket</h2>
     </div>
 
@@ -44,7 +43,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-3">
-                        <img class="" src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="ring" />
+                        <img class="" src="{{ asset('renameMe/images/diamond-ring.png') }}"
+                            alt="ring" />
                     </div>
                     <div class="col-7">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -77,7 +77,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-3">
-                        <img class="" src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="ring" />
+                        <img class="" src="{{ asset('renameMe/images/diamond-ring.png') }}"
+                            alt="ring" />
                     </div>
                     <div class="col-7">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.

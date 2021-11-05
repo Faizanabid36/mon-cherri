@@ -1,4 +1,4 @@
-<section class="header_container mt-1">
+<section class="header_container product-page mt-1">
     <div class="page_container">
         <div class="container-fluid">
             <div class="row">
@@ -8,13 +8,23 @@
                             alt="" />
                     </a>
                 </div>
-
-                <div class="mt-4">
+                <div class="mt-3 mb-4">
                     @php  $categories = App\Category::orderBy('prority')->get() @endphp
-                    <ul class="list-unstyled d-flex justify-content-between">
+                    <ul
+                        class="
+                list-unstyled
+                mb-0
+                d-flex
+                justify-content-between
+                {{ request()->route()->getName() == 'fix_name.shop.product'
+                    ? 'bottom-bordered'
+                    : '' }}
+              ">
                         @foreach ($categories as $category)
                             @php
-                                $activeClass = str_contains(request()->url(), $category->slug) ? 'active' : '';
+                                $val = explode('/', request()->url());
+                                $lastIndex = $val[count($val) - 1];
+                                $activeClass = $category->slug === $lastIndex ? 'active' : '';
                             @endphp
                             <li class="{{ $activeClass }}">
                                 <a class="text-decoration-none" href="{{ url('/staging/shop', $category->slug) }}">
