@@ -78,23 +78,14 @@
                     <div class="col-12">
                         <div class="product">
                             <div class="slider">
-                                <div style="
-                                    --swiper-navigation-color: #fff;
-                                    --swiper-pagination-color: #fff;
-                                  " class="swiper mySwiper4">
+                                <div style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff;"
+                                    class="swiper mySwiper4">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
+                                        @foreach ($product->images as $p_img)
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($p_img->url) }}" />
+                                            </div>
+                                        @endforeach
                                     </div>
 
                                     <div class="swiper-button-next">
@@ -106,25 +97,18 @@
                                 </div>
                                 <div thumbsSlider="" class="swiper mySwiper3">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('renameMe/images/product-slide-1.png') }}" />
-                                        </div>
+                                        @foreach ($product->images as $p_img)
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($p_img->url) }}" />
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                             <div class="content">
                                 <div class="main">
                                     <h3>
-                                        Diamond Silver Ring
+                                        {{ $product->name }}
                                         <span class="badge">New</span>
                                         <img src="{{ asset('renameMe/images/heart.png') }}" alt=""
                                             class="heart" />
@@ -138,12 +122,14 @@
                                         </span>
                                     </h3>
                                     <div class="reviews">
-                                        <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" />
-                                        <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" />
-                                        <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" />
-                                        <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" />
-                                        <img src="{{ asset('renameMe/assets/images/star-no-fill.png') }}" alt="" />
-                                        <h5 class="fit">(4 Customer Review)</h5>
+                                        @for ($i = 1; $i <= $product->averageRating; $i++)
+                                            <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" />
+                                        @endfor
+                                        @for ($i = $product->averageRating; $i < 5; $i++)
+                                            <img src="{{ asset('renameMe/images/star-no-fill.png') }}" alt="" />
+                                        @endfor
+
+                                        <h5 class="fit">({{ count($product->reviews) }} Customer Review)</h5>
                                     </div>
                                 </div>
                                 <div class="info">
@@ -243,7 +229,7 @@
                         <div class="my-3 col-12 col-sm-6 col-md-4 px-mdl-0">
                             <div class="card" data-aos="fade-up" data-aos-delay="100">
                                 <div class="img">
-                                    <img src="{{ asset('renameMe/assets/images/fast-delivery.png') }}" alt="" />
+                                    <img src="{{ asset('renameMe/images/fast-delivery.png') }}" alt="" />
                                 </div>
                                 <div class="text">
                                     <h3>Fast Delivery</h3>
@@ -334,7 +320,8 @@
                                     <li class="splide__slide">
                                         <a href="./product.html" class="product-card">
                                             <div class="product-img">
-                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}" alt="" />
+                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
+                                                    alt="" />
                                             </div>
                                             <div class="product-details">
                                                 <h2>$9.99</h2>
@@ -353,7 +340,8 @@
                                     <li class="splide__slide">
                                         <a href="./product.html" class="product-card">
                                             <div class="product-img">
-                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}" alt="" />
+                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
+                                                    alt="" />
                                             </div>
                                             <div class="product-details">
                                                 <h2>$9.99</h2>
@@ -372,7 +360,8 @@
                                     <li class="splide__slide">
                                         <a href="./product.html" class="product-card">
                                             <div class="product-img">
-                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}" alt="" />
+                                                <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
+                                                    alt="" />
                                             </div>
                                             <div class="product-details">
                                                 <h2>$9.99</h2>
