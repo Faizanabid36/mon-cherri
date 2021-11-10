@@ -292,7 +292,8 @@ class FrontController extends Controller
             $user->notify(new VoucherNotification($user, $voucher));
         else
         {
-            $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Thank you for shopping with us...';
+            // $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Testing moncheri sms api';
+            $message='Hello! Testing moncheri sms api';
             SMSService::notify($request->phone,$message);
         }
             
