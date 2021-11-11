@@ -19,6 +19,7 @@ use App\Variation;
 use App\Voucher;
 use App\VoucherAssigment;
 use App\Width;
+use App\Services\SMSService;
 use Auth;
 use Cart;
 use Illuminate\Http\Request;
@@ -284,10 +285,17 @@ class FrontController extends Controller
         VoucherAssigment::create([
             'user_id' => $user->id,
             'voucher_id' => $voucher->id,
-            'method' => 'email',
+            'method' => $request->preference,
             'cashed' => 0,
         ]);
-        $user->notify(new VoucherNotification($user, $voucher));
+        if($request->preference=="mail")
+            $user->notify(new VoucherNotification($user, $voucher));
+        else
+        {
+            $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Thank you for shopping with us...';
+            SMSService::notify($request->phone,$message);
+        }
+            
         return back()->withSuccess('Successfully registered');
     }
 }

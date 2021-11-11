@@ -33,6 +33,7 @@
         "spatie/laravel-newsletter": "^4.8",
         "spatie/laravel-sitemap": "^5.7",
         "torann/currency": "^1.1",
+        "twilio/sdk": "^6.30",
         "willvincent/laravel-rateable": "^2.0"
     },
     "require-dev": {

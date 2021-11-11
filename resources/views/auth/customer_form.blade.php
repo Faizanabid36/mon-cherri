@@ -119,6 +119,15 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group email">
+                                        <label for="email">{{__('Preference') }}</label>
+                                        <select name="preference" style="margin: 5px 0 10px 0;" class="form-control">
+                                            <option value="email">E-Mail</option>
+                                            <option value="cell">Cell</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
