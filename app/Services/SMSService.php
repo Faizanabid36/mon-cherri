@@ -1,9 +1,9 @@
-<?php 
+<?php
 namespace App\Services;
 use Auth;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
-class SMSService 
+class SMSService
 {
 	public static function notify($number,$message)
     {
@@ -19,6 +19,6 @@ class SMSService
                 'body' => $message
             )
         );
-                
+
     }
 }

@@ -295,7 +295,7 @@ class FrontController extends Controller
             $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Thank you for shopping with us...';
             SMSService::notify($request->phone,$message);
         }
-            
+
         return back()->withSuccess('Successfully registered');
     }
 }
