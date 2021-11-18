@@ -9,10 +9,10 @@
                 <!--Breadcrumb-->
                 <div class="bredcrumbWrap">
                     <div class="container breadcrumbs">
-                        <a href="{{ url('/') }}" title="Back to the home page">{{ __('Home') }}</a>
+                        <a href="{{url('/')}}" title="Back to the home page">{{__('Home')}}</a>
                         <span aria-hidden="true">›</span><a
-                            href="{{ route('shop.category', $product->categories->first()->slug) }}"><span>{{ ucwords($product->categories->first()->title) }}</span></a>
-                        <span aria-hidden="true">›</span><span>{{ ucwords($product->name) }}</span>
+                            href="{{route('shop.category',$product->categories->first()->slug)}}"><span>{{ucwords($product->categories->first()->title)}}</span></a>
+                        <span aria-hidden="true">›</span><span>{{ucwords($product->name)}}</span>
                     </div>
                 </div>
                 <!--End Breadcrumb-->
@@ -24,18 +24,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="row image-container">
                                     <div class="small-image product-dec-slider-2">
-                                        @foreach ($product->images as $p_img)
+                                    @foreach($product->images as $p_img)
 
-                                            <!-- <div class="img-responsive">
-                                                    <img class="{{ $loop->first ? 'image-active-prodct' : '' }} img-fluid"
-                                                         src="{{ asset($p_img->url) }}">
-                                                </div> -->
+                                        <!-- <div class="img-responsive">
+                                                <img class="{{$loop->first?'image-active-prodct':''}} img-fluid"
+                                                     src="{{asset($p_img->url)}}">
+                                            </div> -->
                                         @endforeach
                                     </div>
                                     <input type="hidden" value='10' id='myprice_min'>
                                     <input type="hidden" value='100000' id='myprice_max'>
                                     <div class="big-image">
-                                        <!-- <img src="{{ asset($product->image->url) }}" alt="" class="img-fluid"> -->
+                                    <!-- <img src="{{asset($product->image->url)}}" alt="" class="img-fluid"> -->
                                     </div>
 
                                     <!---iMAGE Filter-->
@@ -46,11 +46,11 @@
                                 <div class="product-description">
                                     <div class="product-description-title d-flex justify-content-between ">
                                         <div class="product-title-head">
-                                            <h1>{{ __(ucwords($product->name)) }}</h1>
+                                            <h1>{{__(ucwords($product->name))}}</h1>
                                         </div>
                                         <div class="product-title-btn mt-2">
                                             <a class="add_to_wishlist" title="Add to Wishlist"
-                                                data-product_id="{{ $product->slug }}">
+                                               data-product_id="{{$product->slug}}">
                                                 <i class="fa fa-heart like-icon"></i>
                                             </a>
                                         </div>
@@ -58,125 +58,124 @@
                                     <div class="product-review-option py-1">
                                         <div class="product-review">
                                             <div class="product-stock">
-                                                @if ($product->stock > 0)
-                                                    <span class="text-success ">{{ __('In Stock') }}</span>
+                                                @if($product->stock > 0)
+                                                    <span class="text-success ">{{__('In Stock')}}</span>
                                                 @else
-                                                    <span class="text-danger">{{ __('Unavailable') }}</span>
+                                                    <span class="text-danger">{{__('Unavailable')}}</span>
                                                 @endif
                                             </div>
-                                            @for ($i = 1; $i <= $product->averageRating; $i++)
+                                            @for($i=1; $i<=$product->averageRating; $i++)
                                                 <i class="fa fa-star"></i>
                                             @endfor
-                                            @for ($i = $product->averageRating; $i < 5; $i++)
+                                            @for($i=$product->averageRating; $i < 5; $i++)
                                                 <i class="fa fa-star-o"></i>
                                             @endfor
-                                            <span class="product-customer-review">({{ count($product->reviews) }}
-                                                {{ __('Customer Reviews') }})</span>
+                                            <span
+                                                class="product-customer-review">({{count($product->reviews)}} {{__('Customer Reviews')}})</span>
                                         </div>
                                     </div>
                                     <div class="product-price">
-                                        <!-- <h1>
-                                                <del>{{ $product->FormatedOldPrice() }}</del>
-                                            </h1> {{ $product->FormatedPrice() }} -->
+                                    <!-- <h1>
+                                            <del>{{$product->FormatedOldPrice()}}</del>
+                                        </h1> {{$product->FormatedPrice()}} -->
                                         <h1 class="chnge-price"></h1>
                                     </div>
                                     <div class="product-metal">
-                                        <span>
-                                            <h3><b>Metal:</b><span class="dynamic-product-metal">14kt White Gold</span></h3>
-                                        </span>
+                                        <span><h3><b>Metal:</b><span
+                                                    class="dynamic-product-metal">14kt White Gold</span></h3></span>
                                         <span></span>
                                     </div>
                                     <div class="product-price-circle py-1">
                                         <div class="product-price-items d-flex">
-                                            <input type="hidden" id="product_variant_id" name="product_variant_id" value="">
-                                            @foreach ($product_variations as $variation)
-                                                <h1 class="setvariations" data-id="{{ $variation->variation_id }}"
-                                                    style="border: 2px solid {{ $variation->variation->colors->code }}!important;">
-                                                    {{ $variation->variation->title }}</h1>
+                                            <input type="hidden" id="product_variant_id" name="product_variant_id"
+                                                   value="">
+                                            @foreach($product_variations as $variation)
+                                                <h1 class="setvariations" data-id="{{$variation->variation_id}}"
+                                                    style="border: 2px solid {{$variation->variation->colors->code}}!important;">{{$variation->variation->title}}</h1>
                                             @endforeach
                                         </div>
-                                        @if (isset($produFct_variations[0]))
-                                            <input type="hidden" class="getvariations" name="getvariations"
-                                                value="{{ $product_variations[0]->variation_id }}">
+                                        @if(isset($produzzct_variations[0]))
+                                            <input type="hidden" class="getvariations"
+                                                   name="getvariations"
+                                                   value="{{$product_variations[0]->variation_id}}">
                                         @endif
                                     </div>
 
                                     <div class="product-selection py-1">
                                         <div class="row">
-                                            @if (count($product_widths) > 0)
+                                            @if(count($product_widths)>0)
                                                 <div class="col-lg-6 mb-2">
-                                                    <label for="product_width" style="font-family: Poppins">Select
-                                                        Width</label>
+                                                    <label for="product_width" style="font-family: Poppins">Select Width</label>
                                                     <select name="product_width" class="form-control getoptions"
-                                                        id="product_width" required>
+                                                            id="product_width" required>
                                                         <option value="" selected disabled>Select Width</option>
 
-                                                        @foreach ($product_widths as $key => $width)
-                                                            <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{ $width->width->id }}"
-                                                                data-val="{{ $width->width->width }}">
-                                                                {{ $width->width->width }}</option>
+                                                        @foreach($product_widths as $key => $width)
+                                                            <option
+                                                                <?php echo $key == 0 ? 'selected' : ''; ?> value="{{$width->width->id}}"
+                                                                data-val="{{$width->width->width}}">{{$width->width->width}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             @endif
-                                            @if (count($product_sizes) > 0)
+                                            @if(count($product_sizes)>0)
                                                 <div class="col-lg-6">
                                                     <div class="product-range-size">
-                                                        <label for="product_size" style="font-family: Poppins">Select
-                                                            Size</label>
+                                                        <label for="product_size" style="font-family: Poppins">Select Size</label>
                                                         <select class="form-control getoptions" name="size"
-                                                            id="product_size" required>
-                                                            <option value="" selected disabled>{{ __('Select Size') }}
-                                                            </option>
-                                                            @foreach ($product_sizes as $key => $p_size)
-                                                                <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{ $p_size->size->id }}"
-                                                                    data-val="{{ $p_size->size->size }}">
-                                                                    {{ $p_size->size->size }}</option>
+                                                                id="product_size" required>
+                                                            <option value="" selected
+                                                                    disabled>{{__('Select Size')}}</option>
+                                                            @foreach($product_sizes as $key => $p_size)
+                                                                <option <?php echo $key == 0 ? 'selected' : ''; ?>
+                                                                        value="{{$p_size->size->id}}"
+                                                                        data-val="{{$p_size->size->size}}">{{$p_size->size->size}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
-                                            @endif
-                                            <!-- <div class="col-lg-6">
-                                                    <div class="product-form__item--quantity">
-                                                        <div class="wrapQtyBtn">
-                                                            <div class="qtyField">
-                                                                <a class="minusQty" href="javascript:void(0);"><i
-                                                                        class="fa fa-minus" aria-hidden="true"></i></a>
-                                                                <input type="text" id="Quantity" name="quantity" min="1"
-                                                                       max="{{ $product->stock }}" value="1"
-                                                                       class="product-form__input bs_product_qty qty">
-                                                                <a class="plusQty" href="javascript:void(0);"><i
-                                                                        class="fa fa-plus" aria-hidden="true"></i></a>
-                                                            </div>
+                                        @endif
+                                        <!-- <div class="col-lg-6">
+                                                <div class="product-form__item--quantity">
+                                                    <div class="wrapQtyBtn">
+                                                        <div class="qtyField">
+                                                            <a class="minusQty" href="javascript:void(0);"><i
+                                                                    class="fa fa-minus" aria-hidden="true"></i></a>
+                                                            <input type="text" id="Quantity" name="quantity" min="1"
+                                                                   max="{{$product->stock}}" value="1"
+                                                                   class="product-form__input bs_product_qty qty">
+                                                            <a class="plusQty" href="javascript:void(0);"><i
+                                                                    class="fa fa-plus" aria-hidden="true"></i></a>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="product-quantity"> --}}
-                                            {{-- <input --}}
-                                            {{-- style="border-radius: 5px" --}}
-                                            {{-- type="text" id="Quantity" name="quantity" placeholder="Quantity" --}}
-                                            {{-- class="product-form__input bs_product_qty qty"> --}}
-                                            {{-- </div> --}}
-                                                </div> -->
+                                                </div>
+                                                {{--                                                <div class="product-quantity">--}}
+                                        {{--                                                    <input--}}
+                                        {{--                                                        style="border-radius: 5px"--}}
+                                        {{--                                                        type="text" id="Quantity" name="quantity" placeholder="Quantity"--}}
+                                        {{--                                                        class="product-form__input bs_product_qty qty">--}}
+                                        {{--                                                </div>--}}
+                                            </div> -->
                                         </div>
 
                                     </div>
                                     <div class="product-addcart-btn py-3">
                                         @auth()
                                             <button type="button" name="add"
-                                                class="product-form__cart-submit add_to_cart single_page_add_to_cart"
-                                                data-product_quantity="1" data-product_id="{{ $product->slug }}"
-                                                data-product_size="">
-                                                <span id="AddToCartText-product-template">{{ __('Add To Cart') }}</span>
+                                                    class="product-form__cart-submit add_to_cart single_page_add_to_cart"
+                                                    data-product_quantity="1" data-product_id="{{$product->slug}}"
+                                                    data-product_size="">
+                                                <span id="AddToCartText-product-template">{{__('Add To Cart')}}</span>
                                             </button>
                                             <button class="selectadimond">
                                                 <a href="#selectDiamond" class="bttn">Select a Diamond</a>
                                             </button>
                                         @else
                                             <button type="button"
-                                                class="product-form__cart-submit add_to_cart single_page_add_to_cart">
-                                                <a href="{{ route('login') }}" class="text-white">
-                                                    <span id="AddToCartText-product-template">{{ __('Login First') }}</span>
+                                                    class="product-form__cart-submit add_to_cart single_page_add_to_cart">
+                                                <a href="{{route('login')}}" class="text-white">
+                                                    <span
+                                                        id="AddToCartText-product-template">{{__('Login First')}}</span>
                                                 </a>
                                             </button>
                                         @endauth
@@ -196,27 +195,29 @@
                                         <nav>
                                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                                                    href="#nav-home" role="tab" aria-controls="nav-home"
-                                                    aria-selected="true">Specification</a>
+                                                   href="#nav-home" role="tab" aria-controls="nav-home"
+                                                   aria-selected="true">Specification</a>
                                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-                                                    href="#nav-profile" role="tab" aria-controls="nav-profile"
-                                                    aria-selected="false">Customer Reviews</a>
+                                                   href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                                   aria-selected="false">Customer Reviews</a>
                                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-                                                    href="#nav-contact" role="tab" aria-controls="nav-contact"
-                                                    aria-selected="false">Return Policy</a>
+                                                   href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                                   aria-selected="false">Return Policy</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content py-3  px-sm-0" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                                aria-labelledby="nav-home-tab">
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                 aria-labelledby="nav-home-tab">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <h1 class="text-dark">
                                                         {!! $product->description !!}
                                                     </h1>
                                                 </div>
-                                                <hr style="margin: 10px 0;border-bottom: 1px;" />
+                                                <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Metal</h1>
                                                     </div>
@@ -224,9 +225,10 @@
                                                         <h1 class="dynamic-product-metal"></h1>
                                                     </div>
                                                 </div>
-                                                <hr style="margin: 10px 0;border-bottom: 1px;" />
+                                                <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Width</h1>
                                                     </div>
@@ -234,9 +236,10 @@
                                                         <h1 class="dynamic-width"></h1>
                                                     </div>
                                                 </div>
-                                                <hr style="margin: 10px 0;border-bottom: 1px;" />
+                                                <hr style="margin: 10px 0;border-bottom: 1px;"/>
 
-                                                <div class="stock-number d-flex align-items-center justify-content-between">
+                                                <div
+                                                    class="stock-number d-flex align-items-center justify-content-between">
                                                     <div class="stock-number-title">
                                                         <h1>Prong Metal </h1>
                                                     </div>
@@ -244,10 +247,10 @@
                                                         <h1 class="dynamic-prong-metal"></h1>
                                                     </div>
                                                 </div>
-                                                <hr style="margin: 10px 0;border-bottom: 1px;" />
+                                                <hr style="margin: 10px 0;border-bottom: 1px;"/>
                                             </div>
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">
+                                                 aria-labelledby="nav-profile-tab">
                                                 Et et consectetur ipsum labore excepteur est proident excepteur ad velit
                                                 occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua
                                                 enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
@@ -259,7 +262,7 @@
                                                 reprehenderit occaecat anim ullamco ad duis occaecat ex.
                                             </div>
                                             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">
+                                                 aria-labelledby="nav-contact-tab">
                                                 Et et consectetur ipsum labore excepteur est proident excepteur ad velit
                                                 occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua
                                                 enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
@@ -285,14 +288,14 @@
                     <!-- what make buying from us -->
                     <div class="row py-5">
                         <div class="make-buying-heading">
-                            <h1>{{ __('What Makes Buying From Us') }}</h1>
+                            <h1>{{__('What Makes Buying From Us')}}</h1>
                         </div>
                     </div>
                     <div class="row py-5">
                         <div class="col-lg-4 col-md-4">
                             <div class="buying-card d-flex align-items-center">
                                 <div>
-                                    <img src="{{ asset('images/call.png') }}" class="img-fluid">
+                                    <img src="{{asset('images/call.png')}}" class="img-fluid">
                                 </div>
                                 <div class="buying-card-name">
                                     <h2>MADE IN USA</h2>
@@ -304,7 +307,7 @@
                         <div class="col-lg-4 col-md-4">
                             <div class="buying-card d-flex align-items-center">
                                 <div>
-                                    <img src="{{ asset('images/truck.png') }}" class="img-fluid">
+                                    <img src="{{asset('images/truck.png')}}" class="img-fluid">
                                 </div>
                                 <div class="buying-card-name">
                                     <h2>FLAT RATE DELIVERY</h2>
@@ -316,7 +319,7 @@
                         <div class="col-lg-4 col-md-4">
                             <div class="buying-card d-flex align-items-center">
                                 <div>
-                                    <img src="{{ __('images/call.png') }}" class="img-fluid">
+                                    <img src="{{__('images/call.png')}}" class="img-fluid">
                                 </div>
                                 <div class="buying-card-name">
                                     <h2>HASSALE FREE RETURN</h2>
@@ -329,11 +332,11 @@
                     </div>
                     <!-- end of the make buying from us -->
 
-                    @if ($product->product_stones->count() > 0)
-                        <!-------Dimond section---------->
+                @if($product->product_stones->count()>0)
+                    <!-------Dimond section---------->
                         <div class="row py-5" id="selectDiamond">
                             <div class="make-buying-heading">
-                                <h1>{{ __('Select a Diamond') }}</h1>
+                                <h1>{{__('Select a Diamond')}}</h1>
                                 <div class="row">
                                     <div class="offset-1 col-lg-10">
                                         <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text..</p>
@@ -349,12 +352,12 @@
                                         <h1 class="font-weight-700">Price</h1>
                                         <form action="#" method="post" class="price-filter">
                                             <div id="slider-range"
-                                                class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                                 <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                                 <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                    tabindex="0"></span>
+                                                      tabindex="0"></span>
                                                 <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                    tabindex="0"></span>
+                                                      tabindex="0"></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 d-flex">
@@ -362,7 +365,7 @@
 
                                                     <div class="ml-3">
                                                         <p class="no-margin"><input id="amount" type="text"
-                                                                class="filter-input"></p>
+                                                                                    class="filter-input"></p>
                                                     </div>
                                                 </div>
 
@@ -379,12 +382,12 @@
                                         <h1 class="">Carret Weight</h1>
                                         <form action="#" method="post" class="price-filter">
                                             <div id="slider-range2"
-                                                class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                                 <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                                 <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                    tabindex="0"></span>
+                                                      tabindex="0"></span>
                                                 <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                    tabindex="0"></span>
+                                                      tabindex="0"></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 d-flex">
@@ -394,8 +397,8 @@
                                                         <p class="no-margin">
                                                             <span class="minsize">0.1</span>
                                                             <span> - </span><span class="maxsize">10</span>
-                                                            <input id="weight_filter" type="text" class="filter-input">
-                                                        </p>
+                                                            <input id="weight_filter" type="text"
+                                                                   class="filter-input"></p>
                                                     </div>
                                                 </div>
 
@@ -422,38 +425,37 @@
                             <!--End of dimond slider------>
                         </div>
                         <!--------End of the Dimond Section---------->
-                    @endif
+                @endif
 
 
-                    <!-- featured-produtcs -->
+                <!-- featured-produtcs -->
                     <div class="row py-5">
                         <div class="make-buying-heading mt-5">
-                            <h1>{{ __('You May Also Like') }}</h1>
+                            <h1>{{__('You May Also Like')}}</h1>
                         </div>
                     </div>
                     <div class="row">
-                        @foreach ($related_products as $related_product)
+                        @foreach($related_products as $related_product)
                             <div class="col-lg-3 col-md-3 mt-5">
                                 <div class="ring-price">
                                     <div class="ring-img">
                                         <img style="width: 300px;height: 225px;border-radius: 7px"
-                                            src="{{ asset($related_product->image->url) }}" class="img-fluid" alt=""
-                                            width="300">
+                                             src="{{asset($related_product->image->url)}}" class="img-fluid" alt=""
+                                             width="300">
                                     </div>
 
                                     <div class="ring-name mt-2">
                                         <p>
-                                            <a
-                                                href="{{ url('/' . $related_product->slug) }}">{{ ucwords($related_product->name) }}</a>
+                                            <a href="{{url('/'.$related_product->slug)}}">{{ucwords($related_product->name)}}</a>
                                         </p>
                                         <span class="featured-products-price">
-                                            {{ $related_product->FormatedPrice() }}
-                                        </span>
+                                        {{$related_product->FormatedPrice()}}
+                                    </span>
                                         <div class="product-review mt-2 d-flex">
-                                            @for ($i = 1; $i <= $related_product->averageRating; $i++)
+                                            @for($i=1; $i<=$related_product->averageRating; $i++)
                                                 <i class="fa fa-star"></i>
                                             @endfor
-                                            @for ($i = $related_product->averageRating; $i < 5; $i++)
+                                            @for($i=$related_product->averageRating; $i < 5; $i++)
                                                 <i class="fa fa-star-o"></i>
                                             @endfor
                                         </div>
@@ -466,91 +468,91 @@
 
 
                     <!--Related Product Slider-->
-                    {{-- <div class="related-product grid-products"> --}}
-                    {{-- <header class="section-header"> --}}
-                    {{-- <h2 class="section-header__title text-center h2"><span>{{__('Related Products')}}</span></h2> --}}
-                    {{-- <p class="sub-heading">{{__('You can stop autoplay, increase/decrease aniamtion speed and number of grid to show and products from store admin')}} --}}
-                    {{-- .</p> --}}
-                    {{-- </header> --}}
-                    {{-- <div class="productPageSlider"> --}}
-                    {{-- @foreach ($related_products as $related_product) --}}
-                    {{-- <div class="col-12 item"> --}}
-                    {{-- <!-- start product image --> --}}
-                    {{-- <div class="product-image"> --}}
-                    {{-- <!-- start product image --> --}}
-                    {{-- <a href="#"> --}}
-                    {{-- <!-- image --> --}}
-                    {{-- <img class="primary blur-up lazyload" --}}
-                    {{-- src="{{asset($related_product->image->url)}}" alt=""> --}}
-                    {{-- <!-- End image --> --}}
-                    {{-- <!-- Hover image --> --}}
-                    {{-- <img class="hover blur-up lazyload" --}}
-                    {{-- src="{{asset($related_product->image->url)}}" alt="image" title="product"> --}}
-                    {{-- <!-- End hover image --> --}}
-                    {{-- <!-- product label --> --}}
-                    {{-- <div class="product-labels rectangular"> --}}
-                    {{-- @if ($related_product->percent_off) --}}
-                    {{-- <span class="lbl on-sale">-{{$related_product->percent_off}}%</span> --}}
-                    {{-- @endif --}}
-                    {{-- @if ($related_product->is_new) --}}
-                    {{-- <span class="lbl pr-label1">{{__('new')}}</span> --}}
-                    {{-- @endif --}}
-                    {{-- </div> --}}
-                    {{-- <!-- End product label --> --}}
-                    {{-- </a> --}}
-                    {{-- <!-- end product image --> --}}
+                {{--                <div class="related-product grid-products">--}}
+                {{--                    <header class="section-header">--}}
+                {{--                        <h2 class="section-header__title text-center h2"><span>{{__('Related Products')}}</span></h2>--}}
+                {{--                        <p class="sub-heading">{{__('You can stop autoplay, increase/decrease aniamtion speed and number of grid to show and products from store admin')}}--}}
+                {{--                            .</p>--}}
+                {{--                    </header>--}}
+                {{--                    <div class="productPageSlider">--}}
+                {{--                        @foreach($related_products as $related_product)--}}
+                {{--                            <div class="col-12 item">--}}
+                {{--                                <!-- start product image -->--}}
+                {{--                                <div class="product-image">--}}
+                {{--                                    <!-- start product image -->--}}
+                {{--                                    <a href="#">--}}
+                {{--                                        <!-- image -->--}}
+                {{--                                        <img class="primary blur-up lazyload"--}}
+                {{--                                             src="{{asset($related_product->image->url)}}" alt="">--}}
+                {{--                                        <!-- End image -->--}}
+                {{--                                        <!-- Hover image -->--}}
+                {{--                                        <img class="hover blur-up lazyload"--}}
+                {{--                                             src="{{asset($related_product->image->url)}}" alt="image" title="product">--}}
+                {{--                                        <!-- End hover image -->--}}
+                {{--                                        <!-- product label -->--}}
+                {{--                                        <div class="product-labels rectangular">--}}
+                {{--                                            @if($related_product->percent_off)--}}
+                {{--                                                <span class="lbl on-sale">-{{$related_product->percent_off}}%</span>--}}
+                {{--                                            @endif--}}
+                {{--                                            @if($related_product->is_new)--}}
+                {{--                                                <span class="lbl pr-label1">{{__('new')}}</span>--}}
+                {{--                                            @endif--}}
+                {{--                                        </div>--}}
+                {{--                                        <!-- End product label -->--}}
+                {{--                                    </a>--}}
+                {{--                                    <!-- end product image -->--}}
 
-                    {{-- <!-- Start product button --> --}}
-                    {{-- <form class="variants add" action="#" method="post"> --}}
-                    {{-- <a class="btn btn-addto-cart add_to_cart" href="javascript:void(0)" --}}
-                    {{-- data-product_quantity="1" data-product_id="{{$product->slug}}" --}}
-                    {{-- data-product_size="">{{__('Add To Cart')}}</a> --}}
-                    {{-- </form> --}}
-                    {{-- <div class="button-set"> --}}
-                    {{-- <a href="{{url('/'.$related_product->slug)}}" title="View" class="quick-view" --}}
-                    {{-- tabindex="0"> --}}
-                    {{-- <i class="fa fa-search-plus" aria-hidden="true"></i> --}}
-                    {{-- </a> --}}
-                    {{-- <div class="wishlist-btn"> --}}
-                    {{-- <a class="wishlist add-to-wishlist" href=""> --}}
-                    {{-- <i class="fa fa-heart" aria-hidden="true"></i> --}}
-                    {{-- </a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <!-- end product button --> --}}
-                    {{-- </div> --}}
-                    {{-- <!-- end product image --> --}}
-                    {{-- <!--start product details --> --}}
-                    {{-- <div class="product-details text-center"> --}}
-                    {{-- <!-- product name --> --}}
-                    {{-- <div class="product-name"> --}}
-                    {{-- <a href="{{url('/'.$related_product->slug)}}">{{ucwords($related_product->name)}}</a> --}}
-                    {{-- </div> --}}
-                    {{-- <!-- End product name --> --}}
-                    {{-- <!-- product price --> --}}
-                    {{-- <div class="product-price"> --}}
-                    {{-- @if ($related_product->old_price) --}}
-                    {{-- <span class="old-price">{{$related_product->FormatedOldPrice()}}</span> --}}
-                    {{-- @endif --}}
-                    {{-- <span class="price">{{$related_product->FormatedPrice()}}</span> --}}
-                    {{-- </div> --}}
-                    {{-- <!-- End product price --> --}}
+                {{--                                    <!-- Start product button -->--}}
+                {{--                                    <form class="variants add" action="#" method="post">--}}
+                {{--                                        <a class="btn btn-addto-cart add_to_cart" href="javascript:void(0)"--}}
+                {{--                                           data-product_quantity="1" data-product_id="{{$product->slug}}"--}}
+                {{--                                           data-product_size="">{{__('Add To Cart')}}</a>--}}
+                {{--                                    </form>--}}
+                {{--                                    <div class="button-set">--}}
+                {{--                                        <a href="{{url('/'.$related_product->slug)}}" title="View" class="quick-view"--}}
+                {{--                                           tabindex="0">--}}
+                {{--                                            <i class="fa fa-search-plus" aria-hidden="true"></i>--}}
+                {{--                                        </a>--}}
+                {{--                                        <div class="wishlist-btn">--}}
+                {{--                                            <a class="wishlist add-to-wishlist" href="">--}}
+                {{--                                                <i class="fa fa-heart" aria-hidden="true"></i>--}}
+                {{--                                            </a>--}}
+                {{--                                        </div>--}}
+                {{--                                    </div>--}}
+                {{--                                    <!-- end product button -->--}}
+                {{--                                </div>--}}
+                {{--                                <!-- end product image -->--}}
+                {{--                                <!--start product details -->--}}
+                {{--                                <div class="product-details text-center">--}}
+                {{--                                    <!-- product name -->--}}
+                {{--                                    <div class="product-name">--}}
+                {{--                                        <a href="{{url('/'.$related_product->slug)}}">{{ucwords($related_product->name)}}</a>--}}
+                {{--                                    </div>--}}
+                {{--                                    <!-- End product name -->--}}
+                {{--                                    <!-- product price -->--}}
+                {{--                                    <div class="product-price">--}}
+                {{--                                        @if($related_product->old_price)--}}
+                {{--                                            <span class="old-price">{{$related_product->FormatedOldPrice()}}</span>--}}
+                {{--                                        @endif--}}
+                {{--                                        <span class="price">{{$related_product->FormatedPrice()}}</span>--}}
+                {{--                                    </div>--}}
+                {{--                                    <!-- End product price -->--}}
 
-                    {{-- <div class="product-review"> --}}
-                    {{-- @for ($i = 1; $i <= $related_product->averageRating; $i++) --}}
-                    {{-- <i class="font-13 fa fa-star"></i> --}}
-                    {{-- @endfor --}}
-                    {{-- @for ($i = $related_product->averageRating; $i < 5; $i++) --}}
-                    {{-- <i class="font-13 fa fa-star-o"></i> --}}
-                    {{-- @endfor --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <!-- End product details --> --}}
-                    {{-- </div> --}}
-                    {{-- @endforeach --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    <!--End Related Product Slider-->
+                {{--                                    <div class="product-review">--}}
+                {{--                                        @for($i=1; $i<=$related_product->averageRating; $i++)--}}
+                {{--                                            <i class="font-13 fa fa-star"></i>--}}
+                {{--                                        @endfor--}}
+                {{--                                        @for($i=$related_product->averageRating; $i < 5; $i++)--}}
+                {{--                                            <i class="font-13 fa fa-star-o"></i>--}}
+                {{--                                        @endfor--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
+                {{--                                <!-- End product details -->--}}
+                {{--                            </div>--}}
+                {{--                        @endforeach--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <!--End Related Product Slider-->
 
                 </div>
                 <!--#ProductSection-product-template-->
@@ -561,21 +563,22 @@
     <!--End Body Content-->
 @endsection
 @section('javascript')z
-    <script type="text/javascript" src="{{ asset('js/tikslus360.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/tikslus360.js')}}"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/tikslus360.css') }}" />
+    <link rel="stylesheet" href="{{asset('css/tikslus360.css')}}"/>
     <script type="text/javascript">
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             $('.selectadimond').hide();
             changeimages();
-            $(document).on('change', '#Quantity', function() {
+            $(document).on('change', '#Quantity', function () {
                 var qty = $("#Quantity").val();
                 if (qty != "" || qty != null) {
                     $('.single_page_add_to_cart').attr('data-product_quantity', qty);
                 }
             });
 
-            $(document).on('change', '#product_size', function() {
+            $(document).on('change', '#product_size', function () {
                 // var selected = $(this).find('option:selected');
                 // var size = selected.data('val');
                 // if (check_size(size)) {
@@ -599,7 +602,7 @@
             }
 
             check_size(size);
-            $('.small-image img').click(function() {
+            $('.small-image img').click(function () {
 
                 $(this).addClass('image-active-prodct').siblings().removeClass('image-active-prodct');
                 let image = $(this).attr('src');
@@ -619,7 +622,7 @@
             // $('.plusQty').on('click', function () {
             //     let val = document.getElementById('Quantity').value;
 
-            //     let limit = {{ $product->stock }}
+            //     let limit = {{$product->stock}}
             //     console.log('val', val)
             //     if (val < limit) {
             //         document.getElementById('Quantity').value = parseInt(val) + 1;
@@ -634,7 +637,7 @@
 
 
             //Owais
-            $('.setvariations').on('click', function() {
+            $('.setvariations').on('click', function () {
                 $('.setvariations').removeClass('text-decoration-underline');
                 $(this).addClass('text-decoration-underline');
                 var data = $(this).data('id');
@@ -643,12 +646,12 @@
                 $(".dimond-slider").slick('unslick');
                 changeimages();
             })
-            $('.getoptions').on('change', function() {
+            $('.getoptions').on('change', function () {
                 $(".dimond-slider").slick('unslick');
 
                 changeimages();
             });
-            $(document).on('click', '.slideimg', function() {
+            $(document).on('click', '.slideimg', function () {
                 var src = $(this).attr('src');
                 $('.big-image img').attr('src', src);
                 $('#view360').hide();
@@ -656,7 +659,7 @@
                 $('.ring-imgtag').attr('src', src);
 
             });
-            $(document).on('click', '.slide360', function() {
+            $(document).on('click', '.slide360', function () {
                 $('.big-image').hide();
                 $('#view360').show();
 
@@ -679,16 +682,16 @@
             var size_max = $('.maxsize').html();
 
             $.ajax({
-                url: "{{ route('ChangeAlbum.post') }}",
+                url: "{{ route('ChangeAlbum.post')}}",
                 type: 'post',
                 data: {
                     psize: psize,
                     provar: provar,
                     pwidth: pwidth,
                     product_id: product_id,
-                    _token: '{{ csrf_token() }}'
+                    _token: '{{csrf_token()}}'
                 },
-                success: function(response) {
+                success: function (response) {
 
                     $('#view360').remove();
                     $('.product-dec-slider-2').slick('unslick');
@@ -701,8 +704,7 @@
                     }
 
                     if (response[2][0]) {
-                        html +=
-                            "<div class='img-responsive'><img class='img-fluid slide360' src='{{ asset('images/360.jpg') }}'></div>";
+                        html += "<div class='img-responsive'><img class='img-fluid slide360' src='{{asset('images/360.jpg')}}'></div>";
                     }
                     html2 = '';
                     html2 += "<img class='img-fluid' src='";
@@ -734,27 +736,18 @@
                     var html3 = '';
                     for (let index = 0; index < response[6].length; index++) {
 
-                        var price = parseInt(response[1]['price']) + parseInt(response[6][index][
-                        'total_price']);
-                        if (price >= price_min && price <= price_max && size_min <= response[6][index][
-                                'center_stone_sizes'
-                            ] && size_max >= response[6][index]['center_stone_sizes']) {
-                            html3 +=
-                                "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
-                            html3 +=
-                                " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
+                        var price = parseInt(response[1]['price']) + parseInt(response[6][index]['total_price']);
+                        if (price >= price_min && price <= price_max && size_min <= response[6][index]['center_stone_sizes'] && size_max >= response[6][index]['center_stone_sizes']) {
+                            html3 += "<div class=''><div class='ring-price'><div class='ring-img'><img class='ring-imgtag' src='' style='width: 90%;height: 170px'class='img-fluid' alt=''></div>";
+                            html3 += " <div class='ring-price-range mt-3'><span class='featured-products-price'> $";
                             html3 += price;
-                            html3 +=
-                                "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += "</span></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
                             html3 += response[6][index]['shape'];
-                            html3 +=
-                                "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += "</h3><p>Shape</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
                             html3 += response[6][index]['center_stone_sizes'];
-                            html3 +=
-                                "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
+                            html3 += "</h3><p>Size</p></div></div><div class='featured-product-shape-size d-flex justify-content-between'><div class='featured-product-hape'><h3 class='font-weight-bold'>";
                             html3 += response[6][index]['center_stone_colors'];
-                            html3 +=
-                                "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
+                            html3 += "</h3><p>Color</p></div><div class='featured-product-size'><h3 class='font-weight-bold'>";
                             html3 += response[6][index]['center_stone_clarities'];
                             html3 += "</h3><p>Clarity</p> </div></div></div></div>";
                         }
@@ -772,18 +765,21 @@
                         arrows: true,
                         slidesToShow: 3,
                         slidesToScroll: 1,
-                        responsive: [{
-                            breakpoint: 767,
-                            settings: {
-                                slidesToShow: 100,
-                                slidesToScroll: 1,
-                            }
-                        }]
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 100,
+                                    slidesToScroll: 1,
+                                }
+                            }]
                     });
                     // console.log(response[0][0]['url']);
                     $('.ring-imgtag').attr('src', response[0][0]['url']);
                 }
             });
         }
+
+
     </script>
 @endsection

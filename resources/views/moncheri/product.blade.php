@@ -114,7 +114,7 @@
                                             class="heart" />
                                     </h3>
                                     <h3>
-                                        $189.99
+                                        {{ $product->FormatedPrice() }}
                                         <span class="badge py-1">
                                             <img src="{{ asset('renameMe/images/van.png') }}" class="van"
                                                 alt="" />
@@ -135,8 +135,7 @@
                                 <div class="info">
                                     <h4 class="mb-0">Product Info</h4>
                                     <p>
-                                        Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry.
+                                        {!! $product->description !!}
                                     </p>
                                 </div>
                                 <div class="additional">
@@ -144,12 +143,12 @@
                                         Metal: <span class="text-brown">14kt White Gold</span>
                                         @if (count($product_widths) > 0)
                                         <select name="Size" id="">
-                                        @foreach ($product_widths as $key => $width)
-                                            <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{ $width->width->id }}"
-                                                data-val="{{ $width->width->width }}">
-                                                Size: {{ $width->width->width }}</option>
-                                        @endforeach
-                        
+                                            @foreach ($product_sizes as $key => $p_size)
+                                                <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{ $p_size->size->id }}"
+                                                    data-val="{{ $p_size->size->size }}">
+                                                    Size: {{ $p_size->size->size }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                         @endif
                                     </div>
@@ -406,282 +405,43 @@
 
                         <div class="swiper mySwiper2 custom-btns">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
+                                @foreach ($related_products as $related_product)
+                                    <div class="swiper-slide">
+                                        <a href="{{ url('/' . $related_product->slug) }}" class="product-card">
+                                            <div class="product-slider">
+                                                <div class="swiper-wrapper">
+                                                    @foreach ($related_product->images as $image)
+                                                        <div class="swiper-slide">
+                                                            <img src="{{ asset($image->url) }}" alt="" />
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
-                                                </div>
+                                                <div class="swiper-pagination"></div>
                                             </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
+                                            <div class="product-details">
+                                                <div class="reviews">
+                                                    <div class="stars">
+                                                        @for ($i = 1; $i <= $related_product->averageRating; $i++)
+                                                            <img style="margin-right: 0rem!important"
+                                                                src="{{ asset('renameMe/images/star-fill.png') }}"
+                                                                alt="" />
+                                                        @endfor
+                                                        @for ($i = $related_product->averageRating; $i < 5; $i++)
+                                                            <img style="margin-right: 0rem!important"
+                                                                src="{{ asset('renameMe/images/star-no-fill.png') }}"
+                                                                alt="" />
+                                                        @endfor
+                                                    </div>
+                                                    <span class="count fit">({{ count($product->reviews) }}
+                                                        Customer
+                                                        Review)</span>
                                                 </div>
-                                                <span class="count fit">(4 Customer Review)</span>
+                                                <h3>{{ $related_product->name }}</h3>
+                                                <h2>{{ $related_product->FormatedPrice() }}</h2>
                                             </div>
-                                            <h3>Diamond Silver Ring</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Necklace</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Bracelet</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Ring</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-silver-ring.png') }}"
-                                                        alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Diamond Silver Ring</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/necklace (2).png') }}" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Necklace</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-bracelet.png') }}"
-                                                        alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Bracelet</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="./product.html" class="product-card">
-                                        <div class="product-slider">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{ asset('renameMe/images/diamond-ring.png') }}" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-pagination"></div>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="reviews">
-                                                <div class="stars">
-                                                    <img src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/images/star-fill.png') }}" alt="" /><img
-                                                        src="{{ asset('renameMe/assets/images/star-no-fill.png') }}"
-                                                        alt="" />
-                                                </div>
-                                                <span class="count fit">(4 Customer Review)</span>
-                                            </div>
-                                            <h3>Ring</h3>
-                                            <h2>$189.99</h2>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="swiper-button-next">
                                 <img src="{{ asset('renameMe/images/product-slider-arrow-with-bg.svg') }}"
