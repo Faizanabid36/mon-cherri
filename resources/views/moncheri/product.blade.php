@@ -142,17 +142,24 @@
                                 <div class="additional">
                                     <div class="metal fw-500">
                                         Metal: <span class="text-brown">14kt White Gold</span>
-
+                                        @if (count($product_widths) > 0)
                                         <select name="Size" id="">
-                                            <option value="7.5">Size: 7.5</option>
-                                            <option value="8.5">Size: 8.5</option>
+                                        @foreach ($product_widths as $key => $width)
+                                            <option <?php echo $key == 0 ? 'selected' : ''; ?> value="{{ $width->width->id }}"
+                                                data-val="{{ $width->width->width }}">
+                                                Size: {{ $width->width->width }}</option>
+                                        @endforeach
+                        
                                         </select>
+                                        @endif
                                     </div>
 
                                     <div class="caret-selectors">
-                                        <button class="btn active">14K</button>
-                                        <button class="btn">14K</button>
-                                        <button class="btn">18K</button>
+                                    @foreach ($product_variations as $variation)
+                                        <button data-id="{{ $variation->variation_id }}"
+                                                    style="border: 2px solid {{ $variation->variation->colors->code }}!important;" class="btn {{$loop->iteration==1?'active':''}}">{{ $variation->variation->title }}</button>
+                                        
+                                    @endforeach
                                     </div>
 
                                     <div class="btns">
