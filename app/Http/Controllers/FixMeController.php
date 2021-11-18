@@ -15,7 +15,11 @@ class FixMeController extends Controller
         $latest_products = Product::with(['images', 'image'])->latest()->limit(10)->get();
         // $latest_product_ids = $latest_products->pluck('id');
         // $our_products = Product::with(['images', 'image'])->whereNotIn('id', $latest_product_ids)->take(10)->get();
-        return view('moncheri.index', compact('latest_products'));
+        $latest_posts = [];
+        $latest_product_ids = $latest_products->pluck('id');
+        $our_products = Product::with(['images', 'image'])->whereNotIn('id', $latest_product_ids)->take(10)->get();
+        
+        return view('moncheri.index', compact('latest_products', 'latest_posts', 'our_products'));
     }
 
     public function products()
