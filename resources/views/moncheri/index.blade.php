@@ -281,7 +281,7 @@
                             <div class="col-12 col-sm-6 col-md-4">
                                 <img class="mx-auto d-block w-75 w-sm-100" src="{{asset($category->image)}}" alt="" />
                                 <div class="text-center mt-3">
-                                    <a href="{{url('/shop',$category->slug)}}"><h3 class="color1">{{ __(ucwords($category->title)) }}</h3></a>
+                                    <a href="{{url('/staging/shop',$category->slug)}}"><h3 class="color1">{{ __(ucwords($category->title)) }}</h3></a>
                                     <p class="sub-heading">
                                         Lorem Ipsum is simply dummy text PageMaker including
                                     </p>

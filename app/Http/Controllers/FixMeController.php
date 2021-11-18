@@ -24,7 +24,6 @@ class FixMeController extends Controller
 
     public function products()
     {
-
         $major_category = Category::where('slug', '=', request()->slug)->firstOrFail();
         // 2nd param paginate product
         $products = FilterProductService::filter_with_categories($major_category, 12);
@@ -33,6 +32,7 @@ class FixMeController extends Controller
 
     public function show_product($slug)
     {
+        
         $product = Product::where('slug', $slug)->with('product_variations')->firstOrFail();
         $product_widths = $product_sizes = $related_products = $stones = [];
         $product_variations = collect($product->product_variations)->unique(function ($var) {

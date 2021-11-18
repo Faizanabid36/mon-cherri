@@ -33,6 +33,7 @@
     <section class="products_container">
         <div class="page_container">
             <div class="container-fluid">
+                <form method="get" id="filter_form">
                 <div class="row">
                     <div class="btn-group flex-wrap filters-container">
                         <button class="btn dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -45,20 +46,26 @@
                                 <div class="prices-container">
                                     <div>
                                         <span> Min: Price</span>
-                                        <h3 id="min-price-filter">0.00</h3>
+                                        <h3 id="min-price-filter">100.00</h3>
                                     </div>
                                     <div>
                                         <span> Max: Price</span>
-                                        <h3 id="max-price-filter">0.00</h3>
+                                        <h3 id="max-price-filter">9999.00</h3>
                                     </div>
                                 </div>
                             </li>
                             <li class="ranger">
                                 <span class="multi-range">
-                                    <input type="range" min="100.00" max="9999.00" value="100.00" id="lower" step="1" />
-                                    <input type="range" min="100.00" max="9999.00" value="9999.00" id="upper" step="1" />
+                                    <input type="range" name="price_min" min="100.00" max="9999.00" value="100.00" id="lower" step="1" oninput="
+                                    document.getElementById('min-price-filter').innerHTML=this.value;
+                                    " />
+                                    <input type="range" name="price_max" min="100.00" max="9999.00" value="9999.00" id="upper" step="1" oninput="
+                                    document.getElementById('max-price-filter').innerHTML=this.value;
+                                    " />
                                 </span>
-                                <button class="btn coolBeans">Filter</button>
+                                <button class="btn coolBeans" onclick="
+                                document.getElementById('filter_form').submit();
+                                ">Filter</button>
                             </li>
                         </ul>
 
@@ -155,6 +162,7 @@
                         </div>
                     @endforeach
                 </div>
+                </form>
                 {{ $products->links('moncheri.components.pagination') }}
             </div>
         </div>
