@@ -238,7 +238,7 @@
                                     <img src="{{ asset('renameMe/images/fast-delivery.png') }}" alt="" />
                                 </div>
                                 <div class="text">
-                                    <h3>Fast Delivery</h3>
+                                    <h3>Easy Returns</h3>
                                     <p>Lorem Ipsum is simply dummy and typesetting industry.</p>
                                 </div>
                             </div>

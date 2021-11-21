@@ -325,6 +325,7 @@ a:hover {
 
 .product-card .product-slider img {
   width: 80%;
+  height: 135px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -1417,7 +1418,7 @@ a:hover {
 }
 
 .header_container.product-page li::after {
-  height: 4px;
+  height: 2px;
   bottom: -0.125rem;
 }
 
