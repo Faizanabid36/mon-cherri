@@ -42,7 +42,7 @@ class FrontController extends Controller
 
     public function products()
     {
-        
+
         $major_category = Category::where('slug', '=', request()->slug)->firstOrFail();
 
         // 2nd param paginate product
@@ -292,11 +292,10 @@ class FrontController extends Controller
             $user->notify(new VoucherNotification($user, $voucher));
         else
         {
-            // $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Testing moncheri sms api';
-            $message='Hello! Testing moncheri sms api';
+            $message='Hello!'.$user->info->first_name.' '.$voucher->description.' Thank you for shopping with us...';
             SMSService::notify($request->phone,$message);
         }
-            
+
         return back()->withSuccess('Successfully registered');
     }
 }
