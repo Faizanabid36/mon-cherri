@@ -16,7 +16,13 @@ class FilterProductService
                 $filters  = [];
 
                 $products = $major_category->products()->orderBy('created_at', 'desc');
-
+                if (request()->filled('sort')) {
+                    if(request()->sort=="A-Z")
+                        $products->orderBy('name','asc');
+                    else
+                        $products->orderBy('name','desc');
+                    $filters += ['sort'=>request()->sort];
+                }
                 if (request()->filled('price_min') && request()->filled('price_max')) {
                         $price_min = request()->price_min;
                         $price_max = request()->price_max;
@@ -69,9 +75,9 @@ class FilterProductService
                     $stone = request()->stone;
                     $products->whereIn('products.id', function($query) use ($stone) {
                     $query->select('product_id')->from('product_stones')->where('stone_shape',$stone)->get();
-                });
+                        });
                     $filters += ['stone'=>request()->stone];
-            }
+                 }
                 $products = $products->paginate($paginate)->appends($filters);
                 return $products;
             }

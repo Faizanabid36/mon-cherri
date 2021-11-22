@@ -63,9 +63,7 @@
                                     document.getElementById('max-price-filter').innerHTML=this.value;
                                     " />
                                 </span>
-                                <button class="btn coolBeans" onclick="
-                                document.getElementById('filter_form').submit();
-                                ">Filter</button>
+                                <button class="btn coolBeans" onclick="formSubmit()">Filter</button>
                             </li>
                         </ul>
 
@@ -75,12 +73,15 @@
                             <img src="{{ asset('renameMe/images/dropdown-up.png') }}" alt="dropdown-img" />
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <input type="text" hidden name="stone" id="stone">
                             <li class="p-">
                                 <ul class="items-to-filter">
-                                    <li>Diamond</li>
-                                    <li>Sapphire</li>
-                                    <li>Emerald</li>
-                                    <li>Ruby</li>
+                                @foreach(\App\CenterStone::get()->pluck('shape')->unique() as $stone)
+                                    <li onclick="
+                                    document.getElementById('stone').value='{{$stone}}';formSubmit()
+                                    " >{{$stone}}</li>
+                                @endforeach
+                                 
                                 </ul>
                                 <hr />
                                 <button class="btn coolBeans">Close</button>
@@ -94,9 +95,13 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                             <li class="p-">
+                            <input type="text" hidden name="shape" id="shape">
                                 <ul class="items-to-filter">
-                                    <li>Lorem</li>
-                                    <li>Ipsum</li>
+                                @foreach(\App\CenterStone::get()->pluck('shape')->unique() as $shape)
+                                    <li onclick="
+                                    document.getElementById('shape').value='{{$shape}}';formSubmit()
+                                    ">{{$shape}}</li>
+                                @endforeach
                                 </ul>
                                 <hr />
                                 <button class="btn coolBeans">Close</button>
@@ -110,9 +115,14 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
                             <li class="p-">
+                                <input type="text" hidden name="sort" id="sort">
                                 <ul class="items-to-filter">
-                                    <li>A - Z</li>
-                                    <li>Z - A</li>
+                                    <li onclick="
+                                    document.getElementById('sort').value='A-Z';formSubmit()
+                                    ">A - Z</li>
+                                    <li onclick="
+                                    document.getElementById('sort').value='Z-A';formSubmit()
+                                    ">Z - A</li>
                                 </ul>
                                 <hr />
                                 <button class="btn coolBeans">Close</button>
@@ -194,5 +204,10 @@
             },
         });
         textFit(document.querySelectorAll(".fit"));
+
+        function formSubmit()
+        {
+            document.getElementById('filter_form').submit();
+        }
     </script>
 @endsection
